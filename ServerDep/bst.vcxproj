@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="3rd\gflags\gflags.cc" />
+    <ClCompile Include="3rd\gflags\gflags_completions.cc" />
+    <ClCompile Include="3rd\gflags\gflags_reporting.cc" />
+    <ClCompile Include="3rd\gflags\windows_port.cc" />
+    <ClCompile Include="3rd\lua\src\lapi.c" />
+    <ClCompile Include="3rd\lua\src\lauxlib.c" />
+    <ClCompile Include="3rd\lua\src\lbaselib.c" />
+    <ClCompile Include="3rd\lua\src\lbitlib.c" />
+    <ClCompile Include="3rd\lua\src\lcode.c" />
+    <ClCompile Include="3rd\lua\src\lcorolib.c" />
+    <ClCompile Include="3rd\lua\src\lctype.c" />
+    <ClCompile Include="3rd\lua\src\ldblib.c" />
+    <ClCompile Include="3rd\lua\src\ldebug.c" />
+    <ClCompile Include="3rd\lua\src\ldo.c" />
+    <ClCompile Include="3rd\lua\src\ldump.c" />
+    <ClCompile Include="3rd\lua\src\lfunc.c" />
+    <ClCompile Include="3rd\lua\src\lgc.c" />
+    <ClCompile Include="3rd\lua\src\linit.c" />
+    <ClCompile Include="3rd\lua\src\liolib.c" />
+    <ClCompile Include="3rd\lua\src\llex.c" />
+    <ClCompile Include="3rd\lua\src\lmathlib.c" />
+    <ClCompile Include="3rd\lua\src\lmem.c" />
+    <ClCompile Include="3rd\lua\src\loadlib.c" />
+    <ClCompile Include="3rd\lua\src\lobject.c" />
+    <ClCompile Include="3rd\lua\src\lopcodes.c" />
+    <ClCompile Include="3rd\lua\src\loslib.c" />
+    <ClCompile Include="3rd\lua\src\lparser.c" />
+    <ClCompile Include="3rd\lua\src\lstate.c" />
+    <ClCompile Include="3rd\lua\src\lstring.c" />
+    <ClCompile Include="3rd\lua\src\lstrlib.c" />
+    <ClCompile Include="3rd\lua\src\ltable.c" />
+    <ClCompile Include="3rd\lua\src\ltablib.c" />
+    <ClCompile Include="3rd\lua\src\ltm.c" />
+    <ClCompile Include="3rd\lua\src\lundump.c" />
+    <ClCompile Include="3rd\lua\src\lvm.c" />
+    <ClCompile Include="3rd\lua\src\lzio.c" />
+    <ClCompile Include="base\Allocator.cpp" />
+    <ClCompile Include="base\Buffer.cpp" />
+    <ClCompile Include="base\Event.cpp" />
+    <ClCompile Include="base\EventNotify.cpp" />
+    <ClCompile Include="base\EventWaiter.cpp" />
+    <ClCompile Include="base\Exception.cpp" />
+    <ClCompile Include="base\Log.cpp" />
+    <ClCompile Include="base\lzf\lzf_c.c" />
+    <ClCompile Include="base\lzf\lzf_d.c" />
+    <ClCompile Include="base\PreCompier.cpp" />
+    <ClCompile Include="base\PreConfig.cpp" />
+    <ClCompile Include="base\Script\Script.cpp" />
+    <ClCompile Include="base\TcpClient.cpp" />
+    <ClCompile Include="base\TcpConnection.cpp" />
+    <ClCompile Include="base\TcpServer.cpp" />
+    <ClCompile Include="base\TimeInfo.cpp" />
+    <ClCompile Include="base\Timer.cpp" />
+    <ClCompile Include="base\windump.cpp" />
+    <ClCompile Include="main\LClient.cpp" />
+    <ClCompile Include="main\LServer.cpp" />
+    <ClCompile Include="main\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="3rd\gflags\gfconfig.h" />
+    <ClInclude Include="3rd\gflags\gflags\gflags.h" />
+    <ClInclude Include="3rd\gflags\gflags\gflags_completions.h" />
+    <ClInclude Include="3rd\gflags\gflags\gflags_declare.h" />
+    <ClInclude Include="3rd\gflags\gflags\mutex.h" />
+    <ClInclude Include="3rd\gflags\gflags\util.h" />
+    <ClInclude Include="3rd\gflags\windows_port.h" />
+    <ClInclude Include="3rd\lua\src\lapi.h" />
+    <ClInclude Include="3rd\lua\src\lauxlib.h" />
+    <ClInclude Include="3rd\lua\src\lcode.h" />
+    <ClInclude Include="3rd\lua\src\lctype.h" />
+    <ClInclude Include="3rd\lua\src\ldebug.h" />
+    <ClInclude Include="3rd\lua\src\ldo.h" />
+    <ClInclude Include="3rd\lua\src\lfunc.h" />
+    <ClInclude Include="3rd\lua\src\lgc.h" />
+    <ClInclude Include="3rd\lua\src\llex.h" />
+    <ClInclude Include="3rd\lua\src\llimits.h" />
+    <ClInclude Include="3rd\lua\src\lmem.h" />
+    <ClInclude Include="3rd\lua\src\lobject.h" />
+    <ClInclude Include="3rd\lua\src\lopcodes.h" />
+    <ClInclude Include="3rd\lua\src\lparser.h" />
+    <ClInclude Include="3rd\lua\src\lstate.h" />
+    <ClInclude Include="3rd\lua\src\lstring.h" />
+    <ClInclude Include="3rd\lua\src\ltable.h" />
+    <ClInclude Include="3rd\lua\src\ltm.h" />
+    <ClInclude Include="3rd\lua\src\lua.h" />
+    <ClInclude Include="3rd\lua\src\lua.hpp" />
+    <ClInclude Include="3rd\lua\src\luaconf.h" />
+    <ClInclude Include="3rd\lua\src\lualib.h" />
+    <ClInclude Include="3rd\lua\src\lundump.h" />
+    <ClInclude Include="3rd\lua\src\lvm.h" />
+    <ClInclude Include="3rd\lua\src\lzio.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_base.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_client.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_connector.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_object_pool.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_packer.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_server.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_server_socket.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_service_pump.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_socket.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_ssl.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_tcp_client.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_tcp_socket.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_timer.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_udp_client.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_udp_socket.h" />
+    <ClInclude Include="3rd\st_asio_wrapper\include\st_asio_wrapper_unpacker.h" />
+    <ClInclude Include="base\Allocator.h" />
+    <ClInclude Include="base\AtomicInt32.h" />
+    <ClInclude Include="base\Buffer.h" />
+    <ClInclude Include="base\CmdDefine.h" />
+    <ClInclude Include="base\Container.h" />
+    <ClInclude Include="base\EasyUnitTest.h" />
+    <ClInclude Include="base\Event.h" />
+    <ClInclude Include="base\EventNotify.h" />
+    <ClInclude Include="base\EventWaiter.h" />
+    <ClInclude Include="base\Exception.h" />
+    <ClInclude Include="base\HandlerAllocator.h" />
+    <ClInclude Include="base\Log.h" />
+    <ClInclude Include="base\lzf\lzf.h" />
+    <ClInclude Include="base\lzf\lzfP.h" />
+    <ClInclude Include="base\Macro.h" />
+    <ClInclude Include="base\PreCompier.h" />
+    <ClInclude Include="base\PreConfig.h" />
+    <ClInclude Include="base\Script\Script.h" />
+    <ClInclude Include="base\Singleton.h" />
+    <ClInclude Include="base\TcpClient.h" />
+    <ClInclude Include="base\TcpCmdPool.h" />
+    <ClInclude Include="base\TcpConnection.h" />
+    <ClInclude Include="base\TcpServer.h" />
+    <ClInclude Include="base\TimeInfo.h" />
+    <ClInclude Include="base\Timer.h" />
+    <ClInclude Include="base\Util.h" />
+    <ClInclude Include="base\windump.h" />
+    <ClInclude Include="main\LClient.h" />
+    <ClInclude Include="main\LServer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="frame\TODO.txt" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5B744827-4619-4DC1-88A6-C8C601189A84}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>bst</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>./bin/</OutDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>$(ProjectName)_d</TargetName>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>./bin/</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>./bin/</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>./bin/</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;__WINDOWS__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./3rd/gflags;./3rd/gperftools/src;./3rd/jem/include/msvc_compat;./3rd/jem/include;./3rd/boost;./3rd/lua/src;./base;./main</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ForceSymbolReferences>__tcmalloc</ForceSymbolReferences>
+      <AdditionalLibraryDirectories>./lib/</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;__WINDOWS__;X64_PLATFORM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./3rd/gflags;./3rd/gperftools/src;./3rd/jem/include/msvc_compat;./3rd/jem/include;./3rd/boost;./3rd/lua/src;./base;./main</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ForceSymbolReferences>__tcmalloc</ForceSymbolReferences>
+      <AdditionalLibraryDirectories>./lib/</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;__WINDOWS__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./3rd/gflags;./3rd/gperftools/src;./3rd/jem/include/msvc_compat;./3rd/jem/include;./3rd/boost;./3rd/lua/src;./base;./main</AdditionalIncludeDirectories>
+      <StringPooling>true</StringPooling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <ExceptionHandling>Async</ExceptionHandling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <Profile>true</Profile>
+      <AdditionalLibraryDirectories>./lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;__WINDOWS__;X64_PLATFORM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./3rd/gflags;./3rd/gperftools/src;./3rd/jem/include/msvc_compat;./3rd/jem/include;./3rd/boost;./3rd/lua/src;./base;./main</AdditionalIncludeDirectories>
+      <StringPooling>true</StringPooling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <ExceptionHandling>Async</ExceptionHandling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <Profile>true</Profile>
+      <AdditionalLibraryDirectories>./lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <ForceSymbolReferences>__tcmalloc</ForceSymbolReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

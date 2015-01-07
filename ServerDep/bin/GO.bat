@@ -1,0 +1,9 @@
+start "Svr1"  /NORMAL  bst.exe s
+start "Cli1"  /NORMAL /MIN  bst.exe
+-start "Cli2"  /NORMAL /MIN  bst.exe
+-start "Cli3"  /NORMAL /MIN  bst.exe
+-start "Cli4"  /NORMAL /MIN  bst.exe
+-start "Cli5"  /LOW /MIN  bst.exe
+-start "Cli6"  /LOW /MIN  bst.exe
+-start "Cli7"  /LOW /MIN  bst.exe
+-start "Cli8"  /LOW /MIN  bst.exe

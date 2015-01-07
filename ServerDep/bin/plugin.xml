@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ProductList>
+	<plugin name="EZTALK" status="1" nickname="中国人">
+		<PID>10006</PID>
+		<MD5>c634e664d737831b0c6cfecb8cea6d35</MD5>
+		<PATH>plugin\sd-eztalk\sd-eztalk.dll</PATH>
+	</plugin>
+</ProductList>

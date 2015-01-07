@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main">
+      <UniqueIdentifier>{dfd2aa9e-613b-4fc0-bf97-11111ff908cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{6e205a9e-a77b-485b-ac6b-460fba86b730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Net">
+      <UniqueIdentifier>{9dcb0c41-2052-469b-9dc7-02effa9c71d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{be674318-85a8-40d5-b0bc-90c7ec392a28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packets">
+      <UniqueIdentifier>{32a4dca2-1eff-4ac4-b010-0bc7732b0204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Base">
+      <UniqueIdentifier>{c358928c-0370-4183-9c5e-985c83139d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\protobuf">
+      <UniqueIdentifier>{5bf781fa-d4eb-49e0-b85e-1892f0fb5f19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\protobuf\Header Files">
+      <UniqueIdentifier>{c9211020-aa98-4087-b51f-51808d51beb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\protobuf\Source Files">
+      <UniqueIdentifier>{67d97da2-d312-4ecc-803f-a56c044e64ba}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main\Login.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\LoginMain.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\ServerThread.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\ThreadManager.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\ConnectManager.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Packets\CLAskCharListHandler.cpp">
+      <Filter>Packets</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\PlayerManager.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\PlayerPool.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\ServerPlayer.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\LoginPlayer.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Player\LoginPlayerManager.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Base\Assertx.cpp">
+      <Filter>Common\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Base\GameUtil.cpp">
+      <Filter>Common\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Base\Ini.cpp">
+      <Filter>Common\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Base\Thread.cpp">
+      <Filter>Common\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Base\TimeManager.cpp">
+      <Filter>Common\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Net\ServerSocket.cpp">
+      <Filter>Common\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Net\Socket.cpp">
+      <Filter>Common\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Net\SocketAPI.cpp">
+      <Filter>Common\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Net\SocketInputStream.cpp">
+      <Filter>Common\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Net\SocketOutputStream.cpp">
+      <Filter>Common\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Net\FileAPI.cpp">
+      <Filter>Common\Net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\PacketFactoryManager.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Config.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Packets\CLAskCharList.cpp">
+      <Filter>Packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Base.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\BaseLib.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Log.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Packet.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\io\coded_stream.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\stubs\common.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\descriptor.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\descriptor.pb.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\descriptor_database.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\dynamic_message.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\extension_set.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\extension_set_heavy.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\generated_message_reflection.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\generated_message_util.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\io\gzip_stream.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\io\strtod.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\compiler\importer.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\message.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\message_lite.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\stubs\once.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\stubs\atomicops_internals_x86_msvc.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\compiler\parser.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\io\printer.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\reflection_ops.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\repeated_field.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\service.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\stubs\structurally_valid.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\stubs\strutil.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\stubs\substitute.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\text_format.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\io\tokenizer.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\unknown_field_set.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\wire_format.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\wire_format_lite.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\io\zero_copy_stream.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\io\zero_copy_stream_impl.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\io\zero_copy_stream_impl_lite.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\stubs\stringprintf.cc">
+      <Filter>Common\protobuf\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\PBMessage.pb.cc">
+      <Filter>Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Main\Login.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\LoginMain.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\ServerThread.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\ThreadManager.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\ConnectManager.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\LoginPlayerManager.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\PlayerManager.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\PlayerPool.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\ServerPlayer.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\LoginPlayer.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base\Assertx.h">
+      <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base\GameUtil.h">
+      <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base\Ini.h">
+      <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base\Thread.h">
+      <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base\TimeManager.h">
+      <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Net\ServerSocket.h">
+      <Filter>Common\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Net\Socket.h">
+      <Filter>Common\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Net\SocketAPI.h">
+      <Filter>Common\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Net\SocketInputStream.h">
+      <Filter>Common\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Net\SocketOutputStream.h">
+      <Filter>Common\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\PacketDefine.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\PacketFactory.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\PacketFactoryManager.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\PlayerStatus.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Config.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\GameDefine.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Packets\CLAskCharList.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\MacroDefine.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\BaseType.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\BaseLib.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base\Container.h">
+      <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base\AutoFactory.h">
+      <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base\Pool.h">
+      <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Log.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Net\FileAPI.h">
+      <Filter>Common\Net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Packet.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\coded_stream.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\coded_stream_inl.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\common.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\vsprojects\config.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\descriptor.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\descriptor.pb.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\descriptor_database.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\dynamic_message.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\extension_set.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\generated_message_reflection.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\generated_message_util.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\gzip_stream.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\strtod.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\hash.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\compiler\importer.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\map_util.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\message.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\message_lite.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\atomicops.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\atomicops_internals_x86_msvc.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\platform_macros.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\once.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\compiler\parser.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\printer.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\reflection_ops.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\repeated_field.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\service.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\stl_util.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\stringprintf.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\template_util.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\type_traits.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\strutil.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\stubs\substitute.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\text_format.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\tokenizer.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\unknown_field_set.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\wire_format.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\wire_format_lite.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\wire_format_lite_inl.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\zero_copy_stream.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\zero_copy_stream_impl.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\zero_copy_stream_impl_lite.h">
+      <Filter>Common\protobuf\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\PBMessage.pb.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,117 @@
+/****************************************************
+* TODO-LIST
+*****************************************************/
+
+//////////////////////////////////////////////////////
+
+****************************************************
+** skill-strength
+****************************************************
++shell
++make
++http (curl)
++python (文本，http, db ...)
++golang
+
+
+
+****************************************************
+** NetWork
+****************************************************
+---------------------------------------------
+DONE!
+---------------------------------------------
++ 是否自己实现一个内存池，BOOST内存池不能有效的控制内存占用  -- fixed
++ 实现一个Buff，参考nio -- fixed
++ TcpConnection 使用内存池分配 -- fixed
++ 对内存池使用对齐调整策略 （按某一字节对齐；2的N次方对齐） -- fixed
++ 将发送的消息结构调整为 头部有长度有ID的这种 -- fixed
+	struct tagCmd{ int32_t size, id; } 
++ 优化MsgPtr的分配 -- fixed
++ 对连接增加 messageCallback 回调 -- fixed
++ 增加线程池 boost-threadpool --fixed
++ 增加log --fixed
++ 增加lua --fixed
+TODO!
+---------------------------------------------
++ 增加对protocol buffer的支持
++ 增加window下的dump，linux调用栈(部分实现，缺少对底层所有函数使用异常处理)
++ 增加mysql
+
+
+DELAY!
+---------------------------------------------
++ 调整内存池  --delay
+	+ 使用整体命中率来删减超出上限的内存
+	+ 使用已有的内存来初始化内存节点头
++ 并且可以使用流的方式读取 --delay
+
+KEEP!
+---------------------------------------------
++ 整理代码，是否有资源释放问题
++ 对类似卡牌的短连接有所准备
+
+****************************************************
+** BookMark
+****************************************************
++SWIG http://sourceforge.net/projects/swig/
++fastdelegate http://www.codeproject.com/cpp/FastDelegate.asp
+
++https://twistedmatrix.com/trac/
++http://www.tornadoweb.cn/
+
++PHP	
+	+http://daemon.io/	
+	+http://www.workerman.net/
+	
++GO 
+	+http://gorevel.cn/
+	+http://1234n.com/
+	+http://beego.me/
+	+http://webgo.io/
+	
++Node.js
+	+http://wenku.baidu.com/link?url=uDzSqlvFgu8MKYxeznyZSiNzQkNqJ11o2srKs6gFxlKcq7jhyRcaE9wJsvkwuvDicMaHNYOL36_PrrRSERBaA0pjDZC_GChAEgnGlpzr95y
+	+http://blog.fens.me/series-nodejs/
+	+https://www.npmjs.org/
+	
+	+中间件 connect/express  
+	+改善异步回调async
+	+supervisor方便调试，不用重启node
+	+http://blog.fens.me/
+	
++firefox [je_malloc]
+	+source code
+		ftp://ftp.mozilla.org/pub/mozilla.org/firefox/releases/32.0.3/source/	
+	+build-win
+		https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Windows_Prerequisites
+
+---------------------------------------------------------
+* *unix
+---------------------------------------------------------
++使用Valgrind 查看内存以及函数调用图
+	+也可以使用gprof，但是这个需要连接以及加特殊编译参数
+	
++http://www.kerneltravel.net
+
++libuv
+	http://nikhilm.github.io/uvbook/index.html
+---------------------------------------------------------
+* BOOST
+---------------------------------------------------------
+
++使用bcp.exe提交boost代码
+	-- bcp.exe --boost=$SourceDir $lib‘s Name  $OutDir
+	bcp --boost=D:/1/3rd/boost_1_55_0/ static_assert thread threadpool date_time filesystem format serialization lexical system smart_ptr bind container D:/1/sim/
+
++源代码使用: filesystem
+修改的步骤如下：
+	1、将libs/filesystem/src/path.cpp中的default_codcvt_buf_size注释掉。
+	2、将libs/filesystem/src/path.cpp中的dot,dot_path,dot_dot_path改名，比如mydot,etc. （与指南中不同）
+	3、在你自己的文件中加入如下代码：
+	#define BOOST_ALL_NO_LIB
+	#include <libs/system/src/error_code.cpp>        //是本人新加的，指南中没有
+
++threadpool 
+	1.修改 task_adaptors.hpp TIME_UTC -> TIME_UTC_
+	2.xtime.hpp->xtime_clock_types

@@ -1,0 +1,10 @@
+*2014/5/22 - DEMO1
+	+LogicServer.js
+	+player.js
+	+db.js -> memcached + mysql
++npm + bower(npm install bower -g)
++中间件 connect/express  
++改善异步回调async
++supervisor方便调试，不用重启node
++node-inspector使用网页调试js http://jingyan.baidu.com/article/dca1fa6fbd580ff1a44052de.html
++http://blog.fens.me/	
