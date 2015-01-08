@@ -15,18 +15,18 @@ struct NetworkInitialize
  		_MY_TRY
 		{
 			CG_LOGIN_PAK loginPak;
-			loginPak.GetMsg().set_vtype(1);
-			loginPak.GetMsg().set_gameversion(1);
-			loginPak.GetMsg().set_programversion(1);
-			loginPak.GetMsg().set_publicresourceversion(1);
-			loginPak.GetMsg().set_maxpacketid(99);
-			loginPak.GetMsg().set_forceenter(8);
-			loginPak.GetMsg().set_deviceid("ma.CY5929");
-			loginPak.GetMsg().set_devicetype("WINDOWS");
+			loginPak.Msg.set_vtype(1);
+			loginPak.Msg.set_gameversion(1);
+			loginPak.Msg.set_programversion(1);
+			loginPak.Msg.set_publicresourceversion(1);
+			loginPak.Msg.set_maxpacketid(99);
+			loginPak.Msg.set_forceenter(8);
+			loginPak.Msg.set_deviceid("ma.CY5929");
+			loginPak.Msg.set_devicetype("WINDOWS");
 			//msg.set_deviceversion("Win8.1");
-			int32 byteSize  = loginPak.GetMsg().ByteSize();
+			int32 byteSize  = loginPak.Msg.ByteSize();
 			CHAR Buf[256] = {0};
-			loginPak.GetMsg().SerializeToArray(Buf,sizeof Buf);
+			loginPak.Msg.SerializeToArray(Buf,sizeof Buf);
 			printf("%s", Buf);
 		}
 		_MY_CATCH

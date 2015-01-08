@@ -41,7 +41,6 @@ public :
 	virtual ~Packet( );
 	virtual	uint32_t	GetPacketID( ) const { return m_PacketId; } 
 	virtual	uint32_t	GetPacketSize( ) const { return m_rMessage.ByteSize(); } 
-	virtual PBMessage&	GetMsg() = 0;
 	virtual Packet*		Clone() = 0;
 	virtual void		FreeOwn() { delete this; }
 private:
@@ -51,13 +50,12 @@ private:
 #define PACKET_CLASS(MSGTYPE) MSGTYPE##_PAK
 #define PACKET_DECL(MSGTYPE)\
 class PACKET_CLASS(MSGTYPE) : public Packet { \
-private: \
-	MSGTYPE m_Msg; \
 public: \
-	MSGTYPE& GetMsg() { return m_Msg; } \
+	MSGTYPE Msg; \
+public: \
 	Packet* Clone() { return new PACKET_CLASS(MSGTYPE)(); } \
 public: \
-	PACKET_CLASS(MSGTYPE)( ) : Packet(m_Msg, #MSGTYPE){ } \
+	PACKET_CLASS(MSGTYPE)( ) : Packet(Msg, #MSGTYPE){ } \
 };
 
 
