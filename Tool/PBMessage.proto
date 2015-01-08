@@ -1,0 +1,23 @@
+option optimize_for = LITE_RUNTIME;
+
+//#client ask login
+//@CG
+message CG_LOGIN
+{
+	enum VALIDATETYPE
+	{
+		TEST = 0;																	//测试登录模式
+		CYOU = 1;																	//聚合SDK登陆模式
+	}
+
+	//登录基本数据
+	required int32	vtype									= 1;	//验证类型，见VALIDATETYPE枚举
+	required int32	gameversion						= 2;	//游戏大版本号
+	required int32	programversion				= 3;	//代码版本号
+	required int32	publicresourceversion	= 4;	//公共资源版本号
+	required int32	maxpacketid						= 5;	//最大消息包ID
+	required int32	forceenter						= 6;	//如果兼容是否强行登陆
+	required string	deviceid							= 7;	//设备ID
+	required string	devicetype						= 8;	//设备类型
+	required string	deviceversion					= 9;	//设备版本
+}
