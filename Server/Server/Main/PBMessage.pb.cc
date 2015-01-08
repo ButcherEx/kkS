@@ -10,109 +10,47 @@
 #include <google/protobuf/stubs/once.h>
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/wire_format_lite_inl.h>
-#include <google/protobuf/descriptor.h>
-#include <google/protobuf/generated_message_reflection.h>
-#include <google/protobuf/reflection_ops.h>
-#include <google/protobuf/wire_format.h>
+#include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 // @@protoc_insertion_point(includes)
-
-namespace {
-
-const ::google::protobuf::Descriptor* CG_LOGIN_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  CG_LOGIN_reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* CG_LOGIN_VALIDATETYPE_descriptor_ = NULL;
-
-}  // namespace
-
-
-void protobuf_AssignDesc_PBMessage_2eproto() {
-  protobuf_AddDesc_PBMessage_2eproto();
-  const ::google::protobuf::FileDescriptor* file =
-    ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
-      "PBMessage.proto");
-  GOOGLE_CHECK(file != NULL);
-  CG_LOGIN_descriptor_ = file->message_type(0);
-  static const int CG_LOGIN_offsets_[9] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CG_LOGIN, vtype_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CG_LOGIN, gameversion_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CG_LOGIN, programversion_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CG_LOGIN, publicresourceversion_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CG_LOGIN, maxpacketid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CG_LOGIN, forceenter_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CG_LOGIN, deviceid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CG_LOGIN, devicetype_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CG_LOGIN, deviceversion_),
-  };
-  CG_LOGIN_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      CG_LOGIN_descriptor_,
-      CG_LOGIN::default_instance_,
-      CG_LOGIN_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CG_LOGIN, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CG_LOGIN, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(CG_LOGIN));
-  CG_LOGIN_VALIDATETYPE_descriptor_ = CG_LOGIN_descriptor_->enum_type(0);
-}
-
-namespace {
-
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);
-inline void protobuf_AssignDescriptorsOnce() {
-  ::google::protobuf::GoogleOnceInit(&protobuf_AssignDescriptors_once_,
-                 &protobuf_AssignDesc_PBMessage_2eproto);
-}
-
-void protobuf_RegisterTypes(const ::std::string&) {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    CG_LOGIN_descriptor_, &CG_LOGIN::default_instance());
-}
-
-}  // namespace
 
 void protobuf_ShutdownFile_PBMessage_2eproto() {
   delete CG_LOGIN::default_instance_;
-  delete CG_LOGIN_reflection_;
 }
 
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+void protobuf_AddDesc_PBMessage_2eproto_impl() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+#else
 void protobuf_AddDesc_PBMessage_2eproto() {
   static bool already_here = false;
   if (already_here) return;
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\017PBMessage.proto\"\357\001\n\010CG_LOGIN\022\r\n\005vtype\030"
-    "\001 \002(\005\022\023\n\013gameversion\030\002 \002(\005\022\026\n\016programver"
-    "sion\030\003 \002(\005\022\035\n\025publicresourceversion\030\004 \002("
-    "\005\022\023\n\013maxpacketid\030\005 \002(\005\022\022\n\nforceenter\030\006 \002"
-    "(\005\022\020\n\010deviceid\030\007 \002(\t\022\022\n\ndevicetype\030\010 \002(\t"
-    "\022\025\n\rdeviceversion\030\t \002(\t\"\"\n\014VALIDATETYPE\022"
-    "\010\n\004TEST\020\000\022\010\n\004CYOU\020\001", 259);
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
-    "PBMessage.proto", &protobuf_RegisterTypes);
+#endif
   CG_LOGIN::default_instance_ = new CG_LOGIN();
   CG_LOGIN::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_PBMessage_2eproto);
 }
 
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AddDesc_PBMessage_2eproto_once_);
+void protobuf_AddDesc_PBMessage_2eproto() {
+  ::google::protobuf::GoogleOnceInit(&protobuf_AddDesc_PBMessage_2eproto_once_,
+                 &protobuf_AddDesc_PBMessage_2eproto_impl);
+}
+#else
 // Force AddDescriptors() to be called at static initialization time.
 struct StaticDescriptorInitializer_PBMessage_2eproto {
   StaticDescriptorInitializer_PBMessage_2eproto() {
     protobuf_AddDesc_PBMessage_2eproto();
   }
 } static_descriptor_initializer_PBMessage_2eproto_;
+#endif
 
 // ===================================================================
 
-const ::google::protobuf::EnumDescriptor* CG_LOGIN_VALIDATETYPE_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return CG_LOGIN_VALIDATETYPE_descriptor_;
-}
 bool CG_LOGIN_VALIDATETYPE_IsValid(int value) {
   switch(value) {
     case 0:
@@ -143,7 +81,7 @@ const int CG_LOGIN::kDeviceversionFieldNumber;
 #endif  // !_MSC_VER
 
 CG_LOGIN::CG_LOGIN()
-  : ::google::protobuf::Message() {
+  : ::google::protobuf::MessageLite() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:CG_LOGIN)
 }
@@ -152,7 +90,7 @@ void CG_LOGIN::InitAsDefaultInstance() {
 }
 
 CG_LOGIN::CG_LOGIN(const CG_LOGIN& from)
-  : ::google::protobuf::Message() {
+  : ::google::protobuf::MessageLite() {
   SharedCtor();
   MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:CG_LOGIN)
@@ -188,7 +126,11 @@ void CG_LOGIN::SharedDtor() {
   if (deviceversion_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete deviceversion_;
   }
+  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  if (this != &default_instance()) {
+  #else
   if (this != default_instance_) {
+  #endif
   }
 }
 
@@ -197,13 +139,12 @@ void CG_LOGIN::SetCachedSize(int size) const {
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* CG_LOGIN::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return CG_LOGIN_descriptor_;
-}
-
 const CG_LOGIN& CG_LOGIN::default_instance() {
+#ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  protobuf_AddDesc_PBMessage_2eproto();
+#else
   if (default_instance_ == NULL) protobuf_AddDesc_PBMessage_2eproto();
+#endif
   return *default_instance_;
 }
 
@@ -247,13 +188,17 @@ void CG_LOGIN::Clear() {
 #undef ZR_
 
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
+  mutable_unknown_fields()->clear();
 }
 
 bool CG_LOGIN::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
+  ::google::protobuf::io::StringOutputStream unknown_fields_string(
+      mutable_unknown_fields());
+  ::google::protobuf::io::CodedOutputStream unknown_fields_stream(
+      &unknown_fields_string);
   // @@protoc_insertion_point(parse_start:CG_LOGIN)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
@@ -355,10 +300,6 @@ bool CG_LOGIN::MergePartialFromCodedStream(
          parse_deviceid:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_deviceid()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->deviceid().data(), this->deviceid().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "deviceid");
         } else {
           goto handle_unusual;
         }
@@ -372,10 +313,6 @@ bool CG_LOGIN::MergePartialFromCodedStream(
          parse_devicetype:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_devicetype()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->devicetype().data(), this->devicetype().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "devicetype");
         } else {
           goto handle_unusual;
         }
@@ -389,10 +326,6 @@ bool CG_LOGIN::MergePartialFromCodedStream(
          parse_deviceversion:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_deviceversion()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->deviceversion().data(), this->deviceversion().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "deviceversion");
         } else {
           goto handle_unusual;
         }
@@ -407,8 +340,8 @@ bool CG_LOGIN::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(
+            input, tag, &unknown_fields_stream));
         break;
       }
     }
@@ -457,113 +390,25 @@ void CG_LOGIN::SerializeWithCachedSizes(
 
   // required string deviceid = 7;
   if (has_deviceid()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->deviceid().data(), this->deviceid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "deviceid");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       7, this->deviceid(), output);
   }
 
   // required string devicetype = 8;
   if (has_devicetype()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->devicetype().data(), this->devicetype().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "devicetype");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       8, this->devicetype(), output);
   }
 
   // required string deviceversion = 9;
   if (has_deviceversion()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->deviceversion().data(), this->deviceversion().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "deviceversion");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       9, this->deviceversion(), output);
   }
 
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
+  output->WriteRaw(unknown_fields().data(),
+                   unknown_fields().size());
   // @@protoc_insertion_point(serialize_end:CG_LOGIN)
-}
-
-::google::protobuf::uint8* CG_LOGIN::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:CG_LOGIN)
-  // required int32 vtype = 1;
-  if (has_vtype()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->vtype(), target);
-  }
-
-  // required int32 gameversion = 2;
-  if (has_gameversion()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->gameversion(), target);
-  }
-
-  // required int32 programversion = 3;
-  if (has_programversion()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->programversion(), target);
-  }
-
-  // required int32 publicresourceversion = 4;
-  if (has_publicresourceversion()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->publicresourceversion(), target);
-  }
-
-  // required int32 maxpacketid = 5;
-  if (has_maxpacketid()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->maxpacketid(), target);
-  }
-
-  // required int32 forceenter = 6;
-  if (has_forceenter()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->forceenter(), target);
-  }
-
-  // required string deviceid = 7;
-  if (has_deviceid()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->deviceid().data(), this->deviceid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "deviceid");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        7, this->deviceid(), target);
-  }
-
-  // required string devicetype = 8;
-  if (has_devicetype()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->devicetype().data(), this->devicetype().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "devicetype");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        8, this->devicetype(), target);
-  }
-
-  // required string deviceversion = 9;
-  if (has_deviceversion()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->deviceversion().data(), this->deviceversion().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "deviceversion");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        9, this->deviceversion(), target);
-  }
-
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:CG_LOGIN)
-  return target;
 }
 
 int CG_LOGIN::ByteSize() const {
@@ -636,27 +481,17 @@ int CG_LOGIN::ByteSize() const {
     }
 
   }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
+  total_size += unknown_fields().size();
+
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
-void CG_LOGIN::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const CG_LOGIN* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const CG_LOGIN*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
+void CG_LOGIN::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const CG_LOGIN*>(&from));
 }
 
 void CG_LOGIN::MergeFrom(const CG_LOGIN& from) {
@@ -692,13 +527,7 @@ void CG_LOGIN::MergeFrom(const CG_LOGIN& from) {
       set_deviceversion(from.deviceversion());
     }
   }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void CG_LOGIN::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
+  mutable_unknown_fields()->append(from.unknown_fields());
 }
 
 void CG_LOGIN::CopyFrom(const CG_LOGIN& from) {
@@ -725,17 +554,13 @@ void CG_LOGIN::Swap(CG_LOGIN* other) {
     std::swap(devicetype_, other->devicetype_);
     std::swap(deviceversion_, other->deviceversion_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
+    _unknown_fields_.swap(other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }
 }
 
-::google::protobuf::Metadata CG_LOGIN::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = CG_LOGIN_descriptor_;
-  metadata.reflection = CG_LOGIN_reflection_;
-  return metadata;
+::std::string CG_LOGIN::GetTypeName() const {
+  return "CG_LOGIN";
 }
 
 

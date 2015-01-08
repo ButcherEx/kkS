@@ -11,24 +11,28 @@ struct NetworkInitialize
 		WSADATA wsaData= {0};
 		uint16_t dwNetworkVersion = MAKEWORD(2,2);
  		::WSAStartup(dwNetworkVersion, &wsaData);
- 		::CG_LOGIN msg;
  		
-		msg.set_vtype(1);
-		msg.set_gameversion(1);
-		msg.set_programversion(1);
-		msg.set_publicresourceversion(1);
-		msg.set_maxpacketid(99);
-		msg.set_forceenter(8);
-		msg.set_deviceid("ma.CY5929");
-		msg.set_devicetype("WINDOWS");
-		//msg.set_deviceversion("Win8.1");
-		int32 byteSize  = msg.ByteSize();
-		CHAR Buf[256] = {0};
-		msg.SerializeToArray(Buf,sizeof Buf);
-		printf("%s", Buf);
+ 		_MY_TRY
+		{
+			::CG_LOGIN msg;
+			msg.set_vtype(1);
+			msg.set_gameversion(1);
+			msg.set_programversion(1);
+			msg.set_publicresourceversion(1);
+			msg.set_maxpacketid(99);
+			msg.set_forceenter(8);
+			msg.set_deviceid("ma.CY5929");
+			msg.set_devicetype("WINDOWS");
+			//msg.set_deviceversion("Win8.1");
+			int32 byteSize  = msg.ByteSize();
+			CHAR Buf[256] = {0};
+			msg.SerializeToArray(Buf,sizeof Buf);
+			printf("%s", Buf);
+		}
+		_MY_CATCH
+		{
 
-
-
+		}
 	}
 
 	~NetworkInitialize()

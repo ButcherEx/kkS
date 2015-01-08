@@ -20,11 +20,9 @@
 #endif
 
 #include <google/protobuf/generated_message_util.h>
-#include <google/protobuf/message.h>
+#include <google/protobuf/message_lite.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
-#include <google/protobuf/generated_enum_reflection.h>
-#include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
 // Internal implementation detail -- do not call these.
@@ -43,19 +41,9 @@ const CG_LOGIN_VALIDATETYPE CG_LOGIN_VALIDATETYPE_VALIDATETYPE_MIN = CG_LOGIN_VA
 const CG_LOGIN_VALIDATETYPE CG_LOGIN_VALIDATETYPE_VALIDATETYPE_MAX = CG_LOGIN_VALIDATETYPE_CYOU;
 const int CG_LOGIN_VALIDATETYPE_VALIDATETYPE_ARRAYSIZE = CG_LOGIN_VALIDATETYPE_VALIDATETYPE_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* CG_LOGIN_VALIDATETYPE_descriptor();
-inline const ::std::string& CG_LOGIN_VALIDATETYPE_Name(CG_LOGIN_VALIDATETYPE value) {
-  return ::google::protobuf::internal::NameOfEnum(
-    CG_LOGIN_VALIDATETYPE_descriptor(), value);
-}
-inline bool CG_LOGIN_VALIDATETYPE_Parse(
-    const ::std::string& name, CG_LOGIN_VALIDATETYPE* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<CG_LOGIN_VALIDATETYPE>(
-    CG_LOGIN_VALIDATETYPE_descriptor(), name, value);
-}
 // ===================================================================
 
-class CG_LOGIN : public ::google::protobuf::Message {
+class CG_LOGIN : public ::google::protobuf::MessageLite {
  public:
   CG_LOGIN();
   virtual ~CG_LOGIN();
@@ -67,24 +55,32 @@ class CG_LOGIN : public ::google::protobuf::Message {
     return *this;
   }
 
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+  inline const ::std::string& unknown_fields() const {
     return _unknown_fields_;
   }
 
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+  inline ::std::string* mutable_unknown_fields() {
     return &_unknown_fields_;
   }
 
-  static const ::google::protobuf::Descriptor* descriptor();
   static const CG_LOGIN& default_instance();
+
+  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  // Returns the internal default instance pointer. This function can
+  // return NULL thus should not be used by the user. This is intended
+  // for Protobuf internal code. Please use default_instance() declared
+  // above instead.
+  static inline const CG_LOGIN* internal_default_instance() {
+    return default_instance_;
+  }
+  #endif
 
   void Swap(CG_LOGIN* other);
 
   // implements Message ----------------------------------------------
 
   CG_LOGIN* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from);
   void CopyFrom(const CG_LOGIN& from);
   void MergeFrom(const CG_LOGIN& from);
   void Clear();
@@ -95,14 +91,14 @@ class CG_LOGIN : public ::google::protobuf::Message {
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  void DiscardUnknownFields();
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
   public:
-  ::google::protobuf::Metadata GetMetadata() const;
+  ::std::string GetTypeName() const;
 
   // nested types ----------------------------------------------------
 
@@ -118,17 +114,6 @@ class CG_LOGIN : public ::google::protobuf::Message {
     CG_LOGIN_VALIDATETYPE_VALIDATETYPE_MAX;
   static const int VALIDATETYPE_ARRAYSIZE =
     CG_LOGIN_VALIDATETYPE_VALIDATETYPE_ARRAYSIZE;
-  static inline const ::google::protobuf::EnumDescriptor*
-  VALIDATETYPE_descriptor() {
-    return CG_LOGIN_VALIDATETYPE_descriptor();
-  }
-  static inline const ::std::string& VALIDATETYPE_Name(VALIDATETYPE value) {
-    return CG_LOGIN_VALIDATETYPE_Name(value);
-  }
-  static inline bool VALIDATETYPE_Parse(const ::std::string& name,
-      VALIDATETYPE* value) {
-    return CG_LOGIN_VALIDATETYPE_Parse(name, value);
-  }
 
   // accessors -------------------------------------------------------
 
@@ -231,7 +216,7 @@ class CG_LOGIN : public ::google::protobuf::Message {
   inline void set_has_deviceversion();
   inline void clear_has_deviceversion();
 
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  ::std::string _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
@@ -244,7 +229,11 @@ class CG_LOGIN : public ::google::protobuf::Message {
   ::std::string* deviceid_;
   ::std::string* devicetype_;
   ::std::string* deviceversion_;
+  #ifdef GOOGLE_PROTOBUF_NO_STATIC_INITIALIZER
+  friend void  protobuf_AddDesc_PBMessage_2eproto_impl();
+  #else
   friend void  protobuf_AddDesc_PBMessage_2eproto();
+  #endif
   friend void protobuf_AssignDesc_PBMessage_2eproto();
   friend void protobuf_ShutdownFile_PBMessage_2eproto();
 
@@ -632,20 +621,6 @@ inline void CG_LOGIN::set_allocated_deviceversion(::std::string* deviceversion) 
 
 
 // @@protoc_insertion_point(namespace_scope)
-
-#ifndef SWIG
-namespace google {
-namespace protobuf {
-
-template <> struct is_proto_enum< ::CG_LOGIN_VALIDATETYPE> : ::google::protobuf::internal::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::CG_LOGIN_VALIDATETYPE>() {
-  return ::CG_LOGIN_VALIDATETYPE_descriptor();
-}
-
-}  // namespace google
-}  // namespace protobuf
-#endif  // SWIG
 
 // @@protoc_insertion_point(global_scope)
 
