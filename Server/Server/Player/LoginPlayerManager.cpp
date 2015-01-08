@@ -6,7 +6,6 @@
 #include "Log.h"
 #include "PlayerPool.h"
 #include "TimeManager.h"
-#include "PacketFactoryManager.h"
 #include "Assertx.h"
 #include "GameUtil.h"
 #include "PlayerStatus.h"
@@ -740,7 +739,7 @@ __ENTER_FUNCTION
 
 		if( Flag==PF_REMOVE )
 		{
-			g_pPacketFactoryManager->RemovePacket( pPacket ) ;
+			pPacket->FreeOwn();
 			continue ;
 		}
 
@@ -792,8 +791,7 @@ __ENTER_FUNCTION
 		}
 
 		//回收消息
-		if( bNeedRemove )
-			g_pPacketFactoryManager->RemovePacket( pPacket ) ;
+		if( bNeedRemove ) pPacket->FreeOwn();
 	}
 
 

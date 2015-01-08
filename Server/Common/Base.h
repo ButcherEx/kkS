@@ -66,4 +66,6 @@ namespace bsys  = boost::system;
 // namespace bfs	= boost::filesystem;
 namespace bsys	= boost::system;
 
+#include "Log.h"
+
 #endif

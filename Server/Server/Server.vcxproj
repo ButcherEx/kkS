@@ -176,15 +176,12 @@
     <ClCompile Include="..\Common\Net\SocketInputStream.cpp" />
     <ClCompile Include="..\Common\Net\SocketOutputStream.cpp" />
     <ClCompile Include="..\Common\Packet.cpp" />
-    <ClCompile Include="..\Common\PacketFactoryManager.cpp" />
-    <ClCompile Include="..\Common\Packets\CLAskCharList.cpp" />
     <ClCompile Include="Main\ConnectManager.cpp" />
     <ClCompile Include="Main\Login.cpp" />
     <ClCompile Include="Main\LoginMain.cpp" />
     <ClCompile Include="Main\PBMessage.pb.cc" />
     <ClCompile Include="Main\ServerThread.cpp" />
     <ClCompile Include="Main\ThreadManager.cpp" />
-    <ClCompile Include="Packets\CLAskCharListHandler.cpp" />
     <ClCompile Include="Player\LoginPlayer.cpp" />
     <ClCompile Include="Player\LoginPlayerManager.cpp" />
     <ClCompile Include="Player\Player.cpp" />
@@ -259,7 +256,6 @@
     <ClInclude Include="..\Common\Packet.h" />
     <ClInclude Include="..\Common\PacketDefine.h" />
     <ClInclude Include="..\Common\PacketFactory.h" />
-    <ClInclude Include="..\Common\PacketFactoryManager.h" />
     <ClInclude Include="..\Common\Packets\CLAskCharList.h" />
     <ClInclude Include="..\Common\PlayerStatus.h" />
     <ClInclude Include="Main\ConnectManager.h" />

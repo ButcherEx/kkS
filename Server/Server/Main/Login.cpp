@@ -4,7 +4,6 @@
 #include "ConnectManager.h"
 #include "ThreadManager.h"
 #include "PlayerPool.h"
-#include "PacketFactoryManager.h"
 
 Login	g_Login;
 
@@ -101,10 +100,6 @@ bool	Login::Exit()
 	SAFE_DELETE(g_pPlayerPool);
 	Log::SaveLog( LOGIN_LOGFILE, "g_pPlayerPool delete...OK" ) ;
 	
-
-	SAFE_DELETE(g_pPacketFactoryManager);
-	Log::SaveLog( LOGIN_LOGFILE, "g_pPacketFactoryManager delete...OK" ) ;
-	
 	SAFE_DELETE(g_pThreadManager);
 	Log::SaveLog( LOGIN_LOGFILE, "g_pThreadManager delete...OK" ) ;
 	
@@ -135,10 +130,6 @@ bool	Login::NewLogin()
 	g_pPlayerPool		=	new	  PlayerPool ;
 	AssertEx( g_pPlayerPool,"分配g_pPlayerPool 失败!");
 	Log::SaveLog( LOGIN_LOGFILE, "new PlayerPool...OK" ) ;
-
-	g_pPacketFactoryManager = new PacketFactoryManager ;
-	AssertEx( g_pPacketFactoryManager,"分配g_pFacketFactoryManager 失败!") ;
-	Log::SaveLog( LOGIN_LOGFILE, "new PacketFactoryManager...OK" ) ;
 	
 	g_pThreadManager	=	 new ThreadManager();
 	AssertEx( g_pThreadManager,"分配g_pThreadManager 失败!");
@@ -179,10 +170,6 @@ bool	Login::InitLogin()
 	Assert( bRet ) ;
 	Log::SaveLog( LOGIN_LOGFILE, "g_pPlayerPool->Init()...OK" ) ;
 
-	//
-	bRet = g_pPacketFactoryManager->Init( ) ;
-	Assert( bRet ) ;
-	Log::SaveLog( LOGIN_LOGFILE, "g_pPacketFactoryManager->Init()...OK" ) ;
 	
 	//对客户端网络管理类的初始化
 	bRet = g_pConnectManager->Init( ) ;

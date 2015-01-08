@@ -16,7 +16,6 @@
 //最大可以允许的缓存长度，如果超过此数值，则断开连接
 #define DISCONNECTSOCKETINPUTSIZE 96*1024
 
-class Packet ;
 class SocketInputStream
 {
 public :
@@ -29,7 +28,6 @@ public :
 	uint32_t	Fill( ) ;
 
 	uint32_t	Read( CHAR* buf, uint32_t len ) ;
-	bool		ReadPacket( Packet* p ) ;
 
 	bool		Peek( CHAR* buf, uint32_t len ) ;
 	bool		Find( CHAR* buf ) ;

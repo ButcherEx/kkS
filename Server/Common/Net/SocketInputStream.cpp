@@ -2,7 +2,6 @@
 
 
 #include "SocketInputStream.h"
-#include "Packet.h"
 
 
 SocketInputStream::SocketInputStream( Socket& sock, uint32_t BufferLen, uint32_t MaxBufferLen ) 
@@ -86,24 +85,6 @@ __LEAVE_FUNCTION_FOXNET
 
 	return 0 ;
 }
-
-
-bool SocketInputStream::ReadPacket( Packet* pPacket ) 
-{
-__ENTER_FUNCTION_FOXNET
-
-	bool ret ;
-		
-	ret = Skip( PACKET_HEADER_SIZE ) ;
-	if( !ret ) return false ;
-
-	return pPacket->Read( *this ) ;
-	
-__LEAVE_FUNCTION_FOXNET
-
-	return false ;
-}
-
 
 bool SocketInputStream::Peek( CHAR* buf, uint32_t len ) 
 {

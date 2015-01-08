@@ -1,9 +1,8 @@
 //#include "stdafx.h"
 
 #include "Player.h"
-#include "PacketFactoryManager.h"
 
-using namespace Packets ;
+//using namespace Packets ;
 
 Player::Player( bool bIsServer )
 :m_SocketInputStream(m_Socket) ,m_SocketOutputStream(m_Socket)
@@ -103,6 +102,10 @@ bool Player::ProcessCommand( bool Option )
 {
 __ENTER_FUNCTION
 
+	if( IsDisconnect( ) )
+		return true ;
+
+/*
 	bool ret ;
 
 	CHAR header[PACKET_HEADER_SIZE];
@@ -110,9 +113,6 @@ __ENTER_FUNCTION
 	uint32_t packetuint, packetSize, packetIndex;
 	uint16_t packetTick;
 	Packet* pPacket = NULL ;
-
-	if( IsDisconnect( ) )
-		return true ;
 
 	_MY_TRY
 	{
@@ -261,7 +261,7 @@ __ENTER_FUNCTION
 	}
 
 
-
+*/
 	return true ;
 
 __LEAVE_FUNCTION
@@ -312,7 +312,7 @@ __ENTER_FUNCTION
 	if( IsDisconnect( ) )
 		return true ;
 
-
+#if 0
 		pPacket->SetPacketIndex( m_PacketIndex++ ) ;
 
 		PacketID_t packetID = pPacket->GetPacketID() ;
@@ -370,7 +370,7 @@ __ENTER_FUNCTION
 		//Log::SaveLog( "./Log/LoginDebug.log", "SendPacket! SOCKET=%d, ID=%d", 
 		//	m_pSocket->getSOCKET(), pPacket->GetPacketID() ) ;
 		
-
+#endif
 
 	return true ;
 
@@ -397,82 +397,5 @@ void Player::ResetKick( )
 __ENTER_FUNCTION
 __LEAVE_FUNCTION
 }
-//INT Player::WhereThisPlayerFrom(void) const
-//{
-//	if(NULL!=m_pSocket)
-//	{
-//		return g_Config.m_InternalIpofProxy.WhereThisIpFrom(m_pSocket->m_Host);
-//	}
-//	return INVALID_ISP;
-//}
-//CHAR* ProxyTool_GetCorrespondingIP(Player const* pPlayer, ID_t ServerID)
-//{
-//	__ENTER_FUNCTION
-//	_SERVER_DATA* pData = g_pServerManager->FindServerInfo( ServerID );
-//	if(NULL==pData)
-//	{
-//		CHAR szLog[1024];
-//		tsnprintf(szLog, sizeof(szLog), "[ProxyTool_GetCorrespondingIP] Error: Can't found the specific server(%d).", ServerID);
-//		szLog[sizeof(szLog)-1] = '\0';
-//		AssertEx(pData, szLog);
-//	}
-//	INT nIsp = pPlayer->WhereThisPlayerFrom();
-//	if(INVALID_ISP==nIsp)
-//	{
-//		return pData->m_IP0;
-//	}
-//	else
-//	{
-//		if(TRUE==RangeCheckForIndex_Assert(nIsp, 0, NUM_OF_ISP-1, "ProxyTool_GetCorrespondingIP"))
-//		{
-//			PROXY_DATA& rProxy = pData->m_aProxy[nIsp];
-//			if(TRUE==rProxy.m_bEnabled)
-//			{
-//				return rProxy.m_szIP;
-//			}
-//			return pData->m_IP0;
-//		}
-//		else
-//		{
-//			return pData->m_IP0;
-//		}
-//	}
-//	__LEAVE_FUNCTION
-//	return NULL;
-//}
-//uint32_t  ProxyTool_GetCorrespondingPort(Player const* pPlayer, ID_t ServerID)
-//{
-//	__ENTER_FUNCTION
-//	_SERVER_DATA* pData = g_pServerManager->FindServerInfo( ServerID );
-//	if(NULL==pData)
-//	{
-//		CHAR szLog[1024];
-//		tsnprintf(szLog, sizeof(szLog), "[ProxyTool_GetCorrespondingPort] Error: Can't found the specific server(%d).", ServerID);
-//		szLog[sizeof(szLog)-1] = '\0';
-//		AssertEx(pData, szLog);
-//	}
-//	INT nIsp = pPlayer->WhereThisPlayerFrom();
-//	if(INVALID_ISP==nIsp)
-//	{
-//		return pData->m_Port0;
-//	}
-//	else
-//	{
-//		if(TRUE==RangeCheckForIndex_Assert(nIsp, 0, NUM_OF_ISP-1, "ProxyTool_GetCorrespondingIP"))
-//		{
-//			PROXY_DATA& rProxy = pData->m_aProxy[nIsp];
-//			if(TRUE==rProxy.m_bEnabled)
-//			{
-//				return rProxy.m_nPort;
-//			}
-//			return pData->m_Port0;
-//		}
-//		else
-//		{
-//			return pData->m_Port0;
-//		}
-//	}
-//	__LEAVE_FUNCTION
-//	return NULL;
-//}
+
 

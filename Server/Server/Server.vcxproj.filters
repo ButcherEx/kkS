@@ -45,9 +45,6 @@
     <ClCompile Include="Main\ConnectManager.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="Packets\CLAskCharListHandler.cpp">
-      <Filter>Packets</Filter>
-    </ClCompile>
     <ClCompile Include="Player\Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
@@ -99,14 +96,8 @@
     <ClCompile Include="..\Common\Net\FileAPI.cpp">
       <Filter>Common\Net</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\PacketFactoryManager.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="..\Common\Config.cpp">
       <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Common\Packets\CLAskCharList.cpp">
-      <Filter>Packets</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\Base.cpp">
       <Filter>Common</Filter>
@@ -294,9 +285,6 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\PacketFactory.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\PacketFactoryManager.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\PlayerStatus.h">
