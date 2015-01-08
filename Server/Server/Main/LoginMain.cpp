@@ -2,7 +2,7 @@
 
 #include "LoginMain.h"
 #include "Login.h"
-#include "PBMessage.pb.h"
+#include "CLAskCharList.h"
 #if defined(__WINDOWS__)
 struct NetworkInitialize
 {
@@ -14,19 +14,19 @@ struct NetworkInitialize
  		
  		_MY_TRY
 		{
-			::CG_LOGIN msg;
-			msg.set_vtype(1);
-			msg.set_gameversion(1);
-			msg.set_programversion(1);
-			msg.set_publicresourceversion(1);
-			msg.set_maxpacketid(99);
-			msg.set_forceenter(8);
-			msg.set_deviceid("ma.CY5929");
-			msg.set_devicetype("WINDOWS");
+			CG_LOGIN_PAK loginPak;
+			loginPak.GetMsg().set_vtype(1);
+			loginPak.GetMsg().set_gameversion(1);
+			loginPak.GetMsg().set_programversion(1);
+			loginPak.GetMsg().set_publicresourceversion(1);
+			loginPak.GetMsg().set_maxpacketid(99);
+			loginPak.GetMsg().set_forceenter(8);
+			loginPak.GetMsg().set_deviceid("ma.CY5929");
+			loginPak.GetMsg().set_devicetype("WINDOWS");
 			//msg.set_deviceversion("Win8.1");
-			int32 byteSize  = msg.ByteSize();
+			int32 byteSize  = loginPak.GetMsg().ByteSize();
 			CHAR Buf[256] = {0};
-			msg.SerializeToArray(Buf,sizeof Buf);
+			loginPak.GetMsg().SerializeToArray(Buf,sizeof Buf);
 			printf("%s", Buf);
 		}
 		_MY_CATCH

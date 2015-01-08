@@ -5,12 +5,11 @@
 #include "PacketFactory.h"
 #include "GameDefine.h"
 #include "PacketDefine.h"
-
+#include "PBMessage.pb.h"
 
 namespace Packets
 {
-
-	PACKET_DECL(CLAskCharList);
+	PACKET_DECL(CG_LOGIN);
 };
 
 using namespace Packets ;

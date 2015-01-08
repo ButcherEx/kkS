@@ -39,21 +39,22 @@ class Packet
 public :
 	Packet(PBMessage& rMsg, const CHAR* name);
 	virtual ~Packet( );
-	virtual PBMessage&	GetMsg( ) { return m_rMessage ; }
 	virtual	uint32_t	GetPacketID( ) const { return m_PacketId; } 
 	virtual	uint32_t	GetPacketSize( ) const { return m_rMessage.ByteSize(); } 
+	virtual PBMessage&	GetMsg() = 0;
 	virtual Packet*		Clone() = 0;
 	virtual void		FreeOwn() { delete this; }
 private:
 	PacketID_t	m_PacketId;
 	PBMessage& m_rMessage;
 };
-#define PACKET_CLASS(MSGTYPE) MSGTYPE##_Packet
+#define PACKET_CLASS(MSGTYPE) MSGTYPE##_PAK
 #define PACKET_DECL(MSGTYPE)\
 class PACKET_CLASS(MSGTYPE) : public Packet { \
 private: \
 	MSGTYPE m_Msg; \
 public: \
+	MSGTYPE& GetMsg() { return m_Msg; } \
 	Packet* Clone() { return new PACKET_CLASS(MSGTYPE)(); } \
 public: \
 	PACKET_CLASS(MSGTYPE)( ) : Packet(m_Msg, #MSGTYPE){ } \
