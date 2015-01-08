@@ -93,10 +93,10 @@
 
 #if defined(NDEBUG)
 #define _MY_TRY try
-#define _MY_CATCH catch(std::exception& e){ Log::Log(SERVER_ERRORFILE,"[Err]%s.", e.what());}catch(...)
+#define _MY_CATCH catch(std::exception& e){ Log::SaveLog(SERVER_ERRORFILE,"[Err]%s.", e.what());}catch(...)
 #else
 #define _MY_TRY try
-#define _MY_CATCH catch(std::exception& e){ Log::Log(SERVER_ERRORFILE,"[Err]%s.", e.what());}catch(...)
+#define _MY_CATCH catch(std::exception& e){ Log::SaveLog(SERVER_ERRORFILE,"[Err]%s.", e.what());}catch(...)
 #endif
 
 
