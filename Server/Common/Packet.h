@@ -37,15 +37,16 @@ typedef ::google::protobuf::Message PBMessage;
 class Packet
 {
 public :
-	Packet(PBMessage& rMsg, const CHAR* name);
+	Packet(PBMessage& msg, const CHAR* name);
 	virtual ~Packet( );
 	virtual	uint32_t	GetPacketID( ) const { return m_PacketId; } 
-	virtual	uint32_t	GetPacketSize( ) const { return m_rMessage.ByteSize(); } 
+	virtual	uint32_t	GetPacketSize( ) const { return rMsg.ByteSize(); } 
 	virtual Packet*		Clone() = 0;
 	virtual void		FreeOwn() { delete this; }
+public:
+	PBMessage& rMsg;
 private:
 	PacketID_t	m_PacketId;
-	PBMessage& m_rMessage;
 };
 #define PACKET_CLASS(MSGTYPE) MSGTYPE##_PAK
 #define PACKET_DECL(MSGTYPE)\

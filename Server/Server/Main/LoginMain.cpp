@@ -4,6 +4,7 @@
 #include "Login.h"
 #include "CLAskCharList.h"
 #if defined(__WINDOWS__)
+
 struct NetworkInitialize
 {
 	NetworkInitialize()
@@ -23,11 +24,15 @@ struct NetworkInitialize
 			loginPak.Msg.set_forceenter(8);
 			loginPak.Msg.set_deviceid("ma.CY5929");
 			loginPak.Msg.set_devicetype("WINDOWS");
-			//msg.set_deviceversion("Win8.1");
+			loginPak.Msg.set_deviceversion("Win8.1");
 			int32 byteSize  = loginPak.Msg.ByteSize();
 			CHAR Buf[256] = {0};
 			loginPak.Msg.SerializeToArray(Buf,sizeof Buf);
-			printf("%s", Buf);
+			printf("%s\n", Buf);
+			
+			Packet* pPacket = new CG_LOGIN_PAK;
+			pPacket->rMsg.ParseFromString(Buf);
+			pPacket->FreeOwn();
 		}
 		_MY_CATCH
 		{
