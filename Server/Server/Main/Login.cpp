@@ -1,9 +1,6 @@
 //#include "stdafx.h"
 
 #include "Login.h"
-#include "ConnectManager.h"
-#include "ThreadManager.h"
-#include "PlayerPool.h"
 
 Login	g_Login;
 
@@ -61,22 +58,6 @@ bool	Login::Loop()
 
 	Log::SaveLog( LOGIN_LOGFILE, "\r\nLoop..." ) ;
 
-	
-	//连接客户端线程
-	Log::SaveLog( LOGIN_LOGFILE, "g_pConnectManager->start( )..." ) ;
-	g_pConnectManager->start();
-
-
-	//连接World 和 BillingSystem 的线程
-	Log::SaveLog( LOGIN_LOGFILE, "g_pThreadManager->Start( )..." ) ;
-	bRet = g_pThreadManager->Start( ) ;
-	Assert( bRet ) ;
-	
-	//数据库处理
-	//Log::SaveLog( LOGIN_LOGFILE, "g_pDataBaseManager->Start( )..." ) ;
-	//g_pDataBaseManager->start();
-	
-
 	//守护线程
 	while(true)
 	{
@@ -97,16 +78,6 @@ bool	Login::Exit()
 	
 	Log::SaveLog( LOGIN_LOGFILE, "Begin delete..." ) ;
 
-	SAFE_DELETE(g_pPlayerPool);
-	Log::SaveLog( LOGIN_LOGFILE, "g_pPlayerPool delete...OK" ) ;
-	
-	SAFE_DELETE(g_pThreadManager);
-	Log::SaveLog( LOGIN_LOGFILE, "g_pThreadManager delete...OK" ) ;
-	
-	
-	SAFE_DELETE(g_pConnectManager);
-	Log::SaveLog( LOGIN_LOGFILE, "g_pConnectManager delete...OK" ) ;
-	
 
 	Log::SaveLog( LOGIN_LOGFILE, "End delete..." ) ;
 	
@@ -127,18 +98,6 @@ bool	Login::NewLogin()
 {
 	__ENTER_FUNCTION
 	
-	g_pPlayerPool		=	new	  PlayerPool ;
-	AssertEx( g_pPlayerPool,"分配g_pPlayerPool 失败!");
-	Log::SaveLog( LOGIN_LOGFILE, "new PlayerPool...OK" ) ;
-	
-	g_pThreadManager	=	 new ThreadManager();
-	AssertEx( g_pThreadManager,"分配g_pThreadManager 失败!");
-	Log::SaveLog( LOGIN_LOGFILE, "new ThreadManager...OK" ) ;
-
-	g_pConnectManager   =    new ConnectManager ;
-	AssertEx( g_pConnectManager,"分配g_pConnectManager 失败!");
-	Log::SaveLog( LOGIN_LOGFILE, "new ConnectManager...OK" ) ;
-
 
 	return true;
 
@@ -158,31 +117,6 @@ bool	Login::InitLogin()
 	int32_t		nTemp = 0;
 
 	//________________________________________________________
-	if( g_Config.m_ConfigInfo.m_SystemModel == 0 )
-	{
-		nTemp = 5;
-	}
-	else
-	{
-		nTemp = MAX_POOL_SIZE;
-	}
-	bRet = g_pPlayerPool->Init( nTemp ) ;
-	Assert( bRet ) ;
-	Log::SaveLog( LOGIN_LOGFILE, "g_pPlayerPool->Init()...OK" ) ;
-
-	
-	//对客户端网络管理类的初始化
-	bRet = g_pConnectManager->Init( ) ;
-	Assert( bRet ) ;
-	Log::SaveLog( LOGIN_LOGFILE, "g_pConnectManager->Init()...OK" ) ;
-
-	// 线程管理器
-	bRet = g_pThreadManager->Init( ) ;
-	Assert( bRet ) ;
-	Log::SaveLog( LOGIN_LOGFILE, "g_pThreadManager->Init()...OK" ) ;
-
-
-
 
 	return true;
 
@@ -195,10 +129,6 @@ void	Login::Stop()
 {
 	__ENTER_FUNCTION
 
-		if( g_pConnectManager )
-		{
-			g_pConnectManager->stop( ) ;
-		}
 
 	__LEAVE_FUNCTION
 }

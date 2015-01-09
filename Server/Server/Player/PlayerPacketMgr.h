@@ -1,9 +1,12 @@
+#ifndef __PLAYER_PACKET_MGR_H__
+#define __PLAYER_PACKET_MGR_H__
 
-#pragma once
+#include "BaseLib.h"
 
-class PlayerSession;
+class Packet;
+class Player;
 
-typedef DWORD (PlayerSession::*NETMSGHANDLER)(tagNetCmd*);
+typedef fastdelegate::FastDelegate1<Packet*, uint32_t> NETMSGHANDLER;
 
 //-----------------------------------------------------------------------------
 // 客户端命令管理器
@@ -14,37 +17,34 @@ public:
 	PlayerNetCmdMgr();
 	~PlayerNetCmdMgr();
 
-	VOID Init();
-	VOID Destroy();
+	void Init();
+	void Destroy();
+	void LogAllMsg();
 
-	VOID LogAllMsg();
+	bool RegisterRecvProc(const CHAR* szCmd, NETMSGHANDLER fp, const CHAR* szDesc, uint32_t dwSize);
+	bool RegisterSendProc(LPCSTR szCmd);
+	void UnRegisterAll();
 
-	BOOL RegisterRecvProc(LPCSTR szCmd, NETMSGHANDLER fp, LPCTSTR szDesc, DWORD dwSize);
-	BOOL RegisterSendProc(LPCSTR szCmd);
-	VOID UnRegisterAll();
+	NETMSGHANDLER GetHandler(Packet* pMsg, uint32_t nMsgSize);
+	void CountServerMsg(uint32_t dwMsgID);
 
-	NETMSGHANDLER GetHandler(tagNetCmd* pMsg, UINT32 nMsgSize);
-	VOID CountServerMsg(DWORD dwMsgID);
-
-	BOOL HandleCmd(tagNetCmd* pMsg, DWORD nMsgSize, PlayerSession* pSession);
+	bool HandleCmd(Packet* pMsg, uint32_t nMsgSize);
 
 	// 取得消息执行次数
-	UINT32 GetRecvCmdRunTimes(DWORD dwMsgID);
-
-
+	uint32_t GetRecvCmdRunTimes(uint32_t dwMsgID);
 protected:
 	typedef struct tagPlayerCmd
 	{
-		std::string				strCmd;			// 命令名
-		tstring					strDesc;		// 描述
-		DWORD					dwSize;			// 消息大小
+		bstd::string			strCmd;			// 命令名
+		bstd::string			strDesc;		// 描述
+		uint32_t				dwSize;			// 消息大小
 		NETMSGHANDLER			handler;		// 函数指针
-		volatile UINT32			nTimes;			// 此命令的次数
+		volatile uint32_t		nTimes;			// 此命令的次数
 	} tagPlayerCmd;
 
-	TObjRef<Util>				m_pUtil;
-	TObjRef<Log>				m_pLog;
-
-	TMap<DWORD, tagPlayerCmd*>	m_mapRecvProc;	// 接收消息的处理及统计
-	TMap<DWORD,	tagPlayerCmd*>	m_mapSendProc;	// 发送消息的处理及统计
+	TMap<uint32_t, tagPlayerCmd*>	m_mapRecvProc;	// 接收消息的处理及统计
+	TMap<uint32_t, tagPlayerCmd*>	m_mapSendProc;	// 发送消息的处理及统计
 };
+
+#endif
+

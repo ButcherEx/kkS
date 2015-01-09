@@ -18,4 +18,5 @@
 #include "Container.h"
 #include "Pool.h"
 #include "AutoFactory.h"
+#include "FastDelegate.h"
 #endif

@@ -22,29 +22,15 @@ public :
 	virtual bool		HeartBeat( uint32_t uTime=0 ) ;
 
 	//增加一个玩家
-	bool				AddPlayer( Player* pPlayer ) ;
-
-	bool				AddPlayer( Player* pPlayer,uint32_t MaxPlayer);
-	//删除一个玩家
-
-	void				RemovePlayer( PlayerID_t pid ) ;
-
-	PlayerID_t*			GetPlayers( ){ return m_pPlayers ; } ;
-
+	bool				AddPlayer( PlayerPtr Ptr ) ;
+	void				RemovePlayer( PlayerPtr Ptr, int32_t reason = -1 ) ;
+public:
 	uint32_t			GetPlayerNumber( ){ return m_nPlayers ; } ;
 	bool				HasPlayer( ){ return m_nPlayers > 0 ; } ;
-
-
-
-	bool				AddPlayer( PlayerID_t pid ) ;		//未提供功能接口
-
 protected :
 	//
-	PlayerID_t	m_pPlayers[MAX_PLAYER] ;
+	PlayerPtrList	m_PlayerPtrList;
 	uint32_t		m_nPlayers ;
-	
-
-
 };
 
 

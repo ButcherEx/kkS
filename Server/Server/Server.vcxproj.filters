@@ -36,31 +36,13 @@
     <ClCompile Include="Main\LoginMain.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="Main\ServerThread.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Main\ThreadManager.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Main\ConnectManager.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="Player\Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="Player\PlayerManager.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="Player\PlayerPool.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
     <ClCompile Include="Player\ServerPlayer.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Player\LoginPlayer.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Player\LoginPlayerManager.cpp">
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\Base\Assertx.cpp">
@@ -216,6 +198,12 @@
     <ClCompile Include="Main\PBMessage.pb.cc">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Player\PlayerPacketMgr.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Base\Demo.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Login.h">
@@ -224,31 +212,13 @@
     <ClInclude Include="Main\LoginMain.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="Main\ServerThread.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Main\ThreadManager.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Main\ConnectManager.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Player\LoginPlayerManager.h">
-      <Filter>Player</Filter>
-    </ClInclude>
     <ClInclude Include="Player\Player.h">
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Player\PlayerManager.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="Player\PlayerPool.h">
-      <Filter>Player</Filter>
-    </ClInclude>
     <ClInclude Include="Player\ServerPlayer.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Player\LoginPlayer.h">
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Base\Assertx.h">
@@ -457,6 +427,9 @@
     </ClInclude>
     <ClInclude Include="Main\PBMessage.pb.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\PlayerPacketMgr.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,20 +1,12 @@
-//#include "stdafx.h"
 
 #include "Player.h"
 
-//using namespace Packets ;
+POOL_IMPL(Player);
 
 Player::Player( bool bIsServer )
 :m_SocketInputStream(m_Socket) ,m_SocketOutputStream(m_Socket)
 {
 __ENTER_FUNCTION
-
-	m_PID = INVALID_ID ;
-	m_UID = INVALID_ID ;
-	m_PlayerManagerID = INVALID_ID ;
-	m_IsEmpty		= true ;
-	m_IsDisconnect	= false ;
-	m_PacketIndex	 = 0 ;
 
 __LEAVE_FUNCTION
 }
@@ -22,23 +14,16 @@ __LEAVE_FUNCTION
 Player::~Player( )
 {
 __ENTER_FUNCTION
-
+	CleanUp();
 __LEAVE_FUNCTION
 }
 
 void Player::CleanUp( )
 {
 __ENTER_FUNCTION
-
 	m_Socket.close() ;
 	m_SocketInputStream.CleanUp() ;
 	m_SocketOutputStream.CleanUp() ;
-	SetPlayerManagerID( INVALID_ID ) ;
-	SetUserID( INVALID_ID ) ;
-	m_PacketIndex = 0 ;
-	SetDisconnect(false) ;
-
-
 __LEAVE_FUNCTION
 }
 
@@ -72,9 +57,6 @@ bool Player::ProcessInput( )
 {
 __ENTER_FUNCTION
 
-	if( IsDisconnect() )
-		return true ;
-
 	_MY_TRY 
 	{
 		uint32_t ret = m_SocketInputStream.Fill( ) ;
@@ -101,9 +83,6 @@ __LEAVE_FUNCTION
 bool Player::ProcessCommand( bool Option )
 {
 __ENTER_FUNCTION
-
-	if( IsDisconnect( ) )
-		return true ;
 
 /*
 	bool ret ;
@@ -273,9 +252,6 @@ bool Player::ProcessOutput( )
 {
 __ENTER_FUNCTION
 
-	if( IsDisconnect( ) )
-		return true ;
-
 	_MY_TRY
 	{
 		uint32_t size = m_SocketOutputStream.Length() ;
@@ -308,9 +284,6 @@ __LEAVE_FUNCTION
 bool Player::SendPacket( Packet* pPacket )
 {
 __ENTER_FUNCTION
-
-	if( IsDisconnect( ) )
-		return true ;
 
 #if 0
 		pPacket->SetPacketIndex( m_PacketIndex++ ) ;
@@ -390,12 +363,6 @@ __ENTER_FUNCTION
 __LEAVE_FUNCTION
 
 	return false ;
-}
-
-void Player::ResetKick( )
-{
-__ENTER_FUNCTION
-__LEAVE_FUNCTION
 }
 
 

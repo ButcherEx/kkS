@@ -5,6 +5,20 @@
 #include "CLAskCharList.h"
 #if defined(__WINDOWS__)
 
+class Hanlder
+{
+public:
+	virtual void Handle(CG_LOGIN_PAK* pLogin)
+	{
+		printf("CG\n");
+	}
+	virtual void Handle(Packet* pPackt)
+	{
+		printf("Packet\n");
+	}
+};
+
+
 struct NetworkInitialize
 {
 	NetworkInitialize()
@@ -32,6 +46,7 @@ struct NetworkInitialize
 			
 			Packet* pPacket = new CG_LOGIN_PAK;
 			pPacket->rMsg.ParseFromString(Buf);
+		
 			pPacket->FreeOwn();
 		}
 		_MY_CATCH

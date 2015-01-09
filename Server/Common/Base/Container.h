@@ -350,6 +350,21 @@ public:
 		return m_ImplList.begin();
 	}
 
+	const TListIterator Begin() const
+	{
+		return m_ImplList.begin();
+	}
+
+	TListIterator End()
+	{
+		return m_ImplList.end();
+	}
+
+	const TListIterator End() const
+	{
+		return m_ImplList.end();
+	}
+
 	std::list<Type>& ListImpl() { return m_ImplList; }
 
 
@@ -509,6 +524,17 @@ public:
 			return val;
 		else
 			return it->second;
+	}
+
+	//! 读取元素
+	bool Peek(KeyType key, ValueType& rVal)
+	{
+		TMapIterator it = m_Map.find(key);
+		if( it == m_Map.end() )
+			return false;
+
+		rVal = it->second;
+		return true;
 	}
 
 	//! 改变指定key对应的值
