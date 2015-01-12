@@ -56,6 +56,209 @@ __ENTER_FUNCTION
 __LEAVE_FUNCTION
 }
 
+bool PlayerManager::Select( )
+{
+	__ENTER_FUNCTION
+
+	if( m_PlayerPtrList.Empty()) return true;
+
+	FD_ZERO(&m_ReadFDs);
+	FD_ZERO(&m_WriteFDs);
+	FD_ZERO(&m_ExceptFDs);
+
+	int32_t		maxFD = INVALID_SOCKET;
+
+	PlayerPtr Ptr;
+	m_PlayerPtrList.ResetIterator();
+	while (m_PlayerPtrList.PeekNext(Ptr))
+	{
+		Assert(Ptr);
+		SOCKET sock = Ptr->GetSocket().getSOCKET();
+		Assert(sock != INVALID_SOCKET);
+		FD_SET(sock, &m_ReadFDs);
+		FD_SET(sock, &m_WriteFDs);
+		FD_SET(sock, &m_ExceptFDs);
+		if(maxFD < (int32_t)sock) maxFD = sock;
+	}
+	
+
+	_MY_TRY 
+	{
+		timeval	tv; 
+		tv.tv_sec = 0; tv.tv_usec = 0;
+		int32_t iRet = SocketAPI::select_ex((int32_t)maxFD+1 , 
+			&m_ReadFDs, &m_WriteFDs, &m_ExceptFDs, &tv);
+		Assert( iRet!=SOCKET_ERROR ) ;
+	} 
+	_MY_CATCH
+	{
+		Log::SaveLog( LOGIN_LOGFILE, "ERROR: IncomingPlayerManager::Select( )..." ) ;
+	}
+
+	return true ;
+
+	__LEAVE_FUNCTION
+
+		return false ;
+}
+
+bool PlayerManager::ProcessInputs( )
+{
+	__ENTER_FUNCTION
+
+	if( m_PlayerPtrList.Empty()) return true;
+
+	PlayerPtr Ptr;
+	m_PlayerPtrList.ResetIterator();
+	while (m_PlayerPtrList.PeekNext(Ptr))
+	{
+		Assert(Ptr);
+		SOCKET sock = Ptr->GetSocket().getSOCKET();
+		Assert(sock != INVALID_SOCKET);
+
+		if( FD_ISSET( sock, &m_ReadFDs ) )
+		{
+			if( Ptr->GetSocket().isSockError() )
+			{//连接出现错误
+				RemovePlayer( Ptr ) ;
+			}
+			else
+			{//连接正常
+				_MY_TRY
+				{
+					if( !Ptr->ProcessInput( ) )
+					{
+						RemovePlayer( Ptr ) ;
+					}
+				}
+				_MY_CATCH
+				{
+					RemovePlayer( Ptr ) ;
+				}
+			}
+		}
+	}
+
+	return true ;
+
+	__LEAVE_FUNCTION
+
+		return false ;
+}
+
+bool PlayerManager::ProcessOutputs( )
+{
+	__ENTER_FUNCTION
+
+	if( m_PlayerPtrList.Empty()) return true;
+
+	PlayerPtr Ptr;
+	m_PlayerPtrList.ResetIterator();
+	while (m_PlayerPtrList.PeekNext(Ptr))
+	{
+		Assert(Ptr);
+		SOCKET sock = Ptr->GetSocket().getSOCKET();
+		Assert(sock != INVALID_SOCKET);
+
+		if( FD_ISSET( sock, &m_WriteFDs ) )
+		{
+			if( Ptr->GetSocket().isSockError() )
+			{//连接出现错误
+				RemovePlayer( Ptr ) ;
+			}
+			else
+			{//连接正常
+				_MY_TRY
+				{
+					if( !Ptr->ProcessOutput( ) )
+					{
+						RemovePlayer( Ptr ) ;
+					}
+				}
+				_MY_CATCH
+				{
+					RemovePlayer( Ptr ) ;
+				}
+			}
+		}
+	}
+
+	return true ;
+
+	__LEAVE_FUNCTION
+
+		return false ;
+}
+
+bool PlayerManager::ProcessExceptions( )
+{
+	__ENTER_FUNCTION
+
+
+	if( m_PlayerPtrList.Empty()) return true;
+
+	PlayerPtr Ptr;
+	m_PlayerPtrList.ResetIterator();
+	while (m_PlayerPtrList.PeekNext(Ptr))
+	{
+		Assert(Ptr);
+		SOCKET sock = Ptr->GetSocket().getSOCKET();
+		Assert(sock != INVALID_SOCKET);
+
+		if( FD_ISSET( sock, &m_ExceptFDs ) )
+		{
+			RemovePlayer( Ptr ) ;
+		}
+	}
+
+	return true ;
+
+	__LEAVE_FUNCTION
+
+		return false ;
+}
+
+bool PlayerManager::ProcessCommands( )
+{
+	__ENTER_FUNCTION
+
+	if( m_PlayerPtrList.Empty()) return true;
+
+	PlayerPtr Ptr;
+	m_PlayerPtrList.ResetIterator();
+	while (m_PlayerPtrList.PeekNext(Ptr))
+	{
+		Assert(Ptr);
+		SOCKET sock = Ptr->GetSocket().getSOCKET();
+		Assert(sock != INVALID_SOCKET);
+
+		if( Ptr->GetSocket().isSockError() )
+		{//连接出现错误
+			RemovePlayer( Ptr ) ;
+		}
+		else
+		{//连接正常
+			_MY_TRY
+			{
+				if( !Ptr->ProcessCommand( ) )
+				{
+					RemovePlayer( Ptr ) ;
+				}
+			}
+			_MY_CATCH
+			{
+				RemovePlayer( Ptr ) ;
+			}
+		}
+	}
+
+	return true ;
+
+	__LEAVE_FUNCTION
+
+		return false ;
+}
+
 
 bool PlayerManager::HeartBeat( uint32_t uTime )
 {
