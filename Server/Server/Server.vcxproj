@@ -92,7 +92,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../3rd/protobuf/src;../../3rd/boost;../Common;../Common/Base;../Common/Net;../Common/Packets;./Main;./Player;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../3rd/protobuf/src;../../3rd/boost;../Common;../Common/Base;../Common/Net;./Packets;./Main;./Player;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;__WINDOWS__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -180,6 +180,7 @@
     <ClCompile Include="Main\Login.cpp" />
     <ClCompile Include="Main\LoginMain.cpp" />
     <ClCompile Include="Main\PBMessage.pb.cc" />
+    <ClCompile Include="Packets\Packet.cpp" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Player\PlayerManager.cpp" />
     <ClCompile Include="Player\PlayerPacketMgr.cpp" />
@@ -253,13 +254,16 @@
     <ClInclude Include="..\Common\PacketDefine.h" />
     <ClInclude Include="..\Common\PacketFactory.h" />
     <ClInclude Include="..\Common\Packets\CLAskCharList.h" />
-    <ClInclude Include="..\Common\PlayerStatus.h" />
     <ClInclude Include="Main\Login.h" />
     <ClInclude Include="Main\LoginMain.h" />
     <ClInclude Include="Main\PBMessage.pb.h" />
+    <ClInclude Include="Packets\Packet.h" />
+    <ClInclude Include="Packets\PacketDefine.h" />
+    <ClInclude Include="Packets\PacketFactory.h" />
     <ClInclude Include="Player\Player.h" />
     <ClInclude Include="Player\PlayerManager.h" />
     <ClInclude Include="Player\PlayerPacketMgr.h" />
+    <ClInclude Include="Player\PlayerStatus.h" />
     <ClInclude Include="Player\ServerPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -204,6 +204,9 @@
     <ClCompile Include="..\Common\Base\Demo.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Packets\Packet.cpp">
+      <Filter>Packets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Login.h">
@@ -255,9 +258,6 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\PacketFactory.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\PlayerStatus.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Config.h">
@@ -430,6 +430,18 @@
     </ClInclude>
     <ClInclude Include="Player\PlayerPacketMgr.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Player\PlayerStatus.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Packets\PacketFactory.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Packets\Packet.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Packets\PacketDefine.h">
+      <Filter>Packets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
