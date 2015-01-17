@@ -176,7 +176,6 @@
     <ClCompile Include="..\Common\Net\SocketAPI.cpp" />
     <ClCompile Include="..\Common\Net\SocketInputStream.cpp" />
     <ClCompile Include="..\Common\Net\SocketOutputStream.cpp" />
-    <ClCompile Include="..\Common\Packet.cpp" />
     <ClCompile Include="Main\Login.cpp" />
     <ClCompile Include="Main\LoginMain.cpp" />
     <ClCompile Include="Main\PBMessage.pb.cc" />
