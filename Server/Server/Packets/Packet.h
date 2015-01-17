@@ -42,6 +42,7 @@ public :
 	virtual	uint32_t	GetPacketID( ) const { return m_PacketId; } 
 	virtual	uint32_t	GetPacketSize( ) const { return rMsg.ByteSize(); } 
 	virtual Packet*		Clone() = 0;
+	virtual uint32_t	Execute( Player* pPlayer ) = 0 ;
 	virtual void		FreeOwn() { delete this; }
 public:
 	PBMessage& rMsg;
