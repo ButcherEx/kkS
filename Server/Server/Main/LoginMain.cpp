@@ -2,21 +2,8 @@
 
 #include "LoginMain.h"
 #include "Login.h"
-#include "CLAskCharList.h"
+#include "PBMessage.pb.h"
 #if defined(__WINDOWS__)
-
-class Hanlder
-{
-public:
-	virtual void Handle(CG_LOGIN_PAK* pLogin)
-	{
-		printf("CG\n");
-	}
-	virtual void Handle(Packet* pPackt)
-	{
-		printf("Packet\n");
-	}
-};
 
 
 struct NetworkInitialize
@@ -29,25 +16,25 @@ struct NetworkInitialize
  		
  		_MY_TRY
 		{
-			CG_LOGIN_PAK loginPak;
-			loginPak.Msg.set_vtype(1);
-			loginPak.Msg.set_gameversion(1);
-			loginPak.Msg.set_programversion(1);
-			loginPak.Msg.set_publicresourceversion(1);
-			loginPak.Msg.set_maxpacketid(99);
-			loginPak.Msg.set_forceenter(8);
-			loginPak.Msg.set_deviceid("ma.CY5929");
-			loginPak.Msg.set_devicetype("WINDOWS");
-			loginPak.Msg.set_deviceversion("Win8.1");
-			int32 byteSize  = loginPak.Msg.ByteSize();
+			::CG_LOGIN loginPak;
+			loginPak.set_vtype(1);
+			loginPak.set_gameversion(1);
+			loginPak.set_programversion(1);
+			loginPak.set_publicresourceversion(1);
+			loginPak.set_maxpacketid(99);
+			loginPak.set_forceenter(8);
+			loginPak.set_deviceid("ma.CY5929");
+			loginPak.set_devicetype("WINDOWS");
+			loginPak.set_deviceversion("Win8.1");
+			int32 byteSize  = loginPak.ByteSize();
 			CHAR Buf[256] = {0};
-			loginPak.Msg.SerializeToArray(Buf,sizeof Buf);
+			loginPak.SerializeToArray(Buf,sizeof Buf);
 			printf("%s\n", Buf);
 			
-			Packet* pPacket = new CG_LOGIN_PAK;
-			pPacket->rMsg.ParseFromString(Buf);
+			//Packet* pPacket = new CG_LOGIN_PAK;
+			//pPacket->rMsg.ParseFromString(Buf);
 		
-			pPacket->FreeOwn();
+			//pPacket->FreeOwn();
 		}
 		_MY_CATCH
 		{

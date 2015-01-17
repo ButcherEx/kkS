@@ -253,7 +253,6 @@
     <ClInclude Include="..\Common\Packet.h" />
     <ClInclude Include="..\Common\PacketDefine.h" />
     <ClInclude Include="..\Common\PacketFactory.h" />
-    <ClInclude Include="..\Common\Packets\CLAskCharList.h" />
     <ClInclude Include="Main\Login.h" />
     <ClInclude Include="Main\LoginMain.h" />
     <ClInclude Include="Main\PBMessage.pb.h" />

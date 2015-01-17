@@ -195,9 +195,6 @@
     <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\stubs\stringprintf.cc">
       <Filter>Common\protobuf\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Main\PBMessage.pb.cc">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="Player\PlayerPacketMgr.cpp">
       <Filter>Player</Filter>
     </ClCompile>
@@ -205,6 +202,9 @@
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="Packets\Packet.cpp">
+      <Filter>Packets</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\PBMessage.pb.cc">
       <Filter>Packets</Filter>
     </ClCompile>
   </ItemGroup>
@@ -265,9 +265,6 @@
     </ClInclude>
     <ClInclude Include="..\Common\GameDefine.h">
       <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Packets\CLAskCharList.h">
-      <Filter>Packets</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\MacroDefine.h">
       <Filter>Common</Filter>
@@ -425,22 +422,22 @@
     <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\zero_copy_stream_impl_lite.h">
       <Filter>Common\protobuf\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Main\PBMessage.pb.h">
-      <Filter>Main</Filter>
-    </ClInclude>
     <ClInclude Include="Player\PlayerPacketMgr.h">
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Player\PlayerStatus.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="Packets\PacketFactory.h">
-      <Filter>Packets</Filter>
-    </ClInclude>
     <ClInclude Include="Packets\Packet.h">
       <Filter>Packets</Filter>
     </ClInclude>
     <ClInclude Include="Packets\PacketDefine.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Packets\PacketFactory.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\PBMessage.pb.h">
       <Filter>Packets</Filter>
     </ClInclude>
   </ItemGroup>
