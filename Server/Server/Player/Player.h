@@ -46,6 +46,8 @@ protected :
 	//输入输出数据缓存
 	SocketInputStream		m_SocketInputStream ;
 	SocketOutputStream		m_SocketOutputStream ;
+public:
+	virtual uint32_t Handle(const PBMessage& rMsg) { return 0; };
 };
 
 POOL_DECL(Player);

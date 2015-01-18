@@ -90,9 +90,6 @@
     <ClCompile Include="..\Common\Log.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\Packet.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\io\coded_stream.cc">
       <Filter>Common\protobuf\Source Files</Filter>
     </ClCompile>
@@ -204,7 +201,7 @@
     <ClCompile Include="Packets\Packet.cpp">
       <Filter>Packets</Filter>
     </ClCompile>
-    <ClCompile Include="Main\PBMessage.pb.cc">
+    <ClCompile Include="Packets\PBMessage.pb.cc">
       <Filter>Packets</Filter>
     </ClCompile>
   </ItemGroup>
@@ -437,7 +434,10 @@
     <ClInclude Include="Packets\PacketFactory.h">
       <Filter>Packets</Filter>
     </ClInclude>
-    <ClInclude Include="Main\PBMessage.pb.h">
+    <ClInclude Include="Packets\PBMessage.pb.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Packets\PacketWrapper.h">
       <Filter>Packets</Filter>
     </ClInclude>
   </ItemGroup>

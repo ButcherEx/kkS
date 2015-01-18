@@ -2,8 +2,9 @@
 
 #include "LoginMain.h"
 #include "Login.h"
-#include "PBMessage.pb.h"
+#include "PacketWrapper.h"
 #if defined(__WINDOWS__)
+
 
 
 struct NetworkInitialize
@@ -16,25 +17,25 @@ struct NetworkInitialize
  		
  		_MY_TRY
 		{
-			::CG_LOGIN loginPak;
-			loginPak.set_vtype(1);
-			loginPak.set_gameversion(1);
-			loginPak.set_programversion(1);
-			loginPak.set_publicresourceversion(1);
-			loginPak.set_maxpacketid(99);
-			loginPak.set_forceenter(8);
-			loginPak.set_deviceid("ma.CY5929");
-			loginPak.set_devicetype("WINDOWS");
-			loginPak.set_deviceversion("Win8.1");
-			int32 byteSize  = loginPak.ByteSize();
-			CHAR Buf[256] = {0};
-			loginPak.SerializeToArray(Buf,sizeof Buf);
-			printf("%s\n", Buf);
 			
-			//Packet* pPacket = new CG_LOGIN_PAK;
-			//pPacket->rMsg.ParseFromString(Buf);
+			::CG_LOGIN login;
+			login.set_vtype(1);
+			login.set_gameversion(1);
+			login.set_programversion(1);
+			login.set_publicresourceversion(1);
+			login.set_maxpacketid(99);
+			login.set_forceenter(8);
+			login.set_deviceid("ma.CY5929");
+			login.set_devicetype("WINDOWS");
+			login.set_deviceversion("Win8.1");
+			int32 byteSize  = login.ByteSize();
+			CHAR Buf[256] = {0};
+			login.SerializeToArray(Buf,sizeof Buf);
+			printf("%s\n", Buf);
 		
-			//pPacket->FreeOwn();
+ 			Packet* pPak = new Packets::CG_LOGIN_PAK();
+ 			(*pPak).RMSG.ParseFromString(Buf);
+			Packets::CG_LOGIN_PAK loginPak;
 		}
 		_MY_CATCH
 		{

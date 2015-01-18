@@ -36,30 +36,45 @@ typedef ::google::protobuf::Message PBMessage;
 
 class Packet
 {
+public:
+	#define RMSG m_rMsg
 public :
 	Packet(PBMessage& msg, const CHAR* name);
 	virtual ~Packet( );
 	virtual	uint32_t	GetPacketID( ) const { return m_PacketId; } 
-	virtual	uint32_t	GetPacketSize( ) const { return rMsg.ByteSize(); } 
+	virtual	uint32_t	GetPacketSize( ) const { return m_rMsg.ByteSize(); } 
 	virtual Packet*		Clone() = 0;
 	virtual uint32_t	Execute( Player* pPlayer ) = 0 ;
 	virtual void		FreeOwn() { delete this; }
 public:
-	PBMessage& rMsg;
+	PBMessage& m_rMsg;
 private:
 	PacketID_t	m_PacketId;
 };
-#define PACKET_CLASS(MSGTYPE) MSGTYPE##_PAK
-#define PACKET_DECL(MSGTYPE)\
-class PACKET_CLASS(MSGTYPE) : public Packet { \
-public: \
-	MSGTYPE Msg; \
-public: \
-	Packet* Clone() { return new PACKET_CLASS(MSGTYPE)(); } \
-public: \
-	PACKET_CLASS(MSGTYPE)( ) : Packet(Msg, #MSGTYPE){ } \
+
+template<class MsgType>
+class PacketWrapper : public Packet
+{
+public: 
+	PacketWrapper<MsgType>(const CHAR* name) : Packet(m_Msg, name){}
+
+public:
+	MsgType& GetMsg() { return m_Msg; }
+	const MsgType& GetMsg( ) const { return m_Msg; }
+	virtual uint32_t Execute( Player* pPlayer ) { return pPlayer->Handle(Msg); } 
+
+#define MSG GetMsg()
+private:
+	MsgType m_Msg;
 };
 
+#define PACKET_DECL(MSGTYPE)\
+class MSGTYPE##_PAK : public PacketWrapper<MSGTYPE>\
+{\
+public:\
+	explicit MSGTYPE##_PAK(): PacketWrapper<MSGTYPE>(#MSGTYPE){}\
+	Packet* Clone() { return new PacketWrapper<MSGTYPE>(#MSGTYPE); }\
+};
 
 
 #endif
