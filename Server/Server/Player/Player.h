@@ -8,6 +8,7 @@
 #define __PLAYER_H__
 
 #include "BaseLib.h"
+#include "Role.h"
 #include "PlayerStatus.h"
 
 
@@ -40,6 +41,7 @@ public :
 	//清除当前玩家网络连接数据和缓存数据
 	virtual	void			CleanUp( ) ;
 protected :
+	Role					m_Role;
 	//网络连接句柄
 	Socket					m_Socket ;
 
@@ -48,6 +50,7 @@ protected :
 	SocketOutputStream		m_SocketOutputStream ;
 public:
 	virtual uint32_t Handle(const PBMessage& rMsg) { return 0; };
+	virtual uint32_t Handle(const CG_LOGIN& rMsg) { m_Role.Handle(rMsg); };
 };
 
 POOL_DECL(Player);

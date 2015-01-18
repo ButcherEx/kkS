@@ -92,7 +92,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../3rd/protobuf/src;../../3rd/boost;../Common;../Common/Base;../Common/Net;./Packets;./Main;./Player;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../3rd/protobuf/src;../../3rd/boost;../Common;../Common/Base;../Common/Net;./Packets;./Main;./Role;./Player;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;__WINDOWS__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -178,6 +178,7 @@
     <ClCompile Include="..\Common\Net\SocketOutputStream.cpp" />
     <ClCompile Include="Main\Login.cpp" />
     <ClCompile Include="Main\LoginMain.cpp" />
+    <ClCompile Include="Main\Role\Role.cpp" />
     <ClCompile Include="Packets\Packet.cpp" />
     <ClCompile Include="Packets\PBMessage.pb.cc" />
     <ClCompile Include="Player\Player.cpp" />
@@ -254,6 +255,7 @@
     <ClInclude Include="..\Common\PacketFactory.h" />
     <ClInclude Include="Main\Login.h" />
     <ClInclude Include="Main\LoginMain.h" />
+    <ClInclude Include="Main\Role\Role.h" />
     <ClInclude Include="Packets\Packet.h" />
     <ClInclude Include="Packets\PacketDefine.h" />
     <ClInclude Include="Packets\PacketFactory.h" />

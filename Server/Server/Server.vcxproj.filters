@@ -28,6 +28,12 @@
     <Filter Include="Common\protobuf\Source Files">
       <UniqueIdentifier>{67d97da2-d312-4ecc-803f-a56c044e64ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Server">
+      <UniqueIdentifier>{1defb900-2ab8-4405-8bae-efd510280555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server\Role">
+      <UniqueIdentifier>{1c4ca6cf-18d5-4291-9fd5-73935fde4239}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main\Login.cpp">
@@ -203,6 +209,9 @@
     </ClCompile>
     <ClCompile Include="Packets\PBMessage.pb.cc">
       <Filter>Packets</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\Role\Role.cpp">
+      <Filter>Server\Role</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -439,6 +448,9 @@
     </ClInclude>
     <ClInclude Include="Packets\PacketWrapper.h">
       <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\Role\Role.h">
+      <Filter>Server\Role</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
