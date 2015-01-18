@@ -37,18 +37,20 @@ typedef ::google::protobuf::Message PBMessage;
 class Packet
 {
 public:
-	#define RMSG m_rMsg
+	#define msg_ref GetMsg()
 public :
 	Packet(PBMessage& msg, const CHAR* name);
 	virtual ~Packet( );
-	virtual	uint32_t	GetPacketID( ) const { return m_PacketId; } 
-	virtual	uint32_t	GetPacketSize( ) const { return m_rMsg.ByteSize(); } 
+public:
+	PBMessage&			GetMsg()				{ return m_rMsg; }
+	const PBMessage&	GetMsg( ) const			{ return m_rMsg; }
+	virtual	uint32_t	GetPacketID( ) const	{ return m_PacketId; } 
+	virtual	uint32_t	GetPacketSize( ) const	{ return m_rMsg.ByteSize(); } 
 	virtual Packet*		Clone() = 0;
 	virtual uint32_t	Execute( Player* pPlayer ) = 0 ;
 	virtual void		FreeOwn() { delete this; }
-public:
-	PBMessage& m_rMsg;
 private:
+	PBMessage& m_rMsg;
 	PacketID_t	m_PacketId;
 };
 
@@ -61,9 +63,9 @@ public:
 public:
 	MsgType& GetMsg() { return m_Msg; }
 	const MsgType& GetMsg( ) const { return m_Msg; }
-	virtual uint32_t Execute( Player* pPlayer ) { return pPlayer->Handle(Msg); } 
+	virtual uint32_t Execute( Player* pPlayer ) { return pPlayer->Handle(m_Msg); } 
 
-#define MSG GetMsg()
+#define msg_ref GetMsg()
 private:
 	MsgType m_Msg;
 };

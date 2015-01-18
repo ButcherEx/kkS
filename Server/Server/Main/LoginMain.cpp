@@ -30,12 +30,17 @@ struct NetworkInitialize
 			login.set_deviceversion("Win8.1");
 			int32 byteSize  = login.ByteSize();
 			CHAR Buf[256] = {0};
-			login.SerializeToArray(Buf,sizeof Buf);
+			int32 bytes = login.SerializeToArray(Buf,sizeof Buf);
 			printf("%s\n", Buf);
 		
  			Packet* pPak = new Packets::CG_LOGIN_PAK();
- 			(*pPak).RMSG.ParseFromString(Buf);
+ 			(*pPak).msg_ref.ParseFromString(Buf);
+
+
 			Packets::CG_LOGIN_PAK loginPak;
+			loginPak.msg_ref.ParseFromArray(Buf, bytes);
+
+			bool isEqual = loginPak.msg_ref.GetCachedSize() == login.GetCachedSize();
 		}
 		_MY_CATCH
 		{
