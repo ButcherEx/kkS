@@ -5,7 +5,7 @@
 #include "GameUtil.h"
 
 Packet::Packet(PBMessage& msg, const CHAR* name)
-: rMsg(msg), m_PacketId(MyCRC(name))
+: m_rMsg(msg), m_PacketId(MyCRC(name))
 {
 __ENTER_FUNCTION_FOXNET
 

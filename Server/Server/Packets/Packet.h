@@ -73,7 +73,7 @@ class MSGTYPE##_PAK : public PacketWrapper<MSGTYPE>\
 {\
 public:\
 	explicit MSGTYPE##_PAK(): PacketWrapper<MSGTYPE>(#MSGTYPE){}\
-	Packet* Clone() { return new PacketWrapper<MSGTYPE>(#MSGTYPE); }\
+	Packet* Clone() { return new MSGTYPE##_PAK(); }\
 };
 
 
