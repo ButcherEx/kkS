@@ -3,8 +3,10 @@
 
 
 #include "BaseLib.h"
-#include "Player.h"
+
 #include "PBMessage.pb.h"
+#include "Packet.h"
+
 namespace Packets
 {
 	PACKET_DECL(CG_LOGIN);

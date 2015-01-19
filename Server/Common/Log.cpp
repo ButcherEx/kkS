@@ -2,7 +2,7 @@
 
 #include "Log.h"
 #include "TimeManager.h"
-#include "Config.h"
+//#include "Config.h"
 #include "Assertx.h"
 #include "GameUtil.h"
 
@@ -64,18 +64,17 @@ __ENTER_FUNCTION
 	m_CacheSize = DEFAULT_LOG_CACHE_SIZE ;
 	//最小化内存占用
 	//______________________
-	if( g_Config.m_ConfigInfo.m_SystemModel != 0 )
+
+for( int32_t i=0; i<LOG_FILE_NUMBER; i++ )
+{
+	m_LogCache[i] = new CHAR[m_CacheSize] ;
+	if( m_LogCache[i] == NULL )
 	{
-		for( int32_t i=0; i<LOG_FILE_NUMBER; i++ )
-		{
-			m_LogCache[i] = new CHAR[m_CacheSize] ;
-			if( m_LogCache[i] == NULL )
-			{
-				return false ;
-			}
-			m_LogPos[i] = 0 ;
-		}
+		return false ;
 	}
+	m_LogPos[i] = 0 ;
+}
+
 	//______________________
 	if( g_pTimeManager )
 		m_DayTime = g_pTimeManager->GetDayTime() ;
@@ -126,7 +125,7 @@ __ENTER_FUNCTION
 
 	//最小化内存占用
 	//______________________
-	if( g_Config.m_ConfigInfo.m_SystemModel == 0 )
+	if( 1 )
 	{
 		CHAR szName[_MAX_PATH] ;
 		GetLogName( logid, szName ) ;

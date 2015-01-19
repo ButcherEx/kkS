@@ -168,7 +168,6 @@
     <ClCompile Include="..\Common\Base\Ini.cpp" />
     <ClCompile Include="..\Common\Base\Thread.cpp" />
     <ClCompile Include="..\Common\Base\TimeManager.cpp" />
-    <ClCompile Include="..\Common\Config.cpp" />
     <ClCompile Include="..\Common\Log.cpp" />
     <ClCompile Include="..\Common\Net\FileAPI.cpp" />
     <ClCompile Include="..\Common\Net\ServerSocket.cpp" />
@@ -178,7 +177,7 @@
     <ClCompile Include="..\Common\Net\SocketOutputStream.cpp" />
     <ClCompile Include="Main\Login.cpp" />
     <ClCompile Include="Main\LoginMain.cpp" />
-    <ClCompile Include="Main\Role\Role.cpp" />
+    <ClCompile Include="Map\Role\Role.cpp" />
     <ClCompile Include="Packets\Packet.cpp" />
     <ClCompile Include="Packets\PBMessage.pb.cc" />
     <ClCompile Include="Player\Player.cpp" />
@@ -240,7 +239,6 @@
     <ClInclude Include="..\Common\Base\Pool.h" />
     <ClInclude Include="..\Common\Base\Thread.h" />
     <ClInclude Include="..\Common\Base\TimeManager.h" />
-    <ClInclude Include="..\Common\Config.h" />
     <ClInclude Include="..\Common\GameDefine.h" />
     <ClInclude Include="..\Common\Log.h" />
     <ClInclude Include="..\Common\MacroDefine.h" />
@@ -250,12 +248,9 @@
     <ClInclude Include="..\Common\Net\SocketAPI.h" />
     <ClInclude Include="..\Common\Net\SocketInputStream.h" />
     <ClInclude Include="..\Common\Net\SocketOutputStream.h" />
-    <ClInclude Include="..\Common\Packet.h" />
-    <ClInclude Include="..\Common\PacketDefine.h" />
-    <ClInclude Include="..\Common\PacketFactory.h" />
     <ClInclude Include="Main\Login.h" />
     <ClInclude Include="Main\LoginMain.h" />
-    <ClInclude Include="Main\Role\Role.h" />
+    <ClInclude Include="Map\Role\Role.h" />
     <ClInclude Include="Packets\Packet.h" />
     <ClInclude Include="Packets\PacketDefine.h" />
     <ClInclude Include="Packets\PacketFactory.h" />

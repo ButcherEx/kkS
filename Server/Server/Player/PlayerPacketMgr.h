@@ -2,9 +2,7 @@
 #define __PLAYER_PACKET_MGR_H__
 
 #include "BaseLib.h"
-
-class Packet;
-class Player;
+#include "Packet.h"
 
 typedef fastdelegate::FastDelegate1<Packet*, uint32_t> NETMSGHANDLER;
 

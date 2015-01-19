@@ -21,13 +21,6 @@ bool	Login::Init()
 	
 	bool	bRet = false;
 
-	bRet = g_Config.Init( ) ;
-	if(!bRet)
-	{
-		Assert(bRet);
-		return false;
-	}
-
 	bRet  = NewLogin();
 	if(!bRet)
 	{

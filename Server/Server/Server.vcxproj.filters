@@ -28,10 +28,10 @@
     <Filter Include="Common\protobuf\Source Files">
       <UniqueIdentifier>{67d97da2-d312-4ecc-803f-a56c044e64ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server">
+    <Filter Include="Map">
       <UniqueIdentifier>{1defb900-2ab8-4405-8bae-efd510280555}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Server\Role">
+    <Filter Include="Map\Role">
       <UniqueIdentifier>{1c4ca6cf-18d5-4291-9fd5-73935fde4239}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -83,9 +83,6 @@
     </ClCompile>
     <ClCompile Include="..\Common\Net\FileAPI.cpp">
       <Filter>Common\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Common\Config.cpp">
-      <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\Base.cpp">
       <Filter>Common</Filter>
@@ -210,8 +207,8 @@
     <ClCompile Include="Packets\PBMessage.pb.cc">
       <Filter>Packets</Filter>
     </ClCompile>
-    <ClCompile Include="Main\Role\Role.cpp">
-      <Filter>Server\Role</Filter>
+    <ClCompile Include="Map\Role\Role.cpp">
+      <Filter>Map\Role</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,15 +257,6 @@
     <ClInclude Include="..\Common\Net\SocketOutputStream.h">
       <Filter>Common\Net</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\PacketDefine.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\PacketFactory.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Config.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\GameDefine.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -298,9 +286,6 @@
     </ClInclude>
     <ClInclude Include="..\Common\Net\FileAPI.h">
       <Filter>Common\Net</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Packet.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\coded_stream.h">
       <Filter>Common\protobuf\Header Files</Filter>
@@ -449,8 +434,8 @@
     <ClInclude Include="Packets\PacketWrapper.h">
       <Filter>Packets</Filter>
     </ClInclude>
-    <ClInclude Include="Main\Role\Role.h">
-      <Filter>Server\Role</Filter>
+    <ClInclude Include="Map\Role\Role.h">
+      <Filter>Map\Role</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

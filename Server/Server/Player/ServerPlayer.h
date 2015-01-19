@@ -6,7 +6,7 @@
 
 #include "Base.h"
 #include "Player.h"
-#include "Config.h"
+//#include "Config.h"
 
 
 //服务器玩家指的是另外的服务器端程序在当前程序内的数据表现

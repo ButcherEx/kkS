@@ -280,7 +280,6 @@ __LEAVE_FUNCTION
 	return false ;
 }
 
-
 bool Player::SendPacket( Packet* pPacket )
 {
 __ENTER_FUNCTION
@@ -365,4 +364,7 @@ __LEAVE_FUNCTION
 	return false ;
 }
 
-
+uint32_t Player::Handle(const CG_LOGIN& rMsg) 
+{ 
+	return m_Role.Handle(rMsg); 
+}

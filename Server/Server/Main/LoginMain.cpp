@@ -2,7 +2,8 @@
 
 #include "LoginMain.h"
 #include "Login.h"
-#include "PacketWrapper.h"
+#include "Player.h"
+#include "Role/Role.h"
 #if defined(__WINDOWS__)
 
 

@@ -7,10 +7,8 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-#include "BaseLib.h"
+#include "PacketWrapper.h"
 #include "Role/Role.h"
-#include "PlayerStatus.h"
-
 
 //如果在一定时间内没有收到任何消息，则断开此客户端的网络连接
 #define MAX_KICK_TIME 300000
@@ -50,7 +48,7 @@ protected :
 	SocketOutputStream		m_SocketOutputStream ;
 public:
 	virtual uint32_t Handle(const PBMessage& rMsg) { return 0; };
-	virtual uint32_t Handle(const CG_LOGIN& rMsg) { m_Role.Handle(rMsg); };
+	virtual uint32_t Handle(const CG_LOGIN& rMsg);
 };
 
 POOL_DECL(Player);

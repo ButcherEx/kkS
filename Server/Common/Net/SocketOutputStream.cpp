@@ -2,7 +2,7 @@
 
 
 #include "SocketOutputStream.h"
-#include "Packet.h"
+//#include "Packet.h"
 
 
 SocketOutputStream::SocketOutputStream( Socket& sock, uint32_t BufferLen, uint32_t MaxBufferLen ) 
