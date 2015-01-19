@@ -34,7 +34,7 @@ void __assert__(const CHAR *file, const CHAR *func, int32_t line, const CHAR *ex
 #define FILE_NAME_LEN 128
 		char fileName[FILE_NAME_LEN] = {0};
 		tsnprintf(fileName, FILE_NAME_LEN, "%s%s.%04d-%02d-%02d-%02d.log",  
-			/*sLogConfigure.filePrefix().c_str()*/"", "assert",
+			/*sLogConfigure.filePrefix().c_str()*/"", "Assert",
 			now.year + 1900, now.mon, now.day, now.hour);
 #undef FILE_NAME_LEN
 
