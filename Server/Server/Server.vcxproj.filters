@@ -216,6 +216,12 @@
     <ClCompile Include="Main\ExceptionHandler.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="..\Common\Base\TimeInfo.cpp">
+      <Filter>Common\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Base\Timer.cpp">
+      <Filter>Common\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Login.h">
@@ -264,9 +270,6 @@
       <Filter>Common\Net</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\GameDefine.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\MacroDefine.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Base.h">
@@ -448,6 +451,15 @@
     </ClInclude>
     <ClInclude Include="Main\ExceptionHandler.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base\TimeInfo.h">
+      <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base\Timer.h">
+      <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\MacroDefine.h">
+      <Filter>Common\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

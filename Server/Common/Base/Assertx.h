@@ -13,6 +13,16 @@
 extern int g_Command_Assert ;//控制参数，不提示Assert的对话框，直接忽略
 extern int g_Command_IgnoreMessageBox ;//控制参数，跳过MyMessageBox的中断
 
+#define Assert(expr) ((void)0)
+#define AssertEx(expr,msg) ((void)0)
+
+//////////////////////////////////////////////////////////////////////////
+void __assert__(const CHAR *file, const CHAR *func, int32_t line, const CHAR *exp, bool throwException);
+#define Assert(expr) ((void)0)
+#define AssertEx(expr,msg) ((void)0)
+#define AssertSpecial(expr,msg) ((void)0)
+#define MyMessageBox(msg) ((void)0)
+/*
 //--------------------------------------------------------------------------------  
 //
 //--------------------------------------------------------------------------------
@@ -48,5 +58,5 @@ void __protocol_assert__ (const CHAR* file, uint32_t line, const CHAR* func, con
 	#define AssertSpecial(expr,msg) ((void)0)
 	#define MyMessageBox(msg) ((void)0)
 #endif
-
+	*/
 #endif

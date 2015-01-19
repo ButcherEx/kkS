@@ -9,10 +9,13 @@
 #define		tstricmp		_stricmp
 #define		tsnprintf		_snprintf
 #define		getpid			_getpid
+#define		localtime_r		localtime_s
+#define		zeroMemory(p,len) memset(p,0,len)
 #elif defined(__LINUX__)
 #define		tvsnprintf		vsnprintf
 #define		tstricmp		strcasecmp
 #define		tsnprintf		snprintf
+#define		zeroMemory(p,len) memset(p,0,len)
 #endif
 
 

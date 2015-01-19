@@ -167,7 +167,9 @@
     <ClCompile Include="..\Common\Base\GameUtil.cpp" />
     <ClCompile Include="..\Common\Base\Ini.cpp" />
     <ClCompile Include="..\Common\Base\Thread.cpp" />
+    <ClCompile Include="..\Common\Base\TimeInfo.cpp" />
     <ClCompile Include="..\Common\Base\TimeManager.cpp" />
+    <ClCompile Include="..\Common\Base\Timer.cpp" />
     <ClCompile Include="..\Common\Log.cpp" />
     <ClCompile Include="..\Common\Net\FileAPI.cpp" />
     <ClCompile Include="..\Common\Net\ServerSocket.cpp" />
@@ -240,7 +242,9 @@
     <ClInclude Include="..\Common\Base\Ini.h" />
     <ClInclude Include="..\Common\Base\Pool.h" />
     <ClInclude Include="..\Common\Base\Thread.h" />
+    <ClInclude Include="..\Common\Base\TimeInfo.h" />
     <ClInclude Include="..\Common\Base\TimeManager.h" />
+    <ClInclude Include="..\Common\Base\Timer.h" />
     <ClInclude Include="..\Common\GameDefine.h" />
     <ClInclude Include="..\Common\Log.h" />
     <ClInclude Include="..\Common\MacroDefine.h" />

@@ -52,6 +52,10 @@
 #include <boost/assert.hpp>
 #include <boost/lexical_cast.hpp>
 
+#include <boost/filesystem.hpp>
+#pragma warning(disable:4250)
+#include <boost/filesystem/fstream.hpp>
+#pragma warning(default:4250)
 
 #include <boost/thread.hpp>
 #include <boost/threadpool.hpp>
@@ -63,7 +67,7 @@
 namespace bstd  = boost::container;
 namespace bsys  = boost::system;
 // namespace basio = boost::asio;
-// namespace bfs	= boost::filesystem;
+namespace bfs	= boost::filesystem;
 namespace bsys	= boost::system;
 
 #include "Log.h"
