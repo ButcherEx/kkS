@@ -12,9 +12,10 @@ int g_Command_IgnoreMessageBox=false ;//控制参数，跳过MyMessageBox的中断
 
 //////////////////////////////////////////////////////////////////////////
 #define ASSERT_BUF_LEN 10240
-static MyLock _asertlogMutex;
 void __assert__(const CHAR *file, const CHAR *func, int32_t line, const CHAR *exp, bool throwException)
 {
+	static MyLock _asertlogMutex;
+
 	AutoLock_T __lockThis(_asertlogMutex);
 	static char assertBuf[ASSERT_BUF_LEN];
 

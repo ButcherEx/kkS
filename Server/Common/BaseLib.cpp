@@ -59,6 +59,14 @@ public:
 
 	void Signle()
 	{
+		_MY_TRY
+		{
+			Assert(false);
+		}
+		_MY_CATCH
+		{
+
+		}
 		StaticObjectPtr object = POOL_NEW(StaticObject);
 		object->Say();
 	}
