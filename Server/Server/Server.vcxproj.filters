@@ -210,6 +210,12 @@
     <ClCompile Include="Map\Role\Role.cpp">
       <Filter>Map\Role</Filter>
     </ClCompile>
+    <ClCompile Include="Main\InstanceModule.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\ExceptionHandler.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Login.h">
@@ -436,6 +442,12 @@
     </ClInclude>
     <ClInclude Include="Map\Role\Role.h">
       <Filter>Map\Role</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\InstanceModule.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\ExceptionHandler.h">
+      <Filter>Main</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

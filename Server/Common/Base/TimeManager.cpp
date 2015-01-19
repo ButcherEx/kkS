@@ -1,7 +1,7 @@
 #include "TimeManager.h"
 #include "Assertx.h"
 
-TimeManager*	g_pTimeManager=NULL ;
+TimeManager g_TimeManager;
 
 TimeManager::TimeManager( )
 {

@@ -35,20 +35,6 @@ protected:
 
 extern Login	g_Login;
 
-class LoginExceptionHandler
-{
-public:
-	LoginExceptionHandler();
-	//void INTHandler(INT);
-	//void TERMHandler(INT);
-	//void ABORTHandler(INT);
-	//void ILLHandler(INT);
-	//void FPEHandler(INT);
-	//void SEGHandler(INT);
-	//void XFSZHandler(INT);
-};
-
-extern LoginExceptionHandler g_LoginExceptionHandler;
 
 
 #endif

@@ -83,7 +83,7 @@ public :
 
 };
 
-extern TimeManager* g_pTimeManager ;
+extern TimeManager g_TimeManager;
 
 
 

@@ -76,10 +76,8 @@ for( int32_t i=0; i<LOG_FILE_NUMBER; i++ )
 }
 
 	//______________________
-	if( g_pTimeManager )
-		m_DayTime = g_pTimeManager->GetDayTime() ;
-	else
-		m_DayTime = 6000 ;
+	m_DayTime = g_TimeManager.GetDayTime() ;
+
 
 	return true ;
 
@@ -104,14 +102,11 @@ __ENTER_FUNCTION
 		vsprintf(buffer,msg,argptr);
 		va_end(argptr);
 
-		if( g_pTimeManager )
-		{
-			CHAR szTime[64] ;
-			sprintf( szTime, " (%d)(T=%.4f)\r\n", 
-				MyGetCurrentThreadID(),
-				(float)(g_pTimeManager->RunTime())/1000.0 ) ;
-			strcat( buffer, szTime ) ;
-		}
+		CHAR szTime[64] ;
+		sprintf( szTime, " (%d)(T=%.4f)\r\n", 
+			MyGetCurrentThreadID(),
+			(float)(g_TimeManager.RunTime())/1000.0 ) ;
+		strcat( buffer, szTime ) ;
 	}
 	catch(...)
 	{
@@ -222,15 +217,11 @@ __ENTER_FUNCTION
 		vsprintf(buffer,msg,argptr);
 		va_end(argptr);
 
-		CHAR szTime[64] ;
-		if( g_pTimeManager )
-		{
-			memset( szTime, 0, 64 ) ;
-			sprintf( szTime, " (%d)(T=%.4f)\r\n", 
-				MyGetCurrentThreadID(),
-				(float)(g_pTimeManager->RunTime())/1000.0 ) ;
-			strcat( buffer, szTime ) ;
-		}
+		CHAR szTime[64]= {0};
+		sprintf( szTime, " (%d)(T=%.4f)\r\n", 
+			MyGetCurrentThreadID(), (float)(g_TimeManager.RunTime())/1000.0 ) ;
+		strcat( buffer, szTime ) ;
+
 		FILE* f = fopen( filename, "ab" ) ;
 		fwrite( buffer, 1, strlen(buffer), f ) ;
 		fclose(f) ;

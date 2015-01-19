@@ -4,6 +4,8 @@
 #include "Login.h"
 #include "Player.h"
 #include "Role/Role.h"
+#include "InstanceModule.h"
+
 #if defined(__WINDOWS__)
 
 
@@ -54,24 +56,20 @@ int32_t main(int32_t argc, CHAR* argv[])
 		}	
 		
 		
-	//时间管理器
-	g_pTimeManager	=	new TimeManager;
-	g_pTimeManager->Init();
-			
-	Log::SaveLog( "./Log/Login.log", "\r\n(###) main..." ) ;
-	g_pTimeManager->SetTime( ) ;
-		
-	Log::SaveLog( "./Log/Login.log", "Login Starting... (%.10d)(%d)",
-	g_pTimeManager->Time2DWORD(),
-	g_pTimeManager->StartTime() ) ;
-	srand(g_pTimeManager->CurrentTime());
-	bool	bRet  =		g_Login.Init();
-	Assert(bRet);
-		
-	bRet	=			g_Login.Loop();	
+
+	bool bRet =	g_InstancenManager.Init();
 	Assert(bRet);
 
-	bRet	=			g_Login.Exit();
+	bRet = g_Login.Init();
+	Assert(bRet);
+		
+	bRet = g_Login.Loop();	
+	Assert(bRet);
+
+	bRet = g_Login.Exit();
+	Assert(bRet);
+
+	bRet = g_InstancenManager.Exit();
 	Assert(bRet);
 
 	return	0;

@@ -63,7 +63,7 @@ __ENTER_FUNCTION
 		if( (int32_t)ret <= SOCKET_ERROR )
 		{
 			Log::SaveLog( "./Log/LoginError.log", "[%d] m_pSocketInputStream->Fill ret:%d %s", 
-				g_pTimeManager->Time2DWORD(), (int32_t)ret, MySocketError() ) ;
+				g_TimeManager.Time2DWORD(), (int32_t)ret, MySocketError() ) ;
 			return false ;
 		}
 	} 
@@ -264,7 +264,7 @@ __ENTER_FUNCTION
 		if( (int32_t)ret <= SOCKET_ERROR )
 		{
 			Log::SaveLog( "./Log/LoginError.log", "[%d] m_pSocketOutputStream->Flush ret:%d %s", 
-				g_pTimeManager->Time2DWORD(), (int32_t)ret, MySocketError() ) ;
+				g_TimeManager.Time2DWORD(), (int32_t)ret, MySocketError() ) ;
 			return false ;
 		}
 	} 
@@ -294,7 +294,7 @@ __ENTER_FUNCTION
 
 		w = m_SocketOutputStream.Write( (CHAR*)&packetID , sizeof(PacketID_t) ) ;
 
-		uint16_t packetTick = g_pTimeManager->RunTick();
+		uint16_t packetTick = g_TimeManager.RunTick();
 		w = m_SocketOutputStream.Write( (CHAR*)&packetTick , sizeof(uint16_t) ) ;
 
 		uint32_t packetUINT ;

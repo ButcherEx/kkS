@@ -175,6 +175,8 @@
     <ClCompile Include="..\Common\Net\SocketAPI.cpp" />
     <ClCompile Include="..\Common\Net\SocketInputStream.cpp" />
     <ClCompile Include="..\Common\Net\SocketOutputStream.cpp" />
+    <ClCompile Include="Main\ExceptionHandler.cpp" />
+    <ClCompile Include="Main\InstanceModule.cpp" />
     <ClCompile Include="Main\Login.cpp" />
     <ClCompile Include="Main\LoginMain.cpp" />
     <ClCompile Include="Map\Role\Role.cpp" />
@@ -248,6 +250,8 @@
     <ClInclude Include="..\Common\Net\SocketAPI.h" />
     <ClInclude Include="..\Common\Net\SocketInputStream.h" />
     <ClInclude Include="..\Common\Net\SocketOutputStream.h" />
+    <ClInclude Include="Main\ExceptionHandler.h" />
+    <ClInclude Include="Main\InstanceModule.h" />
     <ClInclude Include="Main\Login.h" />
     <ClInclude Include="Main\LoginMain.h" />
     <ClInclude Include="Map\Role\Role.h" />
