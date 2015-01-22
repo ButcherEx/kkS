@@ -26,6 +26,8 @@ typedef union TIME64_t
         uint8_t day ;		/* 1 - 31 */
         uint8_t mon ;		/* 1 - 12 */
         uint16_t year;		/* years since 1900 */
+#define real_year year+1900
+
     };
 } TIME64;
 #pragma pack(pop)

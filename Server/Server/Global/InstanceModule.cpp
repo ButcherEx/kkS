@@ -9,6 +9,9 @@ bool InstanceManager::Init()
 		bool bRet = g_TimeManager.Init(); //时间管理器
 		Assert(bRet);
 
+		bRet = g_Config.Init( );
+		Assert(bRet);
+
 		srand(g_TimeManager.CurrentTime());
 
 		Log::SaveLog( "./Log/Login.log", "\r\n(###) main..." ) ;

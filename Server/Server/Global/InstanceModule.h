@@ -7,6 +7,7 @@
 #define __INSTANCE_MODULE_H__
 
 #include "TimeManager.h"
+#include "Config.h"
 
 class InstanceManager
 {

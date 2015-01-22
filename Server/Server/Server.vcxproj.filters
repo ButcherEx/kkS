@@ -4,17 +4,26 @@
     <Filter Include="Main">
       <UniqueIdentifier>{dfd2aa9e-613b-4fc0-bf97-11111ff908cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Common">
-      <UniqueIdentifier>{6e205a9e-a77b-485b-ac6b-460fba86b730}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common\Net">
-      <UniqueIdentifier>{9dcb0c41-2052-469b-9dc7-02effa9c71d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Player">
       <UniqueIdentifier>{be674318-85a8-40d5-b0bc-90c7ec392a28}</UniqueIdentifier>
     </Filter>
     <Filter Include="Packets">
       <UniqueIdentifier>{32a4dca2-1eff-4ac4-b010-0bc7732b0204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{1defb900-2ab8-4405-8bae-efd510280555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Role">
+      <UniqueIdentifier>{1c4ca6cf-18d5-4291-9fd5-73935fde4239}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{261366fc-c867-493d-803f-c52fc0ae249b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{6e205a9e-a77b-485b-ac6b-460fba86b730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Net">
+      <UniqueIdentifier>{9dcb0c41-2052-469b-9dc7-02effa9c71d2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Common\Base">
       <UniqueIdentifier>{c358928c-0370-4183-9c5e-985c83139d18}</UniqueIdentifier>
@@ -27,12 +36,6 @@
     </Filter>
     <Filter Include="Common\protobuf\Source Files">
       <UniqueIdentifier>{67d97da2-d312-4ecc-803f-a56c044e64ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Map">
-      <UniqueIdentifier>{1defb900-2ab8-4405-8bae-efd510280555}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Map\Role">
-      <UniqueIdentifier>{1c4ca6cf-18d5-4291-9fd5-73935fde4239}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -210,17 +213,20 @@
     <ClCompile Include="Map\Role\Role.cpp">
       <Filter>Map\Role</Filter>
     </ClCompile>
-    <ClCompile Include="Main\InstanceModule.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Main\ExceptionHandler.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="..\Common\Base\TimeInfo.cpp">
       <Filter>Common\Base</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\Base\Timer.cpp">
       <Filter>Common\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Global\ExceptionHandler.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Global\InstanceModule.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Global\Config.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -446,12 +452,6 @@
     <ClInclude Include="Map\Role\Role.h">
       <Filter>Map\Role</Filter>
     </ClInclude>
-    <ClInclude Include="Main\InstanceModule.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Main\ExceptionHandler.h">
-      <Filter>Main</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\Base\TimeInfo.h">
       <Filter>Common\Base</Filter>
     </ClInclude>
@@ -460,6 +460,15 @@
     </ClInclude>
     <ClInclude Include="..\Common\MacroDefine.h">
       <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\ExceptionHandler.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\InstanceModule.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\Config.h">
+      <Filter>Global</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
