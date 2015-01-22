@@ -2,8 +2,9 @@
 #include "Base.h"
 #include "Assertx.h"
 #include "GameUtil.h"
-
-#ifdef __LINUX__
+#if defined(__WINDOWS__)
+#include <io.h>
+#elif defined(__LINUX__)
 #include <execinfo.h>
 #include <signal.h>
 #include <exception>
@@ -39,6 +40,134 @@ CHAR* MySocketError( )
 
 extern CHAR Error[_ESIZE] ;
 	return Error ;
+}
+
+void HostName(bstd::string& hn) 
+{
+#if defined(__LINUX__)
+	struct utsname buf;
+	if (0 != uname(&buf)) {
+		// ensure null termination on failure
+		*buf.nodename = '\0';
+	}
+	hn = buf.nodename;
+#elif defined(__WINDOWS__)
+	char buf[MAX_COMPUTERNAME_LENGTH + 1];
+	DWORD len = MAX_COMPUTERNAME_LENGTH + 1;
+	if (GetComputerNameA(buf, &len)) {
+		hn = buf;
+	} else {
+		hn.clear();
+	}
+#else
+# warning There is no way to retrieve the host name.
+	hn = "(unknown)";
+#endif
+}
+
+//////////////////////////////////////////////////////////////////////////
+// Returns true iff terminal supports using colors in output.
+static bool terminalSupportsColor() {
+	bool term_supports_color = false;
+#if defined(__WINDOWS__)
+	// on Windows TERM variable is usually not set, but the console does
+	// support colors.
+	term_supports_color = true;
+#else
+	// On non-Windows platforms, we rely on the TERM variable.
+	const char* const term = getenv("TERM");
+	if (term != NULL && term[0] != '\0') {
+		term_supports_color =
+			!strcmp(term, "xterm") ||
+			!strcmp(term, "xterm-color") ||
+			!strcmp(term, "xterm-256color") ||
+			!strcmp(term, "screen") ||
+			!strcmp(term, "linux") ||
+			!strcmp(term, "cygwin");
+	}
+#endif
+	return term_supports_color;
+}
+
+#if defined(__WINDOWS__)
+// Returns the character attribute for the given color.
+WORD GetColorAttribute(LogColor color) {
+	switch (color) {
+	case COLOR_RED:    return FOREGROUND_RED;
+	case COLOR_GREEN:  return FOREGROUND_GREEN;
+	case COLOR_YELLOW: return FOREGROUND_RED | FOREGROUND_GREEN;
+	default:           return 0;
+	}
+}
+#else
+// Returns the ANSI color code for the given color.
+const char* GetAnsiColorCode(GLogColor color) {
+	switch (color) {
+	case COLOR_RED:     return "1";
+	case COLOR_GREEN:   return "2";
+	case COLOR_YELLOW:  return "3";
+	case COLOR_DEFAULT:  return "";
+	};
+	return NULL; // stop warning about return type.
+}
+#endif  // __WINDOWS__
+//////////////////////////////////////////////////////////////////////////
+void coloredWriteToStderr(const CHAR* message, size_t len, LogColor color)
+{
+	// Avoid using cerr from this module since we may get called during
+	// exit code, and cerr may be partially or fully destroyed by then.
+	if (COLOR_DEFAULT == color) {
+		fwrite(message, len, 1, stderr);
+		return;
+	}
+#if defined(__WINDOWS__)
+	const HANDLE stderr_handle = GetStdHandle(STD_ERROR_HANDLE);
+
+	// Gets the current text color.
+	CONSOLE_SCREEN_BUFFER_INFO buffer_info;
+	GetConsoleScreenBufferInfo(stderr_handle, &buffer_info);
+	const WORD old_color_attrs = buffer_info.wAttributes;
+
+	// We need to flush the stream buffers into the console before each
+	// SetConsoleTextAttribute call lest it affect the text that is already
+	// printed but has not yet reached the console.
+	fflush(stderr);
+	SetConsoleTextAttribute(stderr_handle,
+		GetColorAttribute(color) | FOREGROUND_INTENSITY);
+	fwrite(message, len, 1, stderr);
+	fflush(stderr);
+	// Restores the text color.
+	SetConsoleTextAttribute(stderr_handle, old_color_attrs);
+#else
+	fprintf(stderr, "\033[0;3%sm", GetAnsiColorCode(color));
+	fwrite(message, len, 1, stderr);
+	fprintf(stderr, "\033[m");  // Resets the terminal to default.
+#endif  // __WINDOWS__
+}
+//////////////////////////////////////////////////////////////////////////
+void clearStderrLineBuffer(FILE *file)
+{
+#if defined(__WINDOWS__)
+	HANDLE stdIOHandle;
+	COORD coor;
+	CONSOLE_SCREEN_BUFFER_INFO info;
+
+	stdIOHandle = (HANDLE)_get_osfhandle(fileno(file));
+	if(stdIOHandle == INVALID_HANDLE_VALUE)
+		return ;
+
+	if(!GetConsoleScreenBufferInfo(stdIOHandle,&info))
+		return ;
+
+	coor = info.dwCursorPosition;
+	if(coor.Y <= 0) return ;
+
+	coor.X = 0;
+	SetConsoleCursorPosition(stdIOHandle, coor);
+#else
+	fprintf(file, "\033[0;0H");
+	fprintf(file, "\033[K");
+#endif
 }
 
 
@@ -639,43 +768,4 @@ bool CheckIllegalString( const CHAR* strText, int32_t nLength, int32_t nLevel )
 	return false;
 }
 
-
-void  DumpStack(const CHAR* type)
-{
-#ifdef __LINUX__
-	void *	DumpArray[25];
-	int	Size =	backtrace(DumpArray,25);
-	char ** symbols = backtrace_symbols(DumpArray, Size);
-	if(symbols)
-	{
-		if(Size>10) Size= 10;
-		if(Size>0)
-		{
-			FILE* f = fopen( DUMP_LOG, "a" ) ;
-			char threadinfo[256] = {0};
-			sprintf(threadinfo,"threadid = %d cause dump\r\n",MyGetCurrentThreadID());
-			fwrite(threadinfo,1,strlen(threadinfo),f);
-			fwrite(type,1,strlen(type),f);
-			for(int	i=0;i<Size;i++)
-			{
-				printf("%s\r\n",symbols[i]);
-				fwrite(symbols[i],1,strlen(symbols[i]),f);
-				fwrite("\r\n",1,2,f);
-			}
-			fclose(f) ;
-		}
-		free(symbols);
-	}
-	else
-	{
-		FILE* f = fopen( DUMP_LOG, "a" ) ;
-		char	buffer[256] = {0};
-		char threadinfo[256] = {0};
-		sprintf(threadinfo,"threadid = %d cause dump\r\n",MyGetCurrentThreadID());
-		fwrite(threadinfo,1,strlen(threadinfo),f);
-		fwrite(type,1,strlen(type),f);
-		fclose(f);
-	}
-#endif
-}
 

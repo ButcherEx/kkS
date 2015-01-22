@@ -48,6 +48,7 @@ void __assert__(const CHAR *file, const CHAR *func, int32_t line, const CHAR *ex
 		assertfs << "\n";
 		assertfs.close();
 
+
 		if(g_Config.m_LogConfig.m_LogAssert2Stderr)
 		{
 			fprintf(stderr,"%s\n", assertBuf);

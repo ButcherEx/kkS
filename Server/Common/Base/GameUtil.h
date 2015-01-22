@@ -11,7 +11,18 @@ TID		MyGetCurrentThreadID( ) ;
 CHAR*	MySocketError( ) ;
 uint32_t	MyCRC( const CHAR* szString ) ;
 uint32_t	MyCRC32(const CHAR* lpData);
-
+//////////////////////////////////////////////////////////////////////////
+void HostName(bstd::string& hn);
+void clearStderrLineBuffer(FILE *file);
+//////////////////////////////////////////////////////////////////////////
+enum LogColor 
+{
+	COLOR_DEFAULT,
+	COLOR_RED,
+	COLOR_GREEN,
+	COLOR_YELLOW
+};
+void coloredWriteToStderr(const CHAR* message, size_t len, LogColor color);
 //////////////////////////////////////////////////////////////////////////
 //ÊýÑ§°ïÖúº¯Êý
 //////////////////////////////////////////////////////////////////////////
@@ -98,7 +109,7 @@ bool		CheckIllegalString( const CHAR* strText, int32_t nLength, int32_t nLevel =
 
 extern		int32_t				g_CmdArgv;
 
-void		DumpStack(const CHAR* type);
+
 
 
 

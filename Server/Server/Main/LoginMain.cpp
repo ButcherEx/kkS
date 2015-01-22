@@ -58,7 +58,7 @@ int32_t main(int32_t argc, CHAR* argv[])
 		
 
 	bool bRet =	g_InstancenManager.Init();
-	Assert(bRet);
+	Assert(0);
 
 	bRet = g_Login.Init();
 	Assert(bRet);

@@ -19,7 +19,7 @@ void __assert__(const CHAR *file, const CHAR *func, int32_t line, const CHAR *ex
 
 //////////////////////////////////////////////////////////////////////////
 #define Assert(expr) {if(!(expr)){__assert__(__FILE__,__FUNCTION__,__LINE__,#expr, true);}}
-#define AssertEx(expr,msg) ((void)0)
+#define AssertEx(expr,msg) {if(!(expr)){__assert__(__FILE__,__FUNCTION__,__LINE__,msg, true);}}
 #define AssertSpecial(expr,msg) ((void)0)
 #define MyMessageBox(msg) ((void)0)
 

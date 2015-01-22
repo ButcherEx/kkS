@@ -10,7 +10,7 @@
 // include files
 //////////////////////////////////////////////////
 
-#include "FileAPI.h"
+//#include "FileAPI.h"
 #include "SocketAPI.h"
 
 #if __WINDOWS__

@@ -84,9 +84,6 @@
     <ClCompile Include="..\Common\Net\SocketOutputStream.cpp">
       <Filter>Common\Net</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\Net\FileAPI.cpp">
-      <Filter>Common\Net</Filter>
-    </ClCompile>
     <ClCompile Include="..\Common\Base.cpp">
       <Filter>Common</Filter>
     </ClCompile>
@@ -298,9 +295,6 @@
     </ClInclude>
     <ClInclude Include="..\Common\Log.h">
       <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Net\FileAPI.h">
-      <Filter>Common\Net</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\io\coded_stream.h">
       <Filter>Common\protobuf\Header Files</Filter>

@@ -21,8 +21,10 @@
 #include <math.h>
 #include <assert.h>
 #include <stdint.h>
+#include <io.h>
 
 #if defined(__WINDOWS__)
+	#include <windows.h>
 	#include <direct.h>
 #elif defined(__LINUX__)
 	#include <sys/stat.h>

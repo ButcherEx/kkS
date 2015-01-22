@@ -8,7 +8,6 @@
 #include "Assertx.h"
 #include "Log.h"
 #include "Ini.h"
-//#include "Config.h"
 #include "TimeManager.h"
 #include "GameUtil.h"
 #include "Socket.h"

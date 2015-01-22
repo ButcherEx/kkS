@@ -9,7 +9,7 @@ bool InstanceManager::Init()
 		bool bRet = g_TimeManager.Init(); //时间管理器
 		Assert(bRet);
 
-		bRet = g_Config.Init( );
+		bRet = g_Config.Init(__argv[0]);
 		Assert(bRet);
 
 		srand(g_TimeManager.CurrentTime());

@@ -1,5 +1,4 @@
 #include <Base.h>
-
 #if defined(__WINDOWS__)
 _lightweight_mutex::_lightweight_mutex() { ::InitializeCriticalSectionAndSpinCount(&cs_, 4000); }
 _lightweight_mutex::~_lightweight_mutex() { ::DeleteCriticalSection(&cs_); }
@@ -33,7 +32,7 @@ namespace boost{ extern "C" void tss_cleanup_implemented(void){} }
 #endif
 
 #include <libs/filesystem/src/codecvt_error_category.cpp>
-//#include <libs/filesystem/src/operations.cpp>
+#include <libs/filesystem/src/operations.cpp>
 #include <libs/filesystem/src/path_traits.cpp>
 #include <libs/filesystem/src/path.cpp>
 #include <libs/filesystem/src/portability.cpp>
