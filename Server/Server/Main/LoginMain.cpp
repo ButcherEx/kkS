@@ -56,21 +56,26 @@ int32_t main(int32_t argc, CHAR* argv[])
 		}	
 		
 		
+	_MY_TRY
+	{
+		bool bRet =	g_InstancenManager.Init();
+		Assert(0);
 
-	bool bRet =	g_InstancenManager.Init();
-	Assert(0);
+		bRet = g_Login.Init();
+		Assert(bRet);
 
-	bRet = g_Login.Init();
-	Assert(bRet);
+		bRet = g_Login.Loop();	
+		Assert(bRet);
+
+		bRet = g_Login.Exit();
+		Assert(bRet);
+	}
+	_MY_CATCH
+	{
 		
-	bRet = g_Login.Loop();	
-	Assert(bRet);
+	}
 
-	bRet = g_Login.Exit();
-	Assert(bRet);
-
-	bRet = g_InstancenManager.Exit();
-	Assert(bRet);
+	g_InstancenManager.Exit();
 
 	return	0;
 

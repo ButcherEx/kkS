@@ -1,4 +1,5 @@
 #include "BaseLib.h"
+#include "PBMessage.pb.h"
 #include "InstanceModule.h"
 
 InstanceManager g_InstancenManager;
@@ -26,7 +27,7 @@ bool InstanceManager::Init()
 bool InstanceManager::Exit()
 {
 	__ENTER_FUNCTION
-		
+		::google::protobuf::ShutdownProtobufLibrary();
 	__LEAVE_FUNCTION
 		return false;
 }
