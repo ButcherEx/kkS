@@ -18,7 +18,7 @@ struct LOG_CONFIG
 	{
 		m_LogDir = "RunTimeLog";
 		m_FilePrefix = "";
-		m_LogAssert2Stderr = false;
+		m_LogAssert2Stderr = true;
 		m_HostName = "Unknown";
 		m_InvocationName = "EXE";
 	}

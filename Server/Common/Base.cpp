@@ -1,4 +1,5 @@
 #include <Base.h>
+
 #if defined(__WINDOWS__)
 _lightweight_mutex::_lightweight_mutex() { ::InitializeCriticalSectionAndSpinCount(&cs_, 4000); }
 _lightweight_mutex::~_lightweight_mutex() { ::DeleteCriticalSection(&cs_); }

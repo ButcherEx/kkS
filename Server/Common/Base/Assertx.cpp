@@ -51,19 +51,9 @@ void __assert__(const CHAR *file, const CHAR *func, int32_t line, const CHAR *ex
 
 		if(g_Config.m_LogConfig.m_LogAssert2Stderr)
 		{
-			fprintf(stderr,"%s\n", assertBuf);
+			strcat(assertBuf, "\n");
+			coloredWriteToStderr(assertBuf, ::strlen(assertBuf), COLOR_RED);
 		}
-// #if 0
-// 		printf("%s:%s\n", 
-// 			throwException ? "Assert" : "Verify", assertBuf);
-// #else
-// 		int32_t level = throwException ? LOG_LEVEL_FATAL : LOG_LEVEL_ERROR;
-// 		if( sLogConfigure.isLogToStderr(level) )
-// 		{
-// 			strcat(assertBuf, "\n");
-// 			coloredWriteToStderr(level, assertBuf, ::strlen(assertBuf));
-// 		}
-// #endif
 	} 
 	catch(...)
 	{
