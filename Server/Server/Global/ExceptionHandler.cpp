@@ -4,8 +4,8 @@
 #include <signal.h>
 #if defined(__WINDOWS__)
 #include <process.h>
-#include <Symbol/SimpleSymbolEngine.h>
-#include <Symbol/SimpleSymbolEngine.cpp>
+#include "SimpleSymbolEngine.h"
+#include "SimpleSymbolEngine.cpp"
 #elif defined(__LINUX__)
 #include <execinfo.h>
 #include <sys/types.h>
