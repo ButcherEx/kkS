@@ -8,6 +8,7 @@
 
 #include "Base.h"
 #include "Log.h"
+#include "Config.h"
 
 LOG_DECL(Assert);
 LOG_DECL(Debug);

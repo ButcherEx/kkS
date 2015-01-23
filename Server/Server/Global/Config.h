@@ -3,7 +3,7 @@
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
-#include "BaseLib.h"
+#include "Base.h"
 
 
 //Config
@@ -31,12 +31,10 @@ class Config
 public :
 	Config( ) ;
 	~Config( ) ;
-
-	bool					Init(const CHAR* argv0) ;
-	void					ReLoad( ) ;
-
-
-	void					LoadLogConfig(const CHAR* argv0) ;
+public:
+	bool Init(const CHAR* argv0) ;
+	void ReLoad( ) ;
+	void LoadLogConfig(const CHAR* argv0) ;
 	
 public :
 	LOG_CONFIG			m_LogConfig ;

@@ -13,7 +13,7 @@ int g_Command_IgnoreMessageBox=false ;//控制参数，跳过MyMessageBox的中断
 
 //////////////////////////////////////////////////////////////////////////
 #define ASSERT_BUF_LEN 10240
-void __assert__(const CHAR *file, const CHAR *func, int32_t line, const CHAR *exp, bool throwException)
+void __assert__(const CHAR *func, int32_t line, const CHAR *exp, bool throwException)
 {
 	static MyLock _asertlogMutex;
 
@@ -26,8 +26,8 @@ void __assert__(const CHAR *file, const CHAR *func, int32_t line, const CHAR *ex
 		//////////////////////////////////////////////////////////////////////////
 		zeroMemory(assertBuf, ASSERT_BUF_LEN);
 		tsnprintf(assertBuf, ASSERT_BUF_LEN, 
-			"(###)[%s][%s][%d]%s(%04d-%02d-%02d %02d:%02d:%02d).",
-			file, func, line, exp, now.real_year, 
+			"(###)[%s][%d]%s(%04d-%02d-%02d %02d:%02d:%02d)\r\n",
+			func, line, exp, now.real_year, 
 			now.mon, now.day, now.hour, now.min, now.sec);
 
 		//////////////////////////////////////////////////////////////////////////
@@ -44,13 +44,11 @@ void __assert__(const CHAR *file, const CHAR *func, int32_t line, const CHAR *ex
 		//////////////////////////////////////////////////////////////////////////
 		bfs::fstream assertfs(p, std::ios_base::app);
 		assertfs << assertBuf;
-		assertfs << "\n";
 		assertfs.close();
 
 
 		if(g_Config.m_LogConfig.m_LogAssert2Stderr)
 		{
-			strcat(assertBuf, "\n");
 			coloredWriteToStderr(assertBuf, ::strlen(assertBuf), COLOR_RED);
 		}
 	} 
