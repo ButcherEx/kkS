@@ -1,6 +1,11 @@
 #include "Player.h"
 #include "Role.h"
 
+Role::Role(Player& rPlayer)
+:m_rPlayer(rPlayer)
+{
+
+}
 
 uint32_t Role::Handle(const CG_LOGIN& rMsg)
 {

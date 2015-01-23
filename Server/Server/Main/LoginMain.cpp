@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Role/Role.h"
 #include "InstanceModule.h"
+#include "LogDefine.h"
 
 #if defined(__WINDOWS__)
 
@@ -33,6 +34,8 @@ int32_t main(int32_t argc, CHAR* argv[])
 	_CrtSetDbgFlag(_CrtSetDbgFlag(0) | _CRTDBG_LEAK_CHECK_DF);
 #endif
 	
+	LOG_SAVE(Assert, "TestK", "%s", "Fc");
+
 	__ENTER_FUNCTION
 	
 		if( argc>1 )

@@ -9,6 +9,8 @@
 #include "Log.h"
 #include "Ini.h"
 #include "TimeManager.h"
+#include "Timer.h"
+#include "TimeInfo.h"
 #include "GameUtil.h"
 #include "Socket.h"
 #include "ServerSocket.h"

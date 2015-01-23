@@ -4,9 +4,11 @@
 class Role
 {
 public:
-	Role(){}
+	Role(Player& rPlayer);
 public:
 	uint32_t Handle(const CG_LOGIN& rMsg);
+private:
+	Player& m_rPlayer;
 };
 
 #endif //__ROLE_H__

@@ -140,27 +140,12 @@
 #define ISSET15(x) ((x)&0x8000)
 
 
-
-#if defined(GAME_CLIENT)
-#define __ENTER_FUNCTION 
-#define __LEAVE_FUNCTION
-#elif 1
-
-#if defined(__WINDOWS__)
-#if defined(NDEBUG)
 #define __ENTER_FUNCTION {try{
-#define __LEAVE_FUNCTION }catch(...){AssertSpecial(false,__FUNCTION__);}}
-#else
-#define __ENTER_FUNCTION {try{
-#define __LEAVE_FUNCTION }catch(...){AssertSpecial(false,__FUNCTION__);}}
-#endif
-#else	//linux
-#define __ENTER_FUNCTION {try{
-#define __LEAVE_FUNCTION }catch(...){AssertSpecial(false,__PRETTY_FUNCTION__);}}
-#endif 
-#endif
+#define __LEAVE_FUNCTION }catch(...){AssertEx(false,__FUNCTION__);}}
 
 
+#define __ENTER_FUNCTION_EX {try{
+#define __LEAVE_FUNCTION_EX }catch(...){AssertEx(false,__FUNCTION__);}}
 
 
 #endif // __MACRO_DEFINE_H__
