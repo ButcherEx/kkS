@@ -16,7 +16,7 @@ bool InstanceManager::Init()
 
 		srand(g_TimeManager.CurrentTime());
 
-		LOGD(Debug, "\r\n(###) main..." ) ;
+		LOGD(Debug, "main..." ) ;
 		LOGD(Debug, "Login Starting... (%.10d)(%d)",
 			g_TimeManager.Time2DWORD(), g_TimeManager.StartTime() ) ;
 

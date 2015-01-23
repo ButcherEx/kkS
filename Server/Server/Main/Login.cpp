@@ -50,7 +50,7 @@ bool	Login::Loop()
 
 	bool bRet = false ;
 
-	LOGD(Debug, "\r\nLoop..." ) ;
+	LOGD(Debug, "Loop..." ) ;
 
 	// ÿª§œﬂ≥Ã
 	while(true)
