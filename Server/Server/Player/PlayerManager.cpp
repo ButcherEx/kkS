@@ -1,7 +1,7 @@
 
 #include "PlayerManager.h"
 #include "Assertx.h"
-
+#include "LogDefine.h"
 
 PlayerManager::PlayerManager( )
 {
@@ -52,7 +52,8 @@ void PlayerManager::RemovePlayer( PlayerPtr Ptr, int32_t reason )
 __ENTER_FUNCTION
 
 	Assert( Ptr ) ;
-	std::remove(m_PlayerPtrList.Begin(), m_PlayerPtrList.End(), Ptr);
+	PlayerPtrList::TListIterator iter = std::remove(m_PlayerPtrList.Begin(), m_PlayerPtrList.End(), Ptr);
+	(void)iter;
 __LEAVE_FUNCTION
 }
 
@@ -92,7 +93,7 @@ bool PlayerManager::Select( )
 	} 
 	_MY_CATCH
 	{
-		Log::SaveLog( LOGIN_LOGFILE, "ERROR: IncomingPlayerManager::Select( )..." ) ;
+		LOGE(Error,"ERROR: IncomingPlayerManager::Select( )..." ) ;
 	}
 
 	return true ;

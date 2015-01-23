@@ -1,6 +1,7 @@
 //#include "stdafx.h"
 
 #include "Login.h"
+#include "LogDefine.h"
 
 Login	g_Login;
 
@@ -49,7 +50,7 @@ bool	Login::Loop()
 
 	bool bRet = false ;
 
-	Log::SaveLog( LOGIN_LOGFILE, "\r\nLoop..." ) ;
+	LOGD(Debug, "\r\nLoop..." ) ;
 
 	// ÿª§œﬂ≥Ã
 	while(true)
@@ -69,10 +70,10 @@ bool	Login::Exit()
 	__ENTER_FUNCTION
 
 	
-	Log::SaveLog( LOGIN_LOGFILE, "Begin delete..." ) ;
+	LOGD(Debug,"Begin delete..." ) ;
 
 
-	Log::SaveLog( LOGIN_LOGFILE, "End delete..." ) ;
+	LOGD(Debug,"End delete..." ) ;
 	
 	m_bExited = true;
 

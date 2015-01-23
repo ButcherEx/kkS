@@ -73,6 +73,7 @@ namespace bsys  = boost::system;
 namespace bfs	= boost::filesystem;
 namespace bsys	= boost::system;
 
+#include "GameUtil.h"
 #include "Log.h"
 
 #endif

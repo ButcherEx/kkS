@@ -8,7 +8,7 @@
 SocketOutputStream::SocketOutputStream( Socket& sock, uint32_t BufferLen, uint32_t MaxBufferLen ) 
 :m_rSocket(sock)
 {
-__ENTER_FUNCTION_FOXNET
+
 	
 	m_BufferLen = BufferLen ;
 	m_MaxBufferLen = MaxBufferLen ;
@@ -18,21 +18,21 @@ __ENTER_FUNCTION_FOXNET
 	m_Buffer = new CHAR[ m_BufferLen ];
 	memset( m_Buffer, 0, m_BufferLen ) ;
 
-__LEAVE_FUNCTION_FOXNET
+
 }
 
 SocketOutputStream::~SocketOutputStream( ) 
 {
-__ENTER_FUNCTION_FOXNET
+
 		
 	SAFE_DELETE_ARRAY(m_Buffer);
 		
-__LEAVE_FUNCTION_FOXNET
+
 }
 
 uint32_t SocketOutputStream::Length( )const
 {
-__ENTER_FUNCTION_FOXNET
+
 
 	if( m_Head<m_Tail )
 		return m_Tail-m_Head;
@@ -42,14 +42,14 @@ __ENTER_FUNCTION_FOXNET
 	
 	return 0 ;
 
-__LEAVE_FUNCTION_FOXNET
+
 
 	return 0 ;
 }
 
 uint32_t SocketOutputStream::Write( const CHAR* buf, uint32_t len ) 
 {
-__ENTER_FUNCTION_FOXNET
+
 
 		//					//
         //     T  H			//    H   T			LEN=10
@@ -95,7 +95,7 @@ __ENTER_FUNCTION_FOXNET
 		
 	return len;
 	
-__LEAVE_FUNCTION_FOXNET
+
 
 	return 0 ;
 }
@@ -103,7 +103,7 @@ __LEAVE_FUNCTION_FOXNET
 
 //BOOL SocketOutputStream::WritePacket( const Packet* pPacket )
 //{
-//__ENTER_FUNCTION_FOXNET
+//
 //		
 //	PacketID_t packetID = pPacket->GetPacketID() ;
 //	uint32_t w = Write( (CHAR*)&packetID , sizeof(PacketID_t) ) ;
@@ -122,7 +122,7 @@ __LEAVE_FUNCTION_FOXNET
 //	
 //	return pPacket->Write( *this ) ;
 //
-//__LEAVE_FUNCTION_FOXNET
+//
 //
 //	return FALSE ;
 //}
@@ -143,7 +143,7 @@ void SocketOutputStream::Initsize( )
 
 uint32_t SocketOutputStream::Flush( ) 
 {
-__ENTER_FUNCTION_FOXNET
+
 
 	uint32_t nFlushed = 0;
 	uint32_t nSent = 0;
@@ -230,14 +230,14 @@ __ENTER_FUNCTION_FOXNET
 
 	return nFlushed;
 
-__LEAVE_FUNCTION_FOXNET
+
 
 	return 0 ;
 }
 
 bool SocketOutputStream::Resize( int32_t size )
 {
-__ENTER_FUNCTION_FOXNET
+
 		
 
 	int32_t orgSize = size;
@@ -275,19 +275,19 @@ __ENTER_FUNCTION_FOXNET
 
 	return true ;
 
-__LEAVE_FUNCTION_FOXNET
+
 
 	return false ;
 }
 
 void SocketOutputStream::CleanUp( )
 {
-__ENTER_FUNCTION_FOXNET
+
 
 	m_Head = 0 ;
 	m_Tail = 0 ;
 
-__LEAVE_FUNCTION_FOXNET
+
 }
 
 

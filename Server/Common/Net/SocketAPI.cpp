@@ -50,7 +50,7 @@ CHAR Error[_ESIZE] ;
 //////////////////////////////////////////////////////////////////////
 SOCKET SocketAPI::socket_ex ( int32_t domain , int32_t type , int32_t protocol ) 
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 	SOCKET s = ::socket(domain,type,protocol);
 
@@ -111,7 +111,7 @@ SOCKET SocketAPI::socket_ex ( int32_t domain , int32_t type , int32_t protocol )
 
 	return s;
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return INVALID_SOCKET ;
 }
@@ -135,7 +135,7 @@ SOCKET SocketAPI::socket_ex ( int32_t domain , int32_t type , int32_t protocol )
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::bind_ex ( SOCKET s , const struct sockaddr * addr , uint32_t addrlen ) 
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 	if ( bind ( s , addr , addrlen ) == SOCKET_ERROR ) 
 	{
@@ -203,7 +203,7 @@ bool SocketAPI::bind_ex ( SOCKET s , const struct sockaddr * addr , uint32_t add
 	
 	return true ;
 
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return false ;
 }
@@ -226,7 +226,7 @@ bool SocketAPI::bind_ex ( SOCKET s , const struct sockaddr * addr , uint32_t add
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::connect_ex ( SOCKET s , const struct sockaddr * addr , uint32_t addrlen )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 	if ( connect(s,addr,addrlen) == SOCKET_ERROR ) 
 	{
@@ -314,7 +314,7 @@ bool SocketAPI::connect_ex ( SOCKET s , const struct sockaddr * addr , uint32_t 
 
 	return true ;
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return false ;
 }
@@ -337,7 +337,7 @@ bool SocketAPI::connect_ex ( SOCKET s , const struct sockaddr * addr , uint32_t 
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::listen_ex ( SOCKET s , uint32_t backlog ) 
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 	if ( listen( s , backlog ) == SOCKET_ERROR ) 
 	{
@@ -399,7 +399,7 @@ bool SocketAPI::listen_ex ( SOCKET s , uint32_t backlog )
 
 	return true ;
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return false ;
 }
@@ -423,7 +423,7 @@ bool SocketAPI::listen_ex ( SOCKET s , uint32_t backlog )
 //////////////////////////////////////////////////////////////////////
 SOCKET SocketAPI::accept_ex ( SOCKET s , struct sockaddr * addr , uint32_t * addrlen )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 	SOCKET client = accept( s , addr , addrlen );
@@ -505,7 +505,7 @@ SOCKET SocketAPI::accept_ex ( SOCKET s , struct sockaddr * addr , uint32_t * add
 
 	return client;
 
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return INVALID_SOCKET ;
 }
@@ -531,7 +531,7 @@ SOCKET SocketAPI::accept_ex ( SOCKET s , struct sockaddr * addr , uint32_t * add
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::getsockopt_ex ( SOCKET s , int32_t level , int32_t optname , void * optval , uint32_t * optlen )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 	if ( getsockopt( s , level , optname , optval , optlen ) == SOCKET_ERROR ) 
@@ -590,14 +590,14 @@ bool SocketAPI::getsockopt_ex ( SOCKET s , int32_t level , int32_t optname , voi
 
 	return true ;
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return false ;
 }
 
 uint32_t SocketAPI::getsockopt_ex2 ( SOCKET s , int32_t level , int32_t optname , void * optval , uint32_t * optlen )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 	if ( getsockopt( s , level , optname , optval , optlen ) == SOCKET_ERROR ) 
@@ -656,7 +656,7 @@ uint32_t SocketAPI::getsockopt_ex2 ( SOCKET s , int32_t level , int32_t optname 
 
 	return 0;
 
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return 5;
 }
@@ -681,7 +681,7 @@ uint32_t SocketAPI::getsockopt_ex2 ( SOCKET s , int32_t level , int32_t optname 
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::setsockopt_ex ( SOCKET s , int32_t level , int32_t optname , const void * optval , uint32_t optlen )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 	if ( setsockopt( s , level , optname , optval , optlen ) == SOCKET_ERROR ) 
@@ -746,7 +746,7 @@ bool SocketAPI::setsockopt_ex ( SOCKET s , int32_t level , int32_t optname , con
 
 	return true ;
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return false ;
 }
@@ -771,7 +771,7 @@ bool SocketAPI::setsockopt_ex ( SOCKET s , int32_t level , int32_t optname , con
 //////////////////////////////////////////////////////////////////////
 uint32_t SocketAPI::send_ex ( SOCKET s , const void * buf , uint32_t len , uint32_t flags )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 	int32_t nSent;
 
@@ -888,7 +888,7 @@ uint32_t SocketAPI::send_ex ( SOCKET s , const void * buf , uint32_t len , uint3
 
 	return nSent;
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return 0 ;
 }
@@ -899,7 +899,7 @@ uint32_t SocketAPI::send_ex ( SOCKET s , const void * buf , uint32_t len , uint3
 //////////////////////////////////////////////////////////////////////
 uint32_t SocketAPI::sendto_ex ( SOCKET s , const void * buf , int32_t len , uint32_t flags , const struct sockaddr * to , int32_t tolen )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 	int32_t nSent = sendto(s,buf,len,flags,to,tolen);
@@ -936,7 +936,7 @@ uint32_t SocketAPI::sendto_ex ( SOCKET s , const void * buf , int32_t len , uint
 
 	return nSent;
 
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return 0 ;
 }
@@ -961,7 +961,7 @@ uint32_t SocketAPI::sendto_ex ( SOCKET s , const void * buf , int32_t len , uint
 //////////////////////////////////////////////////////////////////////
 uint32_t SocketAPI::recv_ex ( SOCKET s , void * buf , uint32_t len , uint32_t flags )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 	int32_t nrecv = recv(s,buf,len,flags);
@@ -1060,7 +1060,7 @@ uint32_t SocketAPI::recv_ex ( SOCKET s , void * buf , uint32_t len , uint32_t fl
 
 	return nrecv;
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return 0 ;
 }
@@ -1071,7 +1071,7 @@ uint32_t SocketAPI::recv_ex ( SOCKET s , void * buf , uint32_t len , uint32_t fl
 /////////////////////////////////////////////////////////////////////
 uint32_t SocketAPI::recvfrom_ex ( SOCKET s , void * buf , int32_t len , uint32_t flags , struct sockaddr * from , uint32_t * fromlen )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 	int32_t nReceived = recvfrom(s,buf,len,flags,from,fromlen);
@@ -1109,7 +1109,7 @@ uint32_t SocketAPI::recvfrom_ex ( SOCKET s , void * buf , int32_t len , uint32_t
 
 	return nReceived;
 
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return 0 ;
 }
@@ -1131,7 +1131,7 @@ uint32_t SocketAPI::recvfrom_ex ( SOCKET s , void * buf , int32_t len , uint32_t
 /////////////////////////////////////////////////////////////////////
 bool SocketAPI::closesocket_ex ( SOCKET s )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 	close(s);
@@ -1172,7 +1172,7 @@ bool SocketAPI::closesocket_ex ( SOCKET s )
 
 	return true ;
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return false ;
 }
@@ -1187,7 +1187,7 @@ bool SocketAPI::closesocket_ex ( SOCKET s )
 /////////////////////////////////////////////////////////////////////
 bool SocketAPI::ioctlsocket_ex ( SOCKET s , LONG cmd , ULONG * argp )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 #elif __WINDOWS__
@@ -1224,7 +1224,7 @@ bool SocketAPI::ioctlsocket_ex ( SOCKET s , LONG cmd , ULONG * argp )
 
 	return true ;
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return false ;
 }
@@ -1246,7 +1246,7 @@ bool SocketAPI::ioctlsocket_ex ( SOCKET s , LONG cmd , ULONG * argp )
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::getsocketnonblocking_ex ( SOCKET s )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 		int32_t flags = FileAPI::fcntl_ex( s , F_GETFL , 0 );
@@ -1256,7 +1256,7 @@ bool SocketAPI::getsocketnonblocking_ex ( SOCKET s )
 	return false ;
 #endif
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return false ;
 }
@@ -1278,7 +1278,7 @@ bool SocketAPI::getsocketnonblocking_ex ( SOCKET s )
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::setsocketnonblocking_ex ( SOCKET s , bool on )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 		int32_t flags = FileAPI::fcntl_ex( s , F_GETFL , 0 );
@@ -1300,7 +1300,7 @@ bool SocketAPI::setsocketnonblocking_ex ( SOCKET s , bool on )
 
 #endif
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return false ;
 }
@@ -1321,7 +1321,7 @@ bool SocketAPI::setsocketnonblocking_ex ( SOCKET s , bool on )
 //////////////////////////////////////////////////////////////////////
 uint32_t SocketAPI::availablesocket_ex ( SOCKET s )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 #if __LINUX__
 		return FileAPI::availablefile_ex(s);
@@ -1332,7 +1332,7 @@ uint32_t SocketAPI::availablesocket_ex ( SOCKET s )
 #endif
 
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 	return 0 ;
 }
 
@@ -1354,7 +1354,7 @@ uint32_t SocketAPI::availablesocket_ex ( SOCKET s )
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::shutdown_ex ( SOCKET s , uint32_t how )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 	if ( shutdown(s,how) < 0 ) 
 	{
@@ -1403,7 +1403,7 @@ bool SocketAPI::shutdown_ex ( SOCKET s , uint32_t how )
 
 	return true ;
 	
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return false ;
 }
@@ -1428,7 +1428,7 @@ bool SocketAPI::shutdown_ex ( SOCKET s , uint32_t how )
 //////////////////////////////////////////////////////////////////////
 int32_t SocketAPI::select_ex ( int32_t maxfdp1 , fd_set * readset , fd_set * writeset , fd_set * exceptset , struct timeval * timeout )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 	int32_t result;
 
@@ -1479,7 +1479,7 @@ int32_t SocketAPI::select_ex ( int32_t maxfdp1 , fd_set * readset , fd_set * wri
 
 	return result;
 
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return 0 ;
 }

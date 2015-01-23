@@ -5,3 +5,5 @@
 #include "Config.h"
 
 LOG_IMPL(Assert);
+LOG_IMPL(Debug);
+LOG_IMPL(Error);

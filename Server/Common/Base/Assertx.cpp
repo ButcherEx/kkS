@@ -26,8 +26,7 @@ void __assert__(const CHAR *file, const CHAR *func, int32_t line, const CHAR *ex
 		//////////////////////////////////////////////////////////////////////////
 		zeroMemory(assertBuf, ASSERT_BUF_LEN);
 		tsnprintf(assertBuf, ASSERT_BUF_LEN, 
-			"[%s][%s][%s][%d]%s(%04d-%02d-%02d %02d:%02d:%02d).",
-			throwException ? "Assert" : "Verify",
+			"(###)[%s][%s][%d]%s(%04d-%02d-%02d %02d:%02d:%02d).",
 			file, func, line, exp, now.real_year, 
 			now.mon, now.day, now.hour, now.min, now.sec);
 

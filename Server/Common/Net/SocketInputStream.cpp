@@ -7,7 +7,7 @@
 SocketInputStream::SocketInputStream( Socket& sock, uint32_t BufferLen, uint32_t MaxBufferLen ) 
 :m_rSocket(sock)
 {
-__ENTER_FUNCTION_FOXNET
+
 
 	m_Head = 0 ;
 	m_Tail = 0 ;
@@ -17,21 +17,21 @@ __ENTER_FUNCTION_FOXNET
 	m_Buffer = new CHAR[ m_BufferLen ];
 	memset( m_Buffer, 0, m_BufferLen ) ;
 
-__LEAVE_FUNCTION_FOXNET
+
 }
 
 SocketInputStream::~SocketInputStream( ) 
 {
-__ENTER_FUNCTION_FOXNET
+
 		
 	SAFE_DELETE_ARRAY(m_Buffer);
 		
-__LEAVE_FUNCTION_FOXNET
+
 }
 
 uint32_t SocketInputStream::Length( )const
 {
-__ENTER_FUNCTION_FOXNET
+
 
 	if( m_Head<m_Tail )
 		return m_Tail-m_Head;
@@ -41,7 +41,7 @@ __ENTER_FUNCTION_FOXNET
 	
 	return 0 ;
 
-__LEAVE_FUNCTION_FOXNET
+
 
 	return 0 ;
 }
@@ -49,7 +49,7 @@ __LEAVE_FUNCTION_FOXNET
 //返回0表示没有读到数据
 uint32_t SocketInputStream::Read( CHAR* buf, uint32_t len ) 
 {
-__ENTER_FUNCTION_FOXNET
+
 
 //	Assert( buf != NULL );	
 	
@@ -81,14 +81,14 @@ __ENTER_FUNCTION_FOXNET
 	
 	return len ;
 
-__LEAVE_FUNCTION_FOXNET
+
 
 	return 0 ;
 }
 
 bool SocketInputStream::Peek( CHAR* buf, uint32_t len ) 
 {
-__ENTER_FUNCTION_FOXNET
+
 			
 
 	if( len==0 )
@@ -118,15 +118,15 @@ __ENTER_FUNCTION_FOXNET
 		
 	return true ;
 
-__LEAVE_FUNCTION_FOXNET
+
 
 	return false ;
 }
 
-
+#if 0
 bool SocketInputStream::Find( CHAR* buf )
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 		bool IsFind = false;
 		while ( Length() > PACK_COMPART_SIZE )
@@ -171,14 +171,14 @@ bool SocketInputStream::Find( CHAR* buf )
 		}
 		return true ;
 
-		__LEAVE_FUNCTION_FOXNET
+		
 
 			return false ;
 }
-
+#endif
 bool SocketInputStream::Skip( uint32_t len ) 
 {
-__ENTER_FUNCTION_FOXNET
+
 		
 	if( len == 0 )
 		return false ;
@@ -190,7 +190,7 @@ __ENTER_FUNCTION_FOXNET
 
 	return true ;
 
-__LEAVE_FUNCTION_FOXNET
+
 
 	return false ;
 }
@@ -210,7 +210,7 @@ void SocketInputStream::Initsize( )
 	
 uint32_t SocketInputStream::Fill( ) 
 {
-__ENTER_FUNCTION_FOXNET
+
 
 	uint32_t nFilled = 0 ;
 	uint32_t nReceived = 0 ;
@@ -368,14 +368,14 @@ __ENTER_FUNCTION_FOXNET
 
 	return nFilled ;
 
-__LEAVE_FUNCTION_FOXNET
+
 
 	return 0 ;
 }
 
 bool SocketInputStream::Resize( int32_t size )
 {
-__ENTER_FUNCTION_FOXNET
+
 			
 	size = max(size, (int)(m_BufferLen>>1));
 	uint32_t newBufferLen = m_BufferLen + size;
@@ -408,19 +408,19 @@ __ENTER_FUNCTION_FOXNET
 
 	return true ;
 
-__LEAVE_FUNCTION_FOXNET
+
 
 	return false ;
 }
 
 void SocketInputStream::CleanUp( )
 {
-__ENTER_FUNCTION_FOXNET
+
 
 	m_Head = 0 ;
 	m_Tail = 0 ;
 
-__LEAVE_FUNCTION_FOXNET
+
 }
 
 

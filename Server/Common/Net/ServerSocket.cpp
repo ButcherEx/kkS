@@ -9,7 +9,7 @@
 
 ServerSocket::ServerSocket ( uint32_t port , uint32_t backlog ) 
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 		bool ret = false ;
 
@@ -72,32 +72,32 @@ ServerSocket::ServerSocket ( uint32_t port , uint32_t backlog )
 		throw 1 ;
 //	Assert( ret ) ;
 
-	__LEAVE_FUNCTION_FOXNET
+	
 
 }
 
 ServerSocket::~ServerSocket () 
 {
-	__ENTER_FUNCTION_FOXNET
+	
 
 		m_Socket.close();
 
-	__LEAVE_FUNCTION_FOXNET
+	
 }
 	
 void ServerSocket::close ()
 {
-	__ENTER_FUNCTION_FOXNET
+	
 		
 
 	m_Socket.close( ) ;
 
-	__LEAVE_FUNCTION_FOXNET
+	
 }
 
 bool ServerSocket::accept ( Socket& rSocket ) 
 {
-	__ENTER_FUNCTION_FOXNET
+	
 	
 	uint32_t addrlen = sizeof(SOCKADDR_IN) ;
 	rSocket.close( ) ;
@@ -111,7 +111,7 @@ bool ServerSocket::accept ( Socket& rSocket )
 
 	return true;
 
-	__LEAVE_FUNCTION_FOXNET
+	
 
 	return false ;
 }

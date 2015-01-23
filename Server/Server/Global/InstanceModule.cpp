@@ -1,6 +1,7 @@
 #include "BaseLib.h"
 #include "PBMessage.pb.h"
 #include "InstanceModule.h"
+#include "LogDefine.h"
 
 InstanceManager g_InstancenManager;
 
@@ -15,8 +16,8 @@ bool InstanceManager::Init()
 
 		srand(g_TimeManager.CurrentTime());
 
-		Log::SaveLog( "./Log/Login.log", "\r\n(###) main..." ) ;
-		Log::SaveLog( "./Log/Login.log", "Login Starting... (%.10d)(%d)",
+		LOGD(Debug, "\r\n(###) main..." ) ;
+		LOGD(Debug, "Login Starting... (%.10d)(%d)",
 			g_TimeManager.Time2DWORD(), g_TimeManager.StartTime() ) ;
 
 		return bRet;

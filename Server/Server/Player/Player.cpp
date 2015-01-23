@@ -1,5 +1,6 @@
 
 #include "Player.h"
+#include "LogDefine.h"
 
 POOL_IMPL(Player);
 
@@ -64,7 +65,7 @@ __ENTER_FUNCTION
 		uint32_t ret = m_SocketInputStream.Fill( ) ;
 		if( (int32_t)ret <= SOCKET_ERROR )
 		{
-			Log::SaveLog( "./Log/LoginError.log", "[%d] m_pSocketInputStream->Fill ret:%d %s", 
+			LOGE(Error, "[%d] m_pSocketInputStream->Fill ret:%d %s", 
 				g_TimeManager.Time2DWORD(), (int32_t)ret, MySocketError() ) ;
 			return false ;
 		}
@@ -265,7 +266,7 @@ __ENTER_FUNCTION
 		uint32_t ret = m_SocketOutputStream.Flush( ) ;
 		if( (int32_t)ret <= SOCKET_ERROR )
 		{
-			Log::SaveLog( "./Log/LoginError.log", "[%d] m_pSocketOutputStream->Flush ret:%d %s", 
+			LOGE(Error,"[%d] m_pSocketOutputStream->Flush ret:%d %s", 
 				g_TimeManager.Time2DWORD(), (int32_t)ret, MySocketError() ) ;
 			return false ;
 		}
@@ -341,7 +342,7 @@ __ENTER_FUNCTION
 
 		//BOOL ret = m_pSocketOutputStream->WritePacket( pPacket ) ;
 		Assert( ret ) ;
-		//Log::SaveLog( "./Log/LoginDebug.log", "SendPacket! SOCKET=%d, ID=%d", 
+		//LOG_SAVE(Error, "SendPacket! SOCKET=%d, ID=%d", 
 		//	m_pSocket->getSOCKET(), pPacket->GetPacketID() ) ;
 		
 #endif

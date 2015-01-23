@@ -82,18 +82,18 @@ public:
 	}
 
 	// 从队列头取元素
-	Type PopFront()
-	{
-		Type val;
-		AutoLock_T lock(m_Lock);
-		if( m_Size > 0 )
-		{
-			val = m_ImplList.front();
-			m_ImplList.pop_front();
-			m_Size--;
-		}
-		return val;
-	}
+// 	Type PopFront()
+// 	{
+// 		Type val;
+// 		AutoLock_T lock(m_Lock);
+// 		if( m_Size > 0 )
+// 		{
+// 			val = m_ImplList.front();
+// 			m_ImplList.pop_front();
+// 			m_Size--;
+// 		}
+// 		return val;
+// 	}
 
 	// 从队列头取元素
 	bool PopFront(Type& val)
@@ -396,18 +396,18 @@ public:
 	}
 
 	//! 读取元素
-	ValueType Peek(KeyType key)
+	bool Peek(KeyType key, ValueType& rVal)
 	{	
 		AutoLock_T lock(m_Lock);
 
-		ValueType temp;
 		TMapIterator it = m_Map.find(key);
 		if( it != m_Map.end() )
 		{
-			temp = it->second;
+			rVal = it->second;
+			return true;
 		}
 
-		return temp;
+		return false;
 	}
 
 	//! 改变指定key对应的值
@@ -515,16 +515,16 @@ public:
 	void Add(KeyType key, ValueType value)
 	{ m_Map.insert(std::make_pair(key, value)); }
 
-	//! 读取元素
-	ValueType Peek(KeyType key)
-	{
-		ValueType val;
-		TMapIterator it = m_Map.find(key);
-		if( it == m_Map.end() )
-			return val;
-		else
-			return it->second;
-	}
+// 	//! 读取元素
+// 	ValueType Peek(KeyType key)
+// 	{
+// 		ValueType val;
+// 		TMapIterator it = m_Map.find(key);
+// 		if( it == m_Map.end() )
+// 			return val;
+// 		else
+// 			return it->second;
+// 	}
 
 	//! 读取元素
 	bool Peek(KeyType key, ValueType& rVal)

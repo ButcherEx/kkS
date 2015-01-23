@@ -34,7 +34,7 @@ int32_t main(int32_t argc, CHAR* argv[])
 	_CrtSetDbgFlag(_CrtSetDbgFlag(0) | _CRTDBG_LEAK_CHECK_DF);
 #endif
 	
-	LOG_SAVE(Assert, "TestK", "%s", "Fc");
+	LOGI(Assert, "%s", "Fc");
 
 	__ENTER_FUNCTION
 	
