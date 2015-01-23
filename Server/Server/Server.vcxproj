@@ -180,7 +180,6 @@
     <ClCompile Include="Global\ExceptionHandler.cpp" />
     <ClCompile Include="Global\InstanceModule.cpp" />
     <ClCompile Include="Global\LogDefine.cpp" />
-    <ClCompile Include="Global\SimpleSymbolEngine.cpp" />
     <ClCompile Include="Main\Login.cpp" />
     <ClCompile Include="Main\LoginMain.cpp" />
     <ClCompile Include="Map\Role\Role.cpp" />
@@ -260,7 +259,6 @@
     <ClInclude Include="Global\InstanceModule.h" />
     <ClInclude Include="Global\LinuxStackTrace.h" />
     <ClInclude Include="Global\LogDefine.h" />
-    <ClInclude Include="Global\SimpleSymbolEngine.h" />
     <ClInclude Include="Main\Login.h" />
     <ClInclude Include="Main\LoginMain.h" />
     <ClInclude Include="Map\Role\Role.h" />

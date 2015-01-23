@@ -228,9 +228,6 @@
     <ClCompile Include="Global\LogDefine.cpp">
       <Filter>Global</Filter>
     </ClCompile>
-    <ClCompile Include="Global\SimpleSymbolEngine.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Login.h">
@@ -471,9 +468,6 @@
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="Global\LogDefine.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="Global\SimpleSymbolEngine.h">
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="Global\LinuxStackTrace.h">
