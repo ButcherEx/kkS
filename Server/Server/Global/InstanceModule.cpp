@@ -8,6 +8,11 @@ InstanceManager g_InstancenManager;
 bool InstanceManager::Init()
 {
 	__ENTER_FUNCTION
+
+#if defined(__WINDOWS__)
+		_CrtSetDbgFlag(_CrtSetDbgFlag(0) | _CRTDBG_LEAK_CHECK_DF);
+#endif
+
 		bool bRet = g_TimeManager.Init(); //时间管理器
 		Assert(bRet);
 
