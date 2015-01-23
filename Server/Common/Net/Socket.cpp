@@ -6,7 +6,28 @@
 // 
 //////////////////////////////////////////////////////////////////////
 
+
 #include "Socket.h"
+
+
+#if defined(__WINDOWS__)
+
+struct network_initializer
+{
+	network_initializer()
+	{
+		WSADATA wsaData= {0};
+		uint16_t dwNetworkVersion = MAKEWORD(2,2);
+		::WSAStartup(dwNetworkVersion, &wsaData);
+	}
+	~network_initializer()
+	{
+		::WSACleanup();
+	}
+
+} __auto_network_initializer;
+#endif
+
 
 Socket::Socket () 
 { 

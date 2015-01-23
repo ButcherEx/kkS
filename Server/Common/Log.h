@@ -88,7 +88,7 @@ public:
 
 			if(g_Config.m_LogConfig.m_LogAssert2Stderr)
 			{
-				//coloredWriteToStderr(szBlock, ::strlen(szBlock), COLOR_RED);
+				coloredWriteToStderr(szBlock, ::strlen(szBlock), color);
 			}
 		}
 
