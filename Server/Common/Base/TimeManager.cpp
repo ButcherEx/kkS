@@ -7,7 +7,7 @@ TimeManager::TimeManager( )
 {
 __ENTER_FUNCTION
 
-	m_CurrentTime = 0 ;
+	Init();
 
 __LEAVE_FUNCTION
 }
@@ -78,14 +78,32 @@ uint32_t	TimeManager::CurrentDate()
 		return 0;
 }
 
+uint32_t TimeManager::RunTime( )
+{ 
+	__ENTER_FUNCTION
+	CurrentTime( ) ;
+	return (m_CurrentTime-m_StartTime);  
+	__LEAVE_FUNCTION
+		return 0;
+}
+
+uint16_t TimeManager::RunTick( )
+{
+	__ENTER_FUNCTION
+	CurrentTime();
+	return uint16_t(m_CurrentTime-m_StartTime);  
+	__LEAVE_FUNCTION
+		return 0;
+}
 
 void TimeManager::SetTime( )
 {
 __ENTER_FUNCTION
 
 	time( &m_SetTime ) ;
-	tm* ptm = localtime( &m_SetTime ) ;
-	m_TM = *ptm ;
+	tm _tm;
+	localtime_r( &_tm, &m_SetTime) ;
+	m_TM = _tm ;
 
 __LEAVE_FUNCTION
 }
@@ -150,7 +168,7 @@ __LEAVE_FUNCTION
 	return 0 ;
 }
 
-void TimeManager::ConvertUT( uint32_t Date, tm* TM )
+void TimeManager::ConvertUT( uint32_t Date, tm* TM ) const
 {
 __ENTER_FUNCTION
 
@@ -166,7 +184,7 @@ __ENTER_FUNCTION
 __LEAVE_FUNCTION
 }
 
-void TimeManager::ConvertTU( tm* TM, uint32_t& Date )
+void TimeManager::ConvertTU( tm* TM, uint32_t& Date ) const
 {
 __ENTER_FUNCTION
 

@@ -119,6 +119,55 @@ TIME64 TimeUtil::Now()
     return i64time;
 }
 
+int64_t TimeUtil::TimeToInt64(TIME64 curTime)
+{
+	int64_t i64 = 0;
+
+	i64 = curTime.year; //[0,65535]
+	i64 = i64 * 100;
+
+	i64 += curTime.mon; //[1,12]
+	i64 = i64 * 100;
+
+	i64 += curTime.day;//[1,31]
+	i64 = i64 * 100;
+
+	i64 += curTime.hour; //[0,23]
+	i64 = i64 * 100;
+
+	i64 += curTime.min; //[0,59]
+	i64 = i64 * 100;
+
+	i64 += curTime.sec;
+
+	return i64;
+}
+
+TIME64  TimeUtil::Int64ToTime(int64_t i64Time)
+{
+	//1150000126165928
+	TIME64 curTime;
+	int64_t i64 = i64Time;
+	
+	curTime.sec		= (i64 % 100);
+	curTime.min		= ((i64/100)%100);
+	curTime.hour	= ((i64/10000)%100);
+	curTime.day		= ((i64/1000000)%100);
+	curTime.mon		= (uint8_t)((i64/100000000)%100);
+	curTime.year	= (uint16_t)((i64/10000000000)%65536);
+	curTime.weekday = TimeUtil::TimeWhichWeekday(curTime);
+
+// 	curTime.year	= (i64Time >> 40) & 0x7fff;
+// 	curTime.mon		= (i64Time >> 32) & 0xff;
+// 	curTime.day		= (i64Time >> 24) & 0xff;
+// 	curTime.hour	= (i64Time >> 16) & 0xff;
+// 	curTime.min		= (i64Time >> 6) & 0x3f;
+// 	curTime.sec		= i64Time &  0x3f;
+
+	return curTime;
+}
+
+
 #define HOUR_SEC			(60*60)
 #define HOURS_SEC(hour)	((hour) * HOUR_SEC)
 #define DAY_SEC			(24*60*60)
@@ -133,13 +182,13 @@ static int32_t* _MyTimeGetMonthDayOfYear(int32_t year)
     return MyTimeIsLeapYear(year) ? mon_day_leap : mon_day;
 }
 
-int64_t TimeUtil::ElapseSecondsFromThisYear(TIME64 srcTime)
+int64_t _ElapseSecondsFromThisYear(TIME64 srcTime)
 {
     int64_t srcRun = 0;
     int32_t i;
     const  int32_t *mon_day_real;
 
-    mon_day_real =  _MyTimeGetMonthDayOfYear(srcTime.year + 1900);
+    mon_day_real =  _MyTimeGetMonthDayOfYear((srcTime.real_year));
 
     for(i = 1; i < srcTime.mon; i++)
     {
@@ -163,8 +212,8 @@ int64_t TimeUtil::TimeCompare(TIME64 destTime, TIME64 srcTime)
         int32_t i;
         int64_t srcRun;
         int64_t dstRun;
-        srcRun = ElapseSecondsFromThisYear(srcTime);
-        dstRun = ElapseSecondsFromThisYear(destTime);
+        srcRun = _ElapseSecondsFromThisYear(srcTime);
+        dstRun = _ElapseSecondsFromThisYear(destTime);
 		if(srcTime.year <= destTime.year) {
 			for(i = (int32_t)srcTime.year ; i < (int32_t)destTime.year; i++) {
 				dstRun += MyTimeIsLeapYear(i+1900) ?
@@ -196,7 +245,7 @@ TIME64 TimeUtil::TimeAdd(TIME64 srcTime, int32_t nIncrementSecond)
     int32_t secs;
     const  int32_t *mon_day_real;
 
-    srcRun = ElapseSecondsFromThisYear(srcTime);
+    srcRun = _ElapseSecondsFromThisYear(srcTime);
     srcForRun = srcRun + nIncrementSecond;
 
     days = (int32_t) (srcForRun / DAY_SEC);
@@ -205,7 +254,7 @@ TIME64 TimeUtil::TimeAdd(TIME64 srcTime, int32_t nIncrementSecond)
     dstTime.year = srcTime.year;
     for( ; ; )
     {
-        int32_t yearday = MyTimeIsLeapYear(dstTime.year + 1900) ?
+        int32_t yearday = MyTimeIsLeapYear((dstTime.real_year)) ?
                         366 : 365;
         if(days < yearday) break;
         dstTime.year++;
@@ -215,7 +264,7 @@ TIME64 TimeUtil::TimeAdd(TIME64 srcTime, int32_t nIncrementSecond)
     dstTime.mon = 1;
     dstTime.day = 1;
 
-    mon_day_real =  _MyTimeGetMonthDayOfYear(dstTime.year + 1900);
+    mon_day_real =  _MyTimeGetMonthDayOfYear((dstTime.real_year));
     for( ; ; )
     {
         if(days < mon_day_real[dstTime.mon])
@@ -245,8 +294,8 @@ TIME64 TimeUtil::TimeDec(TIME64 srcTime, int32_t nDecrementSecond)
     TIME64 dstTime;
     const  int32_t *mon_day_real;
 
-    srcRun = ElapseSecondsFromThisYear(srcTime);
-    yearsday = MyTimeIsLeapYear(srcTime.year + 1900) ? 366 : 365;
+    srcRun = _ElapseSecondsFromThisYear(srcTime);
+    yearsday = MyTimeIsLeapYear((srcTime.real_year)) ? 366 : 365;
     left = DAYS_SEC(yearsday) - srcRun + nDecrementSecond;
 
     days = (int32_t)(left / DAY_SEC);
@@ -255,7 +304,7 @@ TIME64 TimeUtil::TimeDec(TIME64 srcTime, int32_t nDecrementSecond)
     dstTime.year = srcTime.year;
     for( ; ; )
     {
-        yearsday = MyTimeIsLeapYear(dstTime.year + 1900) ?
+        yearsday = MyTimeIsLeapYear((dstTime.real_year)) ?
                          366 : 365;
         if(days < yearsday) break;
         dstTime.year--;
@@ -269,7 +318,7 @@ TIME64 TimeUtil::TimeDec(TIME64 srcTime, int32_t nDecrementSecond)
 		secs = DAY_SEC - secs;
 	}
 
-    mon_day_real =  _MyTimeGetMonthDayOfYear(dstTime.year + 1900);
+    mon_day_real =  _MyTimeGetMonthDayOfYear((dstTime.real_year));
     dstTime.mon = 1;
     dstTime.day = 1;
     for( ; ; )
@@ -295,10 +344,10 @@ int32_t TimeUtil::TimeWhichWeekday(TIME64 dw_time)
 {
     int32_t i;
     int32_t days = 0;
-    int32_t nYear = (int32_t)dw_time.year + 1900;
+    int32_t nYear = (int32_t)dw_time.real_year;
     const  int32_t *mon_day_real;
 
-    mon_day_real =  _MyTimeGetMonthDayOfYear(dw_time.year + 1900);
+    mon_day_real =  _MyTimeGetMonthDayOfYear(dw_time.real_year);
     for( i = 1; i < dw_time.mon; i++ )
         days += mon_day_real[i];
 
@@ -315,7 +364,7 @@ int32_t TimeUtil::TimeToDateTime(TIME64 srcTime, char *buf, int32_t len)
         return -1;
 
     tsnprintf(buf, len, "%04d-%02d-%02d %02d:%02d:%02d0",
-            srcTime.year + 1900, srcTime.mon, srcTime.day,
+            srcTime.real_year, srcTime.mon, srcTime.day,
             srcTime.hour, srcTime.min, srcTime.sec );
 
     return 0;

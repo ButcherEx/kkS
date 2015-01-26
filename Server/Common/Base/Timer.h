@@ -44,10 +44,12 @@ public:
 #define UNKNOWN_WEEK (0xff)
  static TIME64 InitTime64(uint8_t sec, uint8_t mint, uint8_t hour, uint8_t day, uint8_t month, uint16_t year, uint8_t wday = UNKNOWN_WEEK);
  static TIME64 Now();
+ static int64_t  TimeToInt64(TIME64 curTime);
+ static TIME64  Int64ToTime(int64_t i64Time);
 /*
 ** this function return the seconds from current year 01-01 00:00:00
 **/
-static int64_t ElapseSecondsFromThisYear(TIME64 srcTime);
+//static int64_t _ElapseSecondsFromThisYear(TIME64 srcTime);
 /*
 ** the return value of this function is likely the strcmp
 ** if @destTime is equal to srcTime return 0

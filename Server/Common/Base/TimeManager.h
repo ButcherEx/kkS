@@ -47,33 +47,26 @@ public :
 	//取得当前的日期[4bit 0-9][4bit 0-11][5bit 0-30][5bit 0-23][6bit 0-59][6bit 0-59]
 	uint32_t			CurrentDate( ) ;
 	//取得服务器启动后的运行时间（毫秒）
-	uint32_t			RunTime( ){ 
-		CurrentTime( ) ;
-		return (m_CurrentTime-m_StartTime);  
-	} ;
-	uint16_t			RunTick( )
-	{
-		CurrentTime();
-		return uint16_t(m_CurrentTime-m_StartTime);  
-	};
+	uint32_t			RunTime( );
+	uint16_t			RunTick( );
 	//取得两个日期时间的时间差（单位：毫秒）, Ret = Date2-Data1
 	uint32_t			DiffTime( uint32_t Date1, uint32_t Date2 ) ;
 	//将一个uint32_t的日期转换成一个tm结构
-	void			ConvertUT( uint32_t Date, tm* TM ) ;
+	void				ConvertUT( uint32_t Date, tm* TM ) const ;
 	//将一个tm结构转换成一个uint32_t的日期
-	void			ConvertTU( tm* TM, uint32_t& Date ) ;
+	void				ConvertTU( tm* TM, uint32_t& Date ) const;
 	//取得已天为单位的时间值, 千位数代表年份，其他三位代表时间（天数）
 	uint32_t			GetDayTime( ) ;
 	//得到当前是今天的什么时间2310表示23点10分
 	uint16_t			GetTodayTime();
-	bool			FormatTodayTime(uint16_t& nTime);
+	bool				FormatTodayTime(uint16_t& nTime);
 
 
 public :
 	uint32_t			m_StartTime ;
 	uint32_t			m_CurrentTime ;
-	time_t			m_SetTime ;
-	tm				m_TM ;
+	time_t				m_SetTime ;
+	tm					m_TM ;
 #ifdef __LINUX__
 	struct timeval _tstart, _tend;
 	struct timezone tz;

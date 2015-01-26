@@ -13,6 +13,10 @@ bool InstanceManager::Init()
 		_CrtSetDbgFlag(_CrtSetDbgFlag(0) | _CRTDBG_LEAK_CHECK_DF);
 #endif
 
+		TIME64 now = TimeUtil::Now();
+		int64 i64Now = now.i64;
+		int64 i64Time = TimeUtil::TimeToInt64(now);
+		TIME64 retTime = TimeUtil::Int64ToTime(i64Time);
 		bool bRet = g_TimeManager.Init(); //时间管理器
 		Assert(bRet);
 

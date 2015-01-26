@@ -183,15 +183,6 @@ void _LogSinkPrint(_LogSink& rSink, LogColor color, /*const CHAR* keyVal,*/ cons
 #define LOGD(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_GREEN,	 __FUNCTION__, __LINE__, __VA_ARGS__)
 #define LOGW(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_YELLOW,	 __FUNCTION__, __LINE__, __VA_ARGS__)
 #define LOGE(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_RED,	 __FUNCTION__, __LINE__, __VA_ARGS__)
-// #define LOGPD(SINK, ...) _LogSinkPrint(LOG_INST(SINK), (LOG_LEVEL_DEBUG),	__FUNCTION__, __LINE__,	__VA_ARGS__)
-// #define LOGPW(SINK, ...) _LogSinkPrint(LOG_INST(SINK), (LOG_LEVEL_WARNING),__FUNCTION__, __LINE__,	__VA_ARGS__)
-// #define LOGPE(SINK, ...) _LogSinkPrint(LOG_INST(SINK), (LOG_LEVEL_ERROR),	__FUNCTION__, __LINE__,	__VA_ARGS__)
-// #define LOGPF(SINK, ...) _LogSinkPrint(LOG_INST(SINK), (LOG_LEVEL_FATAL),	__FUNCTION__, __LINE__,	__VA_ARGS__)
-// 
-// #define LOGI(...) _LogSinkPrint(LOG_INST(info),	(LOG_LEVEL_INFO),	__FUNCTION__, __LINE__, __VA_ARGS__)
-// #define LOGD(...) _LogSinkPrint(LOG_INST(debug),	(LOG_LEVEL_DEBUG),	__FUNCTION__, __LINE__,	__VA_ARGS__)
-// #define LOGW(...) _LogSinkPrint(LOG_INST(warning), (LOG_LEVEL_WARNING),__FUNCTION__, __LINE__,	__VA_ARGS__)
-// #define LOGE(...) _LogSinkPrint(LOG_INST(error),	(LOG_LEVEL_ERROR),	__FUNCTION__, __LINE__,	__VA_ARGS__)
-// #define LOGF(...) _LogSinkPrint(LOG_INST(fatal),	(LOG_LEVEL_FATAL),	__FUNCTION__, __LINE__,	__VA_ARGS__)
+
 
 #endif

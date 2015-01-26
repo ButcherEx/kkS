@@ -11,8 +11,6 @@
 #include <setjmp.h>
 #endif
 
-int32_t					g_CmdArgv;
-
 
 void MySleep( uint32_t millionseconds )
 {

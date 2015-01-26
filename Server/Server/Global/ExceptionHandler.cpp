@@ -213,8 +213,6 @@ void SignalHandler(int32_t nSig)
 	{
 
 	}
-
-	exit(0);
 }
 
 ExceptionHandler g_ExceptionHandler;

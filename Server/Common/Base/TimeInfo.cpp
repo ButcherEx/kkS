@@ -6,7 +6,7 @@
 TimeInfo::TimeInfo()
 {
 	TIME64 now = TimeUtil::Now();
-	m_nLastYear = now.year + 1900;
+	m_nLastYear = now.real_year;
 	m_nLastMonth = now.mon;
 	m_nLastDay = now.day;
 	m_nLastHour = now.hour;
@@ -30,12 +30,11 @@ void TimeInfo::Update()
 		m_nAnsiTime = time(NULL);
 
 		TIME64 now = TimeUtil::Now();
-		now.year += 1900;
 
 		m_uTimeElapse = nowMs - m_uLastTime;
 		m_uLastSysRunTime += m_uTimeElapse;
 
-		m_bDiffYear = (m_nLastYear != now.year);
+		m_bDiffYear = (m_nLastYear != (now.real_year));
 		m_bDiffMonth = (m_bDiffYear || m_nLastMonth != now.mon);
 		m_bDiffDay = (m_bDiffMonth || m_nLastDay != now.day);
 		m_bDiffHour = (m_bDiffDay || m_nLastHour != now.hour);

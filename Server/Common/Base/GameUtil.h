@@ -39,75 +39,23 @@ int32_t Float2Int(T TValue)
 		return iValue+1;
 
 }
-
-struct Flag64 
-{
-	uint32_t	m_uLowFlags ;
-	uint32_t	m_uHighFlags ;
-
-	Flag64()
-	{
-		CleanUp( ) ;
-	}
-
-	bool isSetBit( int32_t bit ) const
-	{
-		if(bit<32)
-		{
-			if ( m_uLowFlags & (1<<bit) )
-				return true;
-		}
-		else
-		{
-			if ( m_uHighFlags & (1<<(bit-32)) )
-				return true;
-		}
-
-		return false;
-	}
-
-	void UpdateBits( int32_t bit, bool& bUpdate )
-	{
-		if(bit<32)
-		{
-			if ( bUpdate )
-				m_uLowFlags |= (1<<(int32_t)bit);
-			else
-				m_uLowFlags &= (~(1<<(int32_t)bit));
-		}
-		else
-		{
-			if ( bUpdate )
-				m_uHighFlags |= (1<<(int32_t)(bit-32));
-			else
-				m_uHighFlags &= (~(1<<(int32_t)(bit-32)));
-		}
-	}
-
-	void CleanUp( )
-	{
-		m_uLowFlags	=	0;
-		m_uHighFlags =  0;
-	}
-};
-
+//////////////////////////////////////////////////////////////////////////
 CHAR		Value2Ascii(CHAR in);
 CHAR		Ascii2Value(CHAR in);
-
+//////////////////////////////////////////////////////////////////////////
 bool		Binary2String(const CHAR* pIn,uint32_t InLength,CHAR* pOut);
 bool		DBStr2Binary(const CHAR* pIn,uint32_t InLength,CHAR* pOut,uint32_t OutLimit,uint32_t& OutLength);
 bool		String2Binary(const CHAR* pIn,uint32_t InLength,CHAR* pOut,uint32_t OutLimit,uint32_t& OutLength);
 bool		StrSafeCheck(const CHAR* pIn,uint32_t InLength);
 bool		CommandSafeCheck(const CHAR* pIn,uint32_t InLength);
 
-
+//////////////////////////////////////////////////////////////////////////
 #define		CHECK_STRING_NORMAL		0
 #define		CHECK_STRING_CHARNAME	1
 
 CHAR*		ReplaceIllegalString( CHAR* strText, int32_t nLength, int32_t nLevel = CHECK_STRING_NORMAL );
 bool		CheckIllegalString( const CHAR* strText, int32_t nLength, int32_t nLevel = CHECK_STRING_NORMAL );
-
-extern		int32_t				g_CmdArgv;
+//////////////////////////////////////////////////////////////////////////
 
 
 
