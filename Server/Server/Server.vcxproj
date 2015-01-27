@@ -166,7 +166,6 @@
     <ClCompile Include="..\Common\Base\Demo.cpp" />
     <ClCompile Include="..\Common\Base\GameUtil.cpp" />
     <ClCompile Include="..\Common\Base\Ini.cpp" />
-    <ClCompile Include="..\Common\Base\Thread.cpp" />
     <ClCompile Include="..\Common\Base\TimeInfo.cpp" />
     <ClCompile Include="..\Common\Base\TimeManager.cpp" />
     <ClCompile Include="..\Common\Base\Timer.cpp" />
@@ -242,7 +241,6 @@
     <ClInclude Include="..\Common\Base\GameUtil.h" />
     <ClInclude Include="..\Common\Base\Ini.h" />
     <ClInclude Include="..\Common\Base\Pool.h" />
-    <ClInclude Include="..\Common\Base\Thread.h" />
     <ClInclude Include="..\Common\Base\TimeInfo.h" />
     <ClInclude Include="..\Common\Base\TimeManager.h" />
     <ClInclude Include="..\Common\Base\Timer.h" />

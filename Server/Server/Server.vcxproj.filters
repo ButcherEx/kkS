@@ -63,9 +63,6 @@
     <ClCompile Include="..\Common\Base\Ini.cpp">
       <Filter>Common\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\Base\Thread.cpp">
-      <Filter>Common\Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\Common\Base\TimeManager.cpp">
       <Filter>Common\Base</Filter>
     </ClCompile>
@@ -252,9 +249,6 @@
       <Filter>Common\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Base\Ini.h">
-      <Filter>Common\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\Base\Thread.h">
       <Filter>Common\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Base\TimeManager.h">

@@ -13,7 +13,6 @@
 #include "TimeInfo.h"
 #include "Socket.h"
 #include "ServerSocket.h"
-#include "Thread.h"
 #include "Container.h"
 #include "Pool.h"
 #include "AutoFactory.h"

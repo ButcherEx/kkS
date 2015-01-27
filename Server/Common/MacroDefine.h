@@ -67,13 +67,22 @@
 //调试预定义宏定义
 ///////////////////////////////////////////////////////////////////////
 
-#if defined(NDEBUG)
-#define _MY_TRY try
-#define _MY_CATCH catch(std::exception& e){ fprintf(stderr,"[Err]%s.", e.what());}catch(...)
-#else
-#define _MY_TRY try
-#define _MY_CATCH catch(std::exception& e){ fprintf(stderr,"[Err]%s.", e.what());}catch(...)
-#endif
+#define _MY_TRY bool __exceptionCatch = false; try
+#define _MY_CATCH  \
+	catch(const std::exception &err){\
+		__exceptionCatch = true;\
+		AssertSpecialEx(false, err.what());\
+	} catch(const std::string &err){\
+		__exceptionCatch = true;\
+		AssertSpecialEx(false, err.c_str());\
+	}catch(const char* err){\
+		__exceptionCatch = true;\
+		AssertSpecialEx(false, err);\
+	}catch(...){\
+		__exceptionCatch = true;\
+		AssertSpecialEx(false, "");\
+	}\
+	if(__exceptionCatch)\
 
 
 #define __ENTER_FUNCTION {try{
