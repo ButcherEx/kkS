@@ -635,15 +635,18 @@ void doScriptTest(void* file)
 		if(!Lua::LoadFile(L, static_cast<const CHAR*>(file)))
 			return ;
 
-		if(!Lua::Call(L, "myadd", "iisLI>iSL", i1, i2,
-			__FUNCTION__, i64, 64, &res, outstr, &iout64))
-		{
-			return ;
-		}
+		Lua::Call(L, "myadd", "iisLI>iSL", i1, i2,
+			__FUNCTION__, i64, 64, &res, outstr, &iout64);
 
 		Lua::PrintStack(L);
 		LOGD(LuaSystem,"lua function add(%d,%d)=%d,%s, in(int64_t):%I64d ?= %I64d", 
 			i1, i2, res, outstr, i64, iout64);
+
+		int32_t out1=0, out2=0;
+		Lua::Call(L, "myadd1", "iiii>iii", i1, i2, 64, 64, &res, &out1, &out2);
+
+		Lua::PrintStack(L);
+		LOGD(LuaSystem,"lua function add(%d,%d)=%d", i1, i2, res);
 
 		Lua::RegisterCClosure(L, &counter, "col1", "d", 0.0f);
 		Lua::RegisterCClosure(L, &counter, "col2", "d", 0.0f);

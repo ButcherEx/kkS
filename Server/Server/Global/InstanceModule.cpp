@@ -28,6 +28,9 @@ bool InstanceManager::Init()
 		tgetcwd(currentDir, _MAX_PATH);
 		LOGD(Debug, "Current Directory %s", currentDir);
 
+		doScriptTest("lua1.lua");
+		doScriptTest("lua.lua");
+
 		return bRet;
 	__LEAVE_FUNCTION
 		return false;
