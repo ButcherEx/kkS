@@ -24,13 +24,13 @@ __LEAVE_FUNCTION
 
 bool Config::Init(const CHAR* argv0)
 {
-__ENTER_FUNCTION
+__ENTER_FUNCTION_EX
 
 	LoadLogConfig(argv0) ;
 
 	return true ;
 
-__LEAVE_FUNCTION
+__LEAVE_FUNCTION_EX
 
 	return false ;
 }
@@ -43,7 +43,6 @@ void Config::ReLoad( )
 void Config::LoadLogConfig(const CHAR* argv0)
 {
 __ENTER_FUNCTION
-	//////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	bfs::path basePath_;
 

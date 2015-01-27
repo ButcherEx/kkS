@@ -77,10 +77,30 @@
 
 
 #define __ENTER_FUNCTION {try{
-#define __LEAVE_FUNCTION }catch(...){Assert(false);}}
+
+#define __LEAVE_FUNCTION\
+	}catch(const std::exception &err){\
+		AssertEx(false, err.what());\
+	} catch(const std::string &err){\
+		AssertEx(false, err.c_str());\
+	}catch(const char* err){\
+		AssertEx(false, err);\
+	}catch(...){\
+		AssertEx(false, __FUNCTION__);\
+	}}\
 
 #define __ENTER_FUNCTION_EX {try{
-#define __LEAVE_FUNCTION_EX }catch(...){AssertSpecial(false);}}
+#define __LEAVE_FUNCTION_EX \
+	}catch(const std::exception &err){\
+		AssertSpecialEx(false, err.what());\
+	} catch(const std::string &err){\
+		AssertSpecialEx(false, err.c_str());\
+	}catch(const char* err){\
+		AssertSpecialEx(false, err);\
+	}catch(...){\
+		AssertSpecialEx(false, __FUNCTION__);\
+	}}\
+
 
 
 #endif // __MACRO_DEFINE_H__

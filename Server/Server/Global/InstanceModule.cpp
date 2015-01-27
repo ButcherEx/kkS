@@ -13,21 +13,14 @@ bool InstanceManager::Init()
 		_CrtSetDbgFlag(_CrtSetDbgFlag(0) | _CRTDBG_LEAK_CHECK_DF);
 #endif
 
-		TIME64 now = TimeUtil::Now();
-		int64 i64Now = now.i64;
-		int64 i64Time = TimeUtil::TimeToInt64(now);
-		TIME64 retTime = TimeUtil::Int64ToTime(i64Time);
-		bool bRet = g_TimeManager.Init(); //时间管理器
+		bool bRet = g_Config.Init(__argv[0]);
 		Assert(bRet);
 
-		bRet = g_Config.Init(__argv[0]);
-		Assert(bRet);
-
-		srand(g_TimeManager.CurrentTime());
+		srand(g_TimeManager.CurrentTick());
 
 		LOGD(Debug, "main..." ) ;
-		LOGD(Debug, "Login Starting... (%.10d)(%d)",
-			g_TimeManager.Time2DWORD(), g_TimeManager.StartTime() ) ;
+		LOGD(Debug, "Login Starting... (%lld)(%d)",
+			g_TimeManager.CurrentTimeToInt64(), g_TimeManager.CurrentTick() ) ;
 
 		return bRet;
 	__LEAVE_FUNCTION

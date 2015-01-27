@@ -67,19 +67,19 @@ void TimeUtil::AddMillisecondsToNow(int32_t milliseconds, int32_t *sec, int32_t 
 	*ms = when_ms;
 }
 
-UINT TimeUtil::TickCount( )
+uint32_t TimeUtil::TickCount( )
 {
 #if defined(__WINDOWS__)
-	return GetTickCount( );
+	return (uint32_t)GetTickCount( );
 #else
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000 + (int32_t)tv.tv_usec/1000);
+	return (uint32_t)(tv.tv_sec * 1000 + (int32_t)tv.tv_usec/1000);
 #endif
 }
 
 
- TIME64 TimeUtil::InitTime64(uint8_t sec, uint8_t mint, uint8_t hour, uint8_t day, uint8_t month, uint16_t year, uint8_t wday)
+ TIME64 TimeUtil::Create(uint8_t sec, uint8_t mint, uint8_t hour, uint8_t day, uint8_t month, uint16_t year, uint8_t wday)
  {
 	 TIME64 var;
 	 var.i64 = (int64_t)0;
@@ -87,7 +87,7 @@ UINT TimeUtil::TickCount( )
 	 var.day = day; var.mon = month; var.year = year - 1900;
 	 if(wday == UNKNOWN_WEEK)
 	 {
-		 var.weekday = TimeUtil::TimeWhichWeekday(var);
+		 var.weekday = TimeUtil::WhichWeekday(var);
 	 }
 	 else
 	 {
@@ -98,7 +98,7 @@ UINT TimeUtil::TickCount( )
 
  TIME64 defaultTime64( )
  {
-	 return TimeUtil::InitTime64(0,0,0,1,1,1900);
+	 return TimeUtil::Create(0,0,0,1,1,1900);
  }
 
 /*int64_t time*/
@@ -119,11 +119,11 @@ TIME64 TimeUtil::Now()
     return i64time;
 }
 
-int64_t TimeUtil::TimeToInt64(TIME64 curTime)
+int64_t TimeUtil::ToInt64(TIME64 curTime)
 {
 	int64_t i64 = 0;
 
-	i64 = curTime.year; //[0,65535]
+	i64 = curTime.real_year; //[0,65535]
 	i64 = i64 * 100;
 
 	i64 += curTime.mon; //[1,12]
@@ -143,9 +143,9 @@ int64_t TimeUtil::TimeToInt64(TIME64 curTime)
 	return i64;
 }
 
-TIME64  TimeUtil::Int64ToTime(int64_t i64Time)
+TIME64  TimeUtil::FromInt64(int64_t i64Time)
 {
-	//1150000126165928
+
 	TIME64 curTime;
 	int64_t i64 = i64Time;
 	
@@ -154,24 +154,17 @@ TIME64  TimeUtil::Int64ToTime(int64_t i64Time)
 	curTime.hour	= ((i64/10000)%100);
 	curTime.day		= ((i64/1000000)%100);
 	curTime.mon		= (uint8_t)((i64/100000000)%100);
-	curTime.year	= (uint16_t)((i64/10000000000)%65536);
-	curTime.weekday = TimeUtil::TimeWhichWeekday(curTime);
-
-// 	curTime.year	= (i64Time >> 40) & 0x7fff;
-// 	curTime.mon		= (i64Time >> 32) & 0xff;
-// 	curTime.day		= (i64Time >> 24) & 0xff;
-// 	curTime.hour	= (i64Time >> 16) & 0xff;
-// 	curTime.min		= (i64Time >> 6) & 0x3f;
-// 	curTime.sec		= i64Time &  0x3f;
+	curTime.year	= (uint16_t)((i64/10000000000)%65536) - 1900;
+	curTime.weekday = TimeUtil::WhichWeekday(curTime);
 
 	return curTime;
 }
 
 
-#define HOUR_SEC			(60*60)
-#define HOURS_SEC(hour)	((hour) * HOUR_SEC)
-#define DAY_SEC			(24*60*60)
-#define DAYS_SEC(day)	((day) * DAY_SEC)
+#define HOUR_SEC					(60*60)
+#define HOURS_SEC(hour)				((hour) * HOUR_SEC)
+#define DAY_SEC						(24*60*60)
+#define DAYS_SEC(day)				((day) * DAY_SEC)
 #define MyTimeIsLeapYear(year)		(!((year) % 4) && ((year) % 100) || !((year) % 400))
 
 static int32_t mon_day[13]		= {0,31,28,31,30,31,30,31,31,30,31,30,31};
@@ -202,7 +195,7 @@ int64_t _ElapseSecondsFromThisYear(TIME64 srcTime)
     return srcRun;
 }
 
-int64_t TimeUtil::TimeCompare(TIME64 destTime, TIME64 srcTime)
+int64_t TimeUtil::Diff(TIME64 destTime, TIME64 srcTime)
 {
     if(destTime.i64 == srcTime.i64)
         return 0;
@@ -214,13 +207,18 @@ int64_t TimeUtil::TimeCompare(TIME64 destTime, TIME64 srcTime)
         int64_t dstRun;
         srcRun = _ElapseSecondsFromThisYear(srcTime);
         dstRun = _ElapseSecondsFromThisYear(destTime);
-		if(srcTime.year <= destTime.year) {
-			for(i = (int32_t)srcTime.year ; i < (int32_t)destTime.year; i++) {
+		if(srcTime.year <= destTime.year) 
+		{
+			for(i = (int32_t)srcTime.year ; i < (int32_t)destTime.year; i++) 
+			{
 				dstRun += MyTimeIsLeapYear(i+1900) ?
                       DAYS_SEC(366) : DAYS_SEC(365);
 			}
-		} else {
-			for(i = (int32_t)destTime.year; i < (int32_t)srcTime.year; i++) {
+		} 
+		else 
+		{
+			for(i = (int32_t)destTime.year; i < (int32_t)srcTime.year; i++) 
+			{
 				srcRun += MyTimeIsLeapYear(i+1900) ?
                       DAYS_SEC(366) : DAYS_SEC(365);
 			}
@@ -232,11 +230,11 @@ int64_t TimeUtil::TimeCompare(TIME64 destTime, TIME64 srcTime)
 
 bool TimeUtil::Timout(TIME64 curTime, TIME64 deadlineTime)
 {
-    int64_t diff = TimeCompare(deadlineTime, curTime);
+    int64_t diff = Diff(deadlineTime, curTime);
     return diff > 0 ? true : false;
 }
 
-TIME64 TimeUtil::TimeAdd(TIME64 srcTime, int32_t nIncrementSecond)
+TIME64 TimeUtil::Add(TIME64 srcTime, int32_t nIncrementSecond)
 {
     TIME64 dstTime;
     int64_t srcRun;
@@ -284,7 +282,7 @@ TIME64 TimeUtil::TimeAdd(TIME64 srcTime, int32_t nIncrementSecond)
     return dstTime;
 }
 
-TIME64 TimeUtil::TimeDec(TIME64 srcTime, int32_t nDecrementSecond)
+TIME64 TimeUtil::Dec(TIME64 srcTime, int32_t nDecrementSecond)
 {
     int64_t srcRun;
     int64_t left;
@@ -340,7 +338,7 @@ TIME64 TimeUtil::TimeDec(TIME64 srcTime, int32_t nDecrementSecond)
     return dstTime;
 }
 
-int32_t TimeUtil::TimeWhichWeekday(TIME64 dw_time)
+int32_t TimeUtil::WhichWeekday(TIME64 dw_time)
 {
     int32_t i;
     int32_t days = 0;
@@ -357,7 +355,7 @@ int32_t TimeUtil::TimeWhichWeekday(TIME64 dw_time)
     return ( (nYear-1) + (nYear-1)/4 - (nYear-1)/100 + (nYear-1)/400 + days ) % 7;
 }
 
-int32_t TimeUtil::TimeToDateTime(TIME64 srcTime, char *buf, int32_t len)
+int32_t TimeUtil::ToDateTime(TIME64 srcTime, char *buf, int32_t len)
 {
 
     if(len < DATETIME_LEN)
@@ -378,7 +376,7 @@ void TimeUtil::Format(char* buf, int32_t len, const char* fmt)
 	strftime(buf,len, fmt, &t);
 }
 
-int32_t TimeUtil::TimeFromDateTime(TIME64 *t, const  char *buf, int32_t len)
+int32_t TimeUtil::FromDateTime(TIME64 *t, const  char *buf, int32_t len)
 {
     if(len < DATETIME_LEN || !t)
         return -1;
@@ -400,7 +398,7 @@ int32_t TimeUtil::TimeFromDateTime(TIME64 *t, const  char *buf, int32_t len)
     return 0;
 }
 
-void TimeUtil::TimeToTM(const TIME64* t, struct tm* m)
+void TimeUtil::ToTM(const TIME64* t, struct tm* m)
 {
 	if( t != NULL && m != NULL)
 	{

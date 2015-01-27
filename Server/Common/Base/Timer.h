@@ -42,10 +42,10 @@ static void AddMillisecondsToNow(int32_t milliseconds, int32_t *sec, int32_t *ms
 
 public:
 #define UNKNOWN_WEEK (0xff)
- static TIME64 InitTime64(uint8_t sec, uint8_t mint, uint8_t hour, uint8_t day, uint8_t month, uint16_t year, uint8_t wday = UNKNOWN_WEEK);
+ static TIME64 Create(uint8_t sec, uint8_t mint, uint8_t hour, uint8_t day, uint8_t month, uint16_t year, uint8_t wday = UNKNOWN_WEEK);
  static TIME64 Now();
- static int64_t  TimeToInt64(TIME64 curTime);
- static TIME64  Int64ToTime(int64_t i64Time);
+ static int64_t  ToInt64(TIME64 curTime);
+ static TIME64  FromInt64(int64_t i64Time);
 /*
 ** this function return the seconds from current year 01-01 00:00:00
 **/
@@ -56,14 +56,14 @@ public:
 ** if @destTime is less than srcTime return -1
 ** if @destTime is greater than srcTime return the seconds , from srcTime to destTime
 **/
-static int64_t TimeCompare(TIME64 destTime, TIME64 srcTime);
+static int64_t Diff(TIME64 destTime, TIME64 srcTime);
 static bool Timout(TIME64 curTime, TIME64 deadlineTime);
-static TIME64 TimeAdd(TIME64 srcTime, int32_t nIncrementSecond);
-static TIME64 TimeDec(TIME64 srcTime, int32_t nDecrementSecond);
+static TIME64 Add(TIME64 srcTime, int32_t nIncrementSecond);
+static TIME64 Dec(TIME64 srcTime, int32_t nDecrementSecond);
 /*
 ** @return value means:[0:sunday, 1:monday ... 6:saturday]
 */
-static int32_t TimeWhichWeekday(TIME64 dw_time);
+static int32_t WhichWeekday(TIME64 dw_time);
 
 /*
 @@ DATETIME_LEN min length of @buf
@@ -71,7 +71,7 @@ static int32_t TimeWhichWeekday(TIME64 dw_time);
 ** convert ae_time64_t to string(eg."1983-10-08 00:00:00")
 */
 #define DATETIME_LEN 20
-static int32_t TimeToDateTime(TIME64 srcTime, char *buf, int32_t len);
+static int32_t ToDateTime(TIME64 srcTime, char *buf, int32_t len);
 /*
 * fmt = %Y%m%d%H%M%S(20080912132328)
 */
@@ -81,8 +81,8 @@ static void Format(char* buf, int32_t len, const char* fmt);
 ** @len >= DATETIME_LEN
 ** convert string(eg. "1983-10-08 00:00:00" ) to ae_time64_t
 */
-static int32_t TimeFromDateTime(TIME64 *t, const  char *buf, int32_t len);
-static void TimeToTM(const TIME64* t, struct tm* m);
+static int32_t FromDateTime(TIME64 *t, const  char *buf, int32_t len);
+static void ToTM(const TIME64* t, struct tm* m);
 };
 
 #endif /* __TIMER_H__*/
