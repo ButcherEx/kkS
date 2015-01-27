@@ -20,7 +20,7 @@ uint32_t Role::Handle(const CG_LOGIN& rMsg)
 		login.set_publicresourceversion(1);
 		login.set_maxpacketid(99);
 		login.set_forceenter(8);
-		login.set_deviceid("ma.CY5929");
+		login.set_deviceid("jjyy");
 		login.set_devicetype("WINDOWS");
 		login.set_deviceversion("Win8.1");
 		int32 byteSize  = login.ByteSize();
