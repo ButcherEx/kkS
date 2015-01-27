@@ -11,11 +11,13 @@
 #define		getpid				_getpid
 #define		localtime_r			localtime_s
 #define		zeroMemory(p,len)	memset(p,0,len)
+#define		tgetcwd				_getcwd
 #elif defined(__LINUX__)
 #define		tvsnprintf			vsnprintf
 #define		tstricmp			strcasecmp
 #define		tsnprintf			snprintf
 #define		zeroMemory(p,len)	memset(p,0,len)
+#define		tgetcwd				getcwd
 #define		__FUNCTION__		__PRETTY_FUNCTION__
 #endif
 

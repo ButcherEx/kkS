@@ -22,6 +22,12 @@ bool InstanceManager::Init()
 		LOGD(Debug, "Login Starting... (%lld)(%d)",
 			g_TimeManager.CurrentTimeToInt64(), g_TimeManager.CurrentTick() ) ;
 
+		//bsys::error_code ec;
+		// basePath_ = bfs::current_path(ec); //取得当前目录  
+		CHAR currentDir[_MAX_PATH] = {0};
+		tgetcwd(currentDir, _MAX_PATH);
+		LOGD(Debug, "Current Directory %s", currentDir);
+
 		return bRet;
 	__LEAVE_FUNCTION
 		return false;

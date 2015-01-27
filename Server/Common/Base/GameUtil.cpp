@@ -11,7 +11,7 @@
 #include <setjmp.h>
 #endif
 
-
+//////////////////////////////////////////////////////////////////////////
 void MySleep( uint32_t millionseconds )
 {
 #if defined(__WINDOWS__)
@@ -39,7 +39,7 @@ CHAR* MySocketError( )
 extern CHAR Error[_ESIZE] ;
 	return Error ;
 }
-
+//////////////////////////////////////////////////////////////////////////
 void HostName(bstd::string& hn) 
 {
 #if defined(__LINUX__)
@@ -142,7 +142,6 @@ void coloredWriteToStderr(const CHAR* message, size_t len, LogColor color)
 	fprintf(stderr, "\033[m");  // Resets the terminal to default.
 #endif  // __WINDOWS__
 }
-//////////////////////////////////////////////////////////////////////////
 void clearStderrLineBuffer(FILE *file)
 {
 #if defined(__WINDOWS__)
@@ -168,7 +167,7 @@ void clearStderrLineBuffer(FILE *file)
 #endif
 }
 
-
+//////////////////////////////////////////////////////////////////////////
 uint32_t g_aCrc32Table[256] =
 {
 	0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
@@ -257,7 +256,6 @@ uint32_t MyCRC( const CHAR* szString )
 //2	dwCrc32 ^= 0xFFFFFFFF;  
 	return dwCrc32;
 }
-
 uint32_t MyCRC32(const CHAR* lpData)
 {
 	if( !lpData ) return 0;
@@ -274,70 +272,7 @@ uint32_t MyCRC32(const CHAR* lpData)
 	}
 	return sum;
 }
-
-/*
-BOOL	Binary2String(const CHAR* pIn,uint32_t InLength,CHAR* pOut)
-{
-	__ENTER_FUNCTION
-
-	if(InLength==0)
-	{
-		return FALSE;
-	}
-	uint32_t iOut = 0;
-	for(uint32_t i = 0 ;i<InLength;i++)
-	{
-		switch(pIn[i]) 
-		{
-		case '\0':
-			{
-				pOut[iOut] = '\\';
-			    iOut++;
-				pOut[iOut] = '0';
-				iOut++;
-			}
-			break;
-		case '\'':
-			{
-				pOut[iOut] = '\'';
-				iOut++;
-				pOut[iOut] = '\'';
-				iOut++;
-			}
-			break;
-		case '\"':
-			{
-				pOut[iOut] = '\\';
-				iOut++;
-				pOut[iOut] = '\"';
-				iOut++;
-			}
-			break;
-		case '\\':
-			{
-				pOut[iOut] = '\\';
-				iOut++;
-				pOut[iOut] = '\\';
-				iOut++;
-			}
-			break;
-		default:
-			{
-				pOut[iOut] = pIn[i];
-				iOut++;
-			}
-			break;
-		}
-		
-	}
-	return TRUE;
-
-	__LEAVE_FUNCTION
-
-	return FALSE;
-}
-*/
-
+//////////////////////////////////////////////////////////////////////////
 CHAR Value2Ascii(CHAR in)
 {
 	__ENTER_FUNCTION
@@ -400,7 +335,6 @@ CHAR Value2Ascii(CHAR in)
 
 		return '?';
 }
-
 CHAR Ascii2Value(CHAR in)
 {
 	__ENTER_FUNCTION
@@ -463,8 +397,7 @@ CHAR Ascii2Value(CHAR in)
 
 		return '?';
 }
-
-
+//////////////////////////////////////////////////////////////////////////
 bool Binary2String(const CHAR* pIn,uint32_t InLength,CHAR* pOut)
 {
 	__ENTER_FUNCTION
@@ -492,61 +425,6 @@ bool Binary2String(const CHAR* pIn,uint32_t InLength,CHAR* pOut)
 
 			return false;
 }
-
-/*
-BOOL DBStr2Binary(const CHAR* pIn,uint32_t InLength,CHAR* pOut,uint32_t OutLimit,uint32_t& OutLength)
-{
-	__ENTER_FUNCTION
-
-	if(InLength==0)
-	{
-		return FALSE;
-	}
-
-	uint32_t iOut = 0;
-	uint32_t i;
-	for( i = 0 ;i<InLength-1;)
-	{
-			if((pIn[i]=='\\') && (pIn[i+1]=='0'))
-			{
-				pOut[iOut]	=	'\0';
-				iOut++;
-				i+=2;
-				continue;
-			}
-			else if((pIn[i]=='\\') && (pIn[i+1]=='\"'))
-			{
-				pOut[iOut]	=	'\"';
-				iOut++;
-				i+=2;
-				continue;
-			}
-			else if((pIn[i]=='\\') && (pIn[i+1]=='\\'))
-			{
-				pOut[iOut]	=	'\\';
-				iOut++;
-				i+=2;
-				continue;
-			}
-			else if(pIn[i]=='\0')
-			{
-				break;
-			}
-
-		pOut[iOut] = pIn[i];
-		iOut++;
-		i++;
-
-		if(iOut>=OutLimit)
-			break;
-	}
-	OutLength = iOut;
-	return TRUE;
-
-	__LEAVE_FUNCTION
-}
-*/
-
 bool DBStr2Binary(const CHAR* pIn,uint32_t InLength,CHAR* pOut,uint32_t OutLimit,uint32_t& OutLength)
 {
 	__ENTER_FUNCTION
@@ -576,8 +454,6 @@ bool DBStr2Binary(const CHAR* pIn,uint32_t InLength,CHAR* pOut,uint32_t OutLimit
 		__LEAVE_FUNCTION
 		return false;
 }
-
-
 bool String2Binary(const CHAR* pIn,uint32_t InLength,CHAR* pOut,uint32_t OutLimit,uint32_t& OutLength)
 {
 	__ENTER_FUNCTION
@@ -637,7 +513,6 @@ bool String2Binary(const CHAR* pIn,uint32_t InLength,CHAR* pOut,uint32_t OutLimi
 		__LEAVE_FUNCTION
 			return false;
 }
-
 bool StrSafeCheck(const CHAR* pIn,uint32_t InLength)
 {
 	if(InLength==0)
@@ -668,7 +543,6 @@ bool StrSafeCheck(const CHAR* pIn,uint32_t InLength)
 	return true;
 
 }
-
 bool CommandSafeCheck(const CHAR* pIn,uint32_t InLength)
 {
 	if(InLength==0)
@@ -694,6 +568,7 @@ bool CommandSafeCheck(const CHAR* pIn,uint32_t InLength)
 	return true;
 
 }
+//////////////////////////////////////////////////////////////////////////
 CHAR* ReplaceIllegalString( CHAR* strText, int32_t nLength, int32_t nLevel )
 {
 	if( strText == NULL ) return NULL;
@@ -706,7 +581,6 @@ CHAR* ReplaceIllegalString( CHAR* strText, int32_t nLength, int32_t nLevel )
 
 	return strText;
 }
-
 bool CheckIllegalString( const CHAR* strText, int32_t nLength, int32_t nLevel )
 {
 	if( strText == NULL ) return false;
@@ -765,5 +639,67 @@ bool CheckIllegalString( const CHAR* strText, int32_t nLength, int32_t nLevel )
 	}
 	return false;
 }
+//////////////////////////////////////////////////////////////////////////
+bool	IsPow2(int32_t val) 
+{ 
+	return !(val & (val-1)); 
+}
 
+int32_t	AlignN(int32_t val, int32_t _algin)  
+{ 
+	return ((val + _algin - 1) & ~(_algin - 1)); 
+}
+
+int32_t	NextPow2(int32_t val)
+{
+	if( val > 1 )
+	{
+		if(!IsPow2(val))
+		{
+			val |= val  >> 1;
+			val |= val  >> 2;
+			val |= val  >> 4;
+			val |= val  >> 8;
+			val |= val  >> 16;
+			val = val + 1;
+		}
+	}
+	else
+	{
+		val = 2;
+	}
+
+	return val;
+}
+//////////////////////////////////////////////////////////////////////////
+
+RandInt32::RandInt32(uint32_t seed)
+{
+	if( seed != 0 )
+	{
+		m_Seed = seed;
+	}
+	else
+	{
+		m_Seed = (uint32_t)time(0);
+	}
+}
+
+int32_t RandInt32::Gen( )
+{
+	int32_t ret;
+	ret = (((m_Seed = m_Seed * 1103515245 + 12345) >> 1 ) & INT32_MAX);
+	return ret;
+}
+
+int32_t RandInt32::GenRange(int32_t low, int32_t high)
+{
+	int32_t ret = low;
+	if(low <  high)
+	{
+		ret = (((m_Seed = m_Seed * 1103515245 + 12345) >> 1 ) & INT32_MAX);
+		ret = (ret % (high - low + 1))+low;
+	}
+	return ret;
+}
 

@@ -56,9 +56,19 @@ bool		CommandSafeCheck(const CHAR* pIn,uint32_t InLength);
 CHAR*		ReplaceIllegalString( CHAR* strText, int32_t nLength, int32_t nLevel = CHECK_STRING_NORMAL );
 bool		CheckIllegalString( const CHAR* strText, int32_t nLength, int32_t nLevel = CHECK_STRING_NORMAL );
 //////////////////////////////////////////////////////////////////////////
-
-
-
-
-
+bool		IsPow2(int32_t val);
+int32_t		AlignN(int32_t val, int32_t _algin);
+int32_t		NextPow2(int32_t val);
+//////////////////////////////////////////////////////////////////////////
+class RandInt32
+{
+public:
+	RandInt32(uint32_t seed = 0);
+public:
+	int32_t Gen( );
+	int32_t GenRange(int32_t low, int32_t high);
+private:
+	uint32_t m_Seed;
+};
+//////////////////////////////////////////////////////////////////////////
 #endif
