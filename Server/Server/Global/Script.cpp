@@ -125,6 +125,8 @@ bool Lua::Call(lua_State *L,
                                 const  CHAR* funcName,
                                 const  CHAR* fmt, ...)
 {
+	__ENTER_FUNCTION
+
 	bool ret = true;
     va_list vl;
     int32_t args, res, idx;
@@ -222,6 +224,7 @@ bool Lua::Call(lua_State *L,
 end_arg:
     res = (int32_t)strlen(fmt);
 
+
 #if defined(LUA_INT64)
     {
         const  CHAR *cL = fmt;
@@ -297,6 +300,9 @@ end_arg:
 end_call:
     va_end(vl);
 	return ret;
+
+	__LEAVE_FUNCTION_EX
+		return false;
 }
 
 bool Lua::LoadFile(lua_State *L, const  CHAR *file)
@@ -643,7 +649,7 @@ void doScriptTest(void* file)
 			i1, i2, res, outstr, i64, iout64);
 
 		int32_t out1=0, out2=0;
-		Lua::Call(L, "myadd1", "iiii>iii", i1, i2, 64, 64, &res, &out1, &out2);
+		Lua::Call(L, "myadd1", "iiii>iii", i1, i2, 64, &res, &out1, &out2);
 
 		Lua::PrintStack(L);
 		LOGD(LuaSystem,"lua function add(%d,%d)=%d", i1, i2, res);
