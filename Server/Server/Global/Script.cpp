@@ -137,6 +137,7 @@ bool Lua::Call(lua_State *L,
 #endif
 
 	const CHAR *fmtCheck = fmt;
+	const CHAR *fmtParse = fmt;
 	for(;*fmtCheck;fmtCheck++)
 	{
 		switch(*fmtCheck++)
@@ -176,11 +177,11 @@ bool Lua::Call(lua_State *L,
         return false;
     }
 
-    va_start(vl, fmt);
+    va_start(vl, fmtParse);
 
-    for(args = 0; *fmt; args++)
+    for(args = 0; *fmtParse; args++)
     {
-        switch(*fmt++)
+        switch(*fmtParse++)
         {
         case 'd':
             lua_pushnumber(L, va_arg(vl, double));
@@ -216,18 +217,18 @@ bool Lua::Call(lua_State *L,
             goto end_arg;
             break;
         default:
-			LOGE(LuaSystem, "Error parameters format=%s %c.", funcName, *fmt);
+			LOGE(LuaSystem, "Error parameters format=%s %c.", funcName, *fmtParse);
             break;
         }
     }
 
 end_arg:
-    res = (int32_t)strlen(fmt);
+    res = (int32_t)strlen(fmtParse);
 
 
 #if defined(LUA_INT64)
     {
-        const  CHAR *cL = fmt;
+        const  CHAR *cL = fmtParse;
         while(*cL)
         {
             switch( *cL++ )
@@ -252,9 +253,9 @@ end_arg:
 	}
 
     idx = -res;
-    while(*fmt && idx)
+    while(*fmtParse && idx)
     {
-        switch( *fmt++ )
+        switch( *fmtParse++ )
         {
         case 'd':
             *va_arg(vl, double*) = lua_tonumber(L, idx);
@@ -302,6 +303,8 @@ end_call:
 	return ret;
 
 	__LEAVE_FUNCTION_EX
+
+		LOGE(LuaSystem, "Exception catched, Lua::Call(L,%s,%s).", funcName, fmt);
 		return false;
 }
 
