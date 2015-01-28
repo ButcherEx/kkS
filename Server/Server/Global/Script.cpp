@@ -125,6 +125,8 @@ bool Lua::Call(lua_State *L,
                                 const  CHAR* funcName,
                                 const  CHAR* fmt, ...)
 {
+	const CHAR *fmtBak = fmt;
+
 	__ENTER_FUNCTION
 
 	bool ret = true;
@@ -137,7 +139,6 @@ bool Lua::Call(lua_State *L,
 #endif
 
 	const CHAR *fmtCheck = fmt;
-	const CHAR *fmtParse = fmt;
 	for(;*fmtCheck;fmtCheck++)
 	{
 		switch(*fmtCheck++)
@@ -153,7 +154,7 @@ bool Lua::Call(lua_State *L,
 			
 #if !defined (LUA_STRING)
 			{
-				LOGE(LuaSystem, "Error parameters format=%s %s %c.", funcName,fmt,*fmtCheck);
+				LOGE(LuaSystem, "Error parameters format=%s %s %c.", funcName,fmtBak,*fmtCheck);
 				return false;
 			}
 #endif
@@ -161,7 +162,7 @@ bool Lua::Call(lua_State *L,
 		case 'L':
 #if !defined(LUA_INT64)
 			{
-				LOGE(LuaSystem, "Error parameters format=%s %s %c.", funcName,fmt,*fmtCheck);
+				LOGE(LuaSystem, "Error parameters format=%s %s %c.", funcName,fmtBak,*fmtCheck);
 				return false;
 			}
 #endif
@@ -177,11 +178,11 @@ bool Lua::Call(lua_State *L,
         return false;
     }
 
-    va_start(vl, fmtParse);
+    va_start(vl, fmt);
 
-    for(args = 0; *fmtParse; args++)
+    for(args = 0; *fmt; args++)
     {
-        switch(*fmtParse++)
+        switch(*fmt++)
         {
         case 'd':
             lua_pushnumber(L, va_arg(vl, double));
@@ -217,18 +218,18 @@ bool Lua::Call(lua_State *L,
             goto end_arg;
             break;
         default:
-			LOGE(LuaSystem, "Error parameters format=%s %c.", funcName, *fmtParse);
+			LOGE(LuaSystem, "Error parameters format=%s(%s) %c.", funcName, fmtBak, *fmt);
             break;
         }
     }
 
 end_arg:
-    res = (int32_t)strlen(fmtParse);
+    res = (int32_t)strlen(fmt);
 
 
 #if defined(LUA_INT64)
     {
-        const  CHAR *cL = fmtParse;
+        const  CHAR *cL = fmt;
         while(*cL)
         {
             switch( *cL++ )
@@ -253,9 +254,9 @@ end_arg:
 	}
 
     idx = -res;
-    while(*fmtParse && idx)
+    while(*fmt && idx)
     {
-        switch( *fmtParse++ )
+        switch( *fmt++ )
         {
         case 'd':
             *va_arg(vl, double*) = lua_tonumber(L, idx);
@@ -304,7 +305,7 @@ end_call:
 
 	__LEAVE_FUNCTION_EX
 
-		LOGE(LuaSystem, "Exception catched, Lua::Call(L,%s,%s).", funcName, fmt);
+		LOGE(LuaSystem, "Exception catched, Lua::Call(L,%s(%s))", funcName, fmtBak);
 		return false;
 }
 
@@ -646,15 +647,11 @@ void doScriptTest(void* file)
 
 		Lua::Call(L, "myadd", "iisLI>iSL", i1, i2,
 			__FUNCTION__, i64, 64, &res, outstr, &iout64);
-
-		Lua::PrintStack(L);
 		LOGD(LuaSystem,"lua function add(%d,%d)=%d,%s, in(int64_t):%I64d ?= %I64d", 
 			i1, i2, res, outstr, i64, iout64);
 
 		int32_t out1=0, out2=0;
-		Lua::Call(L, "myadd1", "iiii>iii", i1, i2, 64, &res, &out1, &out2);
-
-		Lua::PrintStack(L);
+		Lua::Call(L, "myadd1", "iiii>iii", i1, i2, 64, 64, &res, &out1, &out2);
 		LOGD(LuaSystem,"lua function add(%d,%d)=%d", i1, i2, res);
 
 		Lua::RegisterCClosure(L, &counter, "col1", "d", 0.0f);
