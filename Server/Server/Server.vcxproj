@@ -212,6 +212,7 @@
     <ClCompile Include="Global\InstanceModule.cpp" />
     <ClCompile Include="Global\LogDefine.cpp" />
     <ClCompile Include="Global\Script.cpp" />
+    <ClCompile Include="Global\Task.cpp" />
     <ClCompile Include="Main\Login.cpp" />
     <ClCompile Include="Main\LoginMain.cpp" />
     <ClCompile Include="Map\Role\Role.cpp" />

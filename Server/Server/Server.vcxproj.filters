@@ -327,6 +327,9 @@
     <ClCompile Include="..\..\3rd\lua\src\lzio.c">
       <Filter>Common\lua</Filter>
     </ClCompile>
+    <ClCompile Include="Global\Task.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Login.h">

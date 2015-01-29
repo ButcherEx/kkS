@@ -147,6 +147,9 @@ private:
 #define LOG_REBUILD(LOGTYPE)	LOG_INST(LOGTYPE).RebuildPath()
 #define LOG_DECL(LOGTYPE)		class Tag##LOGTYPE{public: const char* name(){return #LOGTYPE;} };\
 								extern  LogSink<16*1024, 4*1024, Tag##LOGTYPE> LOG_INST(LOGTYPE)
+
+#define LOG_DEF(LOGTYPE)		class Tag##LOGTYPE{public: const char* name(){return #LOGTYPE;} };\
+								LogSink<16*1024, 4*1024, Tag##LOGTYPE> LOG_INST(LOGTYPE)
 //////////////////////////////////////////////////////////////////////////
 template<typename _LogSink>
 void _LogSinkPrint(_LogSink& rSink, LogColor color, /*const CHAR* keyVal,*/ const CHAR* func, int32_t line, const CHAR* fmt, ...)
