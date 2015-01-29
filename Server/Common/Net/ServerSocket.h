@@ -8,19 +8,6 @@
 
 #include "Socket.h"
 
-//#ifdef __WINDOWS__
-//	#pragma comment(lib, "../../Common/KeyDog.lib")
-//	extern BOOL GetMacByCmd(char *lpszMac);
-////#else
-////	#pragma comment(lib, "../../Common/libCFG.a")
-////	extern int		 CheckSystem();
-//#endif
-//////////////////////////////////////////////////////////////////////
-//
-// class ServerSocket
-//
-//////////////////////////////////////////////////////////////////////
-
 class ServerSocket 
 {
 public :
@@ -68,10 +55,6 @@ protected :
 	
 	// socket implementation object
 	Socket m_Socket;
-
-
-
-
 };
 
 

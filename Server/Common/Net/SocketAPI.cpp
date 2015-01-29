@@ -50,8 +50,6 @@ CHAR Error[_ESIZE] ;
 //////////////////////////////////////////////////////////////////////
 SOCKET SocketAPI::socket_ex ( int32_t domain , int32_t type , int32_t protocol ) 
 {
-	
-
 	SOCKET s = ::socket(domain,type,protocol);
 
 	if ( s == INVALID_SOCKET ) 
@@ -102,18 +100,14 @@ SOCKET SocketAPI::socket_ex ( int32_t domain , int32_t type , int32_t protocol )
 			break ;
 		default : 
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		};//end of switch
 #endif
 	}
 
 	return s;
-	
-	
-
-	return INVALID_SOCKET ;
 }
 
 
@@ -135,8 +129,6 @@ SOCKET SocketAPI::socket_ex ( int32_t domain , int32_t type , int32_t protocol )
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::bind_ex ( SOCKET s , const struct sockaddr * addr , uint32_t addrlen ) 
 {
-	
-
 	if ( bind ( s , addr , addrlen ) == SOCKET_ERROR ) 
 	{
 #if __LINUX__
@@ -192,20 +184,16 @@ bool SocketAPI::bind_ex ( SOCKET s , const struct sockaddr * addr , uint32_t add
 			break ;
 		default :
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		};//end of switch
 #endif
 
 		return false ;
 	}
-	
+
 	return true ;
-
-	
-
-	return false ;
 }
 
 
@@ -226,8 +214,6 @@ bool SocketAPI::bind_ex ( SOCKET s , const struct sockaddr * addr , uint32_t add
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::connect_ex ( SOCKET s , const struct sockaddr * addr , uint32_t addrlen )
 {
-	
-
 	if ( connect(s,addr,addrlen) == SOCKET_ERROR ) 
 	{
 #if __LINUX__
@@ -304,8 +290,8 @@ bool SocketAPI::connect_ex ( SOCKET s , const struct sockaddr * addr , uint32_t 
 			break ;
 		default :
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		};//end of switch
 #endif
@@ -313,10 +299,6 @@ bool SocketAPI::connect_ex ( SOCKET s , const struct sockaddr * addr , uint32_t 
 	}
 
 	return true ;
-	
-	
-
-	return false ;
 }
 
 
@@ -337,8 +319,6 @@ bool SocketAPI::connect_ex ( SOCKET s , const struct sockaddr * addr , uint32_t 
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::listen_ex ( SOCKET s , uint32_t backlog ) 
 {
-	
-
 	if ( listen( s , backlog ) == SOCKET_ERROR ) 
 	{
 #if __LINUX__
@@ -388,8 +368,8 @@ bool SocketAPI::listen_ex ( SOCKET s , uint32_t backlog )
 			break ;
 		default :
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		};//end of switch
 #endif
@@ -398,10 +378,6 @@ bool SocketAPI::listen_ex ( SOCKET s , uint32_t backlog )
 	}
 
 	return true ;
-	
-	
-
-	return false ;
 }
 
 
@@ -423,14 +399,12 @@ bool SocketAPI::listen_ex ( SOCKET s , uint32_t backlog )
 //////////////////////////////////////////////////////////////////////
 SOCKET SocketAPI::accept_ex ( SOCKET s , struct sockaddr * addr , uint32_t * addrlen )
 {
-	
-
 #if __LINUX__
 	SOCKET client = accept( s , addr , addrlen );
 #elif __WINDOWS__
 	SOCKET client = accept( s , addr , (int*)addrlen );
 #endif
-	
+
 	if ( client == INVALID_SOCKET ) 
 	{
 #if __LINUX__
@@ -495,8 +469,8 @@ SOCKET SocketAPI::accept_ex ( SOCKET s , struct sockaddr * addr , uint32_t * add
 			break ;
 		default :
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		};//end of switch
 #endif
@@ -504,10 +478,6 @@ SOCKET SocketAPI::accept_ex ( SOCKET s , struct sockaddr * addr , uint32_t * add
 	}
 
 	return client;
-
-	
-
-	return INVALID_SOCKET ;
 }
 
 
@@ -531,8 +501,6 @@ SOCKET SocketAPI::accept_ex ( SOCKET s , struct sockaddr * addr , uint32_t * add
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::getsockopt_ex ( SOCKET s , int32_t level , int32_t optname , void * optval , uint32_t * optlen )
 {
-	
-
 #if __LINUX__
 	if ( getsockopt( s , level , optname , optval , optlen ) == SOCKET_ERROR ) 
 	{
@@ -579,8 +547,8 @@ bool SocketAPI::getsockopt_ex ( SOCKET s , int32_t level , int32_t optname , voi
 			break ;
 		default : 
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		};//end of switch
 
@@ -589,16 +557,10 @@ bool SocketAPI::getsockopt_ex ( SOCKET s , int32_t level , int32_t optname , voi
 #endif
 
 	return true ;
-	
-	
-
-	return false ;
 }
 
 uint32_t SocketAPI::getsockopt_ex2 ( SOCKET s , int32_t level , int32_t optname , void * optval , uint32_t * optlen )
 {
-	
-
 #if __LINUX__
 	if ( getsockopt( s , level , optname , optval , optlen ) == SOCKET_ERROR ) 
 	{
@@ -647,18 +609,14 @@ uint32_t SocketAPI::getsockopt_ex2 ( SOCKET s , int32_t level , int32_t optname 
 			break ;
 		default : 
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		}
 	}
 #endif
 
 	return 0;
-
-	
-
-	return 5;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -681,21 +639,19 @@ uint32_t SocketAPI::getsockopt_ex2 ( SOCKET s , int32_t level , int32_t optname 
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::setsockopt_ex ( SOCKET s , int32_t level , int32_t optname , const void * optval , uint32_t optlen )
 {
-	
-
 #if __LINUX__
 	if ( setsockopt( s , level , optname , optval , optlen ) == SOCKET_ERROR ) 
 	{
 		switch ( errno ) 
 		{
-			case EBADF : 
-			case ENOTSOCK : 
-			case ENOPROTOOPT : 
-			case EFAULT : 
-			default :
-				{
-					break;
-				}
+		case EBADF : 
+		case ENOTSOCK : 
+		case ENOPROTOOPT : 
+		case EFAULT : 
+		default :
+			{
+				break;
+			}
 		}//end of switch
 
 		return false ;
@@ -735,8 +691,8 @@ bool SocketAPI::setsockopt_ex ( SOCKET s , int32_t level , int32_t optname , con
 			break ;
 		default :
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		};//end of switch
 
@@ -745,10 +701,6 @@ bool SocketAPI::setsockopt_ex ( SOCKET s , int32_t level , int32_t optname , con
 #endif
 
 	return true ;
-	
-	
-
-	return false ;
 }
 
 
@@ -771,115 +723,113 @@ bool SocketAPI::setsockopt_ex ( SOCKET s , int32_t level , int32_t optname , con
 //////////////////////////////////////////////////////////////////////
 uint32_t SocketAPI::send_ex ( SOCKET s , const void * buf , uint32_t len , uint32_t flags )
 {
-	
-
-	int32_t nSent;
+	int32_t nSent = 0;
 
 	_MY_TRY
 	{
 
 #if __LINUX__
-	nSent = send(s,buf,len,flags);
+		nSent = send(s,buf,len,flags);
 #elif __WINDOWS__
-	nSent = send(s,(const CHAR *)buf,len,flags);
+		nSent = send(s,(const CHAR *)buf,len,flags);
 #endif
 
-	if ( nSent == SOCKET_ERROR ) 
-	{
+		if ( nSent == SOCKET_ERROR ) 
+		{
 #if __LINUX__
-		switch ( errno ) 
-		{
-
-		case EWOULDBLOCK : 
-			return SOCKET_ERROR_WOULDBLOCK;
-
-		case ECONNRESET :
-		case EPIPE :
-
-		case EBADF : 
-		case ENOTSOCK : 
-		case EFAULT : 
-		case EMSGSIZE : 
-		case ENOBUFS : 
-
-		default : 
+			switch ( errno ) 
 			{
-				break;
-			}
-		}//end of switch
+
+			case EWOULDBLOCK : 
+				return SOCKET_ERROR_WOULDBLOCK;
+
+			case ECONNRESET :
+			case EPIPE :
+
+			case EBADF : 
+			case ENOTSOCK : 
+			case EFAULT : 
+			case EMSGSIZE : 
+			case ENOBUFS : 
+
+			default : 
+				{
+					break;
+				}
+			}//end of switch
 #elif __WINDOWS__
-		int32_t iErr = WSAGetLastError() ;
-		switch ( iErr ) 
-		{
-		case WSANOTINITIALISED : 
-			strncpy( Error, "WSANOTINITIALISED", _ESIZE ) ;
-			break ;
-		case WSAENETDOWN : 
-			strncpy( Error, "WSAENETDOWN", _ESIZE ) ;
-			break ;
-		case WSAEACCES : 
-			strncpy( Error, "WSAEACCES", _ESIZE ) ;
-			break ;
-		case WSAEINTR : 
-			strncpy( Error, "WSAEINTR", _ESIZE ) ;
-			break ;
-		case WSAEINPROGRESS : 
-			strncpy( Error, "WSAEINPROGRESS", _ESIZE ) ;
-			break ;
-		case WSAEFAULT : 
-			strncpy( Error, "WSAEFAULT", _ESIZE ) ;
-			break ;
-		case WSAENETRESET : 
-			strncpy( Error, "WSAENETRESET", _ESIZE ) ;
-			break ;
-		case WSAENOBUFS : 
-			strncpy( Error, "WSAENOBUFS", _ESIZE ) ;
-			break ;
-		case WSAENOTCONN : 
-			strncpy( Error, "WSAENOTCONN", _ESIZE ) ;
-			break ;
-		case WSAENOTSOCK : 
-			strncpy( Error, "WSAENOTSOCK", _ESIZE ) ;
-			break ;
-		case WSAEOPNOTSUPP : 
-			strncpy( Error, "WSAEOPNOTSUPP", _ESIZE ) ;
-			break ;
-		case WSAESHUTDOWN : 
-			strncpy( Error, "WSAESHUTDOWN", _ESIZE ) ;
-			break ;
-		case WSAEWOULDBLOCK : 
-//			strncpy( Error, "WSAEWOULDBLOCK", _ESIZE ) ;
-			return SOCKET_ERROR_WOULDBLOCK ;
-			break ;
-		case WSAEMSGSIZE : 
-			strncpy( Error, "WSAEMSGSIZE", _ESIZE ) ;
-			break ;
-		case WSAEHOSTUNREACH : 
-			strncpy( Error, "WSAEHOSTUNREACH", _ESIZE ) ;
-			break ;
-		case WSAEINVAL : 
-			strncpy( Error, "WSAEINVAL", _ESIZE ) ;
-			break ;
-		case WSAECONNABORTED : 
-			strncpy( Error, "WSAECONNABORTED", _ESIZE ) ;
-			break ;
-		case WSAECONNRESET : 
-			strncpy( Error, "WSAECONNRESET", _ESIZE ) ;
-			break ;
-		case WSAETIMEDOUT : 
-			strncpy( Error, "WSAETIMEDOUT", _ESIZE ) ;
-			break ;
-		default :
+			int32_t iErr = WSAGetLastError() ;
+			switch ( iErr ) 
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
-			};
-		};//end of switch
+			case WSANOTINITIALISED : 
+				strncpy( Error, "WSANOTINITIALISED", _ESIZE ) ;
+				break ;
+			case WSAENETDOWN : 
+				strncpy( Error, "WSAENETDOWN", _ESIZE ) ;
+				break ;
+			case WSAEACCES : 
+				strncpy( Error, "WSAEACCES", _ESIZE ) ;
+				break ;
+			case WSAEINTR : 
+				strncpy( Error, "WSAEINTR", _ESIZE ) ;
+				break ;
+			case WSAEINPROGRESS : 
+				strncpy( Error, "WSAEINPROGRESS", _ESIZE ) ;
+				break ;
+			case WSAEFAULT : 
+				strncpy( Error, "WSAEFAULT", _ESIZE ) ;
+				break ;
+			case WSAENETRESET : 
+				strncpy( Error, "WSAENETRESET", _ESIZE ) ;
+				break ;
+			case WSAENOBUFS : 
+				strncpy( Error, "WSAENOBUFS", _ESIZE ) ;
+				break ;
+			case WSAENOTCONN : 
+				strncpy( Error, "WSAENOTCONN", _ESIZE ) ;
+				break ;
+			case WSAENOTSOCK : 
+				strncpy( Error, "WSAENOTSOCK", _ESIZE ) ;
+				break ;
+			case WSAEOPNOTSUPP : 
+				strncpy( Error, "WSAEOPNOTSUPP", _ESIZE ) ;
+				break ;
+			case WSAESHUTDOWN : 
+				strncpy( Error, "WSAESHUTDOWN", _ESIZE ) ;
+				break ;
+			case WSAEWOULDBLOCK : 
+				//			strncpy( Error, "WSAEWOULDBLOCK", _ESIZE ) ;
+				return SOCKET_ERROR_WOULDBLOCK ;
+				break ;
+			case WSAEMSGSIZE : 
+				strncpy( Error, "WSAEMSGSIZE", _ESIZE ) ;
+				break ;
+			case WSAEHOSTUNREACH : 
+				strncpy( Error, "WSAEHOSTUNREACH", _ESIZE ) ;
+				break ;
+			case WSAEINVAL : 
+				strncpy( Error, "WSAEINVAL", _ESIZE ) ;
+				break ;
+			case WSAECONNABORTED : 
+				strncpy( Error, "WSAECONNABORTED", _ESIZE ) ;
+				break ;
+			case WSAECONNRESET : 
+				strncpy( Error, "WSAECONNRESET", _ESIZE ) ;
+				break ;
+			case WSAETIMEDOUT : 
+				strncpy( Error, "WSAETIMEDOUT", _ESIZE ) ;
+				break ;
+			default :
+				{
+					strncpy( Error, "UNKNOWN", _ESIZE ) ;
+					break ;
+				};
+			};//end of switch
 #endif
-	} 
-	else if ( nSent == 0 )
-	{
-	}
+		} 
+		else if ( nSent == 0 )
+		{
+		}
 
 	}
 	_MY_CATCH
@@ -887,10 +837,6 @@ uint32_t SocketAPI::send_ex ( SOCKET s , const void * buf , uint32_t len , uint3
 	}
 
 	return nSent;
-	
-	
-
-	return 0 ;
 }
 
 
@@ -899,8 +845,6 @@ uint32_t SocketAPI::send_ex ( SOCKET s , const void * buf , uint32_t len , uint3
 //////////////////////////////////////////////////////////////////////
 uint32_t SocketAPI::sendto_ex ( SOCKET s , const void * buf , int32_t len , uint32_t flags , const struct sockaddr * to , int32_t tolen )
 {
-	
-
 #if __LINUX__
 	int32_t nSent = sendto(s,buf,len,flags,to,tolen);
 #elif __WINDOWS__
@@ -935,10 +879,6 @@ uint32_t SocketAPI::sendto_ex ( SOCKET s , const void * buf , int32_t len , uint
 	}
 
 	return nSent;
-
-	
-
-	return 0 ;
 }
 
 
@@ -961,8 +901,6 @@ uint32_t SocketAPI::sendto_ex ( SOCKET s , const void * buf , int32_t len , uint
 //////////////////////////////////////////////////////////////////////
 uint32_t SocketAPI::recv_ex ( SOCKET s , void * buf , uint32_t len , uint32_t flags )
 {
-	
-
 #if __LINUX__
 	int32_t nrecv = recv(s,buf,len,flags);
 #elif __WINDOWS__
@@ -1028,7 +966,7 @@ uint32_t SocketAPI::recv_ex ( SOCKET s , void * buf , uint32_t len , uint32_t fl
 			strncpy( Error, "WSAESHUTDOWN", _ESIZE ) ;
 			break ;
 		case WSAEWOULDBLOCK : 
-//			strncpy( Error, "WSAEWOULDBLOCK", _ESIZE ) ;
+			//			strncpy( Error, "WSAEWOULDBLOCK", _ESIZE ) ;
 			return SOCKET_ERROR_WOULDBLOCK ;
 			break ;
 		case WSAEMSGSIZE : 
@@ -1048,8 +986,8 @@ uint32_t SocketAPI::recv_ex ( SOCKET s , void * buf , uint32_t len , uint32_t fl
 			break ;
 		default :
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		};//end of switch
 #endif
@@ -1059,10 +997,6 @@ uint32_t SocketAPI::recv_ex ( SOCKET s , void * buf , uint32_t len , uint32_t fl
 	}
 
 	return nrecv;
-	
-	
-
-	return 0 ;
 }
 
 
@@ -1071,8 +1005,6 @@ uint32_t SocketAPI::recv_ex ( SOCKET s , void * buf , uint32_t len , uint32_t fl
 /////////////////////////////////////////////////////////////////////
 uint32_t SocketAPI::recvfrom_ex ( SOCKET s , void * buf , int32_t len , uint32_t flags , struct sockaddr * from , uint32_t * fromlen )
 {
-	
-
 #if __LINUX__
 	int32_t nReceived = recvfrom(s,buf,len,flags,from,fromlen);
 
@@ -1108,10 +1040,6 @@ uint32_t SocketAPI::recvfrom_ex ( SOCKET s , void * buf , int32_t len , uint32_t
 	}
 
 	return nReceived;
-
-	
-
-	return 0 ;
 }
 
 
@@ -1131,8 +1059,6 @@ uint32_t SocketAPI::recvfrom_ex ( SOCKET s , void * buf , int32_t len , uint32_t
 /////////////////////////////////////////////////////////////////////
 bool SocketAPI::closesocket_ex ( SOCKET s )
 {
-	
-
 #if __LINUX__
 	close(s);
 #elif __WINDOWS__
@@ -1161,8 +1087,8 @@ bool SocketAPI::closesocket_ex ( SOCKET s )
 			break ;
 		default : 
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		};//end of switch
 
@@ -1171,10 +1097,6 @@ bool SocketAPI::closesocket_ex ( SOCKET s )
 #endif
 
 	return true ;
-	
-	
-
-	return false ;
 }
 
 
@@ -1187,8 +1109,6 @@ bool SocketAPI::closesocket_ex ( SOCKET s )
 /////////////////////////////////////////////////////////////////////
 bool SocketAPI::ioctlsocket_ex ( SOCKET s , LONG cmd , ULONG * argp )
 {
-	
-
 #if __LINUX__
 #elif __WINDOWS__
 	if ( ioctlsocket(s,cmd,argp) == SOCKET_ERROR ) 
@@ -1213,8 +1133,8 @@ bool SocketAPI::ioctlsocket_ex ( SOCKET s , LONG cmd , ULONG * argp )
 			break ;
 		default :
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		};
 
@@ -1223,12 +1143,8 @@ bool SocketAPI::ioctlsocket_ex ( SOCKET s , LONG cmd , ULONG * argp )
 #endif
 
 	return true ;
-	
-	
-
-	return false ;
 }
- 
+
 
 //////////////////////////////////////////////////////////////////////
 //
@@ -1246,19 +1162,13 @@ bool SocketAPI::ioctlsocket_ex ( SOCKET s , LONG cmd , ULONG * argp )
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::getsocketnonblocking_ex ( SOCKET s )
 {
-	
-
 #if __LINUX__
-		int32_t flags = FileAPI::fcntl_ex( s , F_GETFL , 0 );
+	int32_t flags = FileAPI::fcntl_ex( s , F_GETFL , 0 );
 
 	return flags | O_NONBLOCK;
 #elif __WINDOWS__
 	return false ;
 #endif
-	
-	
-
-	return false ;
 }
 
 
@@ -1278,14 +1188,12 @@ bool SocketAPI::getsocketnonblocking_ex ( SOCKET s )
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::setsocketnonblocking_ex ( SOCKET s , bool on )
 {
-	
-
 #if __LINUX__
-		int32_t flags = FileAPI::fcntl_ex( s , F_GETFL , 0 );
+	int32_t flags = FileAPI::fcntl_ex( s , F_GETFL , 0 );
 
 	if ( on )
 		// make nonblocking fd
-		flags |= O_NONBLOCK;
+			flags |= O_NONBLOCK;
 	else
 		// make blocking fd
 		flags &= ~O_NONBLOCK;
@@ -1299,10 +1207,6 @@ bool SocketAPI::setsocketnonblocking_ex ( SOCKET s , bool on )
 	return ioctlsocket_ex( s,FIONBIO,&argp);
 
 #endif
-	
-	
-
-	return false ;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -1321,19 +1225,13 @@ bool SocketAPI::setsocketnonblocking_ex ( SOCKET s , bool on )
 //////////////////////////////////////////////////////////////////////
 uint32_t SocketAPI::availablesocket_ex ( SOCKET s )
 {
-	
-
 #if __LINUX__
-		return FileAPI::availablefile_ex(s);
+	return FileAPI::availablefile_ex(s);
 #elif __WINDOWS__
 	ULONG argp = 0;
 	ioctlsocket_ex(s,FIONREAD,&argp);
 	return argp;
 #endif
-
-	
-	
-	return 0 ;
 }
 
 
@@ -1354,8 +1252,6 @@ uint32_t SocketAPI::availablesocket_ex ( SOCKET s )
 //////////////////////////////////////////////////////////////////////
 bool SocketAPI::shutdown_ex ( SOCKET s , uint32_t how )
 {
-	
-
 	if ( shutdown(s,how) < 0 ) 
 	{
 #if __LINUX__
@@ -1392,8 +1288,8 @@ bool SocketAPI::shutdown_ex ( SOCKET s , uint32_t how )
 			break ;
 		default :
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+				strncpy( Error, "UNKNOWN", _ESIZE ) ;
+				break ;
 			};
 		};
 #endif
@@ -1402,10 +1298,6 @@ bool SocketAPI::shutdown_ex ( SOCKET s , uint32_t how )
 	}
 
 	return true ;
-	
-	
-
-	return false ;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -1428,9 +1320,7 @@ bool SocketAPI::shutdown_ex ( SOCKET s , uint32_t how )
 //////////////////////////////////////////////////////////////////////
 int32_t SocketAPI::select_ex ( int32_t maxfdp1 , fd_set * readset , fd_set * writeset , fd_set * exceptset , struct timeval * timeout )
 {
-	
-
-	int32_t result;
+	int32_t result = SOCKET_ERROR;
 
 	_MY_TRY 
 	{
@@ -1440,36 +1330,36 @@ int32_t SocketAPI::select_ex ( int32_t maxfdp1 , fd_set * readset , fd_set * wri
 #if __LINUX__
 
 #elif __WINDOWS__
-		int32_t iErr = WSAGetLastError() ;
-		switch ( iErr ) 
-		{
-		case WSANOTINITIALISED : 
-			strncpy( Error, "WSANOTINITIALISED", _ESIZE ) ;
-			break ;
-		case WSAEFAULT:
-			strncpy( Error, "WSAEFAULT", _ESIZE ) ;
-			break ;
-		case WSAENETDOWN:
-			strncpy( Error, "WSAENETDOWN", _ESIZE ) ;
-			break ;
-		case WSAEINVAL:
-			strncpy( Error, "WSAEINVAL", _ESIZE ) ;
-			break ;
-		case WSAEINTR:
-			strncpy( Error, "WSAEINTR", _ESIZE ) ;
-			break ;
-		case WSAEINPROGRESS:
-			strncpy( Error, "WSAEINPROGRESS", _ESIZE ) ;
-			break ;
-		case WSAENOTSOCK:
-			strncpy( Error, "WSAENOTSOCK", _ESIZE ) ;
-			break ;
-		default :
+			int32_t iErr = WSAGetLastError() ;
+			switch ( iErr ) 
 			{
-			strncpy( Error, "UNKNOWN", _ESIZE ) ;
-			break ;
+			case WSANOTINITIALISED : 
+				strncpy( Error, "WSANOTINITIALISED", _ESIZE ) ;
+				break ;
+			case WSAEFAULT:
+				strncpy( Error, "WSAEFAULT", _ESIZE ) ;
+				break ;
+			case WSAENETDOWN:
+				strncpy( Error, "WSAENETDOWN", _ESIZE ) ;
+				break ;
+			case WSAEINVAL:
+				strncpy( Error, "WSAEINVAL", _ESIZE ) ;
+				break ;
+			case WSAEINTR:
+				strncpy( Error, "WSAEINTR", _ESIZE ) ;
+				break ;
+			case WSAEINPROGRESS:
+				strncpy( Error, "WSAEINPROGRESS", _ESIZE ) ;
+				break ;
+			case WSAENOTSOCK:
+				strncpy( Error, "WSAENOTSOCK", _ESIZE ) ;
+				break ;
+			default :
+				{
+					strncpy( Error, "UNKNOWN", _ESIZE ) ;
+					break ;
+				};
 			};
-		};
 #endif
 		}//end if
 	} 
@@ -1478,10 +1368,6 @@ int32_t SocketAPI::select_ex ( int32_t maxfdp1 , fd_set * readset , fd_set * wri
 	}
 
 	return result;
-
-	
-
-	return 0 ;
 }
 
 

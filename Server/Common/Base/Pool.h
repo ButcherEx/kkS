@@ -34,37 +34,33 @@ public:
 public:
 	ObjectPtr NewObj()
 	{
-		AutoLock_T Lock(m_Lock);
+		__ENTER_FUNCTION
 
-		_MY_TRY
+			AutoLock_T Lock(m_Lock);
+		if( m_FreeList.Empty() )
 		{
-			if( m_FreeList.Empty() )
-			{
-				Recyle();
-			}
-
-			if( m_FreeList.Empty() )
-			{
-				Allocate();
-			}
-
-			Assert(!m_FreeList.Empty());
-
-			int32_t freeIdx = -1;
-			m_FreeList.PopFront(freeIdx);
-
-			Assert((freeIdx >=0 && freeIdx < (int32_t)m_ObjectPtrs.size()));
-			Assert(m_ObjectPtrs[freeIdx].first.unique());
-			Assert(m_ObjectPtrs[freeIdx].second);
-
-			m_ObjectPtrs[freeIdx].second = 0;
-			ObjectPtr ptr = m_ObjectPtrs[freeIdx].first;
-			return ptr;
+			Recyle();
 		}
-		_MY_CATCH
+
+		if( m_FreeList.Empty() )
 		{
-
+			Allocate();
 		}
+
+		Assert(!m_FreeList.Empty());
+
+		int32_t freeIdx = -1;
+		m_FreeList.PopFront(freeIdx);
+
+		Assert((freeIdx >=0 && freeIdx < (int32_t)m_ObjectPtrs.size()));
+		Assert(m_ObjectPtrs[freeIdx].first.unique());
+		Assert(m_ObjectPtrs[freeIdx].second);
+
+		m_ObjectPtrs[freeIdx].second = 0;
+		ObjectPtr ptr = m_ObjectPtrs[freeIdx].first;
+		return ptr;
+		
+		__LEAVE_FUNCTION
 
 		ObjectPtr ptr(new ObjectType());
 		return ptr;
@@ -72,8 +68,8 @@ public:
 
 	void ActiveRecyle()
 	{
-		_MY_TRY
-		{
+		__ENTER_FUNCTION
+
 			AutoLock_T Lock(m_Lock);
 
 			const int32_t ObjectSize = (int32_t)m_ObjectPtrs.size();
@@ -91,10 +87,7 @@ public:
 					}
 				}
 			}
-		}
-		_MY_CATCH
-		{
-		}
+		__LEAVE_FUNCTION
 	}
 
 private:

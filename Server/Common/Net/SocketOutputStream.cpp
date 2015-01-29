@@ -8,8 +8,6 @@
 SocketOutputStream::SocketOutputStream( Socket& sock, uint32_t BufferLen, uint32_t MaxBufferLen ) 
 :m_rSocket(sock)
 {
-
-	
 	m_BufferLen = BufferLen ;
 	m_MaxBufferLen = MaxBufferLen ;
 	m_Head = 0 ;
@@ -17,23 +15,15 @@ SocketOutputStream::SocketOutputStream( Socket& sock, uint32_t BufferLen, uint32
 	
 	m_Buffer = new CHAR[ m_BufferLen ];
 	memset( m_Buffer, 0, m_BufferLen ) ;
-
-
 }
 
 SocketOutputStream::~SocketOutputStream( ) 
-{
-
-		
+{	
 	SAFE_DELETE_ARRAY(m_Buffer);
-		
-
 }
 
 uint32_t SocketOutputStream::Length( )const
 {
-
-
 	if( m_Head<m_Tail )
 		return m_Tail-m_Head;
 	
@@ -41,16 +31,10 @@ uint32_t SocketOutputStream::Length( )const
 		return m_BufferLen-m_Head+m_Tail ;
 	
 	return 0 ;
-
-
-
-	return 0 ;
 }
 
 uint32_t SocketOutputStream::Write( const CHAR* buf, uint32_t len ) 
 {
-
-
 		//					//
         //     T  H			//    H   T			LEN=10
         // 0123456789		// 0123456789
@@ -94,10 +78,6 @@ uint32_t SocketOutputStream::Write( const CHAR* buf, uint32_t len )
 	m_Tail = (m_Tail+len)%m_BufferLen ;
 		
 	return len;
-	
-
-
-	return 0 ;
 }
 
 
@@ -143,8 +123,6 @@ void SocketOutputStream::Initsize( )
 
 uint32_t SocketOutputStream::Flush( ) 
 {
-
-
 	uint32_t nFlushed = 0;
 	uint32_t nSent = 0;
 	uint32_t nLeft;
@@ -229,17 +207,10 @@ uint32_t SocketOutputStream::Flush( )
 	m_Head = m_Tail = 0 ;
 
 	return nFlushed;
-
-
-
-	return 0 ;
 }
 
 bool SocketOutputStream::Resize( int32_t size )
 {
-
-		
-
 	int32_t orgSize = size;
 
 	size = max( size, (int)(m_BufferLen>>1) ) ;
@@ -274,20 +245,12 @@ bool SocketOutputStream::Resize( int32_t size )
 	m_Tail = len;	
 
 	return true ;
-
-
-
-	return false ;
 }
 
 void SocketOutputStream::CleanUp( )
 {
-
-
 	m_Head = 0 ;
 	m_Tail = 0 ;
-
-
 }
 
 

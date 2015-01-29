@@ -7,8 +7,6 @@
 SocketInputStream::SocketInputStream( Socket& sock, uint32_t BufferLen, uint32_t MaxBufferLen ) 
 :m_rSocket(sock)
 {
-
-
 	m_Head = 0 ;
 	m_Tail = 0 ;
 	m_BufferLen = BufferLen ;
@@ -16,23 +14,15 @@ SocketInputStream::SocketInputStream( Socket& sock, uint32_t BufferLen, uint32_t
 		
 	m_Buffer = new CHAR[ m_BufferLen ];
 	memset( m_Buffer, 0, m_BufferLen ) ;
-
-
 }
 
 SocketInputStream::~SocketInputStream( ) 
-{
-
-		
+{	
 	SAFE_DELETE_ARRAY(m_Buffer);
-		
-
 }
 
 uint32_t SocketInputStream::Length( )const
 {
-
-
 	if( m_Head<m_Tail )
 		return m_Tail-m_Head;
 	
@@ -40,19 +30,11 @@ uint32_t SocketInputStream::Length( )const
 		return m_BufferLen-m_Head+m_Tail ;
 	
 	return 0 ;
-
-
-
-	return 0 ;
 }
 
 //返回0表示没有读到数据
 uint32_t SocketInputStream::Read( CHAR* buf, uint32_t len ) 
-{
-
-
-//	Assert( buf != NULL );	
-	
+{	
 	if ( len == 0 )
 		return 0 ;
 		
@@ -80,17 +62,10 @@ uint32_t SocketInputStream::Read( CHAR* buf, uint32_t len )
 	m_Head = (m_Head+len)%m_BufferLen ;
 	
 	return len ;
-
-
-
-	return 0 ;
 }
 
 bool SocketInputStream::Peek( CHAR* buf, uint32_t len ) 
 {
-
-			
-
 	if( len==0 )
 		return false ;
 	
@@ -117,10 +92,6 @@ bool SocketInputStream::Peek( CHAR* buf, uint32_t len )
 	}
 		
 	return true ;
-
-
-
-	return false ;
 }
 
 #if 0
@@ -177,9 +148,7 @@ bool SocketInputStream::Find( CHAR* buf )
 }
 #endif
 bool SocketInputStream::Skip( uint32_t len ) 
-{
-
-		
+{	
 	if( len == 0 )
 		return false ;
 
@@ -189,10 +158,6 @@ bool SocketInputStream::Skip( uint32_t len )
 	m_Head = (m_Head+len)%m_BufferLen ;
 
 	return true ;
-
-
-
-	return false ;
 }
 
 void SocketInputStream::Initsize( )
@@ -210,8 +175,6 @@ void SocketInputStream::Initsize( )
 	
 uint32_t SocketInputStream::Fill( ) 
 {
-
-
 	uint32_t nFilled = 0 ;
 	uint32_t nReceived = 0 ;
 	uint32_t nFree = 0 ;
@@ -367,16 +330,10 @@ uint32_t SocketInputStream::Fill( )
 	}
 
 	return nFilled ;
-
-
-
-	return 0 ;
 }
 
 bool SocketInputStream::Resize( int32_t size )
-{
-
-			
+{		
 	size = max(size, (int)(m_BufferLen>>1));
 	uint32_t newBufferLen = m_BufferLen + size;
 	uint32_t len = Length();
@@ -407,20 +364,12 @@ bool SocketInputStream::Resize( int32_t size )
 	m_Tail = len ;
 
 	return true ;
-
-
-
-	return false ;
 }
 
 void SocketInputStream::CleanUp( )
 {
-
-
 	m_Head = 0 ;
 	m_Tail = 0 ;
-
-
 }
 
 

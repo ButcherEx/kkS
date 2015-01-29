@@ -43,21 +43,11 @@ Ini::Ini( const CHAR *filename )
 //析构释放
 Ini::~Ini()
 {
-	__ENTER_FUNCTION
+	__ENTER_FUNCTION_EX
 
-	if( m_lDataLen != 0 )
-	{
-		SAFE_FREE( m_strData );
-		m_lDataLen = 0;
-	}
+	Close();
 
-	if( IndexNum != 0 )
-	{
-		SAFE_DELETE( IndexList );
-		IndexNum = 0;
-	}
-
-	__LEAVE_FUNCTION
+	__LEAVE_FUNCTION_EX
 }
 
 //读入文件
@@ -88,7 +78,6 @@ bool Ini::Open( const CHAR *filename )
 	if( m_lDataLen > 0 )
 	{
 		m_strData = (CHAR*)malloc( (size_t)m_lDataLen ) ;
-		//m_strData = new CHAR[m_lDataLen];
 		memset( m_strData, 0, m_lDataLen ) ;
 
 		FILE *fp;
@@ -115,7 +104,7 @@ bool Ini::Open( const CHAR *filename )
 
 	__LEAVE_FUNCTION
 
-	return 0 ;
+	return false ;
 }
 
 //关闭文件
@@ -229,7 +218,9 @@ void Ini::InitIndex()
 	//申请内存
 	SAFE_DELETE( IndexList );
 	if( IndexNum>0 )
+	{
 		IndexList=new int32_t[IndexNum];
+	}
 
 	int32_t n=0;
 
@@ -255,10 +246,8 @@ int32_t Ini::FindIndex(CHAR *string)
 		CHAR *str=ReadText( IndexList[i] );
 		if( strcmp(string, str) == 0 )
 		{
-//			SAFE_FREE( str );
 			return IndexList[i];
 		}
-//		SAFE_FREE( str );
 	}
 	return -1;
 
@@ -368,7 +357,7 @@ CHAR *Ini::ReadText(int32_t p)
 	int32_t n=p, m=0;
 
 	int32_t LineNum = GotoNextLine(p) - p + 1;
-	Ret=(CHAR*)m_szValue;//new CHAR[LineNum];
+	Ret=(CHAR*)m_szValue;
 	memset(Ret, 0, LineNum);
 
 	for(int32_t i=0; i<m_lDataLen-p; i++)
@@ -378,7 +367,6 @@ CHAR *Ini::ReadText(int32_t p)
 		//结束
 		if( chr == ';' || chr == '\r' || chr == '\t' || chr == ']' )
 		{
-			//ShowMessage(Ret);
 			return Ret;
 		}
 		
