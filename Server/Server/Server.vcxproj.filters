@@ -647,5 +647,8 @@
     <ClInclude Include="..\..\3rd\lua\src\lzio.h">
       <Filter>Common\lua</Filter>
     </ClInclude>
+    <ClInclude Include="Global\Task.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

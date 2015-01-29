@@ -316,6 +316,7 @@
     <ClInclude Include="Global\LinuxStackTrace.h" />
     <ClInclude Include="Global\LogDefine.h" />
     <ClInclude Include="Global\Script.h" />
+    <ClInclude Include="Global\Task.h" />
     <ClInclude Include="Main\Login.h" />
     <ClInclude Include="Main\LoginMain.h" />
     <ClInclude Include="Map\Role\Role.h" />
