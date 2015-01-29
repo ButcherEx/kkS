@@ -9,13 +9,15 @@
 //Config
 struct LOG_CONFIG
 {
-	bool			m_LogAssert2Stderr;
+	int32_t			m_ThreadNum;
 	bstd::string	m_LogDir;
 	bstd::string	m_FilePrefix;
 	bstd::string	m_HostName;
 	bstd::string	m_InvocationName;
+	bool			m_LogAssert2Stderr;
 	LOG_CONFIG()
 	{
+		m_ThreadNum = 8;
 		m_LogDir = "RunTimeLog";
 		m_FilePrefix = "";
 		m_LogAssert2Stderr = true;

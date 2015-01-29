@@ -107,9 +107,8 @@ public:
 	TaskManager();
 	~TaskManager();
 public:
-	bool					Create(int32_t maxTask, int32_t maxThread);
+	bool					Init(int32_t maxTask, int32_t maxThread);
 	bool					Register(TaskPtr taskPtr);
-	void					Init();
 	void					Excute();
 	void					Exit();
 private:

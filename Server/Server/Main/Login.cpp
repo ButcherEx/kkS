@@ -50,7 +50,7 @@ bool	Login::Loop()
 
 	bool bRet = false ;
 
-	LOGD(Debug, "Loop..." ) ;
+	LOGD(ServerDebug, "Loop..." ) ;
 
 	// ÿª§œﬂ≥Ã
 	while(true)
@@ -70,10 +70,10 @@ bool	Login::Exit()
 	__ENTER_FUNCTION
 
 	
-	LOGD(Debug,"Begin delete..." ) ;
+	LOGD(ServerDebug,"Begin delete..." ) ;
 
 
-	LOGD(Debug,"End delete..." ) ;
+	LOGD(ServerDebug,"End delete..." ) ;
 	
 	m_bExited = true;
 

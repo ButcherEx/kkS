@@ -59,7 +59,7 @@ public:
 	}
 };
 //////////////////////////////////////////////////////////////////////////
-template<typename Type, typename LockType = Mutex> 
+template<typename Type, typename LockType = MyLock> 
 class TSList
 {
 public:
@@ -382,7 +382,7 @@ private:
 	typename _implist::iterator	m_Iterator;
 };
 //////////////////////////////////////////////////////////////////////////
-template<typename KeyType, typename ValueType, typename LockType = Mutex> 
+template<typename KeyType, typename ValueType, typename LockType = MyLock> 
 class TSMap
 {
 public:

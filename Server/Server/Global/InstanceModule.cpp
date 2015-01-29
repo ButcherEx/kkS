@@ -2,6 +2,7 @@
 #include "PBMessage.pb.h"
 #include "InstanceModule.h"
 #include "LogDefine.h"
+#include "Task.h"
 
 InstanceManager g_InstancenManager;
 
@@ -16,17 +17,20 @@ bool InstanceManager::Init()
 		bool bRet = g_Config.Init(__argv[0]);
 		Assert(bRet);
 
+		bRet = g_TaskManager.Init(10, g_Config.m_LogConfig.m_ThreadNum);
+		Assert(bRet);
+
 		srand(g_TimeManager.CurrentTick());
 
-		LOGD(Debug, "main..." ) ;
-		LOGD(Debug, "Login Starting... (%lld)(%d)",
+		LOGD(ServerDebug, "main..." ) ;
+		LOGD(ServerDebug, "Login Starting... (%lld)(%d)",
 			g_TimeManager.CurrentTimeToInt64(), g_TimeManager.CurrentTick() ) ;
 
 		//bsys::error_code ec;
 		// basePath_ = bfs::current_path(ec); //取得当前目录  
 		CHAR currentDir[_MAX_PATH] = {0};
 		tgetcwd(currentDir, _MAX_PATH);
-		LOGD(Debug, "Current Directory %s", currentDir);
+		LOGD(ServerDebug, "Current Directory %s", currentDir);
 
 		doScriptTest("lua1.lua");
 		doScriptTest("lua.lua");

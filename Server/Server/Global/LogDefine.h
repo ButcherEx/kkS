@@ -10,8 +10,7 @@
 #include "Log.h"
 #include "Config.h"
 
-LOG_DECL(Assert);
-LOG_DECL(Debug);
-LOG_DECL(Error);
+LOG_DECL(ServerDebug);
+LOG_DECL(ServerError);
 
 #endif //__LOG_DEFINE_H__

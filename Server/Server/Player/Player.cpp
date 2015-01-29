@@ -65,7 +65,7 @@ __ENTER_FUNCTION
 		uint32_t ret = m_SocketInputStream.Fill( ) ;
 		if( (int32_t)ret <= SOCKET_ERROR )
 		{
-			LOGE(Error, "[%lld] m_pSocketInputStream->Fill ret:%lli %s", 
+			LOGE(ServerError, "[%lld] m_pSocketInputStream->Fill ret:%lli %s", 
 				g_TimeManager.CurrentTimeToInt64(), (int32_t)ret, MySocketError() ) ;
 			return false ;
 		}
@@ -266,7 +266,7 @@ __ENTER_FUNCTION
 		uint32_t ret = m_SocketOutputStream.Flush( ) ;
 		if( (int32_t)ret <= SOCKET_ERROR )
 		{
-			LOGE(Error,"[%lld] m_pSocketOutputStream->Flush ret:%lli %s", 
+			LOGE(ServerError,"[%lld] m_pSocketOutputStream->Flush ret:%lli %s", 
 				g_TimeManager.CurrentTimeToInt64(), (int32_t)ret, MySocketError() ) ;
 			return false ;
 		}

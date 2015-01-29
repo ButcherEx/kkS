@@ -3,6 +3,7 @@
 /************************************************************************/
 
 #include "BaseLib.h"
+#include "Config.h"
 #include "Task.h"
 
 //////////////////////////////////////////////////////////////////////////
@@ -46,12 +47,12 @@ Task::~Task()
 
 bool Task::Init()
 {
-
+	return true;
 }
 
 uint32_t Task::Tick(const TimeInfo& rTimeInfo)
 {
-
+	return 0;
 }
 
 
@@ -83,7 +84,7 @@ TaskManager::~TaskManager()
 }
 
 
-bool TaskManager::Create(int32_t maxTask, int32_t maxThread)
+bool TaskManager::Init(int32_t maxTask, int32_t maxThread)
 {
 	__ENTER_FUNCTION
 
@@ -104,20 +105,15 @@ bool TaskManager::Register(TaskPtr taskPtr)
 {
 	__ENTER_FUNCTION
 	Assert(taskPtr);
-	Assert((taskPtr->GetTaskID >= 0));
-	Assert((taskPtr->GetTaskID() < m_TaskPtrVec.size()));
+	Assert((taskPtr->GetTaskID() >= 0));
+	Assert((taskPtr->GetTaskID() < (int32_t)m_TaskPtrVec.size()));
+	Assert(!m_TaskPtrVec[taskPtr->GetTaskID()]);
 
 	m_TaskPtrVec[taskPtr->GetTaskID()] = taskPtr;
 
 	return true;
 	__LEAVE_FUNCTION
 		return false;
-}
-
-void TaskManager::Init( )
-{
-	__ENTER_FUNCTION
-	__LEAVE_FUNCTION
 }
 
 void TaskManager::Excute( )

@@ -4,8 +4,5 @@
 #include "BaseLib.h"
 #include "LogDefine.h"
 
-
-
-LOG_IMPL(Assert);
-LOG_IMPL(Debug);
-LOG_IMPL(Error);
+LOG_IMPL(ServerDebug);
+LOG_IMPL(ServerError);
