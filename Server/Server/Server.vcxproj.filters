@@ -569,9 +569,6 @@
     <ClInclude Include="Global\LogDefine.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="Global\LinuxStackTrace.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="Global\Script.h">
       <Filter>Global</Filter>
     </ClInclude>

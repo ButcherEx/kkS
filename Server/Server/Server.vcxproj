@@ -314,7 +314,6 @@
     <ClInclude Include="Global\Config.h" />
     <ClInclude Include="Global\ExceptionHandler.h" />
     <ClInclude Include="Global\InstanceModule.h" />
-    <ClInclude Include="Global\LinuxStackTrace.h" />
     <ClInclude Include="Global\LogDefine.h" />
     <ClInclude Include="Global\Script.h" />
     <ClInclude Include="Global\Task.h" />
