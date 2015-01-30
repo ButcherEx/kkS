@@ -87,15 +87,15 @@ public:
 	TaskDelegatePtr		FetchTask( );
 	void				AddTask(TaskDelegatePtr taskPtr);
 protected:
-	virtual	void		Start();
-	virtual	void		Load();
-	virtual void		Shutdown();
-	virtual void		Save();
+	virtual	void		Start(){};
+	virtual	void		Load(){};
+	virtual void		Shutdown(){};
+	virtual void		Save(){};
 public:
-	virtual void		OnStartOk();
-	virtual void		OnLoadOk();
-	virtual	void		OnShutdownOk();
-	virtual	void		OnSaveOk();
+	virtual void		OnStartOk(){};
+	virtual void		OnLoadOk(){};
+	virtual	void		OnShutdownOk(){};
+	virtual	void		OnSaveOk(){};
 public:
 	void				SetState(uint32_t state){ m_State = state; }
 	uint32_t			GetState( ) const		{ return m_State; }
