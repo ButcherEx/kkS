@@ -125,6 +125,14 @@ void TaskManager::Excute( )
 void TaskManager::Exit()
 {
 	__ENTER_FUNCTION
+		boost::xtime now_xt;
+		xtime_get(&now_xt, boost::TIME_UTC_);
+		now_xt.sec += 300;
+
+		m_ThreadPoolPtr->wait(now_xt);
+
+		m_TaskDelegatePtrList.Clear();
+		m_TaskPtrVec.clear();
 	__LEAVE_FUNCTION
 }
 

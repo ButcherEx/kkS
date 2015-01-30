@@ -62,8 +62,8 @@ public:
 	{
 		TASK_STOP = 0,
 
-		TASK_INIT,
-		TASK_INIT_OK,
+		TASK_START,
+		TASK_START_OK,
 
 		TASK_LOAD,
 		TASK_LOAD_OK,
@@ -86,7 +86,16 @@ public:
 	virtual uint32_t	Tick(const TimeInfo& rTimeInfo);
 	TaskDelegatePtr		FetchTask( );
 	void				AddTask(TaskDelegatePtr taskPtr);
-
+protected:
+	virtual	void		Start();
+	virtual	void		Load();
+	virtual void		Shutdown();
+	virtual void		Save();
+public:
+	virtual void		OnStartOk();
+	virtual void		OnLoadOk();
+	virtual	void		OnShutdownOk();
+	virtual	void		OnSaveOk();
 public:
 	void				SetState(uint32_t state){ m_State = state; }
 	uint32_t			GetState( ) const		{ return m_State; }
@@ -111,6 +120,14 @@ public:
 	bool					Register(TaskPtr taskPtr);
 	void					Excute();
 	void					Exit();
+private:
+	void					SetAllTaskState(int32_t state);
+	void					ExcuteAllTaskStart();
+	void					ExcuteAllTaskInit();
+	void					ExcuteAllTaskLoad();
+	void					ExcuteAllTask();
+	void					ExcuteAllTaskShutdown();
+	void					ExcuteAllTaskSave();
 private:
 	TimeInfo				m_TimeInfo;
 	ThreadPoolPtr			m_ThreadPoolPtr;

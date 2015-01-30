@@ -60,6 +60,10 @@
 #include <boost/filesystem/fstream.hpp>
 #pragma warning(default:4250)
 
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+#include <boost/property_tree/ini_parser.hpp>
+
 #include <boost/thread.hpp>
 #include <boost/threadpool.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>
@@ -69,7 +73,6 @@
 
 namespace bstd  = boost::container;
 namespace bsys  = boost::system;
-// namespace basio = boost::asio;
 namespace bfs	= boost::filesystem;
 namespace bsys	= boost::system;
 
