@@ -20,7 +20,14 @@ public:
 public:
 	virtual void UpdateTimeInfo();
 public:
-	void	Excute();
+	void			UpdateDoWaitTime(int32_t elapse);
+	bool			CanExcuteNow( ) const { return m_TaskExcuteDoTimeLeft <= 0; }
+	void			UpdateSchuduleTime(int32_t elapse) { m_TaskSchuduleTime += elapse; }
+	int32_t			GetSchuduleTime( ) const { return m_TaskSchuduleTime; }
+	void			UpdateExcuteTime(int32_t elapse) { m_TaskExcuteTime += elapse; }
+	int32_t			GetExcuteTime( ) const { return m_TaskExcuteTime; }
+public:
+	void			Excute();
 	virtual uint32_t Do() = 0;
 public:
 	uint32_t		GetInterval() const		{ return m_TaskInterval; }
@@ -30,6 +37,9 @@ public:
 protected:
 	TimeInfo m_TimeInfo;
 	uint32_t m_TaskInterval;
+	int32_t	 m_TaskExcuteDoTimeLeft;
+	int32_t	 m_TaskSchuduleTime;
+	int32_t	 m_TaskExcuteTime;
 	uint32_t m_State;
 };
 
@@ -84,18 +94,18 @@ public:
 	virtual int32_t		GetTaskID() = 0;
 public:
 	virtual uint32_t	Tick(const TimeInfo& rTimeInfo);
-	TaskDelegatePtr		FetchTask( );
+	TaskDelegatePtr		FetchTaskDelegate( );
 	void				AddTask(TaskDelegatePtr taskPtr);
 protected:
-	virtual	void		Start(){};
-	virtual	void		Load(){};
-	virtual void		Shutdown(){};
-	virtual void		Save(){};
+	virtual	void		Start();
+	virtual	void		Load();
+	virtual void		Shutdown();
+	virtual void		Save();
 public:
-	virtual void		OnStartOk(){};
-	virtual void		OnLoadOk(){};
-	virtual	void		OnShutdownOk(){};
-	virtual	void		OnSaveOk(){};
+	virtual void		OnStartOk();
+	virtual void		OnLoadOk();
+	virtual	void		OnShutdownOk();
+	virtual	void		OnSaveOk();
 public:
 	void				SetState(uint32_t state){ m_State = state; }
 	uint32_t			GetState( ) const		{ return m_State; }
@@ -122,12 +132,21 @@ public:
 	void					Exit();
 private:
 	void					SetAllTaskState(int32_t state);
+	void					ExcuteState(int32_t setState, int32_t checkState);
 	void					ExcuteAllTaskStart();
-	void					ExcuteAllTaskInit();
 	void					ExcuteAllTaskLoad();
 	void					ExcuteAllTask();
 	void					ExcuteAllTaskShutdown();
 	void					ExcuteAllTaskSave();
+private:
+	void					Tick(int32_t elapse);
+	void					Tick_Task(int32_t elapse);
+	void					Tick_TaskDelegate(int32_t elapse);
+private:
+	void					Wait(int32_t sec);
+private:
+	bool					IsAllTaskInState(int32_t state);
+	bool					IsShutdown();
 private:
 	TimeInfo				m_TimeInfo;
 	ThreadPoolPtr			m_ThreadPoolPtr;
