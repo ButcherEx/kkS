@@ -77,7 +77,7 @@ public:
 			now.year+1900, now.mon, now.day, now.hour, now.min, now.sec);
 
 		char szBlock[_BlockSize] = {0};
-		int32_t len = tsnprintf(szBlock, _BlockSize, "%s(%s)\r\n", log, curTime);
+		int32_t len = tsnprintf(szBlock, _BlockSize, "%s(%s)\n", log, curTime);
 		if( len > 0 )
 		{
 			if(m_BufferedSize >= 0 && m_BufferedSize < _BufSize)
