@@ -27,9 +27,9 @@ void TimeInfo::Update()
 	__ENTER_FUNCTION
 
 	uint32_t nowMs = TimeUtil::TickCount();
-	m_nAnsiTime = time(NULL);
-
 	TIME64 now = TimeUtil::Now();
+
+	m_nAnsiTime = time(NULL);
 
 	m_uTimeElapse = nowMs - m_uLastTime;
 	m_uLastSysRunTime += m_uTimeElapse;

@@ -6,6 +6,7 @@
 #include "Role/Role.h"
 #include "InstanceModule.h"
 #include "LogDefine.h"
+#include "Task.h"
 
 int32_t main(int32_t argc, CHAR* argv[])
 {	
@@ -16,14 +17,12 @@ int32_t main(int32_t argc, CHAR* argv[])
 		bool bRet =	g_InstancenManager.Init();
 		Assert(bRet);
 
-		bRet = g_Login.Init();
+		bRet = g_TaskManager.Init(10, g_Config.m_LogConfig.m_ThreadNum);
 		Assert(bRet);
 
-		bRet = g_Login.Loop();	
-		Assert(bRet);
+		g_TaskManager.Excute();	
 
-		bRet = g_Login.Exit();
-		Assert(bRet);
+		g_TaskManager.Exit();
 	}
 	_MY_CATCH
 	{

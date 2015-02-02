@@ -5,6 +5,8 @@
 #ifndef __TASK_H__
 #define __TASK_H__
 //////////////////////////////////////////////////////////////////////////
+LOG_DECL(ServerTask);
+//////////////////////////////////////////////////////////////////////////
 class TaskDelegate
 {
 public:
@@ -83,8 +85,8 @@ public:
 		TASK_SHUTDOWN,
 		TASK_SHUTDOWN_OK,
 
-		TASK_SAVE,
-		TASK_SAVE_OK,
+		TASK_FINALSAVE,
+		TASK_FINALSAVE_OK,
 	};
 public:
 	Task();
@@ -100,12 +102,12 @@ protected:
 	virtual	void		Start();
 	virtual	void		Load();
 	virtual void		Shutdown();
-	virtual void		Save();
+	virtual void		FinalSave();
 public:
 	virtual void		OnStartOk();
 	virtual void		OnLoadOk();
 	virtual	void		OnShutdownOk();
-	virtual	void		OnSaveOk();
+	virtual	void		OnFinalSaveOk();
 public:
 	void				SetState(uint32_t state){ m_State = state; }
 	uint32_t			GetState( ) const		{ return m_State; }
@@ -137,7 +139,7 @@ private:
 	void					ExcuteAllTaskLoad();
 	void					ExcuteAllTask();
 	void					ExcuteAllTaskShutdown();
-	void					ExcuteAllTaskSave();
+	void					ExcuteAllTaskFinalSave();
 private:
 	void					Tick(int32_t elapse);
 	void					Tick_Task(int32_t elapse);
@@ -146,7 +148,7 @@ private:
 	void					Wait(int32_t sec);
 private:
 	bool					IsAllTaskInState(int32_t state);
-	bool					IsShutdown();
+	bool					IsShouldShutdown();
 private:
 	TimeInfo				m_TimeInfo;
 	ThreadPoolPtr			m_ThreadPoolPtr;

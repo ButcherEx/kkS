@@ -5,7 +5,8 @@
 #include "BaseLib.h"
 #include "Config.h"
 #include "Task.h"
-
+//////////////////////////////////////////////////////////////////////////
+LOG_IMPL(ServerTask)
 //////////////////////////////////////////////////////////////////////////
 
 TaskDelegate::TaskDelegate(uint32_t interval )
@@ -22,16 +23,21 @@ TaskDelegate::~TaskDelegate()
 
 void TaskDelegate::UpdateTimeInfo( )
 {
+	__ENTER_FUNCTION
 	m_TimeInfo.Update();
+	__LEAVE_FUNCTION
 }
 
 void TaskDelegate::UpdateDoWaitTime(int32_t elapse)
 {
+	__ENTER_FUNCTION
 	m_TaskExcuteDoTimeLeft -= elapse;
+	__LEAVE_FUNCTION
 }
 
 void TaskDelegate::Excute( )
 {
+	__ENTER_FUNCTION
 	SetState(STATE_EXECUTE);
 
 	m_TaskExcuteTime = 0;
@@ -40,6 +46,7 @@ void TaskDelegate::Excute( )
 	__LEAVE_FUNCTION_EX
 	m_TaskExcuteDoTimeLeft = m_TaskInterval;
 	SetState(STATE_READY);
+	__LEAVE_FUNCTION
 }
 //////////////////////////////////////////////////////////////////////////
 Task::Task( )
@@ -64,58 +71,76 @@ uint32_t Task::Tick(const TimeInfo& rTimeInfo)
 
 void Task::Start()
 {
+	__ENTER_FUNCTION
 	OnStartOk();
+	__LEAVE_FUNCTION
 }
 
 void Task::OnStartOk()
 {
+	__ENTER_FUNCTION
 	SetState(TASK_START_OK);
+	__LEAVE_FUNCTION
 }
 
 void Task::Load()
 {
+	__ENTER_FUNCTION
 	OnLoadOk();
+	__LEAVE_FUNCTION
 }
 
 void Task::OnLoadOk()
 {
+	__ENTER_FUNCTION
 	SetState(TASK_LOAD_OK);
+	__LEAVE_FUNCTION
 }
 
 void Task::Shutdown()
 {
+	__ENTER_FUNCTION
 	OnShutdownOk();
+	__LEAVE_FUNCTION
 }
 
 void Task::OnShutdownOk()
 {
+	__ENTER_FUNCTION
 	SetState(TASK_SHUTDOWN_OK);
+	__LEAVE_FUNCTION
 }
 
-void Task::Save()
+void Task::FinalSave()
 {
-	OnSaveOk();
+	__ENTER_FUNCTION
+	OnFinalSaveOk();
+	__LEAVE_FUNCTION
 }
 
-void Task::OnSaveOk()
+void Task::OnFinalSaveOk()
 {
-	SetState(TASK_SAVE_OK);
+	__ENTER_FUNCTION
+	SetState(TASK_FINALSAVE_OK);
+	__LEAVE_FUNCTION
 }
 
 TaskDelegatePtr Task::FetchTaskDelegate()
 {
 	TaskDelegatePtr taskPtr;
+	__ENTER_FUNCTION
 	m_TaskPtrList.PopFront(taskPtr);
+	__LEAVE_FUNCTION
 	return taskPtr;
 }
 void Task::AddTask(TaskDelegatePtr taskPtr)
 {
+	__ENTER_FUNCTION
 	m_TaskPtrList.PushBack(taskPtr);
+	__LEAVE_FUNCTION
 }
 
 //////////////////////////////////////////////////////////////////////////
-LOG_DEF(TaskManager);
-
 TaskManager g_TaskManager;
 
 TaskManager::TaskManager()
@@ -132,12 +157,14 @@ bool TaskManager::Init(int32_t maxTask, int32_t maxThread)
 {
 	__ENTER_FUNCTION
 
+		LOGD(ServerTask, "Init TaskManager(maxTask:%d, maxThread:%d)...", 
+			maxTask, maxThread);
+
 		Assert((maxTask && maxThread));
 
 		m_ThreadPoolPtr = ThreadPoolPtr(new ThreadPool(maxThread));
 		Assert(m_ThreadPoolPtr);
-
-		m_TaskPtrVec.resize(maxTask);
+		LOGD(ServerTask, "New ThreadPool(%d) ok", maxThread);
 
 		return true;
 	__LEAVE_FUNCTION
@@ -153,6 +180,7 @@ bool TaskManager::Register(TaskPtr taskPtr)
 	Assert((taskPtr->GetTaskID() < (int32_t)m_TaskPtrVec.size()));
 	Assert(!m_TaskPtrVec[taskPtr->GetTaskID()]);
 
+	LOGD(ServerTask, "Register task:%d ok", taskPtr->GetTaskID());
 	m_TaskPtrVec[taskPtr->GetTaskID()] = taskPtr;
 
 	return true;
@@ -163,33 +191,55 @@ bool TaskManager::Register(TaskPtr taskPtr)
 void TaskManager::Excute( )
 {
 	__ENTER_FUNCTION
+
+		LOGD(ServerTask, "ExcuteAllTaskStart ...");
 		ExcuteAllTaskStart();
+		LOGD(ServerTask, "ExcuteAllTaskStart Ok");
+
+		LOGD(ServerTask, "ExcuteAllTaskLoad ...");
 		ExcuteAllTaskLoad();
+		LOGD(ServerTask, "ExcuteAllTaskLoad Ok");
+
+		LOGD(ServerTask, "ExcuteAllTask ...");
 		ExcuteAllTask();
+		LOGD(ServerTask, "ExcuteAllTask Ok");
+
+		LOGD(ServerTask, "ExcuteAllTaskShutdown ...");
 		ExcuteAllTaskShutdown();
-		ExcuteAllTaskSave();
+		LOGD(ServerTask, "ExcuteAllTaskShutdown Ok");
+
+		LOGD(ServerTask, "ExcuteAllTaskFinalSave ...");
+		ExcuteAllTaskFinalSave();
+		LOGD(ServerTask, "ExcuteAllTaskFinalSave Ok");
+
 	__LEAVE_FUNCTION
 }
 
 void TaskManager::Exit()
 {
 	__ENTER_FUNCTION
+		LOGD(ServerTask, "TaskManager::Exit ...");
 		Wait(600);
 		m_TaskDelegatePtrList.Clear();
 		m_TaskPtrVec.clear();
+		LOGD(ServerTask, "TaskManager::Exit Ok");
 	__LEAVE_FUNCTION
 }
 
 void TaskManager::SetAllTaskState(int32_t state)
 {
+	__ENTER_FUNCTION
 	for(int32_t i = 0; i < (int32_t)m_TaskPtrVec.size(); i++)
 	{
 		m_TaskPtrVec[i]->SetState(state);
 	}
+	__LEAVE_FUNCTION
 }
 
 void TaskManager::ExcuteState(int32_t setState, int32_t checkState)
 {
+	__ENTER_FUNCTION
+
 	SetAllTaskState(setState);
 
 	while (true)
@@ -206,49 +256,74 @@ void TaskManager::ExcuteState(int32_t setState, int32_t checkState)
 
 		MySleep(100);
 	}
+	__LEAVE_FUNCTION
 }
 void TaskManager::ExcuteAllTaskStart()
 {
+	__ENTER_FUNCTION
 	this->ExcuteState(Task::TASK_START, Task::TASK_START_OK);
+	__LEAVE_FUNCTION
 }
 void TaskManager::ExcuteAllTaskLoad()
 {
+	__ENTER_FUNCTION
 	this->ExcuteState(Task::TASK_LOAD, Task::TASK_LOAD_OK);
+	__LEAVE_FUNCTION
 }
 void TaskManager::ExcuteAllTaskShutdown()
 {
+	__ENTER_FUNCTION
 	this->ExcuteState(Task::TASK_SHUTDOWN, Task::TASK_SHUTDOWN_OK);
+	__LEAVE_FUNCTION
 }
-void TaskManager::ExcuteAllTaskSave()
+void TaskManager::ExcuteAllTaskFinalSave()
 {
-	this->ExcuteState(Task::TASK_SAVE, Task::TASK_SAVE_OK);
+	__ENTER_FUNCTION
+	this->ExcuteState(Task::TASK_FINALSAVE, Task::TASK_FINALSAVE_OK);
+	__LEAVE_FUNCTION
 }
 void TaskManager::Wait(int32_t sec)
 {
+	__ENTER_FUNCTION
+	LOGD(ServerTask, "TaskManager::Wait(%d) ...", sec);
+
 	boost::xtime now_xt;
 	xtime_get(&now_xt, boost::TIME_UTC_);
 	now_xt.sec += sec;
 
 	m_ThreadPoolPtr->wait(now_xt);
+	LOGD(ServerTask, "TaskManager::Wait(%d) Ok", sec);
+	__LEAVE_FUNCTION
 }
 void TaskManager::ExcuteAllTask()
 {
+	__ENTER_FUNCTION
 	SetAllTaskState(Task::TASK_EXECUTE);
 
+	int64_t checkShutdown = 0;
 	while (true)
 	{
 		m_TimeInfo.Update();
-		int32_t ElapseMilli = m_TimeInfo.Elapse();
+		int32_t elapseMs = m_TimeInfo.Elapse();
 
-		Tick(ElapseMilli);
+		Tick(elapseMs);
 
-		if(IsShutdown())
+		checkShutdown += elapseMs;
+		if( checkShutdown >= 1*1000)
 		{
-			break;
+			checkShutdown = 0;
+			if(IsShouldShutdown())
+			{
+				break;
+			}
 		}
+
+
+		MySleep(10);
 	}
 
 	Wait(300);
+	__LEAVE_FUNCTION
 }
 void TaskManager::Tick(int32_t elapse)
 {
@@ -275,7 +350,6 @@ void TaskManager::Tick_Task(int32_t elapse)
 	}
 	__LEAVE_FUNCTION
 }
-
 void TaskManager::Tick_TaskDelegate(int32_t elapse)
 {
 	__ENTER_FUNCTION
@@ -311,6 +385,38 @@ void TaskManager::Tick_TaskDelegate(int32_t elapse)
 	}
 
 	__LEAVE_FUNCTION
+}
+
+bool TaskManager::IsAllTaskInState(int32_t state)
+{
+	__ENTER_FUNCTION
+	for(int32_t i = 0; i < (int32_t)m_TaskPtrVec.size(); i++)
+	{
+		Assert(m_TaskPtrVec[i]);
+		if (m_TaskPtrVec[i]->GetState() != state) return false;
+	}
+	return true;
+	__LEAVE_FUNCTION
+	return false;
+}
+bool TaskManager::IsShouldShutdown()
+{
+	__ENTER_FUNCTION
+
+		TIME64 now = TimeUtil::Now();
+		CHAR shutdownFileName[32] = {0};
+
+		int64_t nowInt64 = TimeUtil::ToInt64(now);
+		tsnprintf(shutdownFileName, 32, "./shutdown.%lld", nowInt64/1000000);
+		bfs::path shutdownfile = shutdownFileName;
+		bsys::error_code ec;
+
+		bool isRemoved = bfs::remove(shutdownfile, ec);
+		AssertEx(0, ec.message().c_str());
+		return isRemoved;
+	
+	__LEAVE_FUNCTION
+		return false;
 }
 
 

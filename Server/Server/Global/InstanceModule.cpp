@@ -17,17 +17,12 @@ bool InstanceManager::Init()
 		bool bRet = g_Config.Init(__argv[0]);
 		Assert(bRet);
 
-		bRet = g_TaskManager.Init(10, g_Config.m_LogConfig.m_ThreadNum);
-		Assert(bRet);
-
 		srand(g_TimeManager.CurrentTick());
 
 		LOGD(ServerDebug, "main..." ) ;
 		LOGD(ServerDebug, "Login Starting... (%lld)(%d)",
 			g_TimeManager.CurrentTimeToInt64(), g_TimeManager.CurrentTick() ) ;
 
-		//bsys::error_code ec;
-		// basePath_ = bfs::current_path(ec); //取得当前目录  
 		CHAR currentDir[_MAX_PATH] = {0};
 		tgetcwd(currentDir, _MAX_PATH);
 		LOGD(ServerDebug, "Current Directory %s", currentDir);
@@ -44,6 +39,7 @@ bool InstanceManager::Exit()
 {
 	__ENTER_FUNCTION
 		::google::protobuf::ShutdownProtobufLibrary();
+		return true;
 	__LEAVE_FUNCTION
 		return false;
 }
