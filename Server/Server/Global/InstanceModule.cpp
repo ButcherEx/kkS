@@ -10,10 +10,6 @@ bool InstanceManager::Init()
 {
 	__ENTER_FUNCTION
 
-#if defined(__WINDOWS__)
-		_CrtSetDbgFlag(_CrtSetDbgFlag(0) | _CRTDBG_LEAK_CHECK_DF);
-#endif
-
 		bool bRet = g_Config.Init(__argv[0]);
 		Assert(bRet);
 
@@ -26,9 +22,6 @@ bool InstanceManager::Init()
 		CHAR currentDir[_MAX_PATH] = {0};
 		tgetcwd(currentDir, _MAX_PATH);
 		LOGD(ServerDebug, "Current Directory %s", currentDir);
-
-		doScriptTest("lua1.lua");
-		doScriptTest("lua.lua");
 
 		return bRet;
 	__LEAVE_FUNCTION

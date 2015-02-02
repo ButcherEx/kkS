@@ -219,9 +219,11 @@ void TaskManager::Exit()
 {
 	__ENTER_FUNCTION
 		LOGD(ServerTask, "TaskManager::Exit ...");
+		
 		Wait(600);
 		m_TaskDelegatePtrList.Clear();
 		m_TaskPtrVec.clear();
+
 		LOGD(ServerTask, "TaskManager::Exit Ok");
 	__LEAVE_FUNCTION
 }
@@ -309,7 +311,7 @@ void TaskManager::ExcuteAllTask()
 		Tick(elapseMs);
 
 		checkShutdown += elapseMs;
-		if( checkShutdown >= 1*1000)
+		if( checkShutdown >= 30*1000)
 		{
 			checkShutdown = 0;
 			if(IsShouldShutdown())
@@ -412,7 +414,7 @@ bool TaskManager::IsShouldShutdown()
 		bsys::error_code ec;
 
 		bool isRemoved = bfs::remove(shutdownfile, ec);
-		AssertEx(0, ec.message().c_str());
+		AssertEx(!ec, ec.message().c_str());
 		return isRemoved;
 	
 	__LEAVE_FUNCTION

@@ -627,6 +627,8 @@ static int counter (lua_State *L) {
 
 void doScriptTest(void* file)
 {
+	lua_State *L = NULL;
+
 	_MY_TRY
 	{
 		int32_t res;
@@ -634,7 +636,6 @@ void doScriptTest(void* file)
 		int32_t i2 = 2;
 		int32_t I0 = 64;
 		CHAR outstr[64] = {0};
-		lua_State *L;
 		int64_t i64 = (988998 | (((int64_t)9877778) << 32)), iout64 = 0;
 
 		L = Lua::New();
@@ -661,12 +662,14 @@ void doScriptTest(void* file)
 		Lua::Call(L, "col2", "");
 		Lua::Call(L, "col2", "");
 
-		Lua::Free(L);
+		
 	}
 	_MY_CATCH
 	{
 
 	}
+
+	if( L ) Lua::Free(L);
 	
 }
 

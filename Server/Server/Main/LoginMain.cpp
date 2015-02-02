@@ -1,5 +1,6 @@
 //#include "stdafx.h"
-
+// #pragma comment(lib, "vld")
+// #include <vld.h>
 #include "LoginMain.h"
 #include "Login.h"
 #include "Player.h"
@@ -10,6 +11,12 @@
 
 int32_t main(int32_t argc, CHAR* argv[])
 {	
+
+// #if defined(__WINDOWS__)
+// 	_CrtSetDbgFlag(_CrtSetDbgFlag(0) | _CRTDBG_LEAK_CHECK_DF);
+// #endif
+
+
 	__ENTER_FUNCTION
 		
 	_MY_TRY
