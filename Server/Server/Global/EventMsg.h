@@ -11,10 +11,10 @@ class EventMgr;
 class EventMsg
 {
 public:
-	GUID_t	m_Sender;
-	int32_t	m_refCounter_;
+	GUID_t	m_Sender__;
+	int32_t	m_refCounter__;
 public:
-	EventMsg():m_Sender(INVALID_GUID), m_refCounter_(0){}
+	EventMsg():m_Sender__(INVALID_GUID), m_refCounter__(0){}
 	virtual ~EventMsg(){}
 public:
 	virtual void Excute(EventMgr& rEvtMgr) = 0;

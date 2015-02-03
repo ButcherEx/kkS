@@ -31,9 +31,9 @@ void EventMgr::AddEvent(GUID_t sender, EventMsgPtr Ptr)
 	__ENTER_FUNCTION
 
 	Assert(Ptr);
-	Assert(Ptr->m_refCounter_ == 0);
-	Ptr->m_refCounter_++;
-	Ptr->m_Sender = sender;
+	Assert(Ptr->m_refCounter__ == 0);
+	Ptr->m_refCounter__++;
+	Ptr->m_Sender__ = sender;
 
 	m_listEventMsg.PushBack(Ptr);
 

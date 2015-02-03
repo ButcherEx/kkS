@@ -12,7 +12,7 @@
 // 该类的成员函数只能在主线程调用（AddEvent除外）
 
 #define VIRTULE_HANDLE(MSGIMPL)\
-	virtual void HandleMessage(MSGIMPL& rMsg) {}
+	virtual void Handle(MSGIMPL& rMsg) {}
 
 class EventMgr
 {
