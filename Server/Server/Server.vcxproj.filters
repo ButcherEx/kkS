@@ -330,6 +330,12 @@
     <ClCompile Include="Global\Task.cpp">
       <Filter>Global</Filter>
     </ClCompile>
+    <ClCompile Include="Global\EventMgr.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Global\EventMsg_Test.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Login.h">
@@ -648,6 +654,15 @@
       <Filter>Common\lua</Filter>
     </ClInclude>
     <ClInclude Include="Global\Task.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\EventMgr.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\EventMsg.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\EventMsg_Test.h">
       <Filter>Global</Filter>
     </ClInclude>
   </ItemGroup>

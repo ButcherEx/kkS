@@ -8,6 +8,20 @@
 #include "InstanceModule.h"
 #include "LogDefine.h"
 #include "Task.h"
+#include "EventMsg.h"
+#include "EventMgr.h"
+#include "EventMsg_Test.h"
+
+class GroupMgr : public EventMgr
+{
+public:
+	virtual void HandleMessage(JoinWolrd& rMsg)
+	{
+		fprintf(stderr, "%s", rMsg.m_Message);
+	}
+};
+
+GroupMgr g_GroupMgr;
 
 int32_t main(int32_t argc, CHAR* argv[])
 {	
@@ -18,7 +32,16 @@ int32_t main(int32_t argc, CHAR* argv[])
 
 
 	__ENTER_FUNCTION
-		
+
+	if(1)//EventMgr/Msg Test
+	{
+		EventMsgPtr joinMsg = POOL_NEW(JoinWolrd);
+		EventMsgPtr unhandleMsg = POOL_NEW(UnHandledMsg);
+
+		g_GroupMgr.AddEvent(INVALID_GUID, joinMsg);
+		g_GroupMgr.AddEvent(INVALID_GUID, unhandleMsg);
+		g_GroupMgr.Update();
+	}
 	_MY_TRY
 	{
 		bool bRet =	g_InstancenManager.Init();

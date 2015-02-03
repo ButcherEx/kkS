@@ -22,10 +22,9 @@ public:
 	}
 	explicit LogSink<_BufSize, _BlockSize, _Tag>()
 	{
-		_Tag _tag;
 		m_BufferedSize = 0;
 		zeroMemory(m_LogFileName, LOGNAME_LEN);
-		tsnprintf(m_LogFileName, LOGNAME_LEN, "%s", _tag.name());
+		tsnprintf(m_LogFileName, LOGNAME_LEN, "%s", _Tag::Name());
 		RebuildPath();
 	}
 	~ LogSink<_BufSize, _BlockSize, _Tag>(){ Flush(); }
@@ -145,7 +144,7 @@ private:
 #define LOG_IMPL(LOGTYPE)		LogSink<16*1024, 4*1024, Tag##LOGTYPE> LOG_INST(LOGTYPE);
 #define LOG_FLUSH(LOGTYPE)		LOG_INST(LOGTYPE).Flush()
 #define LOG_REBUILD(LOGTYPE)	LOG_INST(LOGTYPE).RebuildPath()
-#define LOG_DECL(LOGTYPE)		class Tag##LOGTYPE{public: const char* name(){return #LOGTYPE;} };\
+#define LOG_DECL(LOGTYPE)		class Tag##LOGTYPE{public: static const char* Name(){return #LOGTYPE;} };\
 								extern  LogSink<16*1024, 4*1024, Tag##LOGTYPE> LOG_INST(LOGTYPE)
 
 #define LOG_DEF(LOGTYPE)		class Tag##LOGTYPE{public: const char* name(){return #LOGTYPE;} };\

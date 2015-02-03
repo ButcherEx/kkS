@@ -144,6 +144,7 @@ private:
 	void					Tick(int32_t elapse);
 	void					Tick_Task(int32_t elapse);
 	void					Tick_TaskDelegate(int32_t elapse);
+	void					Tick_Logic(int32_t elapse);
 private:
 	void					Wait(int32_t sec);
 private:

@@ -208,6 +208,8 @@
     <ClCompile Include="..\Common\Net\SocketInputStream.cpp" />
     <ClCompile Include="..\Common\Net\SocketOutputStream.cpp" />
     <ClCompile Include="Global\Config.cpp" />
+    <ClCompile Include="Global\EventMgr.cpp" />
+    <ClCompile Include="Global\EventMsg_Test.cpp" />
     <ClCompile Include="Global\ExceptionHandler.cpp" />
     <ClCompile Include="Global\InstanceModule.cpp" />
     <ClCompile Include="Global\LogDefine.cpp" />
@@ -312,6 +314,9 @@
     <ClInclude Include="..\Common\Net\SocketInputStream.h" />
     <ClInclude Include="..\Common\Net\SocketOutputStream.h" />
     <ClInclude Include="Global\Config.h" />
+    <ClInclude Include="Global\EventMgr.h" />
+    <ClInclude Include="Global\EventMsg.h" />
+    <ClInclude Include="Global\EventMsg_Test.h" />
     <ClInclude Include="Global\ExceptionHandler.h" />
     <ClInclude Include="Global\InstanceModule.h" />
     <ClInclude Include="Global\LogDefine.h" />

@@ -388,6 +388,11 @@ void TaskManager::Tick_TaskDelegate(int32_t elapse)
 
 	__LEAVE_FUNCTION
 }
+void TaskManager::Tick_Logic(int32_t elapse)
+{
+	__ENTER_FUNCTION
+	__LEAVE_FUNCTION
+}
 
 bool TaskManager::IsAllTaskInState(int32_t state)
 {
