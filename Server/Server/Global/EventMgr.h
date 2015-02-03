@@ -21,9 +21,9 @@ public:
 	virtual ~EventMgr();
 public:
 	bool Init();
-	void Update();		
+	virtual void Update();		
 	void AddEvent(GUID_t sender, EventMsgPtr Ptr);
-	virtual void HandleMessage(EventMsg& rMsg);
+	virtual void Handle(EventMsg& rMsg);
 private:
 	TSList<EventMsgPtr>				m_listEventMsg;	
 public:

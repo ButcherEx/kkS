@@ -40,6 +40,18 @@
     <Filter Include="Common\lua">
       <UniqueIdentifier>{bc8ea582-4957-4719-bc9b-936cd7b19996}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Global\Event">
+      <UniqueIdentifier>{881dee67-07b1-40b1-a587-bea16237fe53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Log">
+      <UniqueIdentifier>{2b4d89cb-a848-4918-9010-393b3af436fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Task">
+      <UniqueIdentifier>{ac767223-a92c-4726-82d3-13e14ede3252}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\other">
+      <UniqueIdentifier>{57f7f107-d471-4c46-aff2-1beed04d403f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main\Login.cpp">
@@ -216,21 +228,6 @@
     <ClCompile Include="..\Common\Base\Timer.cpp">
       <Filter>Common\Base</Filter>
     </ClCompile>
-    <ClCompile Include="Global\ExceptionHandler.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="Global\InstanceModule.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="Global\Config.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="Global\LogDefine.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="Global\Script.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\3rd\lua\src\lapi.c">
       <Filter>Common\lua</Filter>
     </ClCompile>
@@ -327,14 +324,29 @@
     <ClCompile Include="..\..\3rd\lua\src\lzio.c">
       <Filter>Common\lua</Filter>
     </ClCompile>
-    <ClCompile Include="Global\Task.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
     <ClCompile Include="Global\EventMgr.cpp">
-      <Filter>Global</Filter>
+      <Filter>Global\Event</Filter>
     </ClCompile>
     <ClCompile Include="Global\EventMsg_Test.cpp">
-      <Filter>Global</Filter>
+      <Filter>Global\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Global\LogDefine.cpp">
+      <Filter>Global\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Global\Task.cpp">
+      <Filter>Global\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="Global\ExceptionHandler.cpp">
+      <Filter>Global\other</Filter>
+    </ClCompile>
+    <ClCompile Include="Global\InstanceModule.cpp">
+      <Filter>Global\other</Filter>
+    </ClCompile>
+    <ClCompile Include="Global\Script.cpp">
+      <Filter>Global\other</Filter>
+    </ClCompile>
+    <ClCompile Include="Global\Config.cpp">
+      <Filter>Global\other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -563,21 +575,6 @@
     <ClInclude Include="..\Common\MacroDefine.h">
       <Filter>Common\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Global\ExceptionHandler.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="Global\InstanceModule.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="Global\Config.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="Global\LogDefine.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="Global\Script.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\3rd\lua\src\lapi.h">
       <Filter>Common\lua</Filter>
     </ClInclude>
@@ -653,17 +650,32 @@
     <ClInclude Include="..\..\3rd\lua\src\lzio.h">
       <Filter>Common\lua</Filter>
     </ClInclude>
-    <ClInclude Include="Global\Task.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="Global\EventMgr.h">
-      <Filter>Global</Filter>
+      <Filter>Global\Event</Filter>
     </ClInclude>
     <ClInclude Include="Global\EventMsg.h">
-      <Filter>Global</Filter>
+      <Filter>Global\Event</Filter>
     </ClInclude>
     <ClInclude Include="Global\EventMsg_Test.h">
-      <Filter>Global</Filter>
+      <Filter>Global\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\LogDefine.h">
+      <Filter>Global\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\Task.h">
+      <Filter>Global\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\Config.h">
+      <Filter>Global\other</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\ExceptionHandler.h">
+      <Filter>Global\other</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\InstanceModule.h">
+      <Filter>Global\other</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\Script.h">
+      <Filter>Global\other</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

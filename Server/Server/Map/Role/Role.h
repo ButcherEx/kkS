@@ -6,7 +6,7 @@ class Role
 public:
 	Role(Player& rPlayer);
 public:
-	uint32_t Handle(const CG_LOGIN& rMsg);
+	uint32_t HandlePacket(const CG_LOGIN& rMsg);
 private:
 	Player& m_rPlayer;
 };

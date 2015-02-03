@@ -40,7 +40,7 @@ void EventMgr::AddEvent(GUID_t sender, EventMsgPtr Ptr)
 	__LEAVE_FUNCTION
 }
 
-void EventMgr::HandleMessage(EventMsg& rMsg)
+void EventMgr::Handle(EventMsg& rMsg)
 {
 	LOGE(ServerError, "[EventMsg]unhandled eventmsg:%s", rMsg.Name() );
 }

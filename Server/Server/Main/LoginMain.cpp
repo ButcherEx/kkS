@@ -15,7 +15,7 @@
 class GroupMgr : public EventMgr
 {
 public:
-	virtual void HandleMessage(JoinWolrd& rMsg)
+	virtual void Handle(JoinWolrd& rMsg)
 	{
 		fprintf(stderr, "%s", rMsg.m_Message);
 	}

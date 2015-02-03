@@ -47,8 +47,8 @@ protected :
 	SocketInputStream		m_SocketInputStream ;
 	SocketOutputStream		m_SocketOutputStream ;
 public:
-	virtual uint32_t Handle(const PBMessage& rMsg) { return 0; };
-	virtual uint32_t Handle(const CG_LOGIN& rMsg);
+	virtual uint32_t HandlePacket(const PBMessage& rMsg) { return 0; };
+	virtual uint32_t HandlePacket(const CG_LOGIN& rMsg);
 };
 
 POOL_DECL(Player);

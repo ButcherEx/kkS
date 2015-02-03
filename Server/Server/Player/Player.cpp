@@ -367,7 +367,7 @@ __LEAVE_FUNCTION
 	return false ;
 }
 
-uint32_t Player::Handle(const CG_LOGIN& rMsg) 
+uint32_t Player::HandlePacket(const CG_LOGIN& rMsg) 
 { 
-	return m_Role.Handle(rMsg); 
+	return m_Role.HandlePacket(rMsg); 
 }

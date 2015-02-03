@@ -7,7 +7,7 @@ Role::Role(Player& rPlayer)
 
 }
 
-uint32_t Role::Handle(const CG_LOGIN& rMsg)
+uint32_t Role::HandlePacket(const CG_LOGIN& rMsg)
 {
 
 	_MY_TRY

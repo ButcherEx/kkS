@@ -36,7 +36,7 @@ public:\
 	POOL_DECL(EVMSG_IMPL);
 
 #define EVENTMSG_IMPL(EVMSG_IMPL)\
-	void EVMSG_IMPL:: Excute(EventMgr& rEvtMgr) { rEvtMgr.HandleMessage(*this); }\
+	void EVMSG_IMPL:: Excute(EventMgr& rEvtMgr) { rEvtMgr.Handle(*this); }\
 	POOL_IMPL(EVMSG_IMPL);
 
 

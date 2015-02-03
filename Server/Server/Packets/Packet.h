@@ -63,7 +63,7 @@ public:
 public:
 	MsgType& GetMsg() { return m_Msg; }
 	const MsgType& GetMsg( ) const { return m_Msg; }
-	virtual uint32_t Execute( Player* pPlayer ) { return pPlayer->Handle(m_Msg); } 
+	virtual uint32_t Execute( Player* pPlayer ) { return pPlayer->HandlePacket(m_Msg); } 
 
 #define msg_ref GetMsg()
 private:
