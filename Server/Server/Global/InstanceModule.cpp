@@ -15,13 +15,13 @@ bool InstanceManager::Init()
 
 		srand(g_TimeManager.CurrentTick());
 
-		LOGD(ServerDebug, "main..." ) ;
-		LOGD(ServerDebug, "Login Starting... (%lld)(%d)",
+		LOG_DEBUG(ServerDebug, "main..." ) ;
+		LOG_DEBUG(ServerDebug, "Login Starting... (%lld)(%d)",
 			g_TimeManager.CurrentTimeToInt64(), g_TimeManager.CurrentTick() ) ;
 
 		CHAR currentDir[_MAX_PATH] = {0};
 		tgetcwd(currentDir, _MAX_PATH);
-		LOGD(ServerDebug, "Current Directory %s", currentDir);
+		LOG_DEBUG(ServerDebug, "Current Directory %s", currentDir);
 
 		return bRet;
 	__LEAVE_FUNCTION

@@ -42,5 +42,5 @@ void EventMgr::AddEvent(GUID_t sender, EventMsgPtr Ptr)
 
 void EventMgr::Handle(EventMsg& rMsg)
 {
-	LOGE(ServerError, "[EventMsg]unhandled eventmsg:%s", rMsg.Name() );
+	LOG_ERROR(ServerError, "[EventMsg]unhandled eventmsg:%s", rMsg.Name() );
 }

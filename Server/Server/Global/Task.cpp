@@ -157,14 +157,14 @@ bool TaskManager::Init(int32_t maxTask, int32_t maxThread)
 {
 	__ENTER_FUNCTION
 
-		LOGD(ServerTask, "Init TaskManager(maxTask:%d, maxThread:%d)...", 
+		LOG_DEBUG(ServerTask, "Init TaskManager(maxTask:%d, maxThread:%d)...", 
 			maxTask, maxThread);
 
 		Assert((maxTask && maxThread));
 
 		m_ThreadPoolPtr = ThreadPoolPtr(new ThreadPool(maxThread));
 		Assert(m_ThreadPoolPtr);
-		LOGD(ServerTask, "New ThreadPool(%d) ok", maxThread);
+		LOG_DEBUG(ServerTask, "New ThreadPool(%d) ok", maxThread);
 
 		return true;
 	__LEAVE_FUNCTION
@@ -180,7 +180,7 @@ bool TaskManager::Register(TaskPtr taskPtr)
 	Assert((taskPtr->GetTaskID() < (int32_t)m_TaskPtrVec.size()));
 	Assert(!m_TaskPtrVec[taskPtr->GetTaskID()]);
 
-	LOGD(ServerTask, "Register task:%d ok", taskPtr->GetTaskID());
+	LOG_DEBUG(ServerTask, "Register task:%d ok", taskPtr->GetTaskID());
 	m_TaskPtrVec[taskPtr->GetTaskID()] = taskPtr;
 
 	return true;
@@ -192,25 +192,25 @@ void TaskManager::Excute( )
 {
 	__ENTER_FUNCTION
 
-		LOGD(ServerTask, "ExcuteAllTaskStart ...");
+		LOG_DEBUG(ServerTask, "ExcuteAllTaskStart ...");
 		ExcuteAllTaskStart();
-		LOGD(ServerTask, "ExcuteAllTaskStart Ok");
+		LOG_DEBUG(ServerTask, "ExcuteAllTaskStart Ok");
 
-		LOGD(ServerTask, "ExcuteAllTaskLoad ...");
+		LOG_DEBUG(ServerTask, "ExcuteAllTaskLoad ...");
 		ExcuteAllTaskLoad();
-		LOGD(ServerTask, "ExcuteAllTaskLoad Ok");
+		LOG_DEBUG(ServerTask, "ExcuteAllTaskLoad Ok");
 
-		LOGD(ServerTask, "ExcuteAllTask ...");
+		LOG_DEBUG(ServerTask, "ExcuteAllTask ...");
 		ExcuteAllTask();
-		LOGD(ServerTask, "ExcuteAllTask Ok");
+		LOG_DEBUG(ServerTask, "ExcuteAllTask Ok");
 
-		LOGD(ServerTask, "ExcuteAllTaskShutdown ...");
+		LOG_DEBUG(ServerTask, "ExcuteAllTaskShutdown ...");
 		ExcuteAllTaskShutdown();
-		LOGD(ServerTask, "ExcuteAllTaskShutdown Ok");
+		LOG_DEBUG(ServerTask, "ExcuteAllTaskShutdown Ok");
 
-		LOGD(ServerTask, "ExcuteAllTaskFinalSave ...");
+		LOG_DEBUG(ServerTask, "ExcuteAllTaskFinalSave ...");
 		ExcuteAllTaskFinalSave();
-		LOGD(ServerTask, "ExcuteAllTaskFinalSave Ok");
+		LOG_DEBUG(ServerTask, "ExcuteAllTaskFinalSave Ok");
 
 	__LEAVE_FUNCTION
 }
@@ -218,13 +218,13 @@ void TaskManager::Excute( )
 void TaskManager::Exit()
 {
 	__ENTER_FUNCTION
-		LOGD(ServerTask, "TaskManager::Exit ...");
+		LOG_DEBUG(ServerTask, "TaskManager::Exit ...");
 		
 		Wait(600);
 		m_TaskDelegatePtrList.Clear();
 		m_TaskPtrVec.clear();
 
-		LOGD(ServerTask, "TaskManager::Exit Ok");
+		LOG_DEBUG(ServerTask, "TaskManager::Exit Ok");
 	__LEAVE_FUNCTION
 }
 
@@ -287,14 +287,14 @@ void TaskManager::ExcuteAllTaskFinalSave()
 void TaskManager::Wait(int32_t sec)
 {
 	__ENTER_FUNCTION
-	LOGD(ServerTask, "TaskManager::Wait(%d) ...", sec);
+	LOG_DEBUG(ServerTask, "TaskManager::Wait(%d) ...", sec);
 
 	boost::xtime now_xt;
 	xtime_get(&now_xt, boost::TIME_UTC_);
 	now_xt.sec += sec;
 
 	m_ThreadPoolPtr->wait(now_xt);
-	LOGD(ServerTask, "TaskManager::Wait(%d) Ok", sec);
+	LOG_DEBUG(ServerTask, "TaskManager::Wait(%d) Ok", sec);
 	__LEAVE_FUNCTION
 }
 void TaskManager::ExcuteAllTask()

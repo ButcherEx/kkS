@@ -93,7 +93,7 @@ bool PlayerManager::Select( )
 	} 
 	_MY_CATCH
 	{
-		LOGE(ServerError,"ERROR: IncomingPlayerManager::Select( )..." ) ;
+		LOG_ERROR(ServerError,"ERROR: IncomingPlayerManager::Select( )..." ) ;
 	}
 
 	return true ;

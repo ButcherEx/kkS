@@ -181,10 +181,10 @@ void _LogSinkPrint(_LogSink& rSink, LogColor color, /*const CHAR* keyVal,*/ cons
 
 
 //////////////////////////////////////////////////////////////////////////
-#define LOGI(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_DEFAULT, __FUNCTION__, __LINE__, __VA_ARGS__)
-#define LOGD(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_GREEN,	 __FUNCTION__, __LINE__, __VA_ARGS__)
-#define LOGW(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_YELLOW,	 __FUNCTION__, __LINE__, __VA_ARGS__)
-#define LOGE(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_RED,	 __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOG_INFO(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_DEFAULT, __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOG_DEBUG(SINK, ...)	_LogSinkPrint(LOG_INST(SINK), COLOR_GREEN,	 __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOG_WARN(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_YELLOW,	 __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOG_ERROR(SINK, ...)	_LogSinkPrint(LOG_INST(SINK), COLOR_RED,	 __FUNCTION__, __LINE__, __VA_ARGS__)
 
 
 #endif

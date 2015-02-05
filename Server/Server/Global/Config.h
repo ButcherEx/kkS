@@ -18,11 +18,11 @@ struct LOG_CONFIG
 	LOG_CONFIG()
 	{
 		m_ThreadNum = 8;
-		m_LogDir = "RunTimeLog";
+		m_LogDir = "Log";
 		m_FilePrefix = "";
 		m_LogAssert2Stderr = true;
 		m_HostName = "Unknown";
-		m_InvocationName = "EXE";
+		m_InvocationName = ".exe";
 	}
 };
 

@@ -36,40 +36,40 @@ void Lua::PrintStack(lua_State *L)
 		int32_t i, n;
 
 		n = lua_gettop(L);
-		LOGD(LuaSystem,"%s", "************" );
-		LOGD(LuaSystem,"Lua stack's size=%d", n);
+		LOG_DEBUG(LuaSystem,"%s", "************" );
+		LOG_DEBUG(LuaSystem,"Lua stack's size=%d", n);
 		for( i = 0; i < n; i++)
 		{
 			int t = lua_type(L, i);
 			switch( t )
 			{
 			case LUA_TSTRING:
-				LOGD(LuaSystem,"%s", lua_tostring(L, i));
+				LOG_DEBUG(LuaSystem,"%s", lua_tostring(L, i));
 				break;
 			case LUA_TBOOLEAN:
-				LOGD(LuaSystem,"%s", lua_toboolean(L, i) ? "TRUE" : "FALSE");
+				LOG_DEBUG(LuaSystem,"%s", lua_toboolean(L, i) ? "TRUE" : "FALSE");
 				break;
 			case LUA_TNUMBER:
-				LOGD(LuaSystem,"%d", (int32_t)lua_tonumber(L,i));
+				LOG_DEBUG(LuaSystem,"%d", (int32_t)lua_tonumber(L,i));
 				break;
 			case LUA_TFUNCTION:
-				LOGD(LuaSystem,"%s", "LUA_TFUNCTION");
+				LOG_DEBUG(LuaSystem,"%s", "LUA_TFUNCTION");
 				break;
 			case LUA_TUSERDATA:
-				LOGD(LuaSystem,"%s", "LUA_TUSERDATA");
+				LOG_DEBUG(LuaSystem,"%s", "LUA_TUSERDATA");
 				break;
 			case LUA_TTHREAD:
-				LOGD(LuaSystem,"%s", "LUA_TTHREAD");
+				LOG_DEBUG(LuaSystem,"%s", "LUA_TTHREAD");
 				break;
 			case LUA_TTABLE:
-				LOGD(LuaSystem,"%s", "LUA_TTABLE");
+				LOG_DEBUG(LuaSystem,"%s", "LUA_TTABLE");
 				break;
 			default:
-				LOGD(LuaSystem,"%s", lua_typename(L, i));
+				LOG_DEBUG(LuaSystem,"%s", lua_typename(L, i));
 				break;
 			};
 		}
-		LOGD(LuaSystem,"%s", "************");
+		LOG_DEBUG(LuaSystem,"%s", "************");
 	}
 	_MY_CATCH
 	{
@@ -154,7 +154,7 @@ bool Lua::Call(lua_State *L,
 			
 #if !defined (LUA_STRING)
 			{
-				LOGE(LuaSystem, "Error parameters format=%s %s %c.", funcName,fmtBak,*fmtCheck);
+				LOG_ERROR(LuaSystem, "Error parameters format=%s %s %c.", funcName,fmtBak,*fmtCheck);
 				return false;
 			}
 #endif
@@ -162,7 +162,7 @@ bool Lua::Call(lua_State *L,
 		case 'L':
 #if !defined(LUA_INT64)
 			{
-				LOGE(LuaSystem, "Error parameters format=%s %s %c.", funcName,fmtBak,*fmtCheck);
+				LOG_ERROR(LuaSystem, "Error parameters format=%s %s %c.", funcName,fmtBak,*fmtCheck);
 				return false;
 			}
 #endif
@@ -173,7 +173,7 @@ bool Lua::Call(lua_State *L,
     lua_getglobal(L, funcName);
     if( lua_isnil(L, -1) )
     {
-        LOGE(LuaSystem, "Unknown function=%s", funcName );
+        LOG_ERROR(LuaSystem, "Unknown function=%s", funcName );
         lua_pop(L, 1);
         return false;
     }
@@ -218,7 +218,7 @@ bool Lua::Call(lua_State *L,
             goto end_arg;
             break;
         default:
-			LOGE(LuaSystem, "Error parameters format=%s(%s) %c.", funcName, fmtBak, *fmt);
+			LOG_ERROR(LuaSystem, "Error parameters format=%s(%s) %c.", funcName, fmtBak, *fmt);
             break;
         }
     }
@@ -247,7 +247,7 @@ end_arg:
 #endif
 	if( lua_pcall(L, args, res, 0) != 0 )
 	{
-		LOGE(LuaSystem, "lua_pcall is failed! Reason=%s.", lua_tostring(L, -1));
+		LOG_ERROR(LuaSystem, "lua_pcall is failed! Reason=%s.", lua_tostring(L, -1));
 		lua_pop(L, 1);
 		ret = false;
 		goto end_call;
@@ -305,7 +305,7 @@ end_call:
 
 	__LEAVE_FUNCTION_EX
 
-		LOGE(LuaSystem, "Exception catched, Lua::Call(L,%s(%s))", funcName, fmtBak);
+		LOG_ERROR(LuaSystem, "Exception catched, Lua::Call(L,%s(%s))", funcName, fmtBak);
 		return false;
 }
 
@@ -313,14 +313,14 @@ bool Lua::LoadFile(lua_State *L, const  CHAR *file)
 {
 	if( luaL_loadfile(L, file) != 0 )
 	{
-		LOGE(LuaSystem, "luaL_loadfile is failed! Reason=%s.",lua_tostring(L, -1));
+		LOG_ERROR(LuaSystem, "luaL_loadfile is failed! Reason=%s.",lua_tostring(L, -1));
 		lua_pop(L, 1);
 		return false;
 	}
 
     if( lua_pcall(L, 0, LUA_MULTRET, 0) != 0 )
     {
-		LOGE(LuaSystem, "luaL_loadfile is failed! Reason=%s.", file, lua_tostring(L, -1));
+		LOG_ERROR(LuaSystem, "luaL_loadfile is failed! Reason=%s.", file, lua_tostring(L, -1));
         lua_pop(L, 1);
         return false;
     }
@@ -606,7 +606,7 @@ static int luaff(lua_State *L)
 {
 	int32_t i = (int32_t)lua_tointeger(L, 1);
 	int32_t i2 = (int32_t)lua_tointeger(L, 2);
-	LOGD(LuaSystem, "lua call c funciton! %d,%d\n", i, i2);
+	LOG_DEBUG(LuaSystem, "lua call c funciton! %d,%d\n", i, i2);
 	return 0;
 }
 
@@ -648,12 +648,12 @@ void doScriptTest(void* file)
 
 		Lua::Call(L, "myadd", "iisLI>iSL", i1, i2,
 			__FUNCTION__, i64, 64, &res, outstr, &iout64);
-		LOGD(LuaSystem,"lua function add(%d,%d)=%d,%s, in(int64_t):%I64d ?= %I64d", 
+		LOG_DEBUG(LuaSystem,"lua function add(%d,%d)=%d,%s, in(int64_t):%I64d ?= %I64d", 
 			i1, i2, res, outstr, i64, iout64);
 
 		int32_t out1=0, out2=0;
 		Lua::Call(L, "myadd1", "iiii>iii", i1, i2, 64, 64, &res, &out1, &out2);
-		LOGD(LuaSystem,"lua function add(%d,%d)=%d", i1, i2, res);
+		LOG_DEBUG(LuaSystem,"lua function add(%d,%d)=%d", i1, i2, res);
 
 		Lua::RegisterCClosure(L, &counter, "col1", "d", 0.0f);
 		Lua::RegisterCClosure(L, &counter, "col2", "d", 0.0f);
