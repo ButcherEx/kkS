@@ -217,6 +217,7 @@
     <ClCompile Include="Global\Task.cpp" />
     <ClCompile Include="Main\Login.cpp" />
     <ClCompile Include="Main\LoginMain.cpp" />
+    <ClCompile Include="Map\MapCreator.cpp" />
     <ClCompile Include="Map\Role\Role.cpp" />
     <ClCompile Include="Packets\Packet.cpp" />
     <ClCompile Include="Packets\PBMessage.pb.cc" />
@@ -324,6 +325,7 @@
     <ClInclude Include="Global\Task.h" />
     <ClInclude Include="Main\Login.h" />
     <ClInclude Include="Main\LoginMain.h" />
+    <ClInclude Include="Map\MapCreator.h" />
     <ClInclude Include="Map\Role\Role.h" />
     <ClInclude Include="Packets\Packet.h" />
     <ClInclude Include="Packets\PacketDefine.h" />

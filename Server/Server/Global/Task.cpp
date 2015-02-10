@@ -49,94 +49,94 @@ void TaskDelegate::Excute( )
 	__LEAVE_FUNCTION
 }
 //////////////////////////////////////////////////////////////////////////
-Task::Task( )
+TaskBase::TaskBase( )
 {
 	SetState(TASK_STOP);
 }
 
-Task::~Task()
+TaskBase::~TaskBase()
 {
-	m_TaskPtrList.Clear( );
+	
 }
 
-bool Task::Init()
-{
-	return true;
-}
 
-uint32_t Task::Tick(const TimeInfo& rTimeInfo)
+uint32_t TaskBase::Tick(const TimeInfo& rTimeInfo)
 {
 	return 0;
 }
 
-void Task::Start()
+void TaskBase::Start()
 {
 	__ENTER_FUNCTION
 	OnStartOk();
 	__LEAVE_FUNCTION
 }
 
-void Task::OnStartOk()
+void TaskBase::OnStartOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_START_OK);
 	__LEAVE_FUNCTION
 }
 
-void Task::Load()
+void TaskBase::Load()
 {
 	__ENTER_FUNCTION
 	OnLoadOk();
 	__LEAVE_FUNCTION
 }
 
-void Task::OnLoadOk()
+void TaskBase::OnLoadOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_LOAD_OK);
 	__LEAVE_FUNCTION
 }
 
-void Task::Shutdown()
+void TaskBase::Shutdown()
 {
 	__ENTER_FUNCTION
 	OnShutdownOk();
 	__LEAVE_FUNCTION
 }
 
-void Task::OnShutdownOk()
+void TaskBase::OnShutdownOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_SHUTDOWN_OK);
 	__LEAVE_FUNCTION
 }
 
-void Task::FinalSave()
+void TaskBase::FinalSave()
 {
 	__ENTER_FUNCTION
 	OnFinalSaveOk();
 	__LEAVE_FUNCTION
 }
 
-void Task::OnFinalSaveOk()
+void TaskBase::OnFinalSaveOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_FINALSAVE_OK);
 	__LEAVE_FUNCTION
 }
-
+//////////////////////////////////////////////////////////////////////////
+Task::~Task()
+{
+	m_TaskDelegatePtrList.Clear();
+}
 TaskDelegatePtr Task::FetchTaskDelegate()
 {
 	TaskDelegatePtr taskPtr;
 	__ENTER_FUNCTION
-	m_TaskPtrList.PopFront(taskPtr);
+		m_TaskDelegatePtrList.PopFront(taskPtr);
 	__LEAVE_FUNCTION
-	return taskPtr;
+		return taskPtr;
 }
 void Task::AddTask(TaskDelegatePtr taskPtr)
 {
 	__ENTER_FUNCTION
-	m_TaskPtrList.PushBack(taskPtr);
+		m_TaskDelegatePtrList.PushBack(taskPtr);
 	__LEAVE_FUNCTION
 }
 
@@ -408,7 +408,7 @@ bool TaskManager::IsAllTaskInState(int32_t state)
 }
 bool TaskManager::IsShouldShutdown()
 {
-	__ENTER_FUNCTION
+	__ENTER_FUNCTION_EX
 
 		TIME64 now = TimeUtil::Now();
 		CHAR shutdownFileName[32] = {0};
@@ -422,7 +422,7 @@ bool TaskManager::IsShouldShutdown()
 		AssertEx(!ec, ec.message().c_str());
 		return isRemoved;
 	
-	__LEAVE_FUNCTION
+	__LEAVE_FUNCTION_EX
 		return false;
 }
 

@@ -348,6 +348,9 @@
     <ClCompile Include="Global\Config.cpp">
       <Filter>Global\other</Filter>
     </ClCompile>
+    <ClCompile Include="Map\MapCreator.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main\Login.h">
@@ -676,6 +679,9 @@
     </ClInclude>
     <ClInclude Include="Global\Script.h">
       <Filter>Global\other</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\MapCreator.h">
+      <Filter>Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

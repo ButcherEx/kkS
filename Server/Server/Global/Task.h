@@ -12,6 +12,7 @@ class TaskDelegate
 public:
 	enum 
 	{
+		STATE_IDLE,
 		STATE_READY,
 		STATE_SCHUDULE,
 		STATE_EXECUTE
@@ -67,7 +68,7 @@ private:
 
 
 //////////////////////////////////////////////////////////////////////////
-class Task
+class TaskBase
 {
 public:
 	enum State
@@ -89,15 +90,10 @@ public:
 		TASK_FINALSAVE_OK,
 	};
 public:
-	Task();
-	virtual ~Task();
-public:
-	virtual bool		Init() = 0;
-	virtual int32_t		GetTaskID() = 0;
+	TaskBase();
+	virtual ~TaskBase();
 public:
 	virtual uint32_t	Tick(const TimeInfo& rTimeInfo);
-	TaskDelegatePtr		FetchTaskDelegate( );
-	void				AddTask(TaskDelegatePtr taskPtr);
 protected:
 	virtual	void		Start();
 	virtual	void		Load();
@@ -113,7 +109,21 @@ public:
 	uint32_t			GetState( ) const		{ return m_State; }
 private:
 	uint32_t m_State;
-	TSList<TaskDelegatePtr> m_TaskPtrList;
+
+};
+class Task : public TaskBase
+{
+public:
+	Task(){}
+	virtual ~Task();
+public:
+	virtual bool		Init() = 0;
+	virtual int32_t		GetTaskID() = 0;
+public:
+	TaskDelegatePtr		FetchTaskDelegate( );
+	void				AddTask(TaskDelegatePtr taskPtr);
+private:
+	TSList<TaskDelegatePtr> m_TaskDelegatePtrList;
 };
 
 typedef boost::shared_ptr<Task> TaskPtr;
