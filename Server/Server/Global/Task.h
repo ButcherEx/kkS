@@ -30,7 +30,7 @@ public:
 	void			UpdateExcuteTime(int32_t elapse) { m_ExcuteTime += elapse; }
 	int32_t			GetExcuteTime( ) const { return m_ExcuteTime; }
 public:
-	void			Excute();
+	void			Invoke();
 	virtual uint32_t Do() = 0;
 public:
 	uint32_t		GetInterval() const		{ return m_Interval; }
@@ -159,7 +159,7 @@ private:
 private:
 	void					Tick(int32_t elapse);
 	void					Tick_Task(int32_t elapse);
-	void					Tick_TaskDelegate(int32_t elapse);
+	void					Tick_AllInvoker(int32_t elapse);
 	void					Tick_Logic(int32_t elapse);
 private:
 	void					Wait(int32_t sec);
@@ -170,7 +170,7 @@ private:
 	TimeInfo				m_TimeInfo;
 	ThreadPoolPtr			m_ThreadPoolPtr;
 	TVector<TaskPtr>		m_TaskPtrVec;
-	TList<InvokerPtr>	m_TaskDelegatePtrList;
+	TList<InvokerPtr>		m_InvokerPtrList;
 };
 
 #endif

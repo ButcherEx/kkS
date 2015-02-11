@@ -35,7 +35,7 @@ void Invoker::UpdateInvokeTimeLeft(int32_t elapse)
 	__LEAVE_FUNCTION
 }
 
-void Invoker::Excute( )
+void Invoker::Invoke( )
 {
 	__ENTER_FUNCTION
 	SetState(STATE_EXECUTE);
@@ -264,7 +264,7 @@ void TaskManager::Exit()
 		LOG_DEBUG(ServerTask, "TaskManager::Exit ...");
 		
 		Wait(600);
-		m_TaskDelegatePtrList.Clear();
+		m_InvokerPtrList.Clear();
 		m_TaskPtrVec.clear();
 
 		LOG_DEBUG(ServerTask, "TaskManager::Exit Ok");
@@ -384,7 +384,7 @@ void TaskManager::Tick(int32_t elapse)
 {
 	__ENTER_FUNCTION_EX
 		Tick_Task(elapse);
-		Tick_TaskDelegate(elapse);
+		Tick_AllInvoker(elapse);
 	__LEAVE_FUNCTION_EX
 }
 void TaskManager::Tick_Task(int32_t elapse)
@@ -398,7 +398,7 @@ void TaskManager::Tick_Task(int32_t elapse)
 			InvokerPtr Ptr = m_TaskPtrVec[i]->FetchInvoker();
 			if( Ptr )
 			{
-				m_TaskDelegatePtrList.PushBack(Ptr);
+				m_InvokerPtrList.PushBack(Ptr);
 			}
 			else
 			{
@@ -408,15 +408,15 @@ void TaskManager::Tick_Task(int32_t elapse)
 	}
 	__LEAVE_FUNCTION
 }
-void TaskManager::Tick_TaskDelegate(int32_t elapse)
+void TaskManager::Tick_AllInvoker(int32_t elapse)
 {
 	__ENTER_FUNCTION
 	
 	Assert(m_ThreadPoolPtr);
 
 	InvokerPtr Ptr;
-	m_TaskDelegatePtrList.ResetIterator();
-	while ( m_TaskDelegatePtrList.PeekNext(Ptr))
+	m_InvokerPtrList.ResetIterator();
+	while ( m_InvokerPtrList.PeekNext(Ptr))
 	{
 		switch (Ptr->GetState())
 		{
@@ -426,7 +426,7 @@ void TaskManager::Tick_TaskDelegate(int32_t elapse)
 				if( Ptr->CanExcuteNow() )
 				{
 					Ptr->SetState( Invoker::STATE_SCHUDULE );
-					m_ThreadPoolPtr->schedule( boost::bind( &Invoker::Excute, Ptr) );
+					m_ThreadPoolPtr->schedule( boost::bind( &Invoker::Invoke, Ptr) );
 				}
 			}
 			break;
