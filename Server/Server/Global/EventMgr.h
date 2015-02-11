@@ -21,7 +21,7 @@ public:
 	virtual ~EventMgr();
 public:
 	bool Init();
-	virtual void Update();		
+	virtual void Update(const TimeInfo& rTimeInfo);		
 	void AddEvent(GUID_t sender, EventMsgPtr Ptr);
 	virtual void Handle(EventMsg& rMsg);
 private:

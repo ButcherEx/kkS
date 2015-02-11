@@ -17,7 +17,7 @@ bool EventMgr::Init()
 }
 
 
-void EventMgr::Update()
+void EventMgr::Update(const TimeInfo& rTimeInfo)
 {
 	EventMsgPtr Ptr;
 	while ( m_listEventMsg.PopFront(Ptr))

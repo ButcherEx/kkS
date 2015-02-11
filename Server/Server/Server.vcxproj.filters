@@ -57,12 +57,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main\Login.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Main\LoginMain.cpp">
-      <Filter>Main</Filter>
-    </ClCompile>
     <ClCompile Include="Player\Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
@@ -360,14 +354,14 @@
     <ClCompile Include="DB\DBMainTask.cpp">
       <Filter>DB</Filter>
     </ClCompile>
+    <ClCompile Include="Main\Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\Server.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Main\Login.h">
-      <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="Main\LoginMain.h">
-      <Filter>Main</Filter>
-    </ClInclude>
     <ClInclude Include="Player\Player.h">
       <Filter>Player</Filter>
     </ClInclude>
@@ -700,6 +694,12 @@
     </ClInclude>
     <ClInclude Include="DB\DBTask.h">
       <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\Main.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\Server.h">
+      <Filter>Main</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -177,7 +177,6 @@ void Task::AddInvoker(InvokerPtr taskPtr)
 }
 
 //////////////////////////////////////////////////////////////////////////
-TaskManager g_TaskManager;
 
 TaskManager::TaskManager()
 {
@@ -375,7 +374,7 @@ void TaskManager::ExcuteAllTask()
 		}
 
 
-		MySleep(10);
+		MySleep(1000);
 	}
 
 	Wait(300);
@@ -391,17 +390,20 @@ void TaskManager::Tick(int32_t elapse)
 void TaskManager::Tick_Task(int32_t elapse)
 {
 	__ENTER_FUNCTION
-		const int32_t maxTaskFetch = 256;
-	int32_t fetchCounter = 0;
+	const int32_t maxTaskFetch = 64;
 	for(int32_t i = 0; i < (int32_t)m_TaskPtrVec.size(); i++)
 	{
-		if( fetchCounter > maxTaskFetch) break;
-
-		InvokerPtr Ptr = m_TaskPtrVec[i]->FetchInvoker();
-		if( Ptr )
+		for(int32_t fetchIdx = 0; fetchIdx < maxTaskFetch; fetchIdx++)
 		{
-			fetchCounter++;
-			m_TaskDelegatePtrList.PushBack(Ptr);
+			InvokerPtr Ptr = m_TaskPtrVec[i]->FetchInvoker();
+			if( Ptr )
+			{
+				m_TaskDelegatePtrList.PushBack(Ptr);
+			}
+			else
+			{
+				break;
+			}
 		}
 	}
 	__LEAVE_FUNCTION

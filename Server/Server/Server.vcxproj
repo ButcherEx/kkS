@@ -217,8 +217,8 @@
     <ClCompile Include="Global\LogDefine.cpp" />
     <ClCompile Include="Global\Script.cpp" />
     <ClCompile Include="Global\Task.cpp" />
-    <ClCompile Include="Main\Login.cpp" />
-    <ClCompile Include="Main\LoginMain.cpp" />
+    <ClCompile Include="Main\Main.cpp" />
+    <ClCompile Include="Main\Server.cpp" />
     <ClCompile Include="Map\MapCreator.cpp" />
     <ClCompile Include="Map\Role\Role.cpp" />
     <ClCompile Include="Packets\Packet.cpp" />
@@ -328,8 +328,8 @@
     <ClInclude Include="Global\Script.h" />
     <ClInclude Include="Global\Task.h" />
     <ClInclude Include="Global\TaskDefine.h" />
-    <ClInclude Include="Main\Login.h" />
-    <ClInclude Include="Main\LoginMain.h" />
+    <ClInclude Include="Main\Main.h" />
+    <ClInclude Include="Main\Server.h" />
     <ClInclude Include="Map\MapCreator.h" />
     <ClInclude Include="Map\Role\Role.h" />
     <ClInclude Include="Packets\Packet.h" />

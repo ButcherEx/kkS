@@ -13,15 +13,16 @@ DBMainTask::~DBMainTask()
 bool DBMainTask::Init()
 {
 	__ENTER_FUNCTION
-		bool bRet = EventMgr::Init();
-		Assert(bRet);
 
-		InvokerPtr Ptr ( new DBMainTaskInvoker(*this) );
-		AddInvoker(Ptr);
+	bool bRet = EventMgr::Init();
+	Assert(bRet);
 
-		InitDBTask();
+	InvokerPtr Ptr ( new DBMainTaskInvoker(*this) );
+	AddInvoker(Ptr);
 
-		return true;
+	InitDBTask();
+
+	return true;
 
 	__LEAVE_FUNCTION
 	return false;
@@ -31,6 +32,7 @@ uint32_t DBMainTask::Tick(const TimeInfo& rTimeInfo)
 {
 	__ENTER_FUNCTION
 
+	EventMgr::Update(rTimeInfo);
 	Task::Tick(rTimeInfo);
 
 	__LEAVE_FUNCTION

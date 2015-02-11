@@ -173,5 +173,4 @@ private:
 	TList<InvokerPtr>	m_TaskDelegatePtrList;
 };
 
-extern TaskManager g_TaskManager;
 #endif
