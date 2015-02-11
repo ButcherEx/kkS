@@ -11,6 +11,7 @@
 #include "EventMsg.h"
 #include "EventMgr.h"
 #include "EventMsg_Test.h"
+#include "DBMainTask.h"
 
 class GroupMgr : public EventMgr
 {
@@ -49,6 +50,8 @@ int32_t main(int32_t argc, CHAR* argv[])
 
 		bRet = g_TaskManager.Init(10, g_Config.m_LogConfig.m_ThreadNum);
 		Assert(bRet);
+
+		g_TaskManager.Register( TaskPtr(new DBMainTask() ) );
 
 		g_TaskManager.Excute();	
 

@@ -52,6 +52,9 @@
     <Filter Include="Global\other">
       <UniqueIdentifier>{57f7f107-d471-4c46-aff2-1beed04d403f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DB">
+      <UniqueIdentifier>{2d836660-6056-4ee2-96d7-fc243a5eee4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main\Login.cpp">
@@ -350,6 +353,12 @@
     </ClCompile>
     <ClCompile Include="Map\MapCreator.cpp">
       <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBTask.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DB\DBMainTask.cpp">
+      <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -682,6 +691,15 @@
     </ClInclude>
     <ClInclude Include="Map\MapCreator.h">
       <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Global\TaskDefine.h">
+      <Filter>Global\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="DB\DBMainTask.h">
+      <Filter>DB</Filter>
+    </ClInclude>
+    <ClInclude Include="DB\DBTask.h">
+      <Filter>DB</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

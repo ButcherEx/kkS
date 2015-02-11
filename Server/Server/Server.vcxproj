@@ -92,7 +92,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../3rd/protobuf/src;../../3rd/lua/src;../../3rd/boost;../Common;../Common/Base;../Common/Net;./Global;./Packets;./Main;./Map;./Player;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../3rd/protobuf/src;../../3rd/lua/src;../../3rd/boost;../Common;../Common/Base;../Common/Net;./Global;./Packets;./Main;./Map;./DB;./Player;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;__WINDOWS__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -207,6 +207,8 @@
     <ClCompile Include="..\Common\Net\SocketAPI.cpp" />
     <ClCompile Include="..\Common\Net\SocketInputStream.cpp" />
     <ClCompile Include="..\Common\Net\SocketOutputStream.cpp" />
+    <ClCompile Include="DB\DBMainTask.cpp" />
+    <ClCompile Include="DB\DBTask.cpp" />
     <ClCompile Include="Global\Config.cpp" />
     <ClCompile Include="Global\EventMgr.cpp" />
     <ClCompile Include="Global\EventMsg_Test.cpp" />
@@ -314,6 +316,8 @@
     <ClInclude Include="..\Common\Net\SocketAPI.h" />
     <ClInclude Include="..\Common\Net\SocketInputStream.h" />
     <ClInclude Include="..\Common\Net\SocketOutputStream.h" />
+    <ClInclude Include="DB\DBMainTask.h" />
+    <ClInclude Include="DB\DBTask.h" />
     <ClInclude Include="Global\Config.h" />
     <ClInclude Include="Global\EventMgr.h" />
     <ClInclude Include="Global\EventMsg.h" />
@@ -323,6 +327,7 @@
     <ClInclude Include="Global\LogDefine.h" />
     <ClInclude Include="Global\Script.h" />
     <ClInclude Include="Global\Task.h" />
+    <ClInclude Include="Global\TaskDefine.h" />
     <ClInclude Include="Main\Login.h" />
     <ClInclude Include="Main\LoginMain.h" />
     <ClInclude Include="Map\MapCreator.h" />
