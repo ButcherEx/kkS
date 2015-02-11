@@ -16,6 +16,9 @@ bool DBMainTask::Init()
 		bool bRet = EventMgr::Init();
 		Assert(bRet);
 
+		InvokerPtr Ptr ( new DBMainTaskInvoker(*this) );
+		AddInvoker(Ptr);
+
 		InitDBTask();
 
 		return true;
@@ -44,11 +47,10 @@ void DBMainTask::InitDBTask()
 		DBTaskPtr Ptr = POOL_NEW(DBTask);
 		bool bRet = Ptr->Init( );
 		Assert(bRet);
-		Assert(!m_DBTaskVec[i]);
-		m_DBTaskVec[i] = Ptr;
+		m_DBTaskVec.push_back(Ptr);
 
-		TaskDelegatePtr deleagate(new DBTaskDelegate(*Ptr) );
-		AddTask(deleagate);
+		InvokerPtr deleagate(new DBTaskInvoker(*Ptr) );
+		AddInvoker(deleagate);
 	}
 		
 

@@ -28,7 +28,7 @@ private:
 	TVector<DBTaskPtr> m_DBTaskVec;
 };
 
-
+typedef MakeInvoker<DBMainTask, 10> DBMainTaskInvoker;
 #endif
 
 

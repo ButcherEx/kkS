@@ -48,7 +48,7 @@ int32_t main(int32_t argc, CHAR* argv[])
 		bool bRet =	g_InstancenManager.Init();
 		Assert(bRet);
 
-		bRet = g_TaskManager.Init(10, g_Config.m_LogConfig.m_ThreadNum);
+		bRet = g_TaskManager.Init(TaskDefine::MAX_TASK, g_Config.m_LogConfig.m_ThreadNum);
 		Assert(bRet);
 
 		g_TaskManager.Register( TaskPtr(new DBMainTask() ) );

@@ -7,7 +7,7 @@
 //////////////////////////////////////////////////////////////////////////
 LOG_DECL(ServerTask);
 //////////////////////////////////////////////////////////////////////////
-class TaskDelegate
+class Invoker
 {
 public:
 	enum 
@@ -18,48 +18,48 @@ public:
 		STATE_EXECUTE
 	};
 public:
-	TaskDelegate(uint32_t interval );
-	virtual ~TaskDelegate();
+	Invoker(uint32_t interval );
+	virtual ~Invoker();
 public:
 	virtual void UpdateTimeInfo();
 public:
-	void			UpdateDoWaitTime(int32_t elapse);
-	bool			CanExcuteNow( ) const { return m_TaskExcuteDoTimeLeft <= 0; }
-	void			UpdateSchuduleTime(int32_t elapse) { m_TaskSchuduleTime += elapse; }
-	int32_t			GetSchuduleTime( ) const { return m_TaskSchuduleTime; }
-	void			UpdateExcuteTime(int32_t elapse) { m_TaskExcuteTime += elapse; }
-	int32_t			GetExcuteTime( ) const { return m_TaskExcuteTime; }
+	void			UpdateInvokeTimeLeft(int32_t elapse);
+	bool			CanExcuteNow( ) const { return m_InvokeTimeLeft <= 0; }
+	void			UpdateSchuduleTime(int32_t elapse) { m_SchuduleTime += elapse; }
+	int32_t			GetSchuduleTime( ) const { return m_SchuduleTime; }
+	void			UpdateExcuteTime(int32_t elapse) { m_ExcuteTime += elapse; }
+	int32_t			GetExcuteTime( ) const { return m_ExcuteTime; }
 public:
 	void			Excute();
 	virtual uint32_t Do() = 0;
 public:
-	uint32_t		GetInterval() const		{ return m_TaskInterval; }
+	uint32_t		GetInterval() const		{ return m_Interval; }
 	const TimeInfo& GetTimeInfo() const		{ return m_TimeInfo; }
 	void			SetState(uint32_t state){ m_State = state; }
 	uint32_t		GetState( ) const		{ return m_State; }
 protected:
 	TimeInfo m_TimeInfo;
-	uint32_t m_TaskInterval;
-	int32_t	 m_TaskExcuteDoTimeLeft;
-	int32_t	 m_TaskSchuduleTime;
-	int32_t	 m_TaskExcuteTime;
+	uint32_t m_Interval;
+	int32_t	 m_InvokeTimeLeft;
+	int32_t	 m_SchuduleTime;
+	int32_t	 m_ExcuteTime;
 	uint32_t m_State;
 };
 
-typedef boost::shared_ptr<TaskDelegate> TaskDelegatePtr;
+typedef boost::shared_ptr<Invoker> InvokerPtr;
 
 //////////////////////////////////////////////////////////////////////////
 template<class RealTask, int32_t InterVal>
-class MakeTaskDelegate : public TaskDelegate
+class MakeInvoker : public Invoker
 {
 public:
-	MakeTaskDelegate(RealTask& rTask):TaskDelegate(Interval), m_rTask(rTask){}
-	virtual ~MakeTaskDelegate() {}
+	MakeInvoker(RealTask& rTask):Invoker(InterVal), m_rTask(rTask){}
+	virtual ~MakeInvoker() {}
 public:
 	virtual uint32_t Do()
 	{
 		UpdateTimeInfo( );
-		m_rTask.Tick(m_TimeInfo);
+		return m_rTask.Tick(m_TimeInfo);
 	}
 
 private:
@@ -76,17 +76,21 @@ public:
 		TASK_STOP = 0,
 
 		TASK_START,
+		TASK_START_EXC,
 		TASK_START_OK,
 
 		TASK_LOAD,
+		TASK_LOAD_EXC,
 		TASK_LOAD_OK,
 
 		TASK_EXECUTE,
 
 		TASK_SHUTDOWN,
+		TASK_SHUTDOWN_EXC,
 		TASK_SHUTDOWN_OK,
 
 		TASK_FINALSAVE,
+		TASK_FINALSAVE_EXC,
 		TASK_FINALSAVE_OK,
 	};
 public:
@@ -94,6 +98,7 @@ public:
 	virtual ~TaskBase();
 public:
 	virtual uint32_t	Tick(const TimeInfo& rTimeInfo);
+	virtual void		Tick_State();
 protected:
 	virtual	void		Start();
 	virtual	void		Load();
@@ -120,10 +125,10 @@ public:
 	virtual bool		Init() = 0;
 	virtual int32_t		GetTaskID() = 0;
 public:
-	TaskDelegatePtr		FetchTaskDelegate( );
-	void				AddTask(TaskDelegatePtr taskPtr);
+	InvokerPtr			FetchInvoker( );
+	void				AddInvoker(InvokerPtr taskPtr);
 private:
-	TSList<TaskDelegatePtr> m_TaskDelegatePtrList;
+	TSList<InvokerPtr>	m_InvokerPtrList;
 };
 
 typedef boost::shared_ptr<Task> TaskPtr;
@@ -145,6 +150,7 @@ public:
 private:
 	void					SetAllTaskState(int32_t state);
 	void					ExcuteState(int32_t setState, int32_t checkState);
+	void					ExcuteAllTaskInit();
 	void					ExcuteAllTaskStart();
 	void					ExcuteAllTaskLoad();
 	void					ExcuteAllTask();
@@ -164,7 +170,7 @@ private:
 	TimeInfo				m_TimeInfo;
 	ThreadPoolPtr			m_ThreadPoolPtr;
 	TVector<TaskPtr>		m_TaskPtrVec;
-	TList<TaskDelegatePtr>	m_TaskDelegatePtrList;
+	TList<InvokerPtr>	m_TaskDelegatePtrList;
 };
 
 extern TaskManager g_TaskManager;

@@ -9,42 +9,42 @@
 LOG_IMPL(ServerTask)
 //////////////////////////////////////////////////////////////////////////
 
-TaskDelegate::TaskDelegate(uint32_t interval )
-: m_TaskInterval(interval), m_State(STATE_READY)
-, m_TaskExcuteDoTimeLeft(0), m_TaskSchuduleTime(0),m_TaskExcuteTime(0)
+Invoker::Invoker(uint32_t interval )
+: m_Interval(interval), m_State(STATE_READY)
+, m_InvokeTimeLeft(0), m_SchuduleTime(0),m_ExcuteTime(0)
 {
 
 }
 
-TaskDelegate::~TaskDelegate()
+Invoker::~Invoker()
 {
 
 }
 
-void TaskDelegate::UpdateTimeInfo( )
+void Invoker::UpdateTimeInfo( )
 {
 	__ENTER_FUNCTION
 	m_TimeInfo.Update();
 	__LEAVE_FUNCTION
 }
 
-void TaskDelegate::UpdateDoWaitTime(int32_t elapse)
+void Invoker::UpdateInvokeTimeLeft(int32_t elapse)
 {
 	__ENTER_FUNCTION
-	m_TaskExcuteDoTimeLeft -= elapse;
+	m_InvokeTimeLeft -= elapse;
 	__LEAVE_FUNCTION
 }
 
-void TaskDelegate::Excute( )
+void Invoker::Excute( )
 {
 	__ENTER_FUNCTION
 	SetState(STATE_EXECUTE);
 
-	m_TaskExcuteTime = 0;
+	m_ExcuteTime = 0;
 	__ENTER_FUNCTION_EX
 		Do();
 	__LEAVE_FUNCTION_EX
-	m_TaskExcuteDoTimeLeft = m_TaskInterval;
+	m_InvokeTimeLeft = m_Interval;
 	SetState(STATE_READY);
 	__LEAVE_FUNCTION
 }
@@ -62,7 +62,43 @@ TaskBase::~TaskBase()
 
 uint32_t TaskBase::Tick(const TimeInfo& rTimeInfo)
 {
+	Tick_State();
 	return 0;
+}
+
+void TaskBase::Tick_State()
+{
+	__ENTER_FUNCTION
+	switch (m_State)
+	{
+	case TASK_START:
+		{
+			SetState(TASK_START_EXC);
+			Start();
+		}
+		break;
+	case TASK_LOAD:
+		{
+			SetState(TASK_LOAD_EXC);
+			Load();
+		}
+		break;
+	case TASK_SHUTDOWN:
+		{
+			SetState(TASK_SHUTDOWN_EXC);
+			Shutdown();
+		}
+		break;
+	case TASK_FINALSAVE:
+		{
+			SetState(TASK_FINALSAVE_EXC);
+			FinalSave();
+		}
+		break;
+	default:
+			break;
+	}
+	__LEAVE_FUNCTION
 }
 
 void TaskBase::Start()
@@ -123,20 +159,20 @@ void TaskBase::OnFinalSaveOk()
 //////////////////////////////////////////////////////////////////////////
 Task::~Task()
 {
-	m_TaskDelegatePtrList.Clear();
+	m_InvokerPtrList.Clear();
 }
-TaskDelegatePtr Task::FetchTaskDelegate()
+InvokerPtr Task::FetchInvoker()
 {
-	TaskDelegatePtr taskPtr;
+	InvokerPtr taskPtr;
 	__ENTER_FUNCTION
-		m_TaskDelegatePtrList.PopFront(taskPtr);
+		m_InvokerPtrList.PopFront(taskPtr);
 	__LEAVE_FUNCTION
 		return taskPtr;
 }
-void Task::AddTask(TaskDelegatePtr taskPtr)
+void Task::AddInvoker(InvokerPtr taskPtr)
 {
 	__ENTER_FUNCTION
-		m_TaskDelegatePtrList.PushBack(taskPtr);
+		m_InvokerPtrList.PushBack(taskPtr);
 	__LEAVE_FUNCTION
 }
 
@@ -162,8 +198,12 @@ bool TaskManager::Init(int32_t maxTask, int32_t maxThread)
 
 		Assert((maxTask && maxThread));
 
+
+		m_TaskPtrVec.resize(maxTask);
+
 		m_ThreadPoolPtr = ThreadPoolPtr(new ThreadPool(maxThread));
 		Assert(m_ThreadPoolPtr);
+
 		LOG_DEBUG(ServerTask, "New ThreadPool(%d) ok", maxThread);
 
 		return true;
@@ -191,6 +231,10 @@ bool TaskManager::Register(TaskPtr taskPtr)
 void TaskManager::Excute( )
 {
 	__ENTER_FUNCTION
+
+		LOG_DEBUG(ServerTask, "ExcuteAllTaskInit ...");
+		ExcuteAllTaskInit();
+		LOG_DEBUG(ServerTask, "ExcuteAllTaskInit Ok");
 
 		LOG_DEBUG(ServerTask, "ExcuteAllTaskStart ...");
 		ExcuteAllTaskStart();
@@ -228,6 +272,16 @@ void TaskManager::Exit()
 	__LEAVE_FUNCTION
 }
 
+void TaskManager::ExcuteAllTaskInit()
+{
+	__ENTER_FUNCTION
+		for(int32_t i = 0; i < (int32_t)m_TaskPtrVec.size(); i++)
+		{
+			bool bRet = m_TaskPtrVec[i]->Init();
+			Assert(bRet);
+		}
+	__LEAVE_FUNCTION
+}
 void TaskManager::SetAllTaskState(int32_t state)
 {
 	__ENTER_FUNCTION
@@ -343,7 +397,7 @@ void TaskManager::Tick_Task(int32_t elapse)
 	{
 		if( fetchCounter > maxTaskFetch) break;
 
-		TaskDelegatePtr Ptr = m_TaskPtrVec[i]->FetchTaskDelegate();
+		InvokerPtr Ptr = m_TaskPtrVec[i]->FetchInvoker();
 		if( Ptr )
 		{
 			fetchCounter++;
@@ -358,26 +412,26 @@ void TaskManager::Tick_TaskDelegate(int32_t elapse)
 	
 	Assert(m_ThreadPoolPtr);
 
-	TaskDelegatePtr Ptr;
+	InvokerPtr Ptr;
 	m_TaskDelegatePtrList.ResetIterator();
 	while ( m_TaskDelegatePtrList.PeekNext(Ptr))
 	{
 		switch (Ptr->GetState())
 		{
-		case TaskDelegate::STATE_READY:
+		case Invoker::STATE_READY:
 			{
-				Ptr->UpdateDoWaitTime(elapse);
+				Ptr->UpdateInvokeTimeLeft(elapse);
 				if( Ptr->CanExcuteNow() )
 				{
-					Ptr->SetState( TaskDelegate::STATE_SCHUDULE );
-					m_ThreadPoolPtr->schedule( boost::bind( &TaskDelegate::Excute, Ptr) );
+					Ptr->SetState( Invoker::STATE_SCHUDULE );
+					m_ThreadPoolPtr->schedule( boost::bind( &Invoker::Excute, Ptr) );
 				}
 			}
 			break;
-		case TaskDelegate::STATE_EXECUTE:
+		case Invoker::STATE_EXECUTE:
 			Ptr->UpdateExcuteTime(elapse);
 			break;
-		case TaskDelegate::STATE_SCHUDULE:
+		case Invoker::STATE_SCHUDULE:
 			Ptr->UpdateSchuduleTime(elapse);
 			break;
 		default:

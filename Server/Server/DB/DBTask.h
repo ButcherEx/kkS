@@ -22,7 +22,7 @@ public:
 };
 
 POOL_DECL(DBTask);
-typedef MakeTaskDelegate<DBTask, 50> DBTaskDelegate;
+typedef MakeInvoker<DBTask, 50> DBTaskInvoker;
 
 #endif
 
