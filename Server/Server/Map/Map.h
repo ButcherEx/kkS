@@ -2,26 +2,21 @@
 /*                                                                      */
 /************************************************************************/
 
-#ifndef __MAP_CREATOR_H__
-#define __MAP_CREATOR_H__
+#ifndef __MAP_H__
+#define __MAP_H__
 
 #include "BaseLib.h"
-#include "EventMgr.h"
 #include "Task.h"
+#include "EventMgr.h"
 #include "EventMsg.h"
-#include "MapMgr.h"
 
-class MapCreator : public Task
+class Map : public TaskBase
 {
 public:
-	bool		Init();
-	void		Excute();
-	void		Exit();
-	int32_t		GetTaskID();
-private:
-	TaskManager m_MapTaskManager;
+	virtual int32_t GetMapType( ) { return 0; }
 };
 
 
-#endif
+
+#endif 
 

@@ -6,13 +6,13 @@
 #define __DBMAIN_TASK_H__
 
 #include "BaseLib.h"
-#include "Task.h"
 #include "TaskDefine.h"
 #include "EventMgr.h"
+#include "Task.h"
 #include "EventMsg.h"
 #include "DBTask.h"
 
-class DBMainTask : public Task, public EventMgr
+class DBMainTask : public Task
 {
 public:
 	DBMainTask();

@@ -9,9 +9,9 @@
 LOG_IMPL(ServerTask)
 //////////////////////////////////////////////////////////////////////////
 
-Invoker::Invoker(uint32_t interval )
-: m_Interval(interval), m_State(STATE_READY)
-, m_InvokeTimeLeft(0), m_SchuduleTime(0),m_ExcuteTime(0)
+Invoker::Invoker(uint32_t interval, int32_t type, int32_t initState)
+: m_Interval(interval), m_State(initState), m_Type(type)
+, m_InvokeTimeLeft(0), m_SchuduleTime(0),m_ExcuteTime(0),m_IdleTime(0)
 {
 
 }
@@ -45,7 +45,7 @@ void Invoker::Invoke( )
 		Do();
 	__LEAVE_FUNCTION_EX
 	m_InvokeTimeLeft = m_Interval;
-	SetState(STATE_READY);
+	SetState( ( m_Type != TYPE_ACTIVE) ? STATE_IDLE : STATE_READY);
 	__LEAVE_FUNCTION
 }
 //////////////////////////////////////////////////////////////////////////
@@ -420,8 +420,14 @@ void TaskManager::Tick_AllInvoker(int32_t elapse)
 	{
 		switch (Ptr->GetState())
 		{
+		case Invoker::STATE_IDLE:
+			{
+				Ptr->UpdateIdleTime(elapse);
+			}
+			break;
 		case Invoker::STATE_READY:
 			{
+				Ptr->ResetIdleTime() ;
 				Ptr->UpdateInvokeTimeLeft(elapse);
 				if( Ptr->CanExcuteNow() )
 				{
@@ -437,7 +443,7 @@ void TaskManager::Tick_AllInvoker(int32_t elapse)
 			Ptr->UpdateSchuduleTime(elapse);
 			break;
 		default:
-			AssertSpecialEx(false, "TaskDelegate unkonwn state.");
+			AssertSpecialEx(false, "Invoker unkonwn state.");
 			break;
 		}
 	}

@@ -7,12 +7,12 @@
 
 
 #include "BaseLib.h"
-#include "Task.h"
 #include "TaskDefine.h"
 #include "EventMgr.h"
+#include "Task.h"
 #include "EventMsg.h"
 
-class DBTask : public TaskBase, public EventMgr
+class DBTask : public TaskBase
 {
 public:
 	DBTask( );

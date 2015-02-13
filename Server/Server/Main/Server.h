@@ -9,9 +9,9 @@
 #include "Role/Role.h"
 #include "InstanceModule.h"
 #include "LogDefine.h"
-#include "Task.h"
 #include "EventMsg.h"
 #include "EventMgr.h"
+#include "Task.h"
 #include "EventMsg_Test.h"
 #include "DBMainTask.h"
 

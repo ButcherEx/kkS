@@ -4,6 +4,7 @@
 
 #ifndef __TASK_H__
 #define __TASK_H__
+#include "EventMgr.h"
 //////////////////////////////////////////////////////////////////////////
 LOG_DECL(ServerTask);
 //////////////////////////////////////////////////////////////////////////
@@ -17,15 +18,26 @@ public:
 		STATE_SCHUDULE,
 		STATE_EXECUTE
 	};
+
+	enum
+	{
+		TYPE_ACTIVE,
+		TYPE_PASSIVE,
+	};
 public:
-	Invoker(uint32_t interval );
+	Invoker(uint32_t interval, int32_t type = TYPE_ACTIVE, int32_t initState = STATE_READY);
 	virtual ~Invoker();
 public:
 	virtual void UpdateTimeInfo();
 public:
+
 	void			UpdateInvokeTimeLeft(int32_t elapse);
 	bool			CanExcuteNow( ) const { return m_InvokeTimeLeft <= 0; }
 	void			UpdateSchuduleTime(int32_t elapse) { m_SchuduleTime += elapse; }
+	void			ResetIdleTime() { m_IdleTime = 0; }
+	void			UpdateIdleTime(int32_t elapse) { m_IdleTime += elapse; }
+	int32_t			GetIdleTime( ) const { return m_IdleTime; }
+
 	int32_t			GetSchuduleTime( ) const { return m_SchuduleTime; }
 	void			UpdateExcuteTime(int32_t elapse) { m_ExcuteTime += elapse; }
 	int32_t			GetExcuteTime( ) const { return m_ExcuteTime; }
@@ -37,13 +49,16 @@ public:
 	const TimeInfo& GetTimeInfo() const		{ return m_TimeInfo; }
 	void			SetState(uint32_t state){ m_State = state; }
 	uint32_t		GetState( ) const		{ return m_State; }
+	uint32_t		GetType( ) const		{ return m_Type; }
 protected:
 	TimeInfo m_TimeInfo;
 	uint32_t m_Interval;
 	int32_t	 m_InvokeTimeLeft;
 	int32_t	 m_SchuduleTime;
 	int32_t	 m_ExcuteTime;
+	int32_t  m_IdleTime;
 	uint32_t m_State;
+	uint32_t m_Type;
 };
 
 typedef boost::shared_ptr<Invoker> InvokerPtr;
@@ -68,7 +83,7 @@ private:
 
 
 //////////////////////////////////////////////////////////////////////////
-class TaskBase
+class TaskBase : public EventMgr
 {
 public:
 	enum State
@@ -170,7 +185,7 @@ private:
 	TimeInfo				m_TimeInfo;
 	ThreadPoolPtr			m_ThreadPoolPtr;
 	TVector<TaskPtr>		m_TaskPtrVec;
-	TList<InvokerPtr>		m_InvokerPtrList;
+	TList<InvokerPtr>		m_InvokerPtrList;				
 };
 
 #endif
