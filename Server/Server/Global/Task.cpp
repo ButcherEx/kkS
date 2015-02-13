@@ -180,7 +180,7 @@ void Task::AddInvoker(InvokerPtr taskPtr)
 
 TaskManager::TaskManager()
 {
-
+	strncpy(m_Name, "unknown", TASKMANAGER_NAME_LEN);
 }
 
 TaskManager::~TaskManager()
@@ -192,10 +192,10 @@ bool TaskManager::Init(int32_t maxTask, int32_t maxThread)
 {
 	__ENTER_FUNCTION
 
-		LOG_DEBUG(ServerTask, "Init TaskManager(maxTask:%d, maxThread:%d)...", 
-			maxTask, maxThread);
+		LOG_DEBUG(ServerTask, "Init TaskManager(%s)(maxTask:%d, maxThread:%d)...", 
+			GetName(), maxTask, maxThread);
 
-		Assert((maxTask && maxThread));
+		Assert((maxTask >= 0 && maxThread));
 
 
 		m_TaskPtrVec.resize(maxTask);
@@ -231,29 +231,29 @@ void TaskManager::Excute( )
 {
 	__ENTER_FUNCTION
 
-		LOG_DEBUG(ServerTask, "ExcuteAllTaskInit ...");
+		LOG_DEBUG(ServerTask, "Init %s ...", GetName());
 		ExcuteAllTaskInit();
-		LOG_DEBUG(ServerTask, "ExcuteAllTaskInit Ok");
+		LOG_DEBUG(ServerTask, "Init Ok");
 
-		LOG_DEBUG(ServerTask, "ExcuteAllTaskStart ...");
+		LOG_DEBUG(ServerTask, "Start %s ...", GetName());
 		ExcuteAllTaskStart();
-		LOG_DEBUG(ServerTask, "ExcuteAllTaskStart Ok");
+		LOG_DEBUG(ServerTask, "Start Ok");
 
-		LOG_DEBUG(ServerTask, "ExcuteAllTaskLoad ...");
+		LOG_DEBUG(ServerTask, "Load %s...", GetName());
 		ExcuteAllTaskLoad();
-		LOG_DEBUG(ServerTask, "ExcuteAllTaskLoad Ok");
+		LOG_DEBUG(ServerTask, "Load Ok");
 
-		LOG_DEBUG(ServerTask, "ExcuteAllTask ...");
+		LOG_DEBUG(ServerTask, "Excute %s ...", GetName());
 		ExcuteAllTask();
-		LOG_DEBUG(ServerTask, "ExcuteAllTask Ok");
+		LOG_DEBUG(ServerTask, "Excute Ok");
 
-		LOG_DEBUG(ServerTask, "ExcuteAllTaskShutdown ...");
+		LOG_DEBUG(ServerTask, "Shutdown %s ...", GetName());
 		ExcuteAllTaskShutdown();
-		LOG_DEBUG(ServerTask, "ExcuteAllTaskShutdown Ok");
+		LOG_DEBUG(ServerTask, "Shutdown Ok");
 
-		LOG_DEBUG(ServerTask, "ExcuteAllTaskFinalSave ...");
+		LOG_DEBUG(ServerTask, "FinalSave %s ...", GetName());
 		ExcuteAllTaskFinalSave();
-		LOG_DEBUG(ServerTask, "ExcuteAllTaskFinalSave Ok");
+		LOG_DEBUG(ServerTask, "FinalSave Ok");
 
 	__LEAVE_FUNCTION
 }
@@ -287,6 +287,18 @@ void TaskManager::SetAllTaskState(int32_t state)
 	for(int32_t i = 0; i < (int32_t)m_TaskPtrVec.size(); i++)
 	{
 		m_TaskPtrVec[i]->SetState(state);
+	}
+	__LEAVE_FUNCTION
+}
+
+void TaskManager::SetAllInvokerState_MainThread(int32_t state)
+{
+	__ENTER_FUNCTION
+	InvokerPtr Ptr;
+	m_InvokerPtrList.ResetIterator();
+	while ( m_InvokerPtrList.PeekNext(Ptr))
+	{
+		Ptr->SetState(state);
 	}
 	__LEAVE_FUNCTION
 }
@@ -468,6 +480,22 @@ bool TaskManager::IsAllTaskInState(int32_t state)
 	__LEAVE_FUNCTION
 	return false;
 }
+
+bool TaskManager::IsAllInvokerInState(int32_t state)
+{
+	__ENTER_FUNCTION
+		InvokerPtr Ptr;
+	m_InvokerPtrList.ResetIterator();
+	while ( m_InvokerPtrList.PeekNext(Ptr))
+	{
+		if( !Ptr->IsState(state) ) return false;
+
+	}
+		return true;
+	__LEAVE_FUNCTION
+	return false;
+}
+
 bool TaskManager::IsShouldShutdown()
 {
 	__ENTER_FUNCTION_EX

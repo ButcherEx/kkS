@@ -24,10 +24,15 @@ public:
 	virtual void		Shutdown();
 	virtual void		FinalSave();
 public:
+	void				InitAllMapMgr();
+public:
 	void				Exit();
 private:
 	TaskManager m_MapTaskManager;
+	TVector<MapMgrPtr> m_MapMgrVec; 
 };
+
+typedef MakeInvoker<MapCreator, 50> MapCreatorInvoker;
 
 
 #endif

@@ -47,6 +47,7 @@ public:
 public:
 	uint32_t		GetInterval() const		{ return m_Interval; }
 	const TimeInfo& GetTimeInfo() const		{ return m_TimeInfo; }
+	bool			IsState(uint32_t state) const{ return (m_State == state); }
 	void			SetState(uint32_t state){ m_State = state; }
 	uint32_t		GetState( ) const		{ return m_State; }
 	uint32_t		GetType( ) const		{ return m_Type; }
@@ -128,6 +129,7 @@ public:
 public:
 	void				SetState(uint32_t state){ m_State = state; }
 	uint32_t			GetState( ) const		{ return m_State; }
+	bool				IsState(uint32_t state) const { return (m_State == state); }
 private:
 	uint32_t m_State;
 
@@ -155,6 +157,7 @@ typedef boost::threadpool::fifo_pool  ThreadPool;
 typedef boost::shared_ptr<ThreadPool> ThreadPoolPtr;
 class TaskManager
 {
+	const  static int32_t TASKMANAGER_NAME_LEN = 32;
 	friend class MapCreator;
 public:
 	TaskManager();
@@ -164,7 +167,11 @@ public:
 	bool					Register(TaskPtr taskPtr);
 	void					Excute();
 	void					Exit();
+public:
+	void					SetName(const CHAR* Name) { strncpy(m_Name, Name, TASKMANAGER_NAME_LEN);  }
+	const CHAR*				GetName() const { return m_Name; }
 private:
+	void					SetAllInvokerState_MainThread(int32_t state);
 	void					SetAllTaskState(int32_t state);
 	void					ExcuteState(int32_t setState, int32_t checkState);
 	void					ExcuteAllTaskInit();
@@ -181,9 +188,11 @@ private:
 private:
 	void					Wait(int32_t sec);
 private:
+	bool					IsAllInvokerInState(int32_t state);
 	bool					IsAllTaskInState(int32_t state);
 	bool					IsShouldShutdown();
 private:
+	CHAR					m_Name[TASKMANAGER_NAME_LEN];
 	TimeInfo				m_TimeInfo;
 	ThreadPoolPtr			m_ThreadPoolPtr;
 	TVector<TaskPtr>		m_TaskPtrVec;

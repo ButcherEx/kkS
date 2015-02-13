@@ -32,9 +32,10 @@ void Server::Init_AllTask()
 	__ENTER_FUNCTION
 
 	//////////////////////////////////////////////////////////////////////////
+	m_MainTaskManager.SetName("MainTaskManager");
+	//////////////////////////////////////////////////////////////////////////
 	bool bRet = m_MainTaskManager.Init(TaskDefine::MAX_TASK, g_Config.m_LogConfig.m_ThreadNum);
 	Assert(bRet);
-
 	//////////////////////////////////////////////////////////////////////////
 	m_MainTaskManager.Register( TaskPtr(new MapCreator() ) );
 	m_MainTaskManager.Register( TaskPtr(new DBMainTask() ) );
