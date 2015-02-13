@@ -19,7 +19,7 @@ public:
 	virtual ~DBMainTask();
 public:
 	virtual bool		Init();
-	virtual uint32_t	Tick(const TimeInfo& rTimeInfo);
+	virtual void		Tick(const TimeInfo& rTimeInfo);
 	virtual int32_t		GetTaskID() { return TaskDefine::DATABASE;} 
 public:
 private:

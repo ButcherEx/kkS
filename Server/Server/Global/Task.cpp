@@ -60,10 +60,10 @@ TaskBase::~TaskBase()
 }
 
 
-uint32_t TaskBase::Tick(const TimeInfo& rTimeInfo)
+void TaskBase::Tick(const TimeInfo& rTimeInfo)
 {
+	EventMgr::Update(rTimeInfo);
 	Tick_State();
-	return 0;
 }
 
 void TaskBase::Tick_State()

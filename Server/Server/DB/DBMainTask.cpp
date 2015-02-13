@@ -28,15 +28,13 @@ bool DBMainTask::Init()
 	return false;
 }
 
-uint32_t DBMainTask::Tick(const TimeInfo& rTimeInfo)
+void DBMainTask::Tick(const TimeInfo& rTimeInfo)
 {
 	__ENTER_FUNCTION
 
-	EventMgr::Update(rTimeInfo);
 	Task::Tick(rTimeInfo);
 
 	__LEAVE_FUNCTION
-	return 0;
 }
 
 void DBMainTask::InitDBTask()

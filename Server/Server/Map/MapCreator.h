@@ -6,6 +6,7 @@
 #define __MAP_CREATOR_H__
 
 #include "BaseLib.h"
+#include "TaskDefine.h"
 #include "EventMgr.h"
 #include "Task.h"
 #include "EventMsg.h"
@@ -14,10 +15,16 @@
 class MapCreator : public Task
 {
 public:
-	bool		Init();
-	void		Excute();
-	void		Exit();
-	int32_t		GetTaskID();
+	virtual bool		Init();
+	virtual void		Tick(const TimeInfo& rTimeInfo);
+	virtual int32_t		GetTaskID() { return TaskDefine::MAP;} 
+public:
+	virtual	void		Start();
+	virtual	void		Load();
+	virtual void		Shutdown();
+	virtual void		FinalSave();
+public:
+	void				Exit();
 private:
 	TaskManager m_MapTaskManager;
 };

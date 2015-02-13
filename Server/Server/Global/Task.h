@@ -43,7 +43,7 @@ public:
 	int32_t			GetExcuteTime( ) const { return m_ExcuteTime; }
 public:
 	void			Invoke();
-	virtual uint32_t Do() = 0;
+	virtual void	Do() = 0;
 public:
 	uint32_t		GetInterval() const		{ return m_Interval; }
 	const TimeInfo& GetTimeInfo() const		{ return m_TimeInfo; }
@@ -71,10 +71,10 @@ public:
 	MakeInvoker(RealTask& rTask):Invoker(InterVal), m_rTask(rTask){}
 	virtual ~MakeInvoker() {}
 public:
-	virtual uint32_t Do()
+	virtual void Do()
 	{
 		UpdateTimeInfo( );
-		return m_rTask.Tick(m_TimeInfo);
+		m_rTask.Tick(m_TimeInfo);
 	}
 
 private:
@@ -112,7 +112,8 @@ public:
 	TaskBase();
 	virtual ~TaskBase();
 public:
-	virtual uint32_t	Tick(const TimeInfo& rTimeInfo);
+	virtual void		Tick(const TimeInfo& rTimeInfo);
+private:
 	virtual void		Tick_State();
 protected:
 	virtual	void		Start();
@@ -154,6 +155,7 @@ typedef boost::threadpool::fifo_pool  ThreadPool;
 typedef boost::shared_ptr<ThreadPool> ThreadPoolPtr;
 class TaskManager
 {
+	friend class MapCreator;
 public:
 	TaskManager();
 	~TaskManager();
