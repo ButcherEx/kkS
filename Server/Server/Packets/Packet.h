@@ -37,13 +37,13 @@ typedef ::google::protobuf::Message PBMessage;
 class Packet
 {
 public:
-	#define msg_ref GetMsg()
+	#define ref_msg GetRefMsg()
 public :
 	Packet(PBMessage& msg, const CHAR* name);
 	virtual ~Packet( );
 public:
-	PBMessage&			GetMsg()				{ return m_rMsg; }
-	const PBMessage&	GetMsg( ) const			{ return m_rMsg; }
+	PBMessage&			GetRefMsg()				{ return m_rMsg; }
+	const PBMessage&	GetRefMsg( ) const		{ return m_rMsg; }
 	virtual	uint32_t	GetPacketID( ) const	{ return m_PacketId; } 
 	virtual	uint32_t	GetPacketSize( ) const	{ return m_rMsg.ByteSize(); } 
 	virtual Packet*		Clone() = 0;

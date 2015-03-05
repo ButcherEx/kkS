@@ -29,7 +29,7 @@ uint32_t Role::HandlePacket(const CG_LOGIN& rMsg)
 		printf("%s\n", Buf);
 
 		Packet* pPak = new Packets::CG_LOGIN_PAK();
-		(*pPak).msg_ref.ParseFromArray(Buf, byteSize);
+		(*pPak).ref_msg.ParseFromArray(Buf, byteSize);
 
 
 		Packets::CG_LOGIN_PAK loginPak;
