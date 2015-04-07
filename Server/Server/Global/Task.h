@@ -80,7 +80,7 @@ private:
 
 
 //////////////////////////////////////////////////////////////////////////
-class Service : public EventMgr
+struct ServiceStatus
 {
 public:
 	enum State
@@ -105,6 +105,11 @@ public:
 		SERVICE_STATE_FINALSAVE_EXC,
 		SERVICE_STATE_FINALSAVE_OK,
 	};
+};
+
+
+class Service : public EventMgr
+{
 public:
 	virtual void		Tick(const TimeInfo& rTimeInfo);
 private:
