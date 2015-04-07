@@ -175,7 +175,7 @@ void Service::AddInvoker(InvokerPtr taskPtr)
 
 ServiceMgr::ServiceMgr()
 {
-	strncpy(m_Name, "unknown", TASKMANAGER_NAME_LEN);
+	strncpy(m_Name, "unknown", SERVICEMANAGER_NAME_LEN);
 }
 
 ServiceMgr::~ServiceMgr()

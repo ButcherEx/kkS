@@ -2,8 +2,8 @@
 /*                                                                      */
 /************************************************************************/
 
-#ifndef __TASK_H__
-#define __TASK_H__
+#ifndef __SERVICE_H__
+#define __SERVICE_H__
 #include "EventMgr.h"
 //////////////////////////////////////////////////////////////////////////
 LOG_DECL(ServerTask);
@@ -75,7 +75,7 @@ public:
 	virtual void Do()
 	{
 		UpdateTimeInfo( );
-		m_rTask.Tick(m_TimeInfo);
+		m_rInvokerImpl.Tick(m_TimeInfo);
 	}
 
 private:
@@ -150,7 +150,7 @@ typedef boost::threadpool::fifo_pool  ThreadPool;
 typedef boost::shared_ptr<ThreadPool> ThreadPoolPtr;
 class ServiceMgr
 {
-	const  static int32_t TASKMANAGER_NAME_LEN = 32;
+	const  static int32_t SERVICEMANAGER_NAME_LEN = 32;
 	friend class MapCreator;
 public:
 	ServiceMgr();
@@ -161,7 +161,7 @@ public:
 	void					Excute();
 	void					Exit();
 public:
-	void					SetName(const CHAR* Name) { strncpy(m_Name, Name, TASKMANAGER_NAME_LEN);  }
+	void					SetName(const CHAR* Name) { strncpy(m_Name, Name, SERVICEMANAGER_NAME_LEN);  }
 	const CHAR*				GetName() const { return m_Name; }
 private:
 	void					SetAllInvokerState_MainThread(int32_t state);
@@ -185,7 +185,7 @@ private:
 	bool					IsAllTaskInState(int32_t state);
 	bool					IsShouldShutdown();
 private:
-	CHAR					m_Name[TASKMANAGER_NAME_LEN];
+	CHAR					m_Name[SERVICEMANAGER_NAME_LEN];
 	TimeInfo				m_TimeInfo;
 	ThreadPoolPtr			m_ThreadPoolPtr;
 	TVector<ServicePtr>		m_ServicePtrVec;
