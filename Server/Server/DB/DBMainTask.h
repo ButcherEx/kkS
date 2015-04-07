@@ -2,8 +2,8 @@
 /*                                                                      */
 /************************************************************************/
 
-#ifndef __DBMAIN_TASK_H__
-#define __DBMAIN_TASK_H__
+#ifndef __DBMAIN_SERVICE_H__
+#define __DBMAIN_SERVICE_H__
 
 #include "BaseLib.h"
 #include "TaskDefine.h"
@@ -12,7 +12,7 @@
 #include "EventMsg.h"
 #include "DBTask.h"
 
-class DBMainTask : public Task
+class DBMainTask : public Service
 {
 public:
 	DBMainTask();
@@ -20,7 +20,7 @@ public:
 public:
 	virtual bool		Init();
 	virtual void		Tick(const TimeInfo& rTimeInfo);
-	virtual int32_t		GetTaskID() { return TaskDefine::DATABASE;} 
+	virtual int32_t		GetServiceID() { return ServiceDefine::DATABASE;} 
 public:
 private:
 	void				InitDBTask();

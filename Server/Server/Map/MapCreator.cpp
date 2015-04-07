@@ -43,7 +43,7 @@ void MapCreator::Tick(const TimeInfo& rTimeInfo)
 {
 	__ENTER_FUNCTION
 	
-	Task::Tick(rTimeInfo);
+	Service::Tick(rTimeInfo);
 	Assert(m_MapTaskManager.IsAllInvokerInState(Invoker::STATE_IDLE));
 	m_MapTaskManager.SetAllInvokerState_MainThread(Invoker::STATE_READY);
 	m_MapTaskManager.Tick(rTimeInfo.Elapse());
@@ -56,12 +56,12 @@ void MapCreator::Start()
 {
 	__ENTER_FUNCTION
 	
-	LOG_DEBUG(ServerTask, "Start %s ...", m_MapTaskManager.GetName());
+	LOG_DEBUG(ServerService, "Start %s ...", m_MapTaskManager.GetName());
 	
-	m_MapTaskManager.ExcuteAllTaskStart();
-	Task::OnStartOk();
+	m_MapTaskManager.ExcuteAllServiceStart();
+	Service::OnStartOk();
 
-	LOG_DEBUG(ServerTask, "Start Ok");
+	LOG_DEBUG(ServerService, "Start Ok");
 
 	__LEAVE_FUNCTION
 }
@@ -69,30 +69,30 @@ void MapCreator::Start()
 void MapCreator::Load()
 {
 	__ENTER_FUNCTION
-		LOG_DEBUG(ServerTask, "Load %s ...", m_MapTaskManager.GetName());
-		m_MapTaskManager.ExcuteAllTaskLoad();
-		Task::OnLoadOk();
-		LOG_DEBUG(ServerTask, "Load Ok");
+		LOG_DEBUG(ServerService, "Load %s ...", m_MapTaskManager.GetName());
+		m_MapTaskManager.ExcuteAllServiceLoad();
+		Service::OnLoadOk();
+		LOG_DEBUG(ServerService, "Load Ok");
 	__LEAVE_FUNCTION
 }
 
 void MapCreator::Shutdown()
 {
 	__ENTER_FUNCTION
-		LOG_DEBUG(ServerTask, "Shutdown %s ...", m_MapTaskManager.GetName());
-		m_MapTaskManager.ExcuteAllTaskShutdown();
-		Task::OnShutdownOk();
-		LOG_DEBUG(ServerTask, "Shutdown Ok");
+		LOG_DEBUG(ServerService, "Shutdown %s ...", m_MapTaskManager.GetName());
+		m_MapTaskManager.ExcuteAllServiceShutdown();
+		Service::OnShutdownOk();
+		LOG_DEBUG(ServerService, "Shutdown Ok");
 	__LEAVE_FUNCTION
 }
 
 void MapCreator::FinalSave()
 {
 	__ENTER_FUNCTION
-		LOG_DEBUG(ServerTask, "FinalSave %s ...", m_MapTaskManager.GetName());
-		m_MapTaskManager.ExcuteAllTaskFinalSave();
-		Task::OnFinalSaveOk( );
-		LOG_DEBUG(ServerTask, "FinalSave Ok");
+		LOG_DEBUG(ServerService, "FinalSave %s ...", m_MapTaskManager.GetName());
+		m_MapTaskManager.ExcuteAllServiceFinalSave();
+		Service::OnFinalSaveOk( );
+		LOG_DEBUG(ServerService, "FinalSave Ok");
 	__LEAVE_FUNCTION
 }
 

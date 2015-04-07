@@ -26,7 +26,7 @@ public:
 private:
 	void Init_AllTask();
 private:
-	TaskManager m_MainTaskManager;
+	ServiceManager m_MainServiceManager;
 };
 
 extern Server g_Server;

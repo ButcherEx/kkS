@@ -32,13 +32,13 @@ void Server::Init_AllTask()
 	__ENTER_FUNCTION
 
 	//////////////////////////////////////////////////////////////////////////
-	m_MainTaskManager.SetName("MainTaskManager");
+	m_MainServiceManager.SetName("MainTaskManager");
 	//////////////////////////////////////////////////////////////////////////
-	bool bRet = m_MainTaskManager.Init(TaskDefine::MAX_TASK, g_Config.m_LogConfig.m_ThreadNum);
+	bool bRet = m_MainServiceManager.Init(ServiceDefine::MAX_SERVICE, g_Config.m_LogConfig.m_ThreadNum);
 	Assert(bRet);
 	//////////////////////////////////////////////////////////////////////////
-	m_MainTaskManager.Register( TaskPtr(new MapCreator() ) );
-	m_MainTaskManager.Register( TaskPtr(new DBMainTask() ) );
+	m_MainServiceManager.Register( ServicePtr(new MapCreator() ) );
+	m_MainServiceManager.Register( ServicePtr(new DBMainTask() ) );
 
 	//////////////////////////////////////////////////////////////////////////
 	__LEAVE_FUNCTION
@@ -47,12 +47,12 @@ void Server::Init_AllTask()
 void Server::Loop()
 {
 	__ENTER_FUNCTION
-		m_MainTaskManager.Excute();
+		m_MainServiceManager.Excute();
 	__LEAVE_FUNCTION
 }
 void Server::Exit()
 {
 	__ENTER_FUNCTION
-		m_MainTaskManager.Exit();
+		m_MainServiceManager.Exit();
 	__LEAVE_FUNCTION
 }

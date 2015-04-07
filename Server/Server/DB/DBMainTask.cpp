@@ -32,7 +32,7 @@ void DBMainTask::Tick(const TimeInfo& rTimeInfo)
 {
 	__ENTER_FUNCTION
 
-	Task::Tick(rTimeInfo);
+	Service::Tick(rTimeInfo);
 
 	__LEAVE_FUNCTION
 }
@@ -41,8 +41,8 @@ void DBMainTask::InitDBTask()
 {
 	__ENTER_FUNCTION
 
-#define DBTASK_NUM 10
-	for( int32_t i = 0; i < DBTASK_NUM; i++)
+#define DBSERVICE_NUM 10
+	for( int32_t i = 0; i < DBSERVICE_NUM; i++)
 	{
 		DBTaskPtr Ptr = POOL_NEW(DBTask);
 		bool bRet = Ptr->Init( );

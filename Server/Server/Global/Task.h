@@ -84,7 +84,7 @@ private:
 
 
 //////////////////////////////////////////////////////////////////////////
-class TaskBase : public EventMgr
+class Task : public EventMgr
 {
 public:
 	enum State
@@ -110,9 +110,6 @@ public:
 		TASK_FINALSAVE_OK,
 	};
 public:
-	TaskBase();
-	virtual ~TaskBase();
-public:
 	virtual void		Tick(const TimeInfo& rTimeInfo);
 private:
 	virtual void		Tick_State();
@@ -132,12 +129,8 @@ public:
 	bool				IsState(uint32_t state) const { return (m_State == state); }
 private:
 	uint32_t m_State;
-
-};
-class Task : public TaskBase
-{
 public:
-	Task(){}
+	Task();
 	virtual ~Task();
 public:
 	virtual bool		Init() = 0;

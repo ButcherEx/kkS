@@ -10,7 +10,7 @@
 #include "EventMgr.h"
 #include "EventMsg.h"
 
-class Map : public TaskBase
+class Map
 {
 public:
 	virtual int32_t GetMapType( ) { return 0; }

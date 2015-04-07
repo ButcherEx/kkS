@@ -12,12 +12,12 @@
 #include "EventMsg.h"
 #include "MapMgr.h"
 
-class MapCreator : public Task
+class MapCreator : public Service
 {
 public:
 	virtual bool		Init();
 	virtual void		Tick(const TimeInfo& rTimeInfo);
-	virtual int32_t		GetTaskID() { return TaskDefine::MAP;} 
+	virtual int32_t		GetServiceID() { return ServiceDefine::MAP;} 
 public:
 	virtual	void		Start();
 	virtual	void		Load();
@@ -28,7 +28,7 @@ public:
 public:
 	void				Exit();
 private:
-	TaskManager m_MapTaskManager;
+	ServiceManager m_MapTaskManager;
 	TVector<MapMgrPtr> m_MapMgrVec; 
 };
 

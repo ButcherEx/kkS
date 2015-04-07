@@ -2,8 +2,8 @@
 /*                                                                      */
 /************************************************************************/
 
-#ifndef __DB_TASK_H__
-#define __DB_TASK_H__
+#ifndef __DB_SERVICE_H__
+#define __DB_SERVICE_H__
 
 
 #include "BaseLib.h"

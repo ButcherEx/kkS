@@ -49,24 +49,24 @@ void Invoker::Invoke( )
 	__LEAVE_FUNCTION
 }
 //////////////////////////////////////////////////////////////////////////
-TaskBase::TaskBase( )
+Task::Task( )
 {
 	SetState(TASK_STOP);
 }
 
-TaskBase::~TaskBase()
+Task::~Task()
 {
-	
+	m_InvokerPtrList.Clear();
 }
 
 
-void TaskBase::Tick(const TimeInfo& rTimeInfo)
+void Task::Tick(const TimeInfo& rTimeInfo)
 {
 	EventMgr::Update(rTimeInfo);
 	Tick_State();
 }
 
-void TaskBase::Tick_State()
+void Task::Tick_State()
 {
 	__ENTER_FUNCTION
 	switch (m_State)
@@ -101,65 +101,60 @@ void TaskBase::Tick_State()
 	__LEAVE_FUNCTION
 }
 
-void TaskBase::Start()
+void Task::Start()
 {
 	__ENTER_FUNCTION
 	OnStartOk();
 	__LEAVE_FUNCTION
 }
 
-void TaskBase::OnStartOk()
+void Task::OnStartOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_START_OK);
 	__LEAVE_FUNCTION
 }
 
-void TaskBase::Load()
+void Task::Load()
 {
 	__ENTER_FUNCTION
 	OnLoadOk();
 	__LEAVE_FUNCTION
 }
 
-void TaskBase::OnLoadOk()
+void Task::OnLoadOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_LOAD_OK);
 	__LEAVE_FUNCTION
 }
 
-void TaskBase::Shutdown()
+void Task::Shutdown()
 {
 	__ENTER_FUNCTION
 	OnShutdownOk();
 	__LEAVE_FUNCTION
 }
 
-void TaskBase::OnShutdownOk()
+void Task::OnShutdownOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_SHUTDOWN_OK);
 	__LEAVE_FUNCTION
 }
 
-void TaskBase::FinalSave()
+void Task::FinalSave()
 {
 	__ENTER_FUNCTION
 	OnFinalSaveOk();
 	__LEAVE_FUNCTION
 }
 
-void TaskBase::OnFinalSaveOk()
+void Task::OnFinalSaveOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_FINALSAVE_OK);
 	__LEAVE_FUNCTION
-}
-//////////////////////////////////////////////////////////////////////////
-Task::~Task()
-{
-	m_InvokerPtrList.Clear();
 }
 InvokerPtr Task::FetchInvoker()
 {
