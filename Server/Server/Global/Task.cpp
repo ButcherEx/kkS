@@ -6,7 +6,7 @@
 #include "Config.h"
 #include "Task.h"
 //////////////////////////////////////////////////////////////////////////
-LOG_IMPL(ServerTask)
+LOG_IMPL(ServiceMgrLog)
 //////////////////////////////////////////////////////////////////////////
 
 Invoker::Invoker(uint32_t interval, int32_t type, int32_t initState)
@@ -187,7 +187,7 @@ bool ServiceMgr::Init(int32_t maxTask, int32_t maxThread)
 {
 	__ENTER_FUNCTION
 
-		LOG_DEBUG(ServerTask, "Init TaskManager(%s)(maxTask:%d, maxThread:%d)...", 
+		LOG_DEBUG(ServiceMgrLog, "Init TaskManager(%s)(maxTask:%d, maxThread:%d)...", 
 			GetName(), maxTask, maxThread);
 
 		Assert((maxTask >= 0 && maxThread));
@@ -198,7 +198,7 @@ bool ServiceMgr::Init(int32_t maxTask, int32_t maxThread)
 		m_ThreadPoolPtr = ThreadPoolPtr(new ThreadPool(maxThread));
 		Assert(m_ThreadPoolPtr);
 
-		LOG_DEBUG(ServerTask, "New ThreadPool(%d) ok", maxThread);
+		LOG_DEBUG(ServiceMgrLog, "New ThreadPool(%d) ok", maxThread);
 
 		return true;
 	__LEAVE_FUNCTION
@@ -210,12 +210,12 @@ bool ServiceMgr::Register(ServicePtr taskPtr)
 {
 	__ENTER_FUNCTION
 	Assert(taskPtr);
-	Assert((taskPtr->GetTaskID() >= 0));
-	Assert((taskPtr->GetTaskID() < (int32_t)m_ServicePtrVec.size()));
-	Assert(!m_ServicePtrVec[taskPtr->GetTaskID()]);
+	Assert((taskPtr->GetServiceID() >= 0));
+	Assert((taskPtr->GetServiceID() < (int32_t)m_ServicePtrVec.size()));
+	Assert(!m_ServicePtrVec[taskPtr->GetServiceID()]);
 
-	LOG_DEBUG(ServerTask, "Register task:%d ok", taskPtr->GetTaskID());
-	m_ServicePtrVec[taskPtr->GetTaskID()] = taskPtr;
+	LOG_DEBUG(ServiceMgrLog, "Register task:%d ok", taskPtr->GetServiceID());
+	m_ServicePtrVec[taskPtr->GetServiceID()] = taskPtr;
 
 	return true;
 	__LEAVE_FUNCTION
@@ -226,29 +226,29 @@ void ServiceMgr::Excute( )
 {
 	__ENTER_FUNCTION
 
-		LOG_DEBUG(ServerTask, "Init %s ...", GetName());
+		LOG_DEBUG(ServiceMgrLog, "Init %s ...", GetName());
 		ExcuteAllServiceInit();
-		LOG_DEBUG(ServerTask, "Init Ok");
+		LOG_DEBUG(ServiceMgrLog, "Init Ok");
 
-		LOG_DEBUG(ServerTask, "Start %s ...", GetName());
+		LOG_DEBUG(ServiceMgrLog, "Start %s ...", GetName());
 		ExcuteAllServiceStart();
-		LOG_DEBUG(ServerTask, "Start Ok");
+		LOG_DEBUG(ServiceMgrLog, "Start Ok");
 
-		LOG_DEBUG(ServerTask, "Load %s...", GetName());
+		LOG_DEBUG(ServiceMgrLog, "Load %s...", GetName());
 		ExcuteAllServiceLoad();
-		LOG_DEBUG(ServerTask, "Load Ok");
+		LOG_DEBUG(ServiceMgrLog, "Load Ok");
 
-		LOG_DEBUG(ServerTask, "Excute %s ...", GetName());
+		LOG_DEBUG(ServiceMgrLog, "Excute %s ...", GetName());
 		ExcuteAllService();
-		LOG_DEBUG(ServerTask, "Excute Ok");
+		LOG_DEBUG(ServiceMgrLog, "Excute Ok");
 
-		LOG_DEBUG(ServerTask, "Shutdown %s ...", GetName());
+		LOG_DEBUG(ServiceMgrLog, "Shutdown %s ...", GetName());
 		ExcuteAllServiceShutdown();
-		LOG_DEBUG(ServerTask, "Shutdown Ok");
+		LOG_DEBUG(ServiceMgrLog, "Shutdown Ok");
 
-		LOG_DEBUG(ServerTask, "FinalSave %s ...", GetName());
+		LOG_DEBUG(ServiceMgrLog, "FinalSave %s ...", GetName());
 		ExcuteAllServiceFinalSave();
-		LOG_DEBUG(ServerTask, "FinalSave Ok");
+		LOG_DEBUG(ServiceMgrLog, "FinalSave Ok");
 
 	__LEAVE_FUNCTION
 }
@@ -256,13 +256,13 @@ void ServiceMgr::Excute( )
 void ServiceMgr::Exit()
 {
 	__ENTER_FUNCTION
-		LOG_DEBUG(ServerTask, "TaskManager::Exit ...");
+		LOG_DEBUG(ServiceMgrLog, "TaskManager::Exit ...");
 		
 		Wait(600);
 		m_InvokerPtrList.Clear();
 		m_ServicePtrVec.clear();
 
-		LOG_DEBUG(ServerTask, "TaskManager::Exit Ok");
+		LOG_DEBUG(ServiceMgrLog, "TaskManager::Exit Ok");
 	__LEAVE_FUNCTION
 }
 
@@ -347,14 +347,14 @@ void ServiceMgr::ExcuteAllServiceFinalSave()
 void ServiceMgr::Wait(int32_t sec)
 {
 	__ENTER_FUNCTION
-	LOG_DEBUG(ServerTask, "TaskManager::Wait(%d) ...", sec);
+	LOG_DEBUG(ServiceMgrLog, "TaskManager::Wait(%d) ...", sec);
 
 	boost::xtime now_xt;
 	xtime_get(&now_xt, boost::TIME_UTC_);
 	now_xt.sec += sec;
 
 	m_ThreadPoolPtr->wait(now_xt);
-	LOG_DEBUG(ServerTask, "TaskManager::Wait(%d) Ok", sec);
+	LOG_DEBUG(ServiceMgrLog, "TaskManager::Wait(%d) Ok", sec);
 	__LEAVE_FUNCTION
 }
 void ServiceMgr::ExcuteAllService()

@@ -6,7 +6,7 @@
 #define __SERVICE_H__
 #include "EventMgr.h"
 //////////////////////////////////////////////////////////////////////////
-LOG_DECL(ServerTask);
+LOG_DECL(ServiceMgrLog);
 //////////////////////////////////////////////////////////////////////////
 class Invoker
 {
@@ -134,7 +134,7 @@ public:
 	virtual ~Service();
 public:
 	virtual bool		Init() = 0;
-	virtual int32_t		GetTaskID() = 0;
+	virtual int32_t		GetServiceID() = 0;
 public:
 	InvokerPtr			FetchInvoker( );
 	void				AddInvoker(InvokerPtr taskPtr);
