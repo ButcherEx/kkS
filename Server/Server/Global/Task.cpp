@@ -38,14 +38,14 @@ void Invoker::UpdateInvokeTimeLeft(int32_t elapse)
 void Invoker::Invoke( )
 {
 	__ENTER_FUNCTION
-	SetState(STATE_EXECUTE);
+	SetState(InvokerStatus::EXECUTE);
 
 	m_ExcuteTime = 0;
 	__ENTER_FUNCTION_EX
 		Do();
 	__LEAVE_FUNCTION_EX
 	m_InvokeTimeLeft = m_Interval;
-	SetState( ( m_Type != TYPE_ACTIVE) ? STATE_IDLE : STATE_READY);
+	SetState( ( m_Type != InvokerType::ACTIVE) ? InvokerStatus::IDLE : InvokerStatus::READY);
 	__LEAVE_FUNCTION
 }
 //////////////////////////////////////////////////////////////////////////
@@ -427,26 +427,26 @@ void ServiceMgr::Tick_AllInvoker(int32_t elapse)
 	{
 		switch (Ptr->GetState())
 		{
-		case Invoker::STATE_IDLE:
+		case InvokerStatus::IDLE:
 			{
 				Ptr->UpdateIdleTime(elapse);
 			}
 			break;
-		case Invoker::STATE_READY:
+		case InvokerStatus::READY:
 			{
 				Ptr->ResetIdleTime() ;
 				Ptr->UpdateInvokeTimeLeft(elapse);
 				if( Ptr->CanExcuteNow() )
 				{
-					Ptr->SetState( Invoker::STATE_SCHUDULE );
+					Ptr->SetState( InvokerStatus::SCHUDULE );
 					m_ThreadPoolPtr->schedule( boost::bind( &Invoker::Invoke, Ptr) );
 				}
 			}
 			break;
-		case Invoker::STATE_EXECUTE:
+		case InvokerStatus::EXECUTE:
 			Ptr->UpdateExcuteTime(elapse);
 			break;
-		case Invoker::STATE_SCHUDULE:
+		case InvokerStatus::SCHUDULE:
 			Ptr->UpdateSchuduleTime(elapse);
 			break;
 		default:

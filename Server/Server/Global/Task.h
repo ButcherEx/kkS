@@ -8,24 +8,33 @@
 //////////////////////////////////////////////////////////////////////////
 LOG_DECL(ServiceMgrLog);
 //////////////////////////////////////////////////////////////////////////
-class Invoker
+
+struct InvokerStatus
 {
 public:
 	enum 
 	{
-		STATE_IDLE,
-		STATE_READY,
-		STATE_SCHUDULE,
-		STATE_EXECUTE
+		IDLE,
+		READY,
+		SCHUDULE,
+		EXECUTE
 	};
+};
 
+struct  InvokerType
+{
+public:
 	enum
 	{
-		TYPE_ACTIVE,
-		TYPE_PASSIVE,
+		ACTIVE,
+		PASSIVE,
 	};
+};
+
+class Invoker
+{	
 public:
-	Invoker(uint32_t interval, int32_t type = TYPE_ACTIVE, int32_t initState = STATE_READY);
+	Invoker(uint32_t interval, int32_t type = InvokerType::ACTIVE, int32_t initState = InvokerStatus::READY);
 	virtual ~Invoker();
 public:
 	virtual void	UpdateTimeInfo();
