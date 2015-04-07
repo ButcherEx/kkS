@@ -49,24 +49,24 @@ void Invoker::Invoke( )
 	__LEAVE_FUNCTION
 }
 //////////////////////////////////////////////////////////////////////////
-Task::Task( )
+Service::Service( )
 {
 	SetState(TASK_STOP);
 }
 
-Task::~Task()
+Service::~Service()
 {
 	m_InvokerPtrList.Clear();
 }
 
 
-void Task::Tick(const TimeInfo& rTimeInfo)
+void Service::Tick(const TimeInfo& rTimeInfo)
 {
 	EventMgr::Update(rTimeInfo);
 	Tick_State();
 }
 
-void Task::Tick_State()
+void Service::Tick_State()
 {
 	__ENTER_FUNCTION
 	switch (m_State)
@@ -101,62 +101,62 @@ void Task::Tick_State()
 	__LEAVE_FUNCTION
 }
 
-void Task::Start()
+void Service::Start()
 {
 	__ENTER_FUNCTION
 	OnStartOk();
 	__LEAVE_FUNCTION
 }
 
-void Task::OnStartOk()
+void Service::OnStartOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_START_OK);
 	__LEAVE_FUNCTION
 }
 
-void Task::Load()
+void Service::Load()
 {
 	__ENTER_FUNCTION
 	OnLoadOk();
 	__LEAVE_FUNCTION
 }
 
-void Task::OnLoadOk()
+void Service::OnLoadOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_LOAD_OK);
 	__LEAVE_FUNCTION
 }
 
-void Task::Shutdown()
+void Service::Shutdown()
 {
 	__ENTER_FUNCTION
 	OnShutdownOk();
 	__LEAVE_FUNCTION
 }
 
-void Task::OnShutdownOk()
+void Service::OnShutdownOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_SHUTDOWN_OK);
 	__LEAVE_FUNCTION
 }
 
-void Task::FinalSave()
+void Service::FinalSave()
 {
 	__ENTER_FUNCTION
 	OnFinalSaveOk();
 	__LEAVE_FUNCTION
 }
 
-void Task::OnFinalSaveOk()
+void Service::OnFinalSaveOk()
 {
 	__ENTER_FUNCTION
 	SetState(TASK_FINALSAVE_OK);
 	__LEAVE_FUNCTION
 }
-InvokerPtr Task::FetchInvoker()
+InvokerPtr Service::FetchInvoker()
 {
 	InvokerPtr taskPtr;
 	__ENTER_FUNCTION
@@ -164,7 +164,7 @@ InvokerPtr Task::FetchInvoker()
 	__LEAVE_FUNCTION
 		return taskPtr;
 }
-void Task::AddInvoker(InvokerPtr taskPtr)
+void Service::AddInvoker(InvokerPtr taskPtr)
 {
 	__ENTER_FUNCTION
 		m_InvokerPtrList.PushBack(taskPtr);
@@ -323,25 +323,25 @@ void TaskManager::ExcuteState(int32_t setState, int32_t checkState)
 void TaskManager::ExcuteAllTaskStart()
 {
 	__ENTER_FUNCTION
-	this->ExcuteState(Task::TASK_START, Task::TASK_START_OK);
+	this->ExcuteState(Service::TASK_START, Service::TASK_START_OK);
 	__LEAVE_FUNCTION
 }
 void TaskManager::ExcuteAllTaskLoad()
 {
 	__ENTER_FUNCTION
-	this->ExcuteState(Task::TASK_LOAD, Task::TASK_LOAD_OK);
+	this->ExcuteState(Service::TASK_LOAD, Service::TASK_LOAD_OK);
 	__LEAVE_FUNCTION
 }
 void TaskManager::ExcuteAllTaskShutdown()
 {
 	__ENTER_FUNCTION
-	this->ExcuteState(Task::TASK_SHUTDOWN, Task::TASK_SHUTDOWN_OK);
+	this->ExcuteState(Service::TASK_SHUTDOWN, Service::TASK_SHUTDOWN_OK);
 	__LEAVE_FUNCTION
 }
 void TaskManager::ExcuteAllTaskFinalSave()
 {
 	__ENTER_FUNCTION
-	this->ExcuteState(Task::TASK_FINALSAVE, Task::TASK_FINALSAVE_OK);
+	this->ExcuteState(Service::TASK_FINALSAVE, Service::TASK_FINALSAVE_OK);
 	__LEAVE_FUNCTION
 }
 void TaskManager::Wait(int32_t sec)
@@ -360,7 +360,7 @@ void TaskManager::Wait(int32_t sec)
 void TaskManager::ExcuteAllTask()
 {
 	__ENTER_FUNCTION
-	SetAllTaskState(Task::TASK_EXECUTE);
+	SetAllTaskState(Service::TASK_EXECUTE);
 
 	int64_t checkShutdown = 0;
 	while (true)

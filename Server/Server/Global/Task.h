@@ -65,11 +65,11 @@ protected:
 typedef boost::shared_ptr<Invoker> InvokerPtr;
 
 //////////////////////////////////////////////////////////////////////////
-template<class RealTask, int32_t InterVal>
+template<class InvokerImpl, int32_t InterVal>
 class MakeInvoker : public Invoker
 {
 public:
-	MakeInvoker(RealTask& rTask):Invoker(InterVal), m_rTask(rTask){}
+	MakeInvoker(InvokerImpl& rInvokerImpl):Invoker(InterVal), m_rInvokerImpl(rInvokerImpl){}
 	virtual ~MakeInvoker() {}
 public:
 	virtual void Do()
@@ -79,12 +79,12 @@ public:
 	}
 
 private:
-	RealTask& m_rTask;
+	InvokerImpl& m_rInvokerImpl;
 };
 
 
 //////////////////////////////////////////////////////////////////////////
-class Task : public EventMgr
+class Service : public EventMgr
 {
 public:
 	enum State
@@ -130,8 +130,8 @@ public:
 private:
 	uint32_t m_State;
 public:
-	Task();
-	virtual ~Task();
+	Service();
+	virtual ~Service();
 public:
 	virtual bool		Init() = 0;
 	virtual int32_t		GetTaskID() = 0;
@@ -142,7 +142,7 @@ private:
 	TSList<InvokerPtr>	m_InvokerPtrList;
 };
 
-typedef boost::shared_ptr<Task> TaskPtr;
+typedef boost::shared_ptr<Service> TaskPtr;
 
 //////////////////////////////////////////////////////////////////////////
 

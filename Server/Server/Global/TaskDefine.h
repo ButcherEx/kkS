@@ -2,8 +2,8 @@
 /*                                                                      */
 /************************************************************************/
 
-#ifndef __TASK_DEFINE_H__
-#define __TASK_DEFINE_H__
+#ifndef __SERVICE_DEFINE_H__
+#define __SERVICE_DEFINE_H__
 
 struct TaskDefine
 {
