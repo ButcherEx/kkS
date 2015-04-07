@@ -28,38 +28,34 @@ public:
 	Invoker(uint32_t interval, int32_t type = TYPE_ACTIVE, int32_t initState = STATE_READY);
 	virtual ~Invoker();
 public:
-	virtual void UpdateTimeInfo();
-public:
-
+	virtual void	UpdateTimeInfo();
 	void			UpdateInvokeTimeLeft(int32_t elapse);
-	bool			CanExcuteNow( ) const { return m_InvokeTimeLeft <= 0; }
-	void			UpdateSchuduleTime(int32_t elapse) { m_SchuduleTime += elapse; }
-	void			ResetIdleTime() { m_IdleTime = 0; }
-	void			UpdateIdleTime(int32_t elapse) { m_IdleTime += elapse; }
-	int32_t			GetIdleTime( ) const { return m_IdleTime; }
-
-	int32_t			GetSchuduleTime( ) const { return m_SchuduleTime; }
-	void			UpdateExcuteTime(int32_t elapse) { m_ExcuteTime += elapse; }
-	int32_t			GetExcuteTime( ) const { return m_ExcuteTime; }
-public:
 	void			Invoke();
 	virtual void	Do() = 0;
 public:
-	uint32_t		GetInterval() const		{ return m_Interval; }
-	const TimeInfo& GetTimeInfo() const		{ return m_TimeInfo; }
-	bool			IsState(uint32_t state) const{ return (m_State == state); }
-	void			SetState(uint32_t state){ m_State = state; }
-	uint32_t		GetState( ) const		{ return m_State; }
-	uint32_t		GetType( ) const		{ return m_Type; }
+	bool			CanExcuteNow( ) const				{ return m_InvokeTimeLeft <= 0; }
+	void			UpdateSchuduleTime(int32_t elapse)	{ m_SchuduleTime += elapse; }
+	void			ResetIdleTime()						{ m_IdleTime = 0; }
+	void			UpdateIdleTime(int32_t elapse)		{ m_IdleTime += elapse; }
+	int32_t			GetIdleTime( ) const				{ return m_IdleTime; }
+	int32_t			GetSchuduleTime( ) const			{ return m_SchuduleTime; }
+	void			UpdateExcuteTime(int32_t elapse)	{ m_ExcuteTime += elapse; }
+	int32_t			GetExcuteTime( ) const				{ return m_ExcuteTime; }
+	uint32_t		GetInterval() const					{ return m_Interval; }
+	const TimeInfo& GetTimeInfo() const					{ return m_TimeInfo; }
+	bool			IsState(uint32_t state) const		{ return (m_State == state); }
+	void			SetState(uint32_t state)			{ m_State = state; }
+	uint32_t		GetState( ) const					{ return m_State; }
+	uint32_t		GetType( ) const					{ return m_Type; }
 protected:
-	TimeInfo m_TimeInfo;
-	uint32_t m_Interval;
-	int32_t	 m_InvokeTimeLeft;
-	int32_t	 m_SchuduleTime;
-	int32_t	 m_ExcuteTime;
-	int32_t  m_IdleTime;
-	uint32_t m_State;
-	uint32_t m_Type;
+	TimeInfo		m_TimeInfo;
+	uint32_t		m_Interval;
+	int32_t			m_InvokeTimeLeft;
+	int32_t			m_SchuduleTime;
+	int32_t			m_ExcuteTime;
+	int32_t			m_IdleTime;
+	uint32_t		m_State;
+	uint32_t		m_Type;
 };
 
 typedef boost::shared_ptr<Invoker> InvokerPtr;
@@ -89,25 +85,25 @@ class Service : public EventMgr
 public:
 	enum State
 	{
-		TASK_STOP = 0,
+		SERVICE_STATE_STOP = 0,
 
-		TASK_START,
-		TASK_START_EXC,
-		TASK_START_OK,
+		SERVICE_STATE_START,
+		SERVICE_STATE_START_EXC,
+		SERVICE_STATE_START_OK,
 
-		TASK_LOAD,
-		TASK_LOAD_EXC,
-		TASK_LOAD_OK,
+		SERVICE_STATE_LOAD,
+		SERVICE_STATE_LOAD_EXC,
+		SERVICE_STATE_LOAD_OK,
 
-		TASK_EXECUTE,
+		SERVICE_STATE_EXECUTE,
 
-		TASK_SHUTDOWN,
-		TASK_SHUTDOWN_EXC,
-		TASK_SHUTDOWN_OK,
+		SERVICE_STATE_SHUTDOWN,
+		SERVICE_STATE_SHUTDOWN_EXC,
+		SERVICE_STATE_SHUTDOWN_OK,
 
-		TASK_FINALSAVE,
-		TASK_FINALSAVE_EXC,
-		TASK_FINALSAVE_OK,
+		SERVICE_STATE_FINALSAVE,
+		SERVICE_STATE_FINALSAVE_EXC,
+		SERVICE_STATE_FINALSAVE_OK,
 	};
 public:
 	virtual void		Tick(const TimeInfo& rTimeInfo);
