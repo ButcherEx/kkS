@@ -227,27 +227,27 @@ void ServiceMgr::Excute( )
 	__ENTER_FUNCTION
 
 		LOG_DEBUG(ServerTask, "Init %s ...", GetName());
-		ExcuteAllTaskInit();
+		ExcuteAllServiceInit();
 		LOG_DEBUG(ServerTask, "Init Ok");
 
 		LOG_DEBUG(ServerTask, "Start %s ...", GetName());
-		ExcuteAllTaskStart();
+		ExcuteAllServiceStart();
 		LOG_DEBUG(ServerTask, "Start Ok");
 
 		LOG_DEBUG(ServerTask, "Load %s...", GetName());
-		ExcuteAllTaskLoad();
+		ExcuteAllServiceLoad();
 		LOG_DEBUG(ServerTask, "Load Ok");
 
 		LOG_DEBUG(ServerTask, "Excute %s ...", GetName());
-		ExcuteAllTask();
+		ExcuteAllService();
 		LOG_DEBUG(ServerTask, "Excute Ok");
 
 		LOG_DEBUG(ServerTask, "Shutdown %s ...", GetName());
-		ExcuteAllTaskShutdown();
+		ExcuteAllServiceShutdown();
 		LOG_DEBUG(ServerTask, "Shutdown Ok");
 
 		LOG_DEBUG(ServerTask, "FinalSave %s ...", GetName());
-		ExcuteAllTaskFinalSave();
+		ExcuteAllServiceFinalSave();
 		LOG_DEBUG(ServerTask, "FinalSave Ok");
 
 	__LEAVE_FUNCTION
@@ -266,7 +266,7 @@ void ServiceMgr::Exit()
 	__LEAVE_FUNCTION
 }
 
-void ServiceMgr::ExcuteAllTaskInit()
+void ServiceMgr::ExcuteAllServiceInit()
 {
 	__ENTER_FUNCTION
 		for(int32_t i = 0; i < (int32_t)m_ServicePtrVec.size(); i++)
@@ -276,7 +276,7 @@ void ServiceMgr::ExcuteAllTaskInit()
 		}
 	__LEAVE_FUNCTION
 }
-void ServiceMgr::SetAllTaskState(int32_t state)
+void ServiceMgr::SetAllServiceState(int32_t state)
 {
 	__ENTER_FUNCTION
 	for(int32_t i = 0; i < (int32_t)m_ServicePtrVec.size(); i++)
@@ -302,7 +302,7 @@ void ServiceMgr::ExcuteState(int32_t setState, int32_t checkState)
 {
 	__ENTER_FUNCTION
 
-	SetAllTaskState(setState);
+	SetAllServiceState(setState);
 
 	while (true)
 	{
@@ -320,25 +320,25 @@ void ServiceMgr::ExcuteState(int32_t setState, int32_t checkState)
 	}
 	__LEAVE_FUNCTION
 }
-void ServiceMgr::ExcuteAllTaskStart()
+void ServiceMgr::ExcuteAllServiceStart()
 {
 	__ENTER_FUNCTION
 	this->ExcuteState(Service::TASK_START, Service::TASK_START_OK);
 	__LEAVE_FUNCTION
 }
-void ServiceMgr::ExcuteAllTaskLoad()
+void ServiceMgr::ExcuteAllServiceLoad()
 {
 	__ENTER_FUNCTION
 	this->ExcuteState(Service::TASK_LOAD, Service::TASK_LOAD_OK);
 	__LEAVE_FUNCTION
 }
-void ServiceMgr::ExcuteAllTaskShutdown()
+void ServiceMgr::ExcuteAllServiceShutdown()
 {
 	__ENTER_FUNCTION
 	this->ExcuteState(Service::TASK_SHUTDOWN, Service::TASK_SHUTDOWN_OK);
 	__LEAVE_FUNCTION
 }
-void ServiceMgr::ExcuteAllTaskFinalSave()
+void ServiceMgr::ExcuteAllServiceFinalSave()
 {
 	__ENTER_FUNCTION
 	this->ExcuteState(Service::TASK_FINALSAVE, Service::TASK_FINALSAVE_OK);
@@ -357,10 +357,10 @@ void ServiceMgr::Wait(int32_t sec)
 	LOG_DEBUG(ServerTask, "TaskManager::Wait(%d) Ok", sec);
 	__LEAVE_FUNCTION
 }
-void ServiceMgr::ExcuteAllTask()
+void ServiceMgr::ExcuteAllService()
 {
 	__ENTER_FUNCTION
-	SetAllTaskState(Service::TASK_EXECUTE);
+	SetAllServiceState(Service::TASK_EXECUTE);
 
 	int64_t checkShutdown = 0;
 	while (true)
@@ -390,11 +390,11 @@ void ServiceMgr::ExcuteAllTask()
 void ServiceMgr::Tick(int32_t elapse)
 {
 	__ENTER_FUNCTION_EX
-		Tick_Task(elapse);
+		Tick_Service(elapse);
 		Tick_AllInvoker(elapse);
 	__LEAVE_FUNCTION_EX
 }
-void ServiceMgr::Tick_Task(int32_t elapse)
+void ServiceMgr::Tick_Service(int32_t elapse)
 {
 	__ENTER_FUNCTION
 	const int32_t maxTaskFetch = 64;

@@ -165,17 +165,17 @@ public:
 	const CHAR*				GetName() const { return m_Name; }
 private:
 	void					SetAllInvokerState_MainThread(int32_t state);
-	void					SetAllTaskState(int32_t state);
+	void					SetAllServiceState(int32_t state);
 	void					ExcuteState(int32_t setState, int32_t checkState);
-	void					ExcuteAllTaskInit();
-	void					ExcuteAllTaskStart();
-	void					ExcuteAllTaskLoad();
-	void					ExcuteAllTask();
-	void					ExcuteAllTaskShutdown();
-	void					ExcuteAllTaskFinalSave();
+	void					ExcuteAllServiceInit();
+	void					ExcuteAllServiceStart();
+	void					ExcuteAllServiceLoad();
+	void					ExcuteAllService();
+	void					ExcuteAllServiceShutdown();
+	void					ExcuteAllServiceFinalSave();
 private:
 	void					Tick(int32_t elapse);
-	void					Tick_Task(int32_t elapse);
+	void					Tick_Service(int32_t elapse);
 	void					Tick_AllInvoker(int32_t elapse);
 	void					Tick_Logic(int32_t elapse);
 private:
