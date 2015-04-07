@@ -381,7 +381,7 @@ void ServiceMgr::ExcuteAllService()
 		}
 
 
-		MySleep(1000);
+		MySleep(10);
 	}
 
 	Wait(300);
