@@ -173,17 +173,17 @@ void Service::AddInvoker(InvokerPtr taskPtr)
 
 //////////////////////////////////////////////////////////////////////////
 
-TaskManager::TaskManager()
+ServiceMgr::ServiceMgr()
 {
 	strncpy(m_Name, "unknown", TASKMANAGER_NAME_LEN);
 }
 
-TaskManager::~TaskManager()
+ServiceMgr::~ServiceMgr()
 {
 
 }
 
-bool TaskManager::Init(int32_t maxTask, int32_t maxThread)
+bool ServiceMgr::Init(int32_t maxTask, int32_t maxThread)
 {
 	__ENTER_FUNCTION
 
@@ -193,7 +193,7 @@ bool TaskManager::Init(int32_t maxTask, int32_t maxThread)
 		Assert((maxTask >= 0 && maxThread));
 
 
-		m_TaskPtrVec.resize(maxTask);
+		m_ServicePtrVec.resize(maxTask);
 
 		m_ThreadPoolPtr = ThreadPoolPtr(new ThreadPool(maxThread));
 		Assert(m_ThreadPoolPtr);
@@ -206,23 +206,23 @@ bool TaskManager::Init(int32_t maxTask, int32_t maxThread)
 		return false;
 }
 
-bool TaskManager::Register(TaskPtr taskPtr)
+bool ServiceMgr::Register(ServicePtr taskPtr)
 {
 	__ENTER_FUNCTION
 	Assert(taskPtr);
 	Assert((taskPtr->GetTaskID() >= 0));
-	Assert((taskPtr->GetTaskID() < (int32_t)m_TaskPtrVec.size()));
-	Assert(!m_TaskPtrVec[taskPtr->GetTaskID()]);
+	Assert((taskPtr->GetTaskID() < (int32_t)m_ServicePtrVec.size()));
+	Assert(!m_ServicePtrVec[taskPtr->GetTaskID()]);
 
 	LOG_DEBUG(ServerTask, "Register task:%d ok", taskPtr->GetTaskID());
-	m_TaskPtrVec[taskPtr->GetTaskID()] = taskPtr;
+	m_ServicePtrVec[taskPtr->GetTaskID()] = taskPtr;
 
 	return true;
 	__LEAVE_FUNCTION
 		return false;
 }
 
-void TaskManager::Excute( )
+void ServiceMgr::Excute( )
 {
 	__ENTER_FUNCTION
 
@@ -253,40 +253,40 @@ void TaskManager::Excute( )
 	__LEAVE_FUNCTION
 }
 
-void TaskManager::Exit()
+void ServiceMgr::Exit()
 {
 	__ENTER_FUNCTION
 		LOG_DEBUG(ServerTask, "TaskManager::Exit ...");
 		
 		Wait(600);
 		m_InvokerPtrList.Clear();
-		m_TaskPtrVec.clear();
+		m_ServicePtrVec.clear();
 
 		LOG_DEBUG(ServerTask, "TaskManager::Exit Ok");
 	__LEAVE_FUNCTION
 }
 
-void TaskManager::ExcuteAllTaskInit()
+void ServiceMgr::ExcuteAllTaskInit()
 {
 	__ENTER_FUNCTION
-		for(int32_t i = 0; i < (int32_t)m_TaskPtrVec.size(); i++)
+		for(int32_t i = 0; i < (int32_t)m_ServicePtrVec.size(); i++)
 		{
-			bool bRet = m_TaskPtrVec[i]->Init();
+			bool bRet = m_ServicePtrVec[i]->Init();
 			Assert(bRet);
 		}
 	__LEAVE_FUNCTION
 }
-void TaskManager::SetAllTaskState(int32_t state)
+void ServiceMgr::SetAllTaskState(int32_t state)
 {
 	__ENTER_FUNCTION
-	for(int32_t i = 0; i < (int32_t)m_TaskPtrVec.size(); i++)
+	for(int32_t i = 0; i < (int32_t)m_ServicePtrVec.size(); i++)
 	{
-		m_TaskPtrVec[i]->SetState(state);
+		m_ServicePtrVec[i]->SetState(state);
 	}
 	__LEAVE_FUNCTION
 }
 
-void TaskManager::SetAllInvokerState_MainThread(int32_t state)
+void ServiceMgr::SetAllInvokerState_MainThread(int32_t state)
 {
 	__ENTER_FUNCTION
 	InvokerPtr Ptr;
@@ -298,7 +298,7 @@ void TaskManager::SetAllInvokerState_MainThread(int32_t state)
 	__LEAVE_FUNCTION
 }
 
-void TaskManager::ExcuteState(int32_t setState, int32_t checkState)
+void ServiceMgr::ExcuteState(int32_t setState, int32_t checkState)
 {
 	__ENTER_FUNCTION
 
@@ -320,31 +320,31 @@ void TaskManager::ExcuteState(int32_t setState, int32_t checkState)
 	}
 	__LEAVE_FUNCTION
 }
-void TaskManager::ExcuteAllTaskStart()
+void ServiceMgr::ExcuteAllTaskStart()
 {
 	__ENTER_FUNCTION
 	this->ExcuteState(Service::TASK_START, Service::TASK_START_OK);
 	__LEAVE_FUNCTION
 }
-void TaskManager::ExcuteAllTaskLoad()
+void ServiceMgr::ExcuteAllTaskLoad()
 {
 	__ENTER_FUNCTION
 	this->ExcuteState(Service::TASK_LOAD, Service::TASK_LOAD_OK);
 	__LEAVE_FUNCTION
 }
-void TaskManager::ExcuteAllTaskShutdown()
+void ServiceMgr::ExcuteAllTaskShutdown()
 {
 	__ENTER_FUNCTION
 	this->ExcuteState(Service::TASK_SHUTDOWN, Service::TASK_SHUTDOWN_OK);
 	__LEAVE_FUNCTION
 }
-void TaskManager::ExcuteAllTaskFinalSave()
+void ServiceMgr::ExcuteAllTaskFinalSave()
 {
 	__ENTER_FUNCTION
 	this->ExcuteState(Service::TASK_FINALSAVE, Service::TASK_FINALSAVE_OK);
 	__LEAVE_FUNCTION
 }
-void TaskManager::Wait(int32_t sec)
+void ServiceMgr::Wait(int32_t sec)
 {
 	__ENTER_FUNCTION
 	LOG_DEBUG(ServerTask, "TaskManager::Wait(%d) ...", sec);
@@ -357,7 +357,7 @@ void TaskManager::Wait(int32_t sec)
 	LOG_DEBUG(ServerTask, "TaskManager::Wait(%d) Ok", sec);
 	__LEAVE_FUNCTION
 }
-void TaskManager::ExcuteAllTask()
+void ServiceMgr::ExcuteAllTask()
 {
 	__ENTER_FUNCTION
 	SetAllTaskState(Service::TASK_EXECUTE);
@@ -387,22 +387,22 @@ void TaskManager::ExcuteAllTask()
 	Wait(300);
 	__LEAVE_FUNCTION
 }
-void TaskManager::Tick(int32_t elapse)
+void ServiceMgr::Tick(int32_t elapse)
 {
 	__ENTER_FUNCTION_EX
 		Tick_Task(elapse);
 		Tick_AllInvoker(elapse);
 	__LEAVE_FUNCTION_EX
 }
-void TaskManager::Tick_Task(int32_t elapse)
+void ServiceMgr::Tick_Task(int32_t elapse)
 {
 	__ENTER_FUNCTION
 	const int32_t maxTaskFetch = 64;
-	for(int32_t i = 0; i < (int32_t)m_TaskPtrVec.size(); i++)
+	for(int32_t i = 0; i < (int32_t)m_ServicePtrVec.size(); i++)
 	{
 		for(int32_t fetchIdx = 0; fetchIdx < maxTaskFetch; fetchIdx++)
 		{
-			InvokerPtr Ptr = m_TaskPtrVec[i]->FetchInvoker();
+			InvokerPtr Ptr = m_ServicePtrVec[i]->FetchInvoker();
 			if( Ptr )
 			{
 				m_InvokerPtrList.PushBack(Ptr);
@@ -415,7 +415,7 @@ void TaskManager::Tick_Task(int32_t elapse)
 	}
 	__LEAVE_FUNCTION
 }
-void TaskManager::Tick_AllInvoker(int32_t elapse)
+void ServiceMgr::Tick_AllInvoker(int32_t elapse)
 {
 	__ENTER_FUNCTION
 	
@@ -457,26 +457,26 @@ void TaskManager::Tick_AllInvoker(int32_t elapse)
 
 	__LEAVE_FUNCTION
 }
-void TaskManager::Tick_Logic(int32_t elapse)
+void ServiceMgr::Tick_Logic(int32_t elapse)
 {
 	__ENTER_FUNCTION
 	__LEAVE_FUNCTION
 }
 
-bool TaskManager::IsAllTaskInState(int32_t state)
+bool ServiceMgr::IsAllTaskInState(int32_t state)
 {
 	__ENTER_FUNCTION
-	for(int32_t i = 0; i < (int32_t)m_TaskPtrVec.size(); i++)
+	for(int32_t i = 0; i < (int32_t)m_ServicePtrVec.size(); i++)
 	{
-		Assert(m_TaskPtrVec[i]);
-		if (m_TaskPtrVec[i]->GetState() != state) return false;
+		Assert(m_ServicePtrVec[i]);
+		if (m_ServicePtrVec[i]->GetState() != state) return false;
 	}
 	return true;
 	__LEAVE_FUNCTION
 	return false;
 }
 
-bool TaskManager::IsAllInvokerInState(int32_t state)
+bool ServiceMgr::IsAllInvokerInState(int32_t state)
 {
 	__ENTER_FUNCTION
 		InvokerPtr Ptr;
@@ -491,7 +491,7 @@ bool TaskManager::IsAllInvokerInState(int32_t state)
 	return false;
 }
 
-bool TaskManager::IsShouldShutdown()
+bool ServiceMgr::IsShouldShutdown()
 {
 	__ENTER_FUNCTION_EX
 

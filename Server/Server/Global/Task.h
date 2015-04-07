@@ -142,22 +142,22 @@ private:
 	TSList<InvokerPtr>	m_InvokerPtrList;
 };
 
-typedef boost::shared_ptr<Service> TaskPtr;
+typedef boost::shared_ptr<Service> ServicePtr;
 
 //////////////////////////////////////////////////////////////////////////
 
 typedef boost::threadpool::fifo_pool  ThreadPool;
 typedef boost::shared_ptr<ThreadPool> ThreadPoolPtr;
-class TaskManager
+class ServiceMgr
 {
 	const  static int32_t TASKMANAGER_NAME_LEN = 32;
 	friend class MapCreator;
 public:
-	TaskManager();
-	~TaskManager();
+	ServiceMgr();
+	~ServiceMgr();
 public:
 	bool					Init(int32_t maxTask, int32_t maxThread);
-	bool					Register(TaskPtr taskPtr);
+	bool					Register(ServicePtr taskPtr);
 	void					Excute();
 	void					Exit();
 public:
@@ -188,7 +188,7 @@ private:
 	CHAR					m_Name[TASKMANAGER_NAME_LEN];
 	TimeInfo				m_TimeInfo;
 	ThreadPoolPtr			m_ThreadPoolPtr;
-	TVector<TaskPtr>		m_TaskPtrVec;
+	TVector<ServicePtr>		m_ServicePtrVec;
 	TList<InvokerPtr>		m_InvokerPtrList;				
 };
 
