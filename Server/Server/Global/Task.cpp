@@ -51,7 +51,7 @@ void Invoker::Invoke( )
 //////////////////////////////////////////////////////////////////////////
 Service::Service( )
 {
-	SetState(ServiceStatus::SERVICE_STATE_STOP);
+	SetState(ServiceStatus::STOP);
 }
 
 Service::~Service()
@@ -71,27 +71,27 @@ void Service::Tick_State()
 	__ENTER_FUNCTION
 	switch (m_State)
 	{
-	case ServiceStatus::SERVICE_STATE_START:
+	case ServiceStatus::START:
 		{
-			SetState(ServiceStatus::SERVICE_STATE_START_EXC);
+			SetState(ServiceStatus::START_EXC);
 			Start();
 		}
 		break;
-	case ServiceStatus::SERVICE_STATE_LOAD:
+	case ServiceStatus::LOAD:
 		{
-			SetState(ServiceStatus::SERVICE_STATE_LOAD_EXC);
+			SetState(ServiceStatus::LOAD_EXC);
 			Load();
 		}
 		break;
-	case ServiceStatus::SERVICE_STATE_SHUTDOWN:
+	case ServiceStatus::SHUTDOWN:
 		{
-			SetState(ServiceStatus::SERVICE_STATE_SHUTDOWN_EXC);
+			SetState(ServiceStatus::SHUTDOWN_EXC);
 			Shutdown();
 		}
 		break;
-	case ServiceStatus::SERVICE_STATE_FINALSAVE:
+	case ServiceStatus::FINALSAVE:
 		{
-			SetState(ServiceStatus::SERVICE_STATE_FINALSAVE_EXC);
+			SetState(ServiceStatus::FINALSAVE_EXC);
 			FinalSave();
 		}
 		break;
@@ -111,7 +111,7 @@ void Service::Start()
 void Service::OnStartOk()
 {
 	__ENTER_FUNCTION
-	SetState(ServiceStatus::SERVICE_STATE_START_OK);
+	SetState(ServiceStatus::START_OK);
 	__LEAVE_FUNCTION
 }
 
@@ -125,7 +125,7 @@ void Service::Load()
 void Service::OnLoadOk()
 {
 	__ENTER_FUNCTION
-	SetState(ServiceStatus::SERVICE_STATE_LOAD_OK);
+	SetState(ServiceStatus::LOAD_OK);
 	__LEAVE_FUNCTION
 }
 
@@ -139,7 +139,7 @@ void Service::Shutdown()
 void Service::OnShutdownOk()
 {
 	__ENTER_FUNCTION
-	SetState(ServiceStatus::SERVICE_STATE_SHUTDOWN_OK);
+	SetState(ServiceStatus::SHUTDOWN_OK);
 	__LEAVE_FUNCTION
 }
 
@@ -153,7 +153,7 @@ void Service::FinalSave()
 void Service::OnFinalSaveOk()
 {
 	__ENTER_FUNCTION
-	SetState(ServiceStatus::SERVICE_STATE_FINALSAVE_OK);
+	SetState(ServiceStatus::FINALSAVE_OK);
 	__LEAVE_FUNCTION
 }
 InvokerPtr Service::FetchInvoker()
@@ -323,25 +323,25 @@ void ServiceMgr::ExcuteState(int32_t setState, int32_t checkState)
 void ServiceMgr::ExcuteAllServiceStart()
 {
 	__ENTER_FUNCTION
-	this->ExcuteState(ServiceStatus::SERVICE_STATE_START, ServiceStatus::SERVICE_STATE_START_OK);
+	this->ExcuteState(ServiceStatus::START, ServiceStatus::START_OK);
 	__LEAVE_FUNCTION
 }
 void ServiceMgr::ExcuteAllServiceLoad()
 {
 	__ENTER_FUNCTION
-	this->ExcuteState(ServiceStatus::SERVICE_STATE_LOAD, ServiceStatus::SERVICE_STATE_LOAD_OK);
+	this->ExcuteState(ServiceStatus::LOAD, ServiceStatus::LOAD_OK);
 	__LEAVE_FUNCTION
 }
 void ServiceMgr::ExcuteAllServiceShutdown()
 {
 	__ENTER_FUNCTION
-	this->ExcuteState(ServiceStatus::SERVICE_STATE_SHUTDOWN, ServiceStatus::SERVICE_STATE_SHUTDOWN_OK);
+	this->ExcuteState(ServiceStatus::SHUTDOWN, ServiceStatus::SHUTDOWN_OK);
 	__LEAVE_FUNCTION
 }
 void ServiceMgr::ExcuteAllServiceFinalSave()
 {
 	__ENTER_FUNCTION
-	this->ExcuteState(ServiceStatus::SERVICE_STATE_FINALSAVE, ServiceStatus::SERVICE_STATE_FINALSAVE_OK);
+	this->ExcuteState(ServiceStatus::FINALSAVE, ServiceStatus::FINALSAVE_OK);
 	__LEAVE_FUNCTION
 }
 void ServiceMgr::Wait(int32_t sec)
@@ -360,7 +360,7 @@ void ServiceMgr::Wait(int32_t sec)
 void ServiceMgr::ExcuteAllService()
 {
 	__ENTER_FUNCTION
-	SetAllServiceState(ServiceStatus::SERVICE_STATE_EXECUTE);
+	SetAllServiceState(ServiceStatus::EXECUTE);
 
 	int64_t checkShutdown = 0;
 	while (true)
