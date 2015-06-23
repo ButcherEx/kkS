@@ -231,7 +231,7 @@ int64_t TimeUtil::Diff(TIME64 destTime, TIME64 srcTime)
 bool TimeUtil::Timout(TIME64 curTime, TIME64 deadlineTime)
 {
     int64_t diff = Diff(deadlineTime, curTime);
-    return diff > 0 ? true : false;
+    return diff <= 0 ? true : false;
 }
 
 TIME64 TimeUtil::Add(TIME64 srcTime, int32_t nIncrementSecond)

@@ -29,7 +29,7 @@ void EventMgr_Test()
 		g_GroupMgr.Update(timeInfo);
 	}
 }
-//////////////////////////////////////////////////////////////////////////
+
 int32_t main(int32_t argc, CHAR* argv[])
 {	
 
@@ -41,6 +41,11 @@ int32_t main(int32_t argc, CHAR* argv[])
 
 	_MY_TRY
 	{
+		TIME64_t now = TimeUtil::Now();
+		TIME64_t nextNow = TimeUtil::Add(now, 1000);
+		TIME64_t beforeNow = TimeUtil::Dec(now, 1000);
+		bool isTimeout = TimeUtil::Timout(now, nextNow);
+		isTimeout = TimeUtil::Timout(now, beforeNow);
 		bool bRet =	g_InstancenManager.Init();
 		Assert(bRet);
 

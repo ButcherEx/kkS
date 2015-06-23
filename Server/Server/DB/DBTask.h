@@ -12,12 +12,13 @@
 #include "Task.h"
 #include "EventMsg.h"
 
-class DBTask : public TaskBase
+class DBTask : public EventMgr
 {
 public:
 	DBTask( );
 	virtual ~DBTask();
 public:
+	virtual void		Tick(const TimeInfo& rTimeInfo){}
 	bool Init();
 };
 

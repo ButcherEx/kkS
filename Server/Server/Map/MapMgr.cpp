@@ -6,11 +6,11 @@ InvokerPtr MapMgr::NewMap()
 	
 	MapPtr PtrMap = POOL_NEW(Map);
 	
-	Assert(PtrMap);
-	Assert(PtrMap->Init());
-
-	m_MapInstanceList.PushBack(PtrMap);
-	
+// 	Assert(PtrMap);
+// 	Assert(PtrMap->Init());
+// 
+// 	m_MapInstanceList.PushBack(PtrMap);
+// 	
 	InvokerPtr invokerPtr( new MapInvoker(*PtrMap) );
 	return invokerPtr;
 

@@ -43,7 +43,7 @@ void TimeInfo::Update()
 	m_bDiffWeek		= (m_nLastWeek == 0 && now.weekday == 1);
 
 	m_uLastTime		= nowMs;
-	m_nLastYear		= now.year;
+	m_nLastYear		= now.real_year;
 	m_nLastMonth	= now.mon;
 	m_nLastDay		= now.day;
 	m_nLastHour		= now.hour;

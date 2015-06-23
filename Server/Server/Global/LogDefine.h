@@ -12,5 +12,6 @@
 
 LOG_DECL(ServerDebug);
 LOG_DECL(ServerError);
+LOG_DECL(ServerService);
 
 #endif //__LOG_DEFINE_H__

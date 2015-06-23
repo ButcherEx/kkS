@@ -28,7 +28,7 @@ public:
 public:
 	void				Exit();
 private:
-	ServiceManager m_MapTaskManager;
+	ServiceMgr m_MapTaskManager;
 	TVector<MapMgrPtr> m_MapMgrVec; 
 };
 

@@ -13,6 +13,7 @@
 class Map
 {
 public:
+	virtual void		Tick(const TimeInfo& rTimeInfo){}
 	virtual int32_t GetMapType( ) { return 0; }
 	int32_t	GetMapId() const { return m_MapId; }
 	int32_t GetMapInstanceId() const { return m_MapInstanceId; }

@@ -1,7 +1,7 @@
 /************************************************************************/
 /*                                                                      */
 /************************************************************************/
-
+#include "LogDefine.h"
 #include "MapCreator.h"
 #include "Config.h"
 
@@ -44,10 +44,10 @@ void MapCreator::Tick(const TimeInfo& rTimeInfo)
 	__ENTER_FUNCTION
 	
 	Service::Tick(rTimeInfo);
-	Assert(m_MapTaskManager.IsAllInvokerInState(Invoker::STATE_IDLE));
-	m_MapTaskManager.SetAllInvokerState_MainThread(Invoker::STATE_READY);
+	Assert(m_MapTaskManager.IsAllInvokerInState(InvokerStatus::IDLE));
+	m_MapTaskManager.SetAllInvokerState_MainThread(InvokerStatus::READY);
 	m_MapTaskManager.Tick(rTimeInfo.Elapse());
-	while (!m_MapTaskManager.IsAllInvokerInState(Invoker::STATE_IDLE));
+	while (!m_MapTaskManager.IsAllInvokerInState(InvokerStatus::IDLE));
 
 	__LEAVE_FUNCTION
 }

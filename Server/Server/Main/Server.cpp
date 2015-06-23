@@ -34,7 +34,7 @@ void Server::Init_AllTask()
 	//////////////////////////////////////////////////////////////////////////
 	m_MainServiceManager.SetName("MainTaskManager");
 	//////////////////////////////////////////////////////////////////////////
-	bool bRet = m_MainServiceManager.Init(ServiceDefine::MAX_SERVICE, g_Config.m_LogConfig.m_ThreadNum);
+	bool bRet = m_MainServiceManager.Init(ServiceDefine::MAX, g_Config.m_LogConfig.m_ThreadNum);
 	Assert(bRet);
 	//////////////////////////////////////////////////////////////////////////
 	m_MainServiceManager.Register( ServicePtr(new MapCreator() ) );

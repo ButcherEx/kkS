@@ -5,7 +5,7 @@
 #ifndef __SERVICE_DEFINE_H__
 #define __SERVICE_DEFINE_H__
 
-struct TaskDefine
+struct ServiceDefine
 {
 	enum 
 	{
@@ -17,7 +17,7 @@ struct TaskDefine
 		DATABASE,
 
 		//////////////////////////////////////////////////////////////////////////
-		MAX_TASK,
+		MAX,
 	};
 };
 

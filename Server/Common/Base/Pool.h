@@ -34,7 +34,7 @@ public:
 public:
 	ObjectPtr NewObj()
 	{
-		__ENTER_FUNCTION
+		__ENTER_FUNCTION_EX
 
 			AutoLock_T Lock(m_Lock);
 		if( m_FreeList.Empty() )
@@ -60,7 +60,7 @@ public:
 		ObjectPtr ptr = m_ObjectPtrs[freeIdx].first;
 		return ptr;
 		
-		__LEAVE_FUNCTION
+		__LEAVE_FUNCTION_EX
 
 		ObjectPtr ptr(new ObjectType());
 		return ptr;
@@ -68,7 +68,7 @@ public:
 
 	void ActiveRecyle()
 	{
-		__ENTER_FUNCTION
+		__ENTER_FUNCTION_EX
 
 			AutoLock_T Lock(m_Lock);
 
@@ -87,7 +87,7 @@ public:
 					}
 				}
 			}
-		__LEAVE_FUNCTION
+		__LEAVE_FUNCTION_EX
 	}
 
 private:
