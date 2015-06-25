@@ -11,7 +11,7 @@ public:
 
 template
 <
-	class ObjectType,
+	typename ObjectType,
 	int32_t _RecyleInterval = 32,
 	int32_t _AllocGranularity = 1,
 	int32_t _PoolMaxSize = -1
@@ -20,12 +20,14 @@ class ObjectPool : public IPool
 {
 public:
 	typedef boost::shared_ptr<ObjectType> ObjectPtr;
-	typedef std::pair<ObjectPtr, int32_t> PtrElem;
+	typedef std::pair<ObjectPtr, bool> PtrElem;
+	typedef TVector<PtrElem> _ElemCont;
+	typedef TList<int32_t> _ElemRef;
 private:
 	MyLock m_Lock;
 	int32_t m_LastRecyleIndex;
-	TList<int32_t> m_FreeList;
-	TVector<PtrElem> m_ObjectPtrs;
+	_ElemRef m_FreeList;
+	_ElemCont m_ObjectPtrs;
 public:
 	explicit ObjectPool<ObjectType, _RecyleInterval, _AllocGranularity, _PoolMaxSize>()
 	{
@@ -56,7 +58,7 @@ public:
 		Assert(m_ObjectPtrs[freeIdx].first.unique());
 		Assert(m_ObjectPtrs[freeIdx].second);
 
-		m_ObjectPtrs[freeIdx].second = 0;
+		m_ObjectPtrs[freeIdx].second = false;
 		ObjectPtr ptr = m_ObjectPtrs[freeIdx].first;
 		return ptr;
 		
@@ -82,7 +84,7 @@ public:
 						m_ObjectPtrs[i].first->ObjectType::~ObjectType();
 						new(m_ObjectPtrs[i].first.get()) ObjectType();
 
-						m_ObjectPtrs[i].second = 1;
+						m_ObjectPtrs[i].second = true;
 						m_FreeList.PushBack(i);
 					}
 				}
@@ -104,7 +106,7 @@ private:
 				m_ObjectPtrs[m_LastRecyleIndex].first->ObjectType::~ObjectType();
 				new(m_ObjectPtrs[m_LastRecyleIndex].first.get()) ObjectType();
 
-				m_ObjectPtrs[m_LastRecyleIndex].second = 1;
+				m_ObjectPtrs[m_LastRecyleIndex].second = true;
 				m_FreeList.PushBack(m_LastRecyleIndex);
 
 				m_LastRecyleIndex = (m_LastRecyleIndex+1) % ObjectSize;
@@ -130,7 +132,7 @@ private:
 			for(int32_t i  = 0; i < _AllocGranularity; i++)
 			{
 				ObjectPtr ptr(new ObjectType());
-				m_ObjectPtrs.push_back(std::make_pair(ptr, 1));
+				m_ObjectPtrs.push_back(std::make_pair(ptr, true));
 				m_FreeList.PushBack((int32_t)m_ObjectPtrs.size() - 1);
 			}
 
