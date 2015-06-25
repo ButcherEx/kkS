@@ -99,7 +99,7 @@ ed2k://|file|76-ipz382.avi|1441283293|A255146B8502476EEFC49B980F137ACF|h=LIOFMAM
 ---------------------------------------------------------
 * BOOST
 ---------------------------------------------------------
-
++ 多线程下每个函数多需要调用srand设置，否则产生的随机数一样
 +使用bcp.exe提交boost代码
 	-- bcp.exe --boost=$SourceDir $lib‘s Name  $OutDir
 	bcp --boost=D:/1/3rd/boost_1_55_0/ static_assert thread threadpool date_time filesystem format serialization lexical system smart_ptr bind container D:/1/sim/
