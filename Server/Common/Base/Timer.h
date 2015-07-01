@@ -83,6 +83,8 @@ static void			Format(char* buf, int32_t len, const char* fmt);
 */
 static int32_t		FromDateTime(TIME64 *t, const  char *buf, int32_t len);
 static void			ToTM(const TIME64* t, struct tm* m);
+
+static time_t		AnsiTime();
 };
 
 #endif /* __TIMER_H__*/

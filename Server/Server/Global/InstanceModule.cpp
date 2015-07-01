@@ -13,11 +13,11 @@ bool InstanceManager::Init()
 		bool bRet = g_Config.Init(__argv[0]);
 		Assert(bRet);
 
-		srand(g_TimeManager.CurrentTick());
+		srand((uint32_t)TimeUtil::AnsiTime());
 
 		LOG_DEBUG(ServerDebug, "main..." ) ;
-		LOG_DEBUG(ServerDebug, "Login Starting... (%lld)(%d)",
-			g_TimeManager.CurrentTimeToInt64(), g_TimeManager.CurrentTick() ) ;
+		LOG_DEBUG(ServerDebug, "Login Starting... (%u)(%u)",
+			g_TimeManager.CurrentTime(), g_TimeManager.RunTime() ) ;
 
 		CHAR currentDir[_MAX_PATH] = {0};
 		tgetcwd(currentDir, _MAX_PATH);

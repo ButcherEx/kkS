@@ -23,9 +23,9 @@ __LEAVE_FUNCTION
 bool TimeManager::Init( )
 {
 	__ENTER_FUNCTION
+	m_StartTime = TimeUtil::TickCount();
+	m_CurrentTime = TimeUtil::TickCount();
 
-	m_CurrentTime = m_StartTime = TimeUtil::Now();
-	m_CurrentTickCount = m_StartTickCount = TimeUtil::TickCount();
 	return true ;
 
 	__LEAVE_FUNCTION
@@ -33,282 +33,35 @@ bool TimeManager::Init( )
 		return false ;
 }
 
-uint32_t TimeManager::SysTick()
+uint32_t TimeManager::CurrentTime()
 {
-	return (TimeUtil::TickCount( ) - m_StartTickCount);
+	m_CurrentTime = TimeUtil::TickCount();
+
+	return m_CurrentTime;
 }
 
-uint32_t TimeManager::RunTick()
+uint32_t TimeManager::RunTime()
 {
-	uint32_t _CurrentTick = CurrentTick( );
-	return (_CurrentTick - m_StartTickCount);
+	CurrentTime();
+	if( m_CurrentTime < m_StartTime )
+	{
+		return ((uint32_t)0xffffffff-m_StartTime) + m_CurrentTime;
+	}
+	return m_CurrentTime - m_StartTime;
 }
 
-TIME64 TimeManager::StartTime()
+uint32_t TimeManager::StartTime()
 {
 	return m_StartTime;
 }
 
-
-int64_t TimeManager::StartTimeToInt64()
+void TimeManager::SetTime()
 {
-	TIME64 startTime = StartTime();
-	return TimeUtil::ToInt64(startTime);
+	time_t nowTime = time(NULL);
+	tm curTm;
+	localtime_r(&curTm, &nowTime);
+
+	m_SetTime = nowTime;
+	memcpy(&m_TM, &curTm, sizeof(tm));
 }
 
-uint32_t TimeManager::StartTick()
-{
-	return m_StartTickCount;
-}
-
-uint32_t TimeManager::CurrentTick()
-{
-	AutoLock_T _lock(m_Lock);
-	m_CurrentTickCount	= TimeUtil::TickCount();
-
-	return m_CurrentTickCount;
-}
-
-TIME64 TimeManager::CurrentTime()
-{
-	AutoLock_T _lock(m_Lock);
-	m_CurrentTime = TimeUtil::Now();
-	return m_CurrentTime;
-}
-
-int64_t TimeManager::CurrentTimeToInt64()
-{
-	TIME64 currentTime = CurrentTime();
-	return TimeUtil::ToInt64(currentTime);
-}
-
-//
-//uint32_t TimeManager::CurrentTime( )
-//{
-//__ENTER_FUNCTION
-//
-//#if defined(__WINDOWS__)
-//	m_CurrentTime = GetTickCount() ;
-//#elif defined(__LINUX__)
-//	gettimeofday(&_tend,&tz);
-//	double t1, t2;
-//	t1 =  (double)_tstart.tv_sec*1000 + (double)_tstart.tv_usec/1000;
-//	t2 =  (double)_tend.tv_sec*1000 + (double)_tend.tv_usec/1000;
-//	m_CurrentTime = (uint32_t)(t2-t1);
-//#endif
-//
-//	return m_CurrentTime ;
-//
-//
-//__LEAVE_FUNCTION
-//
-//	return 0 ;
-//}
-//
-//uint32_t	TimeManager::CurrentDate()
-//{
-//	__ENTER_FUNCTION
-//
-//	SetTime( ) ;
-//	uint32_t Date;
-//	ConvertTU(&m_TM,Date);
-//
-//	return Date;
-//
-//	__LEAVE_FUNCTION
-//
-//		return 0;
-//}
-//
-//uint32_t TimeManager::RunTime( )
-//{ 
-//	__ENTER_FUNCTION
-//	CurrentTime( ) ;
-//	return (m_CurrentTime-m_StartTime);  
-//	__LEAVE_FUNCTION
-//		return 0;
-//}
-//
-//uint16_t TimeManager::RunTick( )
-//{
-//	__ENTER_FUNCTION
-//	CurrentTime();
-//	return uint16_t(m_CurrentTime-m_StartTime);  
-//	__LEAVE_FUNCTION
-//		return 0;
-//}
-//
-//void TimeManager::SetTime( )
-//{
-//__ENTER_FUNCTION
-//
-//	time( &m_SetTime ) ;
-//	tm _tm;
-//	localtime_r( &_tm, &m_SetTime) ;
-//	m_TM = _tm ;
-//
-//__LEAVE_FUNCTION
-//}
-//
-//// 得到标准时间
-//time_t TimeManager::GetANSITime( )
-//{
-//__ENTER_FUNCTION
-//
-//	SetTime();
-//
-//__LEAVE_FUNCTION
-//
-//	return m_SetTime;
-//}
-//
-//uint32_t TimeManager::Time2DWORD( )
-//{
-//__ENTER_FUNCTION
-//
-//	SetTime( ) ;
-//
-//	uint32_t uRet=0 ;
-//
-//	uRet += GetYear( ) ;
-//	uRet -= 2000 ;
-//	uRet =uRet*100 ;
-//
-//	uRet += GetMonth( )+1 ;
-//	uRet =uRet*100 ;
-//
-//	uRet += GetDay( ) ;
-//	uRet =uRet*100 ;
-//
-//	uRet += GetHour( ) ;
-//	uRet =uRet*100 ;
-//
-//	uRet += GetMinute( ) ;
-//
-//	return uRet ;
-//
-//__LEAVE_FUNCTION
-//
-//	return 0 ;
-//}
-//
-//uint32_t TimeManager::DiffTime( uint32_t Date1, uint32_t Date2 )
-//{
-//__ENTER_FUNCTION
-//
-//	tm S_D1, S_D2 ;
-//	ConvertUT( Date1, &S_D1 ) ;
-//	ConvertUT( Date2, &S_D2 ) ;
-//	time_t t1,t2 ;
-//	t1 = mktime(&S_D1) ;
-//	t2 = mktime(&S_D2) ;
-//	uint32_t dif = (uint32_t)(difftime(t2,t1)*1000) ;
-//	return dif ;
-//
-//__LEAVE_FUNCTION
-//
-//	return 0 ;
-//}
-//
-//void TimeManager::ConvertUT( uint32_t Date, tm* TM ) const
-//{
-//__ENTER_FUNCTION
-//
-//	Assert(TM) ;
-//	memset( TM, 0, sizeof(tm) ) ;
-//	TM->tm_year = (Date>>26)&0xf ;
-//	TM->tm_mon  = (Date>>22)&0xf ;
-//	TM->tm_mday = (Date>>17)&0x1f ;
-//	TM->tm_hour = (Date>>12)&0x1f ;
-//	TM->tm_min  = (Date>>6) &0x3f ;
-//	TM->tm_sec  = (Date)    &0x3f ;
-//
-//__LEAVE_FUNCTION
-//}
-//
-//void TimeManager::ConvertTU( tm* TM, uint32_t& Date ) const
-//{
-//__ENTER_FUNCTION
-//
-//	Assert( TM ) ;
-//	Date = 0 ;
-//	Date += (TM->tm_yday%10) & 0xf ;
-//	Date = (Date<<4) ;
-//	Date += TM->tm_mon & 0xf ;
-//	Date = (Date<<4) ;
-//	Date += TM->tm_mday & 0x1f ;
-//	Date = (Date<<5) ;
-//	Date += TM->tm_hour & 0x1f ;
-//	Date = (Date<<5) ;
-//	Date += TM->tm_min & 0x3f ;
-//	Date = (Date<<6) ;
-//	Date += TM->tm_sec & 0x3f ;
-//
-//__LEAVE_FUNCTION
-//}
-//
-//uint32_t TimeManager::GetDayTime( )
-//{
-//__ENTER_FUNCTION
-//
-//	time_t st ;
-//	time( &st ) ;
-//	tm* ptm = localtime( &m_SetTime ) ;
-//
-//	uint32_t uRet=0 ;
-//
-//	uRet  = (ptm->tm_year-100)*1000 ;
-//	uRet += ptm->tm_yday ;
-//
-//	return uRet ;
-//
-//__LEAVE_FUNCTION
-//
-//	return 0 ;
-//}
-//
-//uint16_t TimeManager::GetTodayTime()
-//{
-//__ENTER_FUNCTION
-//	time_t st ;
-//	time( &st ) ;
-//	tm* ptm = localtime( &m_SetTime ) ;
-//
-//	uint16_t uRet=0 ;
-//
-//	uRet  = ptm->tm_hour*100 ;
-//	uRet += ptm->tm_min ;
-//
-//	return uRet ;
-//
-//__LEAVE_FUNCTION
-//
-//return 0 ;
-//}
-//
-//bool TimeManager::FormatTodayTime(uint16_t& nTime)
-//{
-//__ENTER_FUNCTION
-//	bool ret = false;
-//
-//	uint16_t wHour = nTime / 100;
-//	uint16_t wMin = nTime % 100;
-//	uint16_t wAddHour = 0;
-//	if( wMin > 59 )
-//	{
-//		wAddHour = wMin / 60;
-//		wMin = wMin % 60;
-//	}
-//	wHour += wAddHour;
-//	if( wHour > 23 )
-//	{
-//		ret = true;
-//		wHour = wHour % 60;
-//	}
-//
-//	return ret;
-//
-//__LEAVE_FUNCTION
-//
-//return false ;
-//}

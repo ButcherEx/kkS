@@ -20,7 +20,6 @@ public:
 	uint32_t Elapse()	const	{return m_uTimeElapse;}
 	uint32_t SysRunTime()const	{return m_uLastSysRunTime;}
 private:
-	uint32_t m_uLastTime;
 	uint32_t m_uLastSysRunTime;
 	uint32_t m_uTimeElapse;
 	

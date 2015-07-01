@@ -14,9 +14,8 @@ TimeInfo::TimeInfo()
 	m_nLastSecond = now.sec;
 	m_nLastWeek = now.weekday;
 
-	m_uLastSysRunTime = 0;
+	m_uLastSysRunTime = TimeUtil::TickCount();;
 	m_nAnsiTime = time(NULL);
-	m_uLastTime = TimeUtil::TickCount();
 
 	Update();
 }
@@ -31,8 +30,8 @@ void TimeInfo::Update()
 
 	m_nAnsiTime = time(NULL);
 
-	m_uTimeElapse = nowMs - m_uLastTime;
-	m_uLastSysRunTime += m_uTimeElapse;
+	m_uTimeElapse = nowMs - m_uLastSysRunTime;
+	m_uLastSysRunTime = nowMs;
 
 	m_bDiffYear		= (m_nLastYear != (now.real_year));
 	m_bDiffMonth	= (m_bDiffYear || m_nLastMonth != now.mon);
@@ -42,7 +41,6 @@ void TimeInfo::Update()
 	m_bDiffSecond	= (m_bDiffMinute || m_nLastSecond != now.sec);
 	m_bDiffWeek		= (m_nLastWeek == 0 && now.weekday == 1);
 
-	m_uLastTime		= nowMs;
 	m_nLastYear		= now.real_year;
 	m_nLastMonth	= now.mon;
 	m_nLastDay		= now.day;

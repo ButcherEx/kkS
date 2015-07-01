@@ -11,22 +11,24 @@ public :
 	TimeManager( ) ;
 	~TimeManager( ) ;
 public:
-	uint32_t		SysTick();
-	uint32_t		RunTick();
-	TIME64			StartTime();
-	int64_t			StartTimeToInt64();
-	TIME64			CurrentTime();
-	int64_t			CurrentTimeToInt64();
-	uint32_t		StartTick();
-	uint32_t		CurrentTick();
+	uint32_t		CurrentTime();
+	uint32_t		RunTime();
+	uint32_t		StartTime();
+	void			SetTime();
 private:
 	bool			Init( ) ;
 private:
-	MyLock			m_Lock;
-	uint32_t		m_StartTickCount;
-	uint32_t		m_CurrentTickCount;
-	TIME64			m_StartTime;
-	TIME64			m_CurrentTime;
+	uint32_t		m_StartTime;
+	uint32_t		m_CurrentTime;
+	time_t			m_SetTime;
+	tm				m_TM;
+#ifdef __LINUX__
+	struct timeval _tstart;
+	struct timezone _tz;
+	{
+
+	};
+#endif
 };
 
 extern TimeManager g_TimeManager;

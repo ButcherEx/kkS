@@ -410,3 +410,11 @@ void TimeUtil::ToTM(const TIME64* t, struct tm* m)
 		m->tm_year = t->year;
 	}
 }
+
+time_t TimeUtil::AnsiTime()
+{
+	time_t ansiTime;
+	time(&ansiTime);
+	return ansiTime;
+}
+
