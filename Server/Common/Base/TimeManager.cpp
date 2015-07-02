@@ -23,9 +23,15 @@ __LEAVE_FUNCTION
 bool TimeManager::Init( )
 {
 	__ENTER_FUNCTION
+#if defined( __WINDOWS__ )
 	m_StartTime = TimeUtil::TickCount();
 	m_CurrentTime = TimeUtil::TickCount();
-
+#elif defined(__LINUX__)
+	m_SetTime = 0;
+	m_CurrentTime = 0;
+	gettimeofday(&_tstart, NULL);
+#endif
+	SetTime();
 	return true ;
 
 	__LEAVE_FUNCTION
@@ -35,8 +41,16 @@ bool TimeManager::Init( )
 
 uint32_t TimeManager::CurrentTime()
 {
+#if defined( __WINDOWS__ )
 	m_CurrentTime = TimeUtil::TickCount();
-
+#elif defined(__LINUX__)
+	struct timeval _tend;
+	gettimeofday(&tend, NULL);
+	double t1, t2;
+	t1 = (double)(_tstart.tv_sec * 1000 + (double)_tstart.tv_usec/1000);
+	t2 = (double)(_tend.tv_sec * 1000 + (double)_tend.tv_usec/1000);
+	m_CurrentTime = (tuint32)(t2-t1);
+#endif
 	return m_CurrentTime;
 }
 

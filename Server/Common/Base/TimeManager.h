@@ -25,9 +25,6 @@ private:
 #ifdef __LINUX__
 	struct timeval _tstart;
 	struct timezone _tz;
-	{
-
-	};
 #endif
 };
 
