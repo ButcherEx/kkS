@@ -195,6 +195,7 @@
     <ClCompile Include="..\Common\Base.cpp" />
     <ClCompile Include="..\Common\BaseLib.cpp" />
     <ClCompile Include="..\Common\Base\Assertx.cpp" />
+    <ClCompile Include="..\Common\Base\CpuMemStat.cpp" />
     <ClCompile Include="..\Common\Base\Demo.cpp" />
     <ClCompile Include="..\Common\Base\GameUtil.cpp" />
     <ClCompile Include="..\Common\Base\Ini.cpp" />
@@ -304,6 +305,7 @@
     <ClInclude Include="..\Common\Base\Assertx.h" />
     <ClInclude Include="..\Common\Base\AutoFactory.h" />
     <ClInclude Include="..\Common\Base\Container.h" />
+    <ClInclude Include="..\Common\Base\CpuMemStat.h" />
     <ClInclude Include="..\Common\Base\GameUtil.h" />
     <ClInclude Include="..\Common\Base\Ini.h" />
     <ClInclude Include="..\Common\Base\Pool.h" />

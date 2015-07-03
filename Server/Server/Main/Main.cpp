@@ -3,6 +3,7 @@
 // #include <vld.h>
 #include "Main.h"
 #include "Server.h"
+#include "CpuMemStat.h"
 //////////////////////////////////////////////////////////////////////////
 class GroupMgr : public EventMgr
 {
@@ -30,6 +31,55 @@ void EventMgr_Test()
 	}
 }
 
+// Use to convert bytes to KB
+#define DIV 1024
+
+// Specify the width of the field in which to print the numbers. 
+// The asterisk in the format specifier "%*I64d" takes an integer 
+// argument and uses it to pad and right justify the number.
+#define WIDTH 7
+
+#include <psapi.h>
+void PrintMemoryInfo( DWORD processID )
+{
+	HANDLE hProcess;
+	PROCESS_MEMORY_COUNTERS pmc;
+
+	// Print the process identifier.
+
+	printf( "\nProcess ID: %u\n", processID );
+
+	// Print information about the memory usage of the process.
+
+	hProcess = OpenProcess(  PROCESS_QUERY_INFORMATION |
+		PROCESS_VM_READ,
+		FALSE, processID );
+	if (NULL == hProcess)
+		return;
+
+	if ( GetProcessMemoryInfo( hProcess, &pmc, sizeof(pmc)) )
+	{
+		printf( "\tPageFaultCount: 0x%08X\n", pmc.PageFaultCount );
+		printf( "\tPeakWorkingSetSize: 0x%08X\n", 
+			pmc.PeakWorkingSetSize );
+		printf( "\tWorkingSetSize: 0x%08X\n", pmc.WorkingSetSize );
+		printf( "\tQuotaPeakPagedPoolUsage: 0x%08X\n", 
+			pmc.QuotaPeakPagedPoolUsage );
+		printf( "\tQuotaPagedPoolUsage: 0x%08X\n", 
+			pmc.QuotaPagedPoolUsage );
+		printf( "\tQuotaPeakNonPagedPoolUsage: 0x%08X\n", 
+			pmc.QuotaPeakNonPagedPoolUsage );
+		printf( "\tQuotaNonPagedPoolUsage: 0x%08X\n", 
+			pmc.QuotaNonPagedPoolUsage );
+		printf( "\tPagefileUsage: 0x%08X\n", pmc.PagefileUsage ); 
+		printf( "\tPeakPagefileUsage: 0x%08X\n", 
+			pmc.PeakPagefileUsage );
+	}
+
+	CloseHandle( hProcess );
+
+}
+
 int32_t main(int32_t argc, CHAR* argv[])
 {	
 
@@ -39,6 +89,7 @@ int32_t main(int32_t argc, CHAR* argv[])
 
 	__ENTER_FUNCTION
 
+	LogCpuMemStat("HZ");
 	_MY_TRY
 	{
 		TIME64_t now = TimeUtil::Now();

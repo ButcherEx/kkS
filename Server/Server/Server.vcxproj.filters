@@ -366,6 +366,9 @@
     <ClCompile Include="Map\MapMgr.cpp">
       <Filter>Map</Filter>
     </ClCompile>
+    <ClCompile Include="..\Common\Base\CpuMemStat.cpp">
+      <Filter>Common\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player\Player.h">
@@ -712,6 +715,9 @@
     </ClInclude>
     <ClInclude Include="Map\Map.h">
       <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Base\CpuMemStat.h">
+      <Filter>Common\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

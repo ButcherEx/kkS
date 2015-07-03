@@ -5,6 +5,7 @@
 #include "BaseLib.h"
 #include "Config.h"
 #include "Task.h"
+#include "CpuMemStat.h"
 //////////////////////////////////////////////////////////////////////////
 LOG_IMPL(ServiceMgrLog)
 //////////////////////////////////////////////////////////////////////////
@@ -373,12 +374,14 @@ void ServiceMgr::ExcuteAllService()
 		checkShutdown += elapseMs;
 		if( checkShutdown >= 30*1000)
 		{
+			LogCpuMemStat("MZ");
 			checkShutdown = 0;
 			if(IsShouldShutdown())
 			{
 				break;
 			}
 		}
+		
 
 
 		MySleep(10);
