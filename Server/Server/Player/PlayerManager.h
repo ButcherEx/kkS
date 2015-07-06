@@ -34,9 +34,9 @@ public :
 
 	//增加一个玩家
 	bool				AddPlayer( PlayerPtr Ptr ) ;
-	virtual void		OnAddPlayer(PlayerPtr Ptr) {}
+	virtual void		OnAddPlayer(PlayerPtr Ptr, int32_t reason) {}
 	void				RemovePlayer( PlayerPtr Ptr, int32_t reason = -1 ) ;
-	virtual void		OnRemovePlayer(PlayerPtr ptr) {}
+	virtual void		OnRemovePlayer(PlayerPtr ptr, int32_t reason) {}
 public:
 	uint32_t			GetPlayerNumber( ){ return m_nPlayers ; } ;
 	bool				HasPlayer( ){ return m_nPlayers > 0 ; } ;

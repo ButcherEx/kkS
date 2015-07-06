@@ -3,6 +3,7 @@
 #include "Assertx.h"
 #include "MacroDefine.h"
 #include "Timer.h"
+#include "Config.h"
 
 #if defined(__LINUX__)
 #include <unistd.h>

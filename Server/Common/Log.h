@@ -147,7 +147,7 @@ private:
 #define LOG_DECL(LOGTYPE)		class Tag##LOGTYPE{public: static const char* Name(){return #LOGTYPE;} };\
 								extern  LogSink<16*1024, 4*1024, Tag##LOGTYPE> LOG_INST(LOGTYPE)
 
-#define LOG_DEF(LOGTYPE)		class Tag##LOGTYPE{public: static const char* name(){return #LOGTYPE;} };\
+#define LOG_DEF(LOGTYPE)		class Tag##LOGTYPE{public: static const char* Name(){return #LOGTYPE;} };\
 								LogSink<16*1024, 4*1024, Tag##LOGTYPE> LOG_INST(LOGTYPE)
 //////////////////////////////////////////////////////////////////////////
 template<typename _LogSink>

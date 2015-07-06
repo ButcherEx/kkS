@@ -39,6 +39,7 @@ __ENTER_FUNCTION
 	Assert( Ptr ) ;
 
 	m_PlayerPtrList.PushBack(Ptr);
+	OnAddPlayer(Ptr, 0);
 	return true ;
 	
 __LEAVE_FUNCTION
@@ -53,7 +54,8 @@ __ENTER_FUNCTION
 
 	Assert( Ptr ) ;
 	PlayerPtrList::TListIterator iter = std::remove(m_PlayerPtrList.Begin(), m_PlayerPtrList.End(), Ptr);
-	(void)iter;
+	if( iter != m_PlayerPtrList.End()) OnRemovePlayer(Ptr, reason);
+	
 __LEAVE_FUNCTION
 }
 

@@ -21,7 +21,13 @@
 #define		__FUNCTION__		__PRETTY_FUNCTION__
 #endif
 
+#ifndef _MAX
+#define _MAX(X,Y) (((X)>(Y))?(X):(Y))
+#endif
 
+#ifndef _MIN
+#define _MIN(X,Y) (((X)<(Y))?(X):(Y))
+#endif
 
 /////////////////////////////////////////////////////////////////////////////////
 //网络信息预定义宏
