@@ -39,7 +39,7 @@ bool TimeManager::Init( )
 		return false ;
 }
 
-uint32_t TimeManager::CurrentTime()
+uint32_t TimeManager::SysRunTime()
 {
 #if defined( __WINDOWS__ )
 	m_CurrentTime = TimeUtil::TickCount();
@@ -56,7 +56,7 @@ uint32_t TimeManager::CurrentTime()
 
 uint32_t TimeManager::RunTime()
 {
-	CurrentTime();
+	SysRunTime();
 	if( m_CurrentTime < m_StartTime )
 	{
 		return ((uint32_t)0xffffffff-m_StartTime) + m_CurrentTime;

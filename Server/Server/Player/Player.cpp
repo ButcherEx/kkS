@@ -66,7 +66,7 @@ __ENTER_FUNCTION
 		if( (int32_t)ret <= SOCKET_ERROR )
 		{
 			LOG_ERROR(ServerError, "[%u] m_pSocketInputStream->Fill ret:%d %s", 
-				g_TimeManager.CurrentTime(), (int32_t)ret, MySocketError() ) ;
+				g_TimeManager.SysRunTime(), (int32_t)ret, MySocketError() ) ;
 			return false ;
 		}
 	} 
@@ -267,7 +267,7 @@ __ENTER_FUNCTION
 		if( (int32_t)ret <= SOCKET_ERROR )
 		{
 			LOG_ERROR(ServerError,"[%u] m_pSocketOutputStream->Flush ret:%d %s", 
-				g_TimeManager.CurrentTime(), (int32_t)ret, MySocketError() ) ;
+				g_TimeManager.SysRunTime(), (int32_t)ret, MySocketError() ) ;
 			return false ;
 		}
 	} 

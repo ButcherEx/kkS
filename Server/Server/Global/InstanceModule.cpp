@@ -17,7 +17,7 @@ bool InstanceManager::Init()
 
 		LOG_DEBUG(ServerDebug, "main..." ) ;
 		LOG_DEBUG(ServerDebug, "Login Starting... (%u)(%u)",
-			g_TimeManager.CurrentTime(), g_TimeManager.RunTime() ) ;
+			g_TimeManager.SysRunTime(), g_TimeManager.RunTime() ) ;
 
 		CHAR currentDir[_MAX_PATH] = {0};
 		tgetcwd(currentDir, _MAX_PATH);

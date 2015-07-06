@@ -334,7 +334,7 @@ uint32_t SocketInputStream::Fill( )
 
 bool SocketInputStream::Resize( int32_t size )
 {		
-	size = max(size, (int)(m_BufferLen>>1));
+	size = _MAX(size, (int)(m_BufferLen>>1));
 	uint32_t newBufferLen = m_BufferLen + size;
 	uint32_t len = Length();
 	
