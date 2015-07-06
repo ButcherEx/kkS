@@ -4,11 +4,14 @@
 #include "GameUtil.h"
 #if defined(__WINDOWS__)
 #include <io.h>
+#include <Shlwapi.h>
+#pragma comment(lib, "shlwapi")
 #elif defined(__LINUX__)
 #include <execinfo.h>
 #include <signal.h>
 #include <exception>
 #include <setjmp.h>
+#include <dirent.h>
 #endif
 
 //////////////////////////////////////////////////////////////////////////
@@ -38,6 +41,54 @@ CHAR* MySocketError( )
 
 extern CHAR Error[_ESIZE] ;
 	return Error ;
+}
+//////////////////////////////////////////////////////////////////////////
+bool IsFileExists(const CHAR* szFile)
+{
+	if( szFile != NULL )
+	{
+		FILE* fp = fopen(szFile, "r");
+		if( fp != NULL )
+		{
+			fclose(fp);
+			return true;
+		}
+	}
+	return false;
+}
+bool IsPathExists(const CHAR* szPath)
+{
+#if defined(__WINDOWS__)
+	return (::PathFileExists(szPath) ? true : false);
+#elif defined(__LINUX__)
+	DIR* dir = opendir(szPath);
+	if( dir != NULL )
+	{
+		closedir(dir);
+		return true
+	}
+	return false;
+#endif
+	return false;
+}
+bool MakeDir(const CHAR* szPath)
+{
+	if(IsPathExists(szPath))
+	{
+		return true;
+	}
+#if defined(__WINDOWS__)
+	if( _mkdir(szPath) == 0 )
+		return true;
+
+	return false;
+#elif defined(__LINUX__)
+	if(mkdir(szPath, 0755) == 0)
+		return true;
+
+	return false;
+#endif
+
 }
 //////////////////////////////////////////////////////////////////////////
 void HostName(bstd::string& hn) 

@@ -158,11 +158,12 @@ void SignalHandler(int32_t nSig)
 		char curTime[DATETIME_LEN] = {0};
 
 		TimeUtil::Format(curTime, DATETIME_LEN, "%Y%m%d-%H%M%S");
-		bfs::path p = g_Config.m_LogConfig.m_LogDir.c_str();
-		tsnprintf(logfileName, FILE_NAME_LEN, "%s.%d.%s.%s.log",  
-			g_Config.m_LogConfig.m_InvocationName.c_str(), getpid(), "dump", curTime);
+		tsnprintf(logfileName, FILE_NAME_LEN, "%s.%d.%s.log",  
+			"dump", getpid(), curTime);
 
-		p /= logfileName;
+		CHAR filePath[_MAX_PATH] = {0};
+		tsnprintf(filePath, _MAX_PATH, "RunTime/Log/%s", logfileName);
+
 #undef FILE_NAME_LEN
 
 		int32 indexOfSig = -1;
@@ -176,7 +177,7 @@ void SignalHandler(int32_t nSig)
 			}
 		}
 
-		bfs::fstream ss(p, std::ios_base::app);
+		std::fstream ss(filePath, std::ios_base::app);
 		if( indexOfSig >= 0 && indexOfSig< sigCount)
 		{
 			switch (s_SignalDesc[indexOfSig].nHandle)

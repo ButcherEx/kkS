@@ -89,7 +89,6 @@ int32_t main(int32_t argc, CHAR* argv[])
 
 	__ENTER_FUNCTION
 
-	LogCpuMemStat("HZ");
 	_MY_TRY
 	{
 		TIME64_t now = TimeUtil::Now();
@@ -99,6 +98,8 @@ int32_t main(int32_t argc, CHAR* argv[])
 		isTimeout = TimeUtil::Timout(now, beforeNow);
 		bool bRet =	g_InstancenManager.Init();
 		Assert(bRet);
+
+		//LogCpuMemStat("HZ");
 
 		bRet = g_Server.Init( );
 		Assert(bRet);

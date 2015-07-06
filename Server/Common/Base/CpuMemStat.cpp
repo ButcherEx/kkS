@@ -290,7 +290,7 @@ uint64_t CpuMemStat::GetPagedPoolSize()
 
 #endif
 
-LOG_DEF(Cpu);
+//LOG_DEF(Cpu);
 
 void LogCpuMemStat(const CHAR* szDesc)
 {
@@ -300,22 +300,22 @@ void LogCpuMemStat(const CHAR* szDesc)
 		static CpuMemStat __s_CpuMemStat;
 		__s_CpuMemStat.RebuildCpu();
 		__s_CpuMemStat.RebuildMem();
-#ifdef __LINUX__
-		LOG_DEBUG(Cpu, 
-			"Desc(%s), CPU(%0.2f), VmSize(%llu), VmRSS|Phsy(%llu)\n",
-			szDesc != NULL ? szDesc : "Unknown",
-			__s_CpuMemStat.GetCpuRate(),
-			__s_CpuMemStat.GetVmSize(),
-			__s_CpuMemStat.GetVmRSS());
-#else
-		LOG_DEBUG(Cpu, 
-			"Desc(%s), CPU(%0.2f), PhsyMemSize(%llu), VirMemSize(%llu), PagedPoolUsage(%llu)\n",
-			szDesc != NULL ? szDesc : "Unknown",
-			__s_CpuMemStat.GetCpuRate(),
-			__s_CpuMemStat.GetPhsySize(),
-			__s_CpuMemStat.GetVmSize(),
-			__s_CpuMemStat.GetPagedPoolSize());
-#endif
+// #ifdef __LINUX__
+// 		LOG_DEBUG(Cpu, 
+// 			"Desc(%s), CPU(%0.2f), VmSize(%llu), VmRSS|Phsy(%llu)\n",
+// 			szDesc != NULL ? szDesc : "Unknown",
+// 			__s_CpuMemStat.GetCpuRate(),
+// 			__s_CpuMemStat.GetVmSize(),
+// 			__s_CpuMemStat.GetVmRSS());
+// #else
+// 		LOG_DEBUG(Cpu, 
+// 			"Desc(%s), CPU(%0.2f), PhsyMemSize(%llu), VirMemSize(%llu), PagedPoolUsage(%llu)\n",
+// 			szDesc != NULL ? szDesc : "Unknown",
+// 			__s_CpuMemStat.GetCpuRate(),
+// 			__s_CpuMemStat.GetPhsySize(),
+// 			__s_CpuMemStat.GetVmSize(),
+// 			__s_CpuMemStat.GetPagedPoolSize());
+// #endif
 
 #endif
 	}

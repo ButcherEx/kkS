@@ -49,13 +49,12 @@ public:
 
 		TIME64 now  = TimeUtil::Now();
 
-		zeroMemory(m_LogFileCurName, LOGNAME_LEN);
-		tsnprintf(m_LogFileCurName, LOGNAME_LEN, "./%s%s.%04d-%02d-%02d-%02d.log",
-			g_Config.m_LogConfig.m_FilePrefix.c_str(),
+		zeroMemory(m_LogPath, sizeof(m_LogPath));
+		tsnprintf(m_LogFileCurName, LOGNAME_LEN, "%s.%04d-%02d-%02d-%02d.log",
 			m_LogFileName, now.year+1900, now.mon, now.day, now.hour);
 
-		m_LogPath = g_Config.m_LogConfig.m_LogDir.c_str();
-		m_LogPath /= m_LogFileCurName;
+		tsnprintf(m_LogPath, _MAX_PATH, "./RunTime/%s", m_LogFileCurName );
+		m_LogFileName[_MAX_PATH-1] = 0;
 	}
 	void SaveLog(const CHAR* log, bool bFlush, LogColor color)
 	{
@@ -102,12 +101,12 @@ private:
 
 			if(m_BufferedSize > 0)
 			{
-				bfs::fstream fs(m_LogPath, std::ios_base::app);
-				if(fs.good())
+				//bfs::fstream fs(m_LogPath, std::ios_base::app);
+				FILE* fp = fopen(m_LogPath, "a+");
+				if( fp )
 				{
-					fs << m_LogBuffer;
-					fs.close();
-
+					fwrite(m_LogBuffer, 1, strlen(m_LogBuffer), fp);
+					fclose(fp);
 				}
 				else
 				{
@@ -133,7 +132,7 @@ private:
 	MyLock m_FileLock;
 	int32_t m_Parameter;
 	int32_t m_BufferedSize;
-	bfs::path m_LogPath;
+	CHAR m_LogPath[_MAX_PATH];
 	char m_LogFileName[LOGNAME_LEN];
 	char m_LogFileCurName[LOGNAME_LEN];
 	char m_LogBuffer[_BufSize];

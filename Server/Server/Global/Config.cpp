@@ -44,17 +44,8 @@ void Config::LoadLogConfig(const CHAR* argv0)
 {
 __ENTER_FUNCTION
 	//////////////////////////////////////////////////////////////////////////
-	bfs::path basePath_;
 
-	basePath_ /= m_LogConfig.m_LogDir.c_str();
-
-	bsys::error_code ec;	
-	if( !bfs::exists(basePath_, ec) )
-	{
-		ec.clear();
-		bfs::create_directories(basePath_, ec);
-		AssertEx(!ec, ec.message().c_str());
-	}
+	_mkdir("RunTime");
 	//////////////////////////////////////////////////////////////////////////
 	if( argv0 != NULL)
 	{

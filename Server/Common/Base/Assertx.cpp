@@ -32,19 +32,22 @@ void __assert__(const CHAR *func, int32_t line, const CHAR *exp, bool throwExcep
 
 		//////////////////////////////////////////////////////////////////////////
 #define FILE_NAME_LEN 128
-		char fileName[FILE_NAME_LEN] = {0};
-		tsnprintf(fileName, FILE_NAME_LEN, "%s%s.%04d-%02d-%02d-%02d.log",  
-			g_Config.m_LogConfig.m_FilePrefix.c_str(), "Assert",
-			now.real_year, now.mon, now.day, now.hour);
+		CHAR fileName[FILE_NAME_LEN] = {0};
+		tsnprintf(fileName, FILE_NAME_LEN, "%s.%04d-%02d-%02d-%02d.log",  
+			"Assert", now.real_year, now.mon, now.day, now.hour);
 #undef FILE_NAME_LEN
 
-		bfs::path p = g_Config.m_LogConfig.m_LogDir.c_str();
-		p /= fileName;
+		CHAR filePath[_MAX_PATH] = {0};
+		tsnprintf(filePath, _MAX_PATH, "RunTime/Log/%s", fileName);
+		
 
 		//////////////////////////////////////////////////////////////////////////
-		bfs::fstream assertfs(p, std::ios_base::app);
-		assertfs << assertBuf;
-		assertfs.close();
+		FILE *fp = fopen(filePath, "a+");
+		if( fp != NULL )
+		{
+			fwrite(assertBuf, 1, ::strlen(assertBuf), fp);
+			fclose(fp);
+		}
 
 
 		if(g_Config.m_LogConfig.m_LogAssert2Stderr)
