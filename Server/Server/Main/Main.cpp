@@ -98,9 +98,14 @@ int32_t main(int32_t argc, CHAR* argv[])
 
 		FLString<128> fString("Hello World");
 
+		Ini ConfigFile("GameConfig.ini");
+		int32_t interval = ConfigFile.ReadInt("Login", "PlayerSaveInterval");
+		int32_t isopenAdvertisement = ConfigFile.ReadInt("Advertisement", "AdvertisementFirstTime");
+
 		fString += f32;
 
 		fString = f64;
+		fString += 0xffffff;
 
 		TIME64_t now = TimeUtil::Now();
 		TIME64_t nextNow = TimeUtil::Add(now, 1000);
@@ -117,6 +122,7 @@ int32_t main(int32_t argc, CHAR* argv[])
 
 		int32_t i = 9;
 		int32_t div = i / 9999999;
+		Assert(div);
 		int32_t val = i / div;
 
 		g_Server.Loop();
