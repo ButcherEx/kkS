@@ -306,6 +306,7 @@
     <ClInclude Include="..\Common\Base\AutoFactory.h" />
     <ClInclude Include="..\Common\Base\Container.h" />
     <ClInclude Include="..\Common\Base\CpuMemStat.h" />
+    <ClInclude Include="..\Common\Base\FLString.h" />
     <ClInclude Include="..\Common\Base\GameUtil.h" />
     <ClInclude Include="..\Common\Base\Ini.h" />
     <ClInclude Include="..\Common\Base\Pool.h" />

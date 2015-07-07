@@ -732,7 +732,7 @@ RandInt32::RandInt32(uint32_t seed)
 	}
 	else
 	{
-		m_Seed = (uint32_t)time(0);
+		m_Seed = (uint32_t)time(NULL);
 	}
 }
 

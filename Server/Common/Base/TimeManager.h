@@ -11,8 +11,8 @@ public :
 	TimeManager( ) ;
 	~TimeManager( ) ;
 public:
-	uint32_t		SysRunTime();
-	uint32_t		RunTime();
+	uint32_t		SysRuntime();
+	uint32_t		Runtime();
 	uint32_t		StartTime();
 	void			SetTime();
 private:

@@ -91,6 +91,17 @@ int32_t main(int32_t argc, CHAR* argv[])
 
 	_MY_TRY
 	{
+
+		FLString<32> f32(32);
+		FLString<64> f64((int64_t)555);
+		FLString<64> f642((uint64_t)777);
+
+		FLString<128> fString("Hello World");
+
+		fString += f32;
+
+		fString = f64;
+
 		TIME64_t now = TimeUtil::Now();
 		TIME64_t nextNow = TimeUtil::Add(now, 1000);
 		TIME64_t beforeNow = TimeUtil::Dec(now, 1000);

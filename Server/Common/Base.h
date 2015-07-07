@@ -78,5 +78,6 @@ namespace bsys	= boost::system;
 
 #include "GameUtil.h"
 #include "Log.h"
+#include "FLString.h"
 
 #endif

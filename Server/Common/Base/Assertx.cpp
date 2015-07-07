@@ -38,7 +38,7 @@ void __assert__(const CHAR *func, int32_t line, const CHAR *exp, bool throwExcep
 #undef FILE_NAME_LEN
 
 		CHAR filePath[_MAX_PATH] = {0};
-		tsnprintf(filePath, _MAX_PATH, "RunTime/Log/%s", fileName);
+		tsnprintf(filePath, _MAX_PATH, "Runtime/Log/%s", fileName);
 		
 
 		//////////////////////////////////////////////////////////////////////////

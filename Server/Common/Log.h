@@ -53,7 +53,7 @@ public:
 		tsnprintf(m_LogFileCurName, LOGNAME_LEN, "%s.%04d-%02d-%02d-%02d.log",
 			m_LogFileName, now.year+1900, now.mon, now.day, now.hour);
 
-		tsnprintf(m_LogPath, _MAX_PATH, "./RunTime/%s", m_LogFileCurName );
+		tsnprintf(m_LogPath, _MAX_PATH, "./Runtime/%s", m_LogFileCurName );
 		m_LogFileName[_MAX_PATH-1] = 0;
 	}
 	void SaveLog(const CHAR* log, bool bFlush, LogColor color)

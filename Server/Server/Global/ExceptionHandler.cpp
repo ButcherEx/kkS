@@ -148,71 +148,97 @@ void DumpStack(std::ostream& os)
 	SimpleSymbolEngine::instance().StackTrace( &context, os );
 #endif
 }
-void SignalHandler(int32_t nSig)
+
+void WriteDumpLog(const CHAR* szMsg, int32_t len)
 {
-	try
-	{
-
 #define FILE_NAME_LEN (128)
-		char logfileName[FILE_NAME_LEN] = {0};
-		char curTime[DATETIME_LEN] = {0};
+	char logfileName[FILE_NAME_LEN] = {0};
+	char curTime[DATETIME_LEN] = {0};
 
-		TimeUtil::Format(curTime, DATETIME_LEN, "%Y%m%d-%H%M%S");
-		tsnprintf(logfileName, FILE_NAME_LEN, "%s.%d.%s.log",  
-			"dump", getpid(), curTime);
+	TimeUtil::Format(curTime, DATETIME_LEN, "%Y%m%d-%H%M%S");
+	tsnprintf(logfileName, FILE_NAME_LEN, "%s.%d.%s.log",  
+		"dump", getpid(), curTime);
 
-		CHAR filePath[_MAX_PATH] = {0};
-		tsnprintf(filePath, _MAX_PATH, "RunTime/Log/%s", logfileName);
+	CHAR filePath[_MAX_PATH] = {0};
+	tsnprintf(filePath, _MAX_PATH, "Runtime/Log/%s", logfileName);
 
 #undef FILE_NAME_LEN
 
-		int32 indexOfSig = -1;
-		int32 sigCount = sizeof(s_SignalDesc) / sizeof(SignalDesc);
-		for(int32 i = 0; i < sigCount; i++)
+	try
+	{
+		FILE *fp = fopen(filePath, "a+");
+		if( fp != NULL )
 		{
-			if(s_SignalDesc[i].nID == nSig)
-			{
-				indexOfSig = i;
-				break;
-			}
+			fwrite(szMsg, 1, len, fp);
+			fclose(fp);
 		}
-
-		std::fstream ss(filePath, std::ios_base::app);
-		if( indexOfSig >= 0 && indexOfSig< sigCount)
-		{
-			switch (s_SignalDesc[indexOfSig].nHandle)
-			{
-			case SignalHandleType::HOLD:
-				{
-					ss << "Hold signal " << nSig << "(";
-					ss << s_SignalDesc[indexOfSig].szID << ")\r\n";
-					DumpStack(ss);
-				}
-				break;
-			case SignalHandleType::RERAISE:
-				{
-					ss << "Re raise signal " << nSig << "(";
-					ss << s_SignalDesc[indexOfSig].szID << ")\r\n";
-					DumpStack(ss);
-					SignalInstall(s_SignalDesc[indexOfSig].nID, SignalInstallType::DEFAULT, NULL);
-					raise(s_SignalDesc[indexOfSig].nID);
-				}
-				break;
-			default:
-				break;
-			}
-		}
-		else
-		{
-			ss << "dump signal=" << nSig << "\r\n";
-			DumpStack(ss);
-		}
-	
-		ss.close();
 	}
 	catch(...)
 	{
 
+	}
+}
+
+void SignalHandler(int32_t nSig)
+{
+	int32 indexOfSig = -1;
+	int32 sigCount = sizeof(s_SignalDesc) / sizeof(SignalDesc);
+	for(int32 i = 0; i < sigCount; i++)
+	{
+		if(s_SignalDesc[i].nID == nSig)
+		{
+			indexOfSig = i;
+			break;
+		}
+	}
+
+	FLString<8192> StackInfo;
+	std::stringstream ss;
+	if( indexOfSig >= 0 && indexOfSig< sigCount)
+	{
+		switch (s_SignalDesc[indexOfSig].nHandle)
+		{
+		case SignalHandleType::HOLD:
+			{
+				StackInfo.Clear();
+				StackInfo += "Hold signal ";
+				StackInfo += nSig;
+				StackInfo += "(";
+				StackInfo += s_SignalDesc[indexOfSig].szID;
+				StackInfo += ")\r\n";
+				DumpStack(ss);
+				StackInfo += ss.str().c_str();
+				WriteDumpLog(StackInfo.GetStr(), StackInfo.GetLength());
+			}
+			break;
+		case SignalHandleType::RERAISE:
+			{
+				StackInfo.Clear();
+				StackInfo += "Re raise signal ";
+				StackInfo += nSig;
+				StackInfo += "(";
+				StackInfo += s_SignalDesc[indexOfSig].szID;
+				StackInfo += ")\r\n";
+				DumpStack(ss);
+				StackInfo += ss.str().c_str();
+				WriteDumpLog(StackInfo.GetStr(), StackInfo.GetLength());
+				SignalInstall(s_SignalDesc[indexOfSig].nID, SignalInstallType::DEFAULT, NULL);
+				raise(s_SignalDesc[indexOfSig].nID);
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	else
+	{
+		StackInfo.Clear();
+		StackInfo += "dump signal=";
+		StackInfo += nSig;
+		StackInfo += "\r\n";
+		DumpStack(ss);
+		StackInfo += ss.str().c_str();
+		WriteDumpLog(StackInfo.GetStr(), StackInfo.GetLength());
 	}
 }
 

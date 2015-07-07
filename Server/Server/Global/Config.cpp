@@ -45,8 +45,8 @@ void Config::LoadLogConfig(const CHAR* argv0)
 __ENTER_FUNCTION
 	//////////////////////////////////////////////////////////////////////////
 
-	Assert(MakeDir("RunTime"));
-	Assert(MakeDir("RunTime/Log"));
+	Assert(MakeDir("Runtime"));
+	Assert(MakeDir("Runtime/Log"));
 	
 	//////////////////////////////////////////////////////////////////////////
 	if( argv0 != NULL)

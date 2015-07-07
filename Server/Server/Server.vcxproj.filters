@@ -719,5 +719,8 @@
     <ClInclude Include="..\Common\Base\CpuMemStat.h">
       <Filter>Common\Base</Filter>
     </ClInclude>
+    <ClInclude Include="..\Common\Base\FLString.h">
+      <Filter>Common\Base</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
