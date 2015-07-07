@@ -91,7 +91,7 @@ int32_t main(int32_t argc, CHAR* argv[])
 
 	_MY_TRY
 	{
-
+		
 		FLString<32> f32(32);
 		FLString<64> f64((int64_t)555);
 		FLString<64> f642((uint64_t)777);
@@ -114,6 +114,10 @@ int32_t main(int32_t argc, CHAR* argv[])
 
 		bRet = g_Server.Init( );
 		Assert(bRet);
+
+		int32_t i = 9;
+		int32_t div = i / 9999999;
+		int32_t val = i / div;
 
 		g_Server.Loop();
 
