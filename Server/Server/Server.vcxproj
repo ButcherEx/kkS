@@ -58,7 +58,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>../Common;../Common/Base;../Common/Net;../Common/Packets;./Main;./Player;./;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../3rd/protobuf/src;../../3rd/lua/src;../../3rd/boost;../Common;../Common/Base;../Common/Net;./Global;./Packets;./Main;./Map;./DB;./Player;./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;__WINDOWS__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
