@@ -4,6 +4,7 @@
 
 POOL_IMPL(Player);
 
+
 Player::Player( bool bIsServer )
 :m_Role(*this)
 ,m_SocketInputStream(m_Socket) 
