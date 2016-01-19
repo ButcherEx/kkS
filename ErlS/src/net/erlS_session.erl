@@ -12,7 +12,7 @@
 -behaviour(gen_server).
 
 %% API
--export([start_link/0]).
+-export([start_link/0,start_link/1]).
 
 %% gen_server callbacks
 -export([init/1,
@@ -25,6 +25,8 @@
 -define(SERVER, ?MODULE).
 
 -record(state, { socket, halfMsg }).
+
+-include("common_define.hrl").
 
 %%%===================================================================
 %%% API
@@ -39,7 +41,10 @@
 -spec(start_link() ->
   {ok, Pid :: pid()} | ignore | {error, Reason :: term()}).
 start_link() ->
-  gen_server:start_link({local, ?SERVER}, ?MODULE, [], []).
+  gen_server:start_link(?MODULE, [], []).
+
+start_link(ClientSock) ->
+  gen_server:start_link(?MODULE, ClientSock, []).
 
 %%%===================================================================
 %%% gen_server callbacks
@@ -59,7 +64,8 @@ start_link() ->
 -spec(init(Args :: term()) ->
   {ok, State :: #state{}} | {ok, State :: #state{}, timeout() | hibernate} |
   {stop, Reason :: term()} | ignore).
-init([ClientSock]) ->
+init(ClientSock) ->
+  log4erl:info("session process(~p) init, sock=~p", [self(), ClientSock]),
   set_half_msg(<<>>),
   {ok, #state{socket = ClientSock}}.
 
@@ -109,21 +115,29 @@ handle_cast(_Request, State) ->
   {noreply, NewState :: #state{}} |
   {noreply, NewState :: #state{}, timeout() | hibernate} |
   {stop, Reason :: term(), NewState :: #state{}}).
-handle_info(_Info, #state{socket=Socket} = State) ->
-  try
-      case _Info of
-        {start_recv_now} -> start_async_recv(Socket, -1);
-        {send_msg, Bin} -> start_async_send(Socket, Bin);
-        {inet_async, Socket, _Ref, {ok, Data}} -> doMsg(Data),start_async_recv(Socket, -1);
-        {inet_async, _Socket, _Ref, {error, closed}} -> ok;
-        {inet_async, _Socket, _Ref, {error, _Reason}} -> ok;
-        {inet_reply, _S, _Status} -> ok;
-        _ -> ok
-      end,
-      {noreply, State}
-  catch
-      _ : _   -> {noreply, State}
-  end.
+
+handle_info({start_recv_now}, #state{socket=Socket} = _State) ->
+  start_async_recv(Socket, -1);
+
+handle_info({send_msg, Bin}, #state{socket=Socket} = _State) ->
+  start_async_send(Socket, Bin);
+
+handle_info( {inet_async, Socket, _Ref, {ok, Data}}, #state{socket=Socket} = _State) ->
+  doMsg(Data),
+  start_async_recv(Socket, -1);
+
+handle_info({inet_async, _Socket, _Ref, {error, closed}}, #state{socket=Socket} = _State) ->
+  log4erl:error("session socket close sock=~p, pid=~p", [Socket, self()]);
+
+handle_info({inet_async, _Socket, _Ref, {error, _Reason}}, #state{socket=Socket} = _State) ->
+  log4erl:error("session socket close sock=~p, pid=~p", [Socket, self()]);
+
+handle_info({inet_reply, _S, _Status}, #state{socket=Socket} = _State) ->
+  log4erl:error("session socket inet_reply=~p, pid=~p, status=~p", [Socket, self(), _Status]);
+
+handle_info(_Info, #state{socket=Socket} = _State) ->
+  log4erl:error("session socket scok=~p, pid=~p, undealmsg=~p", [Socket, self(), _Info]),
+  ok.
 
 %%--------------------------------------------------------------------
 %% @private
@@ -163,14 +177,20 @@ set_half_msg(Data) -> put(halfMsg, Data).
 get_half_msg() -> 	get(halfMsg).
 
 
-start_async_recv(Socket, Len) ->  prim_inet:async_recv(Socket, 0, Len).
+start_async_recv(Socket, Len) ->
+
+  case catch prim_inet:async_recv(Socket, 0, Len) of
+    MSG -> ?DEV("start async_recv ~p, ~p", [MSG, Socket])
+  end.
+
 start_async_send(Socket, Bin) -> erlang:port_command(Socket, Bin, [force]).
 
 
 doMsg(<<>>) -> ok;
 doMsg(Data) ->
   HalfMsg = get_half_msg(),
-  HalfMsgSize = erlang:byte_size(HalfMsg),
-  MsgSize = erlang:byte_size(Data).
+  _HalfMsgSize = erlang:byte_size(HalfMsg),
+  _MsgSize = erlang:byte_size(Data),
+  self() !  {send_msg, Data}.
 
 

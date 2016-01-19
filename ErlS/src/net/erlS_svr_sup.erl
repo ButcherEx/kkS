@@ -1,25 +1,23 @@
-%%-------------------------------------------------------------------
+%%%-------------------------------------------------------------------
 %%% @author Administrator
 %%% @copyright (C) 2016, <COMPANY>
 %%% @doc
 %%%
 %%% @end
-%%% Created : 14. 一月 2016 19:44
+%%% Created : 21. 一月 2016 10:08
 %%%-------------------------------------------------------------------
--module(erlS_acceptor_sup).
+-module(erlS_svr_sup).
 -author("Administrator").
 
 -behaviour(supervisor).
 
 %% API
--export([start_link/0, start_child/1]).
+-export([start_link/0,start_link/1,start_link/2]).
 
 %% Supervisor callbacks
 -export([init/1]).
 
 -define(SERVER, ?MODULE).
-
--include("common_define.hrl").
 
 %%%===================================================================
 %%% API functions
@@ -36,9 +34,12 @@
 start_link() ->
   supervisor:start_link({local, ?SERVER}, ?MODULE, []).
 
+start_link(Param) ->
+  supervisor:start_link({local, ?SERVER}, ?MODULE, Param).
 
-start_child(Param) ->
-  supervisor:start_child(?SERVER,Param).
+
+start_link(Name, Param) ->
+  supervisor:start_link({local, Name}, ?MODULE, Param).
 
 %%%===================================================================
 %%% Supervisor callbacks
@@ -61,18 +62,33 @@ start_child(Param) ->
   }} |
   ignore |
   {error, Reason :: term()}).
-init([]) ->
-  Acceptor = {
-    erlS_acceptor,
-    {erlS_acceptor, start_link, []},
-    % temporary, brutal_kill,worker,[erlS_acceptor]
-    temporary, brutal_kill, worker, [erlS_acceptor]
+init(Param) ->
+  log4erl:info("start erlS_sup..."),
+
+  ListenerSup = {
+    erlS_listener_sup,
+    {erlS_listener_sup, start_link, [Param]},
+    permanent,
+    infinity,
+    supervisor,
+    [erlS_listener_sup]
   },
+
+
+  SessionSup = {
+    erlS_session_sup,
+    {erlS_session_sup, start_link, []},
+    permanent,
+    infinity,
+    supervisor,
+    [erlS_session_sup]
+  },
+
 
   {ok,
     {
-      {simple_one_for_one, 10, 10},
-      [Acceptor]
+      {one_for_one, 1, 10},
+      [ListenerSup, SessionSup]
     }
   }.
 

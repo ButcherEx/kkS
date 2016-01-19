@@ -19,6 +19,8 @@
 
 -define(SERVER, ?MODULE).
 
+-include("common_define.hrl").
+
 %%%===================================================================
 %%% API functions
 %%%===================================================================
@@ -57,19 +59,39 @@ start_link() ->
   {error, Reason :: term()}).
 init([]) ->
 
-  ListenerSup = {
-    listenerSup,
-    {erlS_listener_sup, start_link, []},
+  case catch application:start(log4erl) of
+    Msg -> ?DEV("log4erl started! ~p", [Msg])
+  end,
+
+  log4erl:conf("../priv/log4erl.conf"),
+  log4erl:info("load log4erl.conf ok."),
+
+  log4erl:info("start root supervisor..."),
+
+  ErlSvrCs = {
+    erlS_svr_sup_cs,
+     {erlS_svr_sup, start_link, [erlS_svr_sup_cs, {1,15001}]},
+     permanent,
+     infinity,
+     supervisor,
+     [erlS_svr_sup]
+   },
+
+  ErlSvrGm = {
+    erlS_svr_sup_gm,
+    {erlS_svr_sup, start_link, [erlS_svr_sup_gm, {1,15002}]},
     permanent,
-    inifinity,
+    infinity,
     supervisor,
-    []
+    [erlS_svr_sup]
   },
+
+
 
   {ok,
     {
-      {one_for_all, 1, 10},
-      [ListenerSup]
+      {one_for_one, 1, 10},
+     [ErlSvrCs,ErlSvrGm]
     }
   }.
 

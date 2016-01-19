@@ -10,9 +10,9 @@
 -author("Administrator").
 
 -behaviour(gen_server).
-
+-include("common_define.hrl").
 %% API
--export([start_link/0]).
+-export([start_link/0,start_link/1]).
 
 %% gen_server callbacks
 -export([init/1,
@@ -41,6 +41,10 @@
 start_link() ->
   gen_server:start_link(?MODULE, ?MODULE, [], []).
 
+
+start_link(LSock) ->
+  gen_server:start_link(?MODULE, LSock, []).
+
 %%%===================================================================
 %%% gen_server callbacks
 %%%===================================================================
@@ -59,8 +63,9 @@ start_link() ->
 -spec(init(Args :: term()) ->
   {ok, State :: #state{}} | {ok, State :: #state{}, timeout() | hibernate} |
   {stop, Reason :: term()} | ignore).
-init({LSock}) ->
+init(LSock) ->
   erlang:process_flag(trap_exit, true),
+  log4erl:info("acceptor start ~p, sock=~p", [self(), LSock]),
   {ok, #state{listen_socket=LSock}}.
 
 %%--------------------------------------------------------------------
@@ -109,17 +114,30 @@ handle_cast(_Request, State) ->
   {noreply, NewState :: #state{}} |
   {noreply, NewState :: #state{}, timeout() | hibernate} |
   {stop, Reason :: term(), NewState :: #state{}}).
-handle_info(Info, State) ->
-  try
-    case Info of
-      {start_accept_now} -> accept(State);
-      {inet_async, LSock, Ref, {ok, Sock}} ->  accept_one(State, LSock, Sock);
-      _ -> ok
-    end,
-    {noreply, State}
-  catch
-     _ : _Why -> {noreply, State}
-  end.
+
+
+handle_info({inet_async, LSock, Ref, {ok, Sock}},
+            State = #state{listen_socket=LSock, ref=Ref}) ->
+
+    accept_one(LSock, Sock),
+
+    %% accept more
+    accept(State);
+
+handle_info({inet_async, LSock, Ref, {error, Reason}},
+            State=#state{listen_socket=LSock, ref=Ref}) ->
+  log4erl:error("acceptor error reason=~p", [Reason]),
+    case Reason of
+        closed       -> {stop, normal, State}; %% listening socket closed
+        econnaborted -> accept(State); %% client sent RST before we accepted
+        _            -> {stop, {accept_failed, Reason}, State}
+    end;
+handle_info({start_accept_now}, State) ->
+     accept(State);
+
+handle_info(_Info, State) ->
+    log4erl:error("acceptor undeal info=~p", [_Info]),
+    {noreply, State}.
 
 %%--------------------------------------------------------------------
 %% @private
@@ -159,37 +177,42 @@ accept(State = #state{listen_socket=LSock}) ->
   case catch prim_inet:async_accept(LSock, -1) of
     {ok, Ref} ->
       {noreply, State#state{ref=Ref}};
-    _ ->
-      self() ! {event, start},
+    Error ->
+      log4erl:error("async_accept error:~p, LSock=~p", [Error, LSock]),
+      self() ! {start_accept_now},
       {noreply, State}
   end.
 
-accept_one(State, LSock, Sock) ->
+accept_one(LSock, Sock) ->
   try
     {ok, Mod} = inet_db:lookup_socket(LSock),
     inet_db:register_socket(Sock, Mod),
     %% report
     {ok, {Address, Port}} = inet:sockname(LSock),
     {ok, {PeerAddress, PeerPort}} = inet:peername(Sock),
-%%    ?DEBUG("accepted TCP connection on ~s:~p from ~s:~p~n", [inet_parse:ntoa(Address), Port, inet_parse:ntoa(PeerAddress), PeerPort]),
+
+    log4erl:info("accept new sock=~p,~p:~p | ~p:~p", [Sock, Address, Port, PeerAddress, PeerPort]),
+
     spawn_socket_controller(Sock)
   catch Error:Reason ->
+    log4erl:error("accept_one error=~p:~p", [Error,Reason]),
     gen_tcp:close(Sock)
-%%    ?ERROR_MSG("unable to accept TCP connection: ~p ~p~n", [Error, Reason])
-  end,
-  accept(State).
+  end.
 
 
 spawn_socket_controller(ClientSock) ->
   try
-    case erlS_sup:start_link([ClientSock]) of
+  log4erl:info("sock_controller sock=~p ...", [ClientSock]),
+  case supervisor:start_child(erlS_session_sup, [ClientSock]) of
       {ok, SPid} ->
-        inet:setopts(ClientSock, [binary, {packet, 0}, {active, false}, {nodelay, true}, {delay_send, false}, {send_timeout, 30000}, {send_timeout_close, true} ]),
-        gen_tcp:controlling_process(ClientSock, SPid),
+        inet:setopts(ClientSock, ?TCP_C_OPTS),
+        case catch gen_tcp:controlling_process(ClientSock, SPid) of
+          MSG -> log4erl:info("controlling_process sock=~p, pid=~p, res=~p ", [ClientSock,SPid,MSG])
+        end,
         SPid ! {start_recv_now};
       {error, closed} -> %% 这种无聊的人 尝试来连我们的，就不管啦
         pass;
-      Other -> ok
+      Other -> log4erl:error("socket_controller sock=~p, error=~p ", [ClientSock,Other])
     end
   catch
      _ : _  -> ok
