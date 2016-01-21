@@ -1,0 +1,10 @@
+{application,erlS,
+             [{description,"Erlang Server"},
+              {vsn,"1"},
+              {registered,[]},
+              {applications,[kernel,stdlib]},
+              {mod,{erlS_app,[]}},
+              {env,[{isShowInStdio,true},{logLevel,debug}]},
+              {modules,[erlS_acceptor,erlS_acceptor_sup,erlS_app,erlS_cc,
+                        erlS_listener,erlS_listener_sup,erlS_session,
+                        erlS_session_sup,erlS_sup,erlS_svr_sup]}]}.
