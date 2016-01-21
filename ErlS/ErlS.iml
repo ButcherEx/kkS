@@ -8,10 +8,10 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/svr/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/svr/include" type="erlang-include" />
       <sourceFolder url="file://$MODULE_DIR$/deps/log4erl/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/deps/log4erl/include" type="erlang-include" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/include" type="erlang-include" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

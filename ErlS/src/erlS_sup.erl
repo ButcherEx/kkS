@@ -76,22 +76,11 @@ init([]) ->
      supervisor,
      [erlS_svr_sup]
    },
-
-  ErlSvrGm = {
-    erlS_svr_sup_gm,
-    {erlS_svr_sup, start_link, [erlS_svr_sup_gm, {1,15002}]},
-    permanent,
-    infinity,
-    supervisor,
-    [erlS_svr_sup]
-  },
-
-
-
+ 
   {ok,
     {
       {one_for_one, 1, 10},
-     [ErlSvrCs,ErlSvrGm]
+     [ErlSvrCs]
     }
   }.
 
