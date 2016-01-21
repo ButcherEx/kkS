@@ -1,0 +1,17 @@
+%%%-------------------------------------------------------------------
+%%%
+%%%-------------------------------------------------------------------
+{application, erlS, [
+	{description, "Erlang Server"},
+	{vsn, "1"},
+	{registered, []},
+	{applications, [
+		kernel,
+		stdlib
+	]},
+	{mod, {erlS_app, []}},
+	{env, [
+		{isShowInStdio, true},     %%是否显示在标准输出设备中
+		{logLevel, debug}          %%本地日志的级别
+	]}
+]}.
