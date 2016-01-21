@@ -76,7 +76,7 @@ init([]) ->
      supervisor,
      [erlS_svr_sup]
    },
- 
+
   {ok,
     {
       {one_for_one, 1, 10},

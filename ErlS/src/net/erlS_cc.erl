@@ -10,7 +10,7 @@
 -author("Administrator").
 -include("common_define.hrl").
 %% API
--export([client/2, start/2, server/1]).
+-export([client/2, client/3,loop_client/1, loop_client/2]).
 
 client(PortNo,Message) ->
   {ok,Sock} = gen_tcp:connect("127.0.0.1",PortNo,[binary, {packet, 0}, {active, false}]),
@@ -18,53 +18,40 @@ client(PortNo,Message) ->
   case catch gen_tcp:send(Sock,Message) of
      MSG -> ?DEV("send =~p", [MSG])
   end,
-  A = gen_tcp:recv(Sock,0),
-  gen_tcp:close(Sock),
-  A.
+  loop(Sock),
+  % {ok, Data} = gen_tcp:recv(Sock,0),
+  % gen_tcp:send(Sock,Data),
+  % {ok, Data} = gen_tcp:recv(Sock,0),
+  % gen_tcp:close(Sock),
+  ok.
 
+client(N,PortNo,Message)->
+  start_client(N,PortNo,Message),
+  ok.
 
-start(Num,LPort) ->
-  case gen_tcp:listen(LPort,[{active, false},{packet,2}]) of
-    {ok, ListenSock} ->
-      start_servers(Num,ListenSock),
-      {ok, Port} = inet:port(ListenSock),
-      Port;
-    {error,Reason} ->
-      {error,Reason}
-  end.
-
-server(LS) ->
-  case catch prim_inet:async_accept(LS, -1) of
-    {ok, Ref} ->
-      io:format("accept returned ~w - goodbye!~n",[Ref]);
-     Other ->
-      io:format("accept error ~w - goodbye!~n",[Other])
-  end.
-%%  case gen_tcp:accept(LS) of
-%%    {ok,S} ->
-%%      io:format("Socket ~w accept [~w]~n",[S,self()]),
-%%      loop(S),
-%%      server(LS);
-%%    Other ->
-%%      io:format("accept returned ~w - goodbye!~n",[Other]),
-%%      ok
-%%  end.
-
-start_servers(0,_) ->
+start_client(0, _PortNo, _Message) ->
   ok;
-start_servers(Num,LS) ->
-  spawn(?MODULE,server,[LS]),
-  start_servers(Num-1,LS).
+start_client(Num,PortNo,Message) ->
+  ?DEV("start_client =~p", [Num]),
+  case catch spawn(?MODULE,loop_client,[PortNo,Message]) of
+    MSG -> ?DEV("spawn =~p", [MSG])
+  end,
+  start_client(Num-1,PortNo,Message).
 
+loop_client(Param) ->
+  ?DEV("connect ok ~p", [Param])
+  .
+loop_client(PortNo,Message) ->
+  {ok,Sock} = gen_tcp:connect("127.0.0.1",PortNo,[binary, {packet, 0}, {active, false}]),
+  ?DEV("connect ok", []),
+  case catch gen_tcp:send(Sock,Message) of
+     MSG -> ?DEV("send =~p", [MSG])
+  end,
+  loop(Sock).
 
-loop(S) ->
-  inet:setopts(S,[{active,once}]),
-  receive
-    {tcp,S,Data} ->
-%%      Answer = process(Data), % Not implemented in this example
-      gen_tcp:send(S,Data),
-      loop(S);
-    {tcp_closed,S} ->
-      io:format("Socket ~w closed [~w]~n",[S,self()]),
-      ok
-  end.
+loop(Sock) ->
+    case catch gen_tcp:recv(Sock,0) of
+      {ok,Data} ->    ?DEV("recv ~p", [Data]), gen_tcp:send(Sock,Data), loop(Sock);
+      _ -> ok
+    end.  
+

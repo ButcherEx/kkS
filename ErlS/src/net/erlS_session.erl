@@ -116,28 +116,35 @@ handle_cast(_Request, State) ->
   {noreply, NewState :: #state{}, timeout() | hibernate} |
   {stop, Reason :: term(), NewState :: #state{}}).
 
-handle_info({start_recv_now}, #state{socket=Socket} = _State) ->
-  start_async_recv(Socket, -1);
+handle_info({start_recv_now}, #state{socket=Socket} = State) ->
+  start_async_recv(Socket, -1),
+  {noreply, State};
 
-handle_info({send_msg, Bin}, #state{socket=Socket} = _State) ->
-  start_async_send(Socket, Bin);
+handle_info({send_msg, Bin}, #state{socket=Socket} = State) ->
+  start_async_send(Socket, Bin),
+  {noreply, State};
 
-handle_info( {inet_async, Socket, _Ref, {ok, Data}}, #state{socket=Socket} = _State) ->
+handle_info( {inet_async, Socket, _Ref, {ok, Data}}, #state{socket=Socket} = State) ->
+  log4erl:debug("session socket recv=~p, sock=~p pid=~p", [Data, Socket, self()]),
   doMsg(Data),
-  start_async_recv(Socket, -1);
+  start_async_recv(Socket, -1),
+  {noreply, State};
 
-handle_info({inet_async, _Socket, _Ref, {error, closed}}, #state{socket=Socket} = _State) ->
-  log4erl:error("session socket close sock=~p, pid=~p", [Socket, self()]);
+handle_info({inet_async, _Socket, _Ref, {error, closed}}, #state{socket=Socket} = State) ->
+  log4erl:error("session socket close sock=~p, pid=~p", [Socket, self()]),
+  {stop, normal, State};
 
-handle_info({inet_async, _Socket, _Ref, {error, _Reason}}, #state{socket=Socket} = _State) ->
-  log4erl:error("session socket close sock=~p, pid=~p", [Socket, self()]);
+handle_info({inet_async, _Socket, _Ref, {error, _Reason}}, #state{socket=Socket} = State) ->
+  log4erl:error("session socket close sock=~p, pid=~p", [Socket, self()]),
+   {stop, normal, State};
 
-handle_info({inet_reply, _S, _Status}, #state{socket=Socket} = _State) ->
-  log4erl:error("session socket inet_reply=~p, pid=~p, status=~p", [Socket, self(), _Status]);
+handle_info({inet_reply, _S, _Status}, #state{socket=Socket} = State) ->
+  log4erl:debug("session socket inet_reply=~p, pid=~p, status=~p", [Socket, self(), State]),
+   {noreply, State};
 
-handle_info(_Info, #state{socket=Socket} = _State) ->
+handle_info(_Info, #state{socket=Socket} = State) ->
   log4erl:error("session socket scok=~p, pid=~p, undealmsg=~p", [Socket, self(), _Info]),
-  ok.
+  {noreply, State}.
 
 %%--------------------------------------------------------------------
 %% @private
@@ -180,7 +187,7 @@ get_half_msg() -> 	get(halfMsg).
 start_async_recv(Socket, Len) ->
 
   case catch prim_inet:async_recv(Socket, 0, Len) of
-    MSG -> ?DEV("start async_recv ~p, ~p", [MSG, Socket])
+    MSG -> log4erl:info("start async_recv ~p, ~p", [MSG, Socket])
   end.
 
 start_async_send(Socket, Bin) -> erlang:port_command(Socket, Bin, [force]).
