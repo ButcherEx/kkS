@@ -4,15 +4,15 @@
 %%% @doc
 %%%
 %%% @end
-%%% Created : 14. 一月 2016 19:44
+%%% Created : 22. 一月 2016 17:20
 %%%-------------------------------------------------------------------
--module(erlS_listener).
+-module(net_user).
 -author("Administrator").
 
 -behaviour(gen_server).
 
 %% API
--export([start_link/0,start_link/1]).
+-export([start_link/0]).
 
 %% gen_server callbacks
 -export([init/1,
@@ -24,9 +24,7 @@
 
 -define(SERVER, ?MODULE).
 
--record(state, {listenSock}).
-
--include("common_define.hrl").
+-record(state, {}).
 
 %%%===================================================================
 %%% API
@@ -41,11 +39,7 @@
 -spec(start_link() ->
   {ok, Pid :: pid()} | ignore | {error, Reason :: term()}).
 start_link() ->
-  gen_server:start_link(?MODULE, [], []).
-
-start_link(Param) ->
-  log4erl:info("erlS_listener:start_link(~p)", [Param]),
-  gen_server:start_link(?MODULE, Param, []).
+  gen_server:start_link({local, ?SERVER}, ?MODULE, [], []).
 
 %%%===================================================================
 %%% gen_server callbacks
@@ -62,25 +56,11 @@ start_link(Param) ->
 %%                     {stop, Reason}
 %% @end
 %%--------------------------------------------------------------------
-
 -spec(init(Args :: term()) ->
   {ok, State :: #state{}} | {ok, State :: #state{}, timeout() | hibernate} |
   {stop, Reason :: term()} | ignore).
-init({AcceptorNum,Port}) ->
-  process_flag(trap_exit, true),
-  log4erl:info("listener at port:~p ... ", [Port]),
-  case gen_tcp:listen(Port, ?TCP_L_OPTS ) of
-    {ok, LSock} ->
-      {ok, {LIPAddress, LPort}} = inet:sockname(LSock),
-      log4erl:info("listener at ~p:~p,sock(~p) ok.", [LIPAddress, LPort, LSock]),
-
-      start_n_acceptor(AcceptorNum, LSock),
-
-      {ok, #state{listenSock = LSock}};
-    {error, Reason} ->
-      log4erl:fatal("listener init failed,error=~p", [Reason]),
-      {stop, {cannot_listen, Port, Reason}}
-  end.
+init([]) ->
+  {ok, #state{}}.
 
 %%--------------------------------------------------------------------
 %% @private
@@ -164,17 +144,3 @@ code_change(_OldVsn, State, _Extra) ->
 %%%===================================================================
 %%% Internal functions
 %%%===================================================================
-start_n_acceptor(N,LSock) ->
-  log4erl:info("start ~p acceptors ... ", [N]),
-
-  lists:foreach(
-    fun(_) ->
-      {ok, APid} = supervisor:start_child(erlS_acceptor_sup,[LSock]), %erlS_acceptor_sup:start_child([LSock],
-      APid ! {start_accept_now}
-    end,
-
-    lists:duplicate(N, dummy)
-  ),
-
-  log4erl:info("start ~p acceptors ok.", [N]).
-

@@ -69,8 +69,8 @@ init([]) ->
   log4erl:info("start root supervisor..."),
 
   ErlSvrCs = {
-    erlS_svr_sup_cs,
-     {erlS_svr_sup, start_link, [erlS_svr_sup_cs, {1,15001}]},
+    erlS_svr_sup,
+     {erlS_svr_sup, start_link, [{10,15001}]},
      permanent,
      infinity,
      supervisor,

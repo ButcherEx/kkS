@@ -63,7 +63,7 @@ start_link(Name, Param) ->
   ignore |
   {error, Reason :: term()}).
 init(Param) ->
-  log4erl:info("start erlS_sup..."),
+  log4erl:info("start erlS_sup(~p)...", [Param]),
 
   ListenerSup = {
     erlS_listener_sup,
