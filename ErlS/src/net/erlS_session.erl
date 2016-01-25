@@ -7,10 +7,11 @@
 %%% Created : 17. 一月 2016 21:19
 %%%-------------------------------------------------------------------
 -module(erlS_session).
+-compile(nowarn_unused_vars).
+-compile(nowarn_unused_function).
 -author("Administrator").
 
 -behaviour(gen_server).
-
 %% API
 -export([start_link/0,start_link/1]).
 
@@ -24,7 +25,7 @@
 
 -define(SERVER, ?MODULE).
 
--record(state, { socket, halfMsg }).
+-record(state, { socket }).
 
 -include("common_define.hrl").
 
@@ -65,7 +66,7 @@ start_link(ClientSock) ->
   {ok, State :: #state{}} | {ok, State :: #state{}, timeout() | hibernate} |
   {stop, Reason :: term()} | ignore).
 init(ClientSock) ->
-  log4erl:info("session process(~p) init, sock=~p", [self(), ClientSock]),
+  log4erl:info("session process(~p) init, sock(~p)", [self(), ClientSock]),
   set_half_msg(<<>>),
   {ok, #state{socket = ClientSock}}.
 
@@ -125,25 +126,34 @@ handle_info({send_msg, Bin}, #state{socket=Socket} = State) ->
   {noreply, State};
 
 handle_info( {inet_async, Socket, _Ref, {ok, Data}}, #state{socket=Socket} = State) ->
-  log4erl:debug("session socket recv=~p, sock=~p pid=~p", [Data, Socket, self()]),
-  doMsg(Data),
-  start_async_recv(Socket, -1),
-  {noreply, State};
+  log4erl:debug("session socket recv(~p), sock(~p) pid(~p)", [Data, Socket, self()]),
+  try
+    doMsgS(Data),
+    start_async_recv(Socket, -1),
+    {noreply, State}
+  catch
+    _ : Why -> log4erl:error("sokc(~p), doMsg error(~p)",[Socket, Why]),
+    doOffline(?OFFLINE_REASON_EXCEPTION, Socket),
+    {stop, normal, State}
+  end;
+
 
 handle_info({inet_async, _Socket, _Ref, {error, closed}}, #state{socket=Socket} = State) ->
-  log4erl:error("session socket close sock=~p, pid=~p", [Socket, self()]),
+  log4erl:error("session socket close sock(~p), pid(~p), reason(~w)", [Socket, self(), closed]),
+  doOffline(?OFFLINE_REASON_SOCK_CLOSE, Socket),
   {stop, normal, State};
 
 handle_info({inet_async, _Socket, _Ref, {error, _Reason}}, #state{socket=Socket} = State) ->
-  log4erl:error("session socket close sock=~p, pid=~p", [Socket, self()]),
+  log4erl:error("session socket close sock(~p), pid(~p), reason(~w)", [Socket, self(), _Reason]),
+  doOffline(?OFFLINE_REASON_SOCK_ERROR, Socket),
    {stop, normal, State};
 
 handle_info({inet_reply, _S, _Status}, #state{socket=Socket} = State) ->
-  log4erl:debug("session socket inet_reply=~p, pid=~p, status=~p", [Socket, self(), State]),
+  log4erl:debug("session socket inet_reply(~p), pid(~p), status=~w", [Socket, self(), State]),
    {noreply, State};
 
 handle_info(_Info, #state{socket=Socket} = State) ->
-  log4erl:error("session socket scok=~p, pid=~p, undealmsg=~p", [Socket, self(), _Info]),
+  log4erl:error("session socket scok(~p), pid(~p), undealmsg(~p)", [Socket, self(), _Info]),
   {noreply, State}.
 
 %%--------------------------------------------------------------------
@@ -190,14 +200,82 @@ start_async_recv(Socket, Len) ->
     MSG -> log4erl:info("start async_recv ~p, ~p", [MSG, Socket])
   end.
 
-start_async_send(Socket, Bin) -> erlang:port_command(Socket, Bin, [force]).
+start_async_send(Socket, Bin) ->
+  erlang:port_command(Socket, Bin, [force]).
 
+get_stat(Socket) ->
+ inet:getstat(Socket, [recv_cnt, recv_oct, send_cnt, send_oct]).
 
-doMsg(<<>>) -> ok;
-doMsg(Data) ->
+doOffline(Reason, Socket)->
+  log4erl:info("sock(~p) doOffline(~p), stat(~w)", [Socket, Reason, get_stat(Socket)]),
+  ok.
+%%---------------------------------------------------------------
+%% doMsgS
+%%---------------------------------------------------------------
+doMsgS(<<>>) -> ok;
+doMsgS(Data) ->
+  self() ! {send_msg, Data}.
+
+%%---------------------------------------------------------------
+%% doMsgL
+%%---------------------------------------------------------------
+doMsgL(<<>>) -> ok;
+doMsgL(Data) ->
+  %% 拼包
   HalfMsg = get_half_msg(),
-  _HalfMsgSize = erlang:byte_size(HalfMsg),
-  _MsgSize = erlang:byte_size(Data),
-  self() !  {send_msg, Data}.
+  HalfMsgSize = erlang:byte_size(HalfMsg),
+  NewMsgBin = case HalfMsgSize > 0 of
+                true -> <<HalfMsg/binary, Data/binary>>;
+                false -> Data
+              end,
+
+  %%处理
+  case readPacketL(Data) of
+    {ok, Param} ->
+      case Param of
+        {wait_for_more_data, NewMsgBin} ->
+          set_half_msg(NewMsgBin);
+        {full_packet, Cmd, Bin} ->
+          case net_user:flowControl() of
+            true ->
+              {Pk, LeftBin} = readMsgL(Cmd, Bin),
+              net_user:onMsg(Cmd, Pk),
+              doMsgL(LeftBin);
+            false ->
+              throw({out_of_flow_control})
+          end
+      end;
+    {error, Error} ->
+      throw(Error)
+  end.
+
+
+readPacketL(Data) ->
+  TotalSize = erlang:byte_size(Data),
+  case  TotalSize > 0 andalso TotalSize < 1024*256*2 of
+    true ->
+      case TotalSize >= 4 of
+        true ->
+            {Len, LeftBin} =  netmsg:binary_read_uint16(Data),
+            case Len >= 4 andalso Len =< 4*1024 of
+              true ->
+                case (Len + 4) =< TotalSize of
+                  true ->
+                    {Cmd, Bin} = netmsg:binary_read_uint16(LeftBin),
+                    {ok,{full_packet, Cmd, Bin}};
+                  false -> {ok, {wait_for_more_data, Data}}
+                end;
+              false ->
+                {error, {packet_length_out_of_range, Len} }
+            end;
+        false ->
+          {ok, {wait_for_more_data, Data}}
+      end;
+    false ->
+      {error,{full_length_out_of_range, TotalSize}}
+  end.
+
+readMsgL(Cmd, Bin)->
+  {Cmd, Bin}.
 
 

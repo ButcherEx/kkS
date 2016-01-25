@@ -22,22 +22,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="erlS_svr_sup.erl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/erlS_svr_sup.erl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="79" column="39" selection-start-line="79" selection-start-column="39" selection-end-line="79" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="erlS_sup.erl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="erlS_sup.erl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/erlS_sup.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8067797">
-              <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+              <folding>
+                <marker date="1453456110405" expanded="true" signature="71:96" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="97:131" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="132:140" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="141:144" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="145:153" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="154:185" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="186:256" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="328:334" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="361:384" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="464:534" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="535:552" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="553:623" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="625:695" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="696:703" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="704:728" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="732:739" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="740:810" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="966:1036" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="1037:1061" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="1062:1132" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="1134:1204" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="1205:1216" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="1217:1224" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="1225:1295" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="1296:1359" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="1360:1416" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="1417:1435" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="1439:1446" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="1447:1517" placeholder="%% ..." />
+                <marker date="1453456110405" expanded="true" signature="2222:2292" placeholder="%%% ..." />
+                <marker date="1453456110405" expanded="true" signature="2293:2315" placeholder="%%% ..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,38 +67,8 @@
       <file leaf-file-name="erlS_listener.erl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/erlS_listener.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.2">
+            <state vertical-scroll-proportion="0.0">
               <caret line="76" column="22" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="erlS_acceptor_sup.erl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/erlS_acceptor_sup.erl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="erlS_acceptor.erl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/erlS_acceptor.erl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="195" column="28" selection-start-line="195" selection-start-column="28" selection-end-line="195" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gen_server.erl" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/erl5.10.4/lib/stdlib-1.19.4/src/gen_server.erl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -86,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/src/net/erlS_session_sup.erl">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="46" column="61" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -96,7 +88,47 @@
         <entry file="file://$PROJECT_DIR$/src/net/erlS_session.erl">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="137" column="13" selection-start-line="137" selection-start-column="13" selection-end-line="137" selection-end-column="13" />
+              <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common_define.hrl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/common_define.hrl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="11" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="erlS.app.src" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/erlS.app.src">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="erlS_app.erl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/erlS_app.erl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.48881432">
+              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="netmsg.erl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/netmsg.erl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1" column="29" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -106,17 +138,17 @@
         <entry file="file://$PROJECT_DIR$/src/user/net_user.erl">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="erlS_listener_sup.erl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/erlS_listener_sup.erl">
+      <file leaf-file-name="type.hrl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/type.hrl">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="9" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="9" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -151,17 +183,18 @@
         <option value="$PROJECT_DIR$/src/net/tcp_acceptor.erl" />
         <option value="$PROJECT_DIR$/src/net/erlS_acceptor_sup.erl" />
         <option value="$PROJECT_DIR$/src/net/erlS_session_sup.erl" />
-        <option value="$PROJECT_DIR$/include/common_define.hrl" />
         <option value="$PROJECT_DIR$/src/lager/test/compress_pr_record_test.erl" />
         <option value="$PROJECT_DIR$/priv/log4erl.conf" />
-        <option value="$PROJECT_DIR$/src/net/erlS_session.erl" />
         <option value="$PROJECT_DIR$/src/net/erlS_cc.erl" />
-        <option value="$PROJECT_DIR$/src/user/net_user.erl" />
         <option value="$PROJECT_DIR$/src/net/erlS_acceptor.erl" />
         <option value="$PROJECT_DIR$/src/net/erlS_listener_sup.erl" />
         <option value="$PROJECT_DIR$/src/net/erlS_svr_sup.erl" />
         <option value="$PROJECT_DIR$/src/net/erlS_listener.erl" />
         <option value="$PROJECT_DIR$/src/erlS_sup.erl" />
+        <option value="$PROJECT_DIR$/src/user/net_user.erl" />
+        <option value="$PROJECT_DIR$/include/common_define.hrl" />
+        <option value="$PROJECT_DIR$/src/net/netmsg.erl" />
+        <option value="$PROJECT_DIR$/src/net/erlS_session.erl" />
       </list>
     </option>
   </component>
@@ -207,9 +240,6 @@
           </PATH>
         </subPane>
         <subPane subId="Tests" />
-      </pane>
-      <pane id="Scratches">
-        <subPane />
       </pane>
       <pane id="ProjectPane">
         <subPane>
@@ -279,7 +309,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ErlS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ErlS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="include" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
+      </pane>
+      <pane id="Scratches">
+        <subPane />
       </pane>
       <pane id="PackagesPane" />
     </panes>
@@ -639,12 +686,13 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328152" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49729145" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26812366" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16044776" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25053304" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -656,7 +704,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -678,8 +725,14 @@
           <line>169</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="ErlangLineBreakpoint">
+          <url>file://$PROJECT_DIR$/src/net/erlS_session.erl</url>
+          <line>206</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -688,6 +741,160 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/net/erlS_svr_sup.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="39" selection-start-line="79" selection-start-column="39" selection-end-line="79" selection-end-column="39" />
+          <folding>
+            <marker date="1453455731046" expanded="true" signature="71:96" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="97:131" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="132:140" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="141:144" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="145:153" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="154:185" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="186:256" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="332:338" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="391:414" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="462:532" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="533:550" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="551:621" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="623:693" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="694:701" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="702:726" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="730:737" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="738:808" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1130:1200" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1201:1225" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1226:1296" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1298:1368" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1369:1380" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1381:1388" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1389:1459" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1460:1523" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1524:1580" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1581:1599" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1603:1610" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1611:1681" placeholder="%% ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/erlS_sup.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding>
+            <marker date="1453456110405" expanded="true" signature="71:96" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="97:131" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="132:140" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="141:144" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="145:153" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="154:185" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="186:256" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="328:334" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="361:384" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="464:534" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="535:552" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="553:623" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="625:695" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="696:703" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="704:728" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="732:739" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="740:810" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="966:1036" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1037:1061" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1062:1132" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1134:1204" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1205:1216" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1217:1224" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1225:1295" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1296:1359" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1360:1416" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1417:1435" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1439:1446" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1447:1517" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="2222:2292" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="2293:2315" placeholder="%%% ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/erlS_listener.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="22" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/erlS_acceptor.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="195" column="28" selection-start-line="195" selection-start-column="28" selection-end-line="195" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/erlS_session_sup.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="61" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/erlS_session.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/netmsg.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="298" column="0" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/user/net_user.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="126" column="26" selection-start-line="126" selection-start-column="26" selection-end-line="126" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/type.hrl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/erlS_listener_sup.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="9" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="9" />
+          <folding>
+            <marker date="1453455535984" expanded="true" signature="575:645" placeholder="%%% ..." />
+            <marker date="1453455535984" expanded="true" signature="718:725" placeholder="%% ..." />
+            <marker date="1453455535984" expanded="true" signature="726:750" placeholder="%% ..." />
+            <marker date="1453455535984" expanded="true" signature="754:761" placeholder="%% ..." />
+            <marker date="1453455535984" expanded="true" signature="762:832" placeholder="%% ..." />
+            <marker date="1453455535984" expanded="true" signature="1877:1921" placeholder="%% ..." />
+            <marker date="1453455535984" expanded="true" signature="2008:2061" placeholder="% ..." />
+            <marker date="1453455535984" expanded="true" signature="2203:2241" placeholder="% ..." />
+            <marker date="1453455535984" expanded="true" signature="2385:2455" placeholder="%%% ..." />
+            <marker date="1453455535984" expanded="true" signature="2456:2478" placeholder="%%% ..." />
+            <marker date="1453455535984" expanded="true" signature="2479:2549" placeholder="%%% ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/erlS_cc.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -700,7 +907,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="455" column="0" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -716,7 +922,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="279" column="0" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -724,7 +929,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1453455731046" expanded="true" signature="71:96" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="97:131" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="132:140" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="141:144" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="145:153" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="154:185" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="186:256" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="332:338" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="391:414" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="462:532" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="533:550" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="551:621" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="623:693" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="694:701" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="702:726" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="730:737" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="738:808" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1130:1200" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1201:1225" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1226:1296" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1298:1368" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1369:1380" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1381:1388" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1389:1459" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1460:1523" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1524:1580" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1581:1599" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1603:1610" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1611:1681" placeholder="%% ..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -732,7 +967,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1453456110405" expanded="true" signature="71:96" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="97:131" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="132:140" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="141:144" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="145:153" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="154:185" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="186:256" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="328:334" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="361:384" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="464:534" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="535:552" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="553:623" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="625:695" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="696:703" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="704:728" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="732:739" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="740:810" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="966:1036" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1037:1061" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1062:1132" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1134:1204" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1205:1216" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1217:1224" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1225:1295" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1296:1359" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1360:1416" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1417:1435" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1439:1446" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1447:1517" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="2222:2292" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="2293:2315" placeholder="%%% ..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -805,7 +1072,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="279" column="0" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -813,7 +1079,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="455" column="0" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -821,22 +1086,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/erlS_session_sup.erl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/erlS_session.erl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="137" column="13" selection-start-line="137" selection-start-column="13" selection-end-line="137" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -857,14 +1106,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/user/net_user.erl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/erlS_acceptor.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -877,7 +1118,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="60" column="9" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="9" />
-          <folding />
+          <folding>
+            <marker date="1453455535984" expanded="true" signature="575:645" placeholder="%%% ..." />
+            <marker date="1453455535984" expanded="true" signature="718:725" placeholder="%% ..." />
+            <marker date="1453455535984" expanded="true" signature="726:750" placeholder="%% ..." />
+            <marker date="1453455535984" expanded="true" signature="754:761" placeholder="%% ..." />
+            <marker date="1453455535984" expanded="true" signature="762:832" placeholder="%% ..." />
+            <marker date="1453455535984" expanded="true" signature="1877:1921" placeholder="%% ..." />
+            <marker date="1453455535984" expanded="true" signature="2008:2061" placeholder="% ..." />
+            <marker date="1453455535984" expanded="true" signature="2203:2241" placeholder="% ..." />
+            <marker date="1453455535984" expanded="true" signature="2385:2455" placeholder="%%% ..." />
+            <marker date="1453455535984" expanded="true" signature="2456:2478" placeholder="%%% ..." />
+            <marker date="1453455535984" expanded="true" signature="2479:2549" placeholder="%%% ..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -885,13 +1138,43 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="79" column="39" selection-start-line="79" selection-start-column="39" selection-end-line="79" selection-end-column="39" />
-          <folding />
+          <folding>
+            <marker date="1453455731046" expanded="true" signature="71:96" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="97:131" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="132:140" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="141:144" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="145:153" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="154:185" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="186:256" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="332:338" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="391:414" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="462:532" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="533:550" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="551:621" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="623:693" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="694:701" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="702:726" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="730:737" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="738:808" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1130:1200" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1201:1225" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1226:1296" placeholder="%%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1298:1368" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1369:1380" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1381:1388" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1389:1459" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1460:1523" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1524:1580" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1581:1599" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1603:1610" placeholder="%% ..." />
+            <marker date="1453455731046" expanded="true" signature="1611:1681" placeholder="%% ..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/erlS_listener.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.2">
+        <state vertical-scroll-proportion="0.0">
           <caret line="76" column="22" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="22" />
           <folding />
         </state>
@@ -899,8 +1182,104 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/erlS_sup.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8067797">
-          <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding>
+            <marker date="1453456110405" expanded="true" signature="71:96" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="97:131" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="132:140" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="141:144" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="145:153" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="154:185" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="186:256" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="328:334" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="361:384" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="464:534" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="535:552" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="553:623" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="625:695" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="696:703" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="704:728" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="732:739" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="740:810" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="966:1036" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1037:1061" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1062:1132" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1134:1204" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1205:1216" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1217:1224" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1225:1295" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1296:1359" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1360:1416" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1417:1435" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1439:1446" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="1447:1517" placeholder="%% ..." />
+            <marker date="1453456110405" expanded="true" signature="2222:2292" placeholder="%%% ..." />
+            <marker date="1453456110405" expanded="true" signature="2293:2315" placeholder="%%% ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/erlS_session_sup.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="61" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/type.hrl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/user/net_user.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/netmsg.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="29" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/erlS_session.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/common_define.hrl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/erlS.app.src">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/erlS_app.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48881432">
+          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
           <folding />
         </state>
       </provider>

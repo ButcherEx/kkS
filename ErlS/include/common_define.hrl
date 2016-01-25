@@ -32,3 +32,10 @@
   {send_timeout_close, true},
   {exit_on_close, true}
 ]).
+
+
+-define(OFFLINE_REASON_SOCK_CLOSE, 1).
+-define(OFFLINE_REASON_SOCK_ERROR, 2).
+-define(OFFLINE_REASON_SOCK_LOGOUT, 3).
+-define(OFFLINE_REASON_SOCK_KICK, 4).
+-define(OFFLINE_REASON_EXCEPTION, 4).
