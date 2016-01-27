@@ -59,13 +59,7 @@ start_link() ->
   {error, Reason :: term()}).
 init([]) ->
 
-  case catch application:start(log4erl) of
-    Msg -> ?DEV("log4erl started! ~p", [Msg])
-  end,
-
-  log4erl:conf("../priv/log4erl.conf"),
-  log4erl:info("load log4erl.conf ok."),
-
+  logger:start(),
   log4erl:info("start root supervisor..."),
 
   ErlSvrCs = {

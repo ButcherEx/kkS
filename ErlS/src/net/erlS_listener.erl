@@ -44,7 +44,7 @@ start_link() ->
   gen_server:start_link(?MODULE, [], []).
 
 start_link(Param) ->
-  log4erl:info("erlS_listener:start_link(~p)", [Param]),
+  logger:info("erlS_listener:start_link(~p)", [Param]),
   gen_server:start_link(?MODULE, Param, []).
 
 %%%===================================================================
@@ -68,17 +68,17 @@ start_link(Param) ->
   {stop, Reason :: term()} | ignore).
 init({AcceptorNum,Port}) ->
   process_flag(trap_exit, true),
-  log4erl:info("listener at port:~p ... ", [Port]),
+  logger:info("listener at port:~p ... ", [Port]),
   case gen_tcp:listen(Port, ?TCP_L_OPTS ) of
     {ok, LSock} ->
       {ok, {LIPAddress, LPort}} = inet:sockname(LSock),
-      log4erl:info("listener at ~p:~p,sock(~p) ok.", [LIPAddress, LPort, LSock]),
+      logger:info("listener at ~p:~p,sock(~p) ok.", [LIPAddress, LPort, LSock]),
 
       start_n_acceptor(AcceptorNum, LSock),
 
       {ok, #state{listenSock = LSock}};
     {error, Reason} ->
-      log4erl:fatal("listener init failed,error=~p", [Reason]),
+      logger:fatal("listener init failed,error=~p", [Reason]),
       {stop, {cannot_listen, Port, Reason}}
   end.
 
@@ -165,7 +165,7 @@ code_change(_OldVsn, State, _Extra) ->
 %%% Internal functions
 %%%===================================================================
 start_n_acceptor(N,LSock) ->
-  log4erl:info("start ~p acceptors ... ", [N]),
+  logger:info("start ~p acceptors ... ", [N]),
 
   lists:foreach(
     fun(_) ->
@@ -176,5 +176,5 @@ start_n_acceptor(N,LSock) ->
     lists:duplicate(N, dummy)
   ),
 
-  log4erl:info("start ~p acceptors ok.", [N]).
+  logger:info("start ~p acceptors ok.", [N]).
 

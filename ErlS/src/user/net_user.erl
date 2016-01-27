@@ -14,7 +14,7 @@
 %%% Internal functions
 %%%===================================================================
 onMsg(CMD, Pk) ->
-  log4erl:debug("recv(~p,~p)",[CMD, Pk]),
+  logger:debug("recv(~p,~p)",[CMD, Pk]),
   ok.
 
 

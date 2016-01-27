@@ -66,7 +66,7 @@ start_link(ClientSock) ->
   {ok, State :: #state{}} | {ok, State :: #state{}, timeout() | hibernate} |
   {stop, Reason :: term()} | ignore).
 init(ClientSock) ->
-  log4erl:info("session process(~p) init, sock(~p)", [self(), ClientSock]),
+  logger:info("session process(~p) init, sock(~p)", [self(), ClientSock]),
   set_half_msg(<<>>),
   {ok, #state{socket = ClientSock}}.
 
@@ -126,34 +126,34 @@ handle_info({send_msg, Bin}, #state{socket=Socket} = State) ->
   {noreply, State};
 
 handle_info( {inet_async, Socket, _Ref, {ok, Data}}, #state{socket=Socket} = State) ->
-  log4erl:debug("session socket recv(~p), sock(~p) pid(~p)", [Data, Socket, self()]),
+  logger:debug("session socket recv(~p), sock(~p) pid(~p)", [Data, Socket, self()]),
   try
     doMsgS(Data),
     start_async_recv(Socket, -1),
     {noreply, State}
   catch
-    _ : Why -> log4erl:error("sokc(~p), doMsg error(~p)",[Socket, Why]),
+    _ : Why -> logger:error("sokc(~p), doMsg error(~p)",[Socket, Why]),
     doOffline(?OFFLINE_REASON_EXCEPTION, Socket),
     {stop, normal, State}
   end;
 
 
 handle_info({inet_async, _Socket, _Ref, {error, closed}}, #state{socket=Socket} = State) ->
-  log4erl:error("session socket close sock(~p), pid(~p), reason(~w)", [Socket, self(), closed]),
+  logger:error("session socket close sock(~p), pid(~p), reason(~w)", [Socket, self(), closed]),
   doOffline(?OFFLINE_REASON_SOCK_CLOSE, Socket),
   {stop, normal, State};
 
 handle_info({inet_async, _Socket, _Ref, {error, _Reason}}, #state{socket=Socket} = State) ->
-  log4erl:error("session socket close sock(~p), pid(~p), reason(~w)", [Socket, self(), _Reason]),
+  logger:error("session socket close sock(~p), pid(~p), reason(~w)", [Socket, self(), _Reason]),
   doOffline(?OFFLINE_REASON_SOCK_ERROR, Socket),
    {stop, normal, State};
 
 handle_info({inet_reply, _S, _Status}, #state{socket=Socket} = State) ->
-  log4erl:debug("session socket inet_reply(~p), pid(~p), status=~w", [Socket, self(), State]),
+  logger:debug("session socket inet_reply(~p), pid(~p), status=~w", [Socket, self(), State]),
    {noreply, State};
 
 handle_info(_Info, #state{socket=Socket} = State) ->
-  log4erl:error("session socket scok(~p), pid(~p), undealmsg(~p)", [Socket, self(), _Info]),
+  logger:error("session socket scok(~p), pid(~p), undealmsg(~p)", [Socket, self(), _Info]),
   {noreply, State}.
 
 %%--------------------------------------------------------------------
@@ -197,7 +197,7 @@ get_half_msg() -> 	get(halfMsg).
 start_async_recv(Socket, Len) ->
 
   case catch prim_inet:async_recv(Socket, 0, Len) of
-    MSG -> log4erl:info("start async_recv ~p, ~p", [MSG, Socket])
+    MSG -> logger:info("start async_recv ~p, ~p", [MSG, Socket])
   end.
 
 start_async_send(Socket, Bin) ->
@@ -207,7 +207,7 @@ get_stat(Socket) ->
  inet:getstat(Socket, [recv_cnt, recv_oct, send_cnt, send_oct]).
 
 doOffline(Reason, Socket)->
-  log4erl:info("sock(~p) doOffline(~p), stat(~w)", [Socket, Reason, get_stat(Socket)]),
+  logger:info("sock(~p) doOffline(~p), stat(~w)", [Socket, Reason, get_stat(Socket)]),
   ok.
 %%---------------------------------------------------------------
 %% doMsgS

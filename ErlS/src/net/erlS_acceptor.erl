@@ -65,7 +65,7 @@ start_link(LSock) ->
   {stop, Reason :: term()} | ignore).
 init(LSock) ->
   erlang:process_flag(trap_exit, true),
-  log4erl:info("acceptor start ~p, sock=~p", [self(), LSock]),
+  logger:info("acceptor start ~p, sock=~p", [self(), LSock]),
   {ok, #state{listen_socket=LSock}}.
 
 %%--------------------------------------------------------------------
@@ -126,7 +126,7 @@ handle_info({inet_async, LSock, Ref, {ok, Sock}},
 
 handle_info({inet_async, LSock, Ref, {error, Reason}},
             State=#state{listen_socket=LSock, ref=Ref}) ->
-  log4erl:error("acceptor error reason=~p", [Reason]),
+  logger:error("acceptor error reason=~p", [Reason]),
     case Reason of
         closed       -> {stop, normal, State}; %% listening socket closed
         econnaborted -> accept(State); %% client sent RST before we accepted
@@ -136,7 +136,7 @@ handle_info({start_accept_now}, State) ->
      accept(State);
 
 handle_info(_Info, State) ->
-    log4erl:error("acceptor undeal info=~p", [_Info]),
+    logger:error("acceptor undeal info=~p", [_Info]),
     {noreply, State}.
 
 %%--------------------------------------------------------------------
@@ -178,7 +178,7 @@ accept(State = #state{listen_socket=LSock}) ->
     {ok, Ref} ->
       {noreply, State#state{ref=Ref}};
     Error ->
-      log4erl:error("async_accept error:~p, LSock=~p", [Error, LSock]),
+      logger:error("async_accept error:~p, LSock=~p", [Error, LSock]),
       self() ! {start_accept_now},
       {noreply, State}
   end.
@@ -191,28 +191,28 @@ accept_one(LSock, Sock) ->
     {ok, {Address, Port}} = inet:sockname(LSock),
     {ok, {PeerAddress, PeerPort}} = inet:peername(Sock),
 
-    log4erl:info("accept new sock=~p,~p:~p | ~p:~p", [Sock, Address, Port, PeerAddress, PeerPort]),
+    logger:info("accept new sock=~p,~p:~p | ~p:~p", [Sock, Address, Port, PeerAddress, PeerPort]),
 
     spawn_socket_controller(Sock)
   catch Error:Reason ->
-    log4erl:error("accept_one error=~p:~p", [Error,Reason]),
+    logger:error("accept_one error=~p:~p", [Error,Reason]),
     gen_tcp:close(Sock)
   end.
 
 
 spawn_socket_controller(ClientSock) ->
   try
-  log4erl:info("sock_controller sock=~p ...", [ClientSock]),
+  logger:info("sock_controller sock=~p ...", [ClientSock]),
   case supervisor:start_child(erlS_session_sup, [ClientSock]) of
       {ok, SPid} ->
         inet:setopts(ClientSock, ?TCP_C_OPTS),
         case catch gen_tcp:controlling_process(ClientSock, SPid) of
-          MSG -> log4erl:info("controlling_process sock=~p, pid=~p, res=~p ", [ClientSock,SPid,MSG])
+          MSG -> logger:info("controlling_process sock=~p, pid=~p, res=~p ", [ClientSock,SPid,MSG])
         end,
         SPid ! {start_recv_now};
       {error, closed} -> %% 这种无聊的人 尝试来连我们的，就不管啦
         pass;
-      Other -> log4erl:error("socket_controller sock=~p, error=~p ", [ClientSock,Other])
+      Other -> logger:error("socket_controller sock=~p, error=~p ", [ClientSock,Other])
     end
   catch
      _ : _  -> ok
