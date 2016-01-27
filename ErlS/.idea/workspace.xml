@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e773128-a73b-40dc-a531-147b2d4316e0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/logger.erl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/svr.erl" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Erlx/Makefile" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Erlx/app/log4erl.app" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Erlx/include/common_define.hrl" afterPath="" />
@@ -23,13 +21,7 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Erlx/src/net/erlS_session_sup.erl" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Erlx/src/net/erlS_svr_sup.erl" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../Erlx/svnUpAndMake.bat" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/erlS_sup.erl" afterPath="$PROJECT_DIR$/src/erlS_sup.erl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/erlS_acceptor.erl" afterPath="$PROJECT_DIR$/src/net/erlS_acceptor.erl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/erlS_listener.erl" afterPath="$PROJECT_DIR$/src/net/erlS_listener.erl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/erlS_session.erl" afterPath="$PROJECT_DIR$/src/net/erlS_session.erl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/erlS_svr_sup.erl" afterPath="$PROJECT_DIR$/src/net/erlS_svr_sup.erl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/user/net_user.erl" afterPath="$PROJECT_DIR$/src/user/net_user.erl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/priv/log4erl.conf" afterPath="$PROJECT_DIR$/app/priv/log4erl.conf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Server/Common/Base.cpp" afterPath="$PROJECT_DIR$/../Server/Common/Base.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Server/Common/BaseLib.h" afterPath="$PROJECT_DIR$/../Server/Common/BaseLib.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Server/Server/Global/Task.cpp" afterPath="$PROJECT_DIR$/../Server/Server/Global/Task.cpp" />
@@ -77,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="erlS_acceptor.erl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="erlS_acceptor.erl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/erlS_acceptor.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3448276">
-              <caret line="154" column="26" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="206" column="19" selection-start-line="206" selection-start-column="19" selection-end-line="206" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -92,16 +84,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="erlS_app.erl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/erlS_app.erl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -127,11 +109,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="file_appender.erl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="file_appender.erl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deps/log4erl/src/file_appender.erl">
           <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.6034682">
+              <caret line="178" column="54" selection-start-line="178" selection-start-column="54" selection-end-line="178" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="file.erl" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/erl5.10.4/lib/kernel-2.16.4/src/file.erl">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="227" column="4" selection-start-line="227" selection-start-column="4" selection-end-line="227" selection-end-column="4" />
+              <caret line="217" column="0" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -170,7 +162,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/deps/log4erl" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -203,11 +195,11 @@
         <option value="$PROJECT_DIR$/deps/log4erl/src/logger_guard.erl" />
         <option value="$PROJECT_DIR$/app/priv/log4erl.conf" />
         <option value="$PROJECT_DIR$/deps/log4erl/include/log4erl.hrl" />
-        <option value="$PROJECT_DIR$/deps/log4erl/src/file_appender.erl" />
         <option value="$PROJECT_DIR$/deps/log4erl/src/log4erl.erl" />
         <option value="$PROJECT_DIR$/src/erlS_sup.erl" />
         <option value="$PROJECT_DIR$/src/logger.erl" />
         <option value="$PROJECT_DIR$/src/svr.erl" />
+        <option value="$PROJECT_DIR$/deps/log4erl/src/file_appender.erl" />
       </list>
     </option>
   </component>
@@ -683,7 +675,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328152" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3409091" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3409091" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16666667" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -741,14 +733,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Program Files (x86)/erl5.10.4/lib/stdlib-1.19.4/src/proc_lib.erl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="384" column="29" selection-start-line="384" selection-start-column="29" selection-end-line="384" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/erl5.10.4/lib/erts-5.10.4/src/erlang.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1039,14 +1023,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deps/log4erl/src/file_appender.erl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="227" column="4" selection-start-line="227" selection-start-column="4" selection-end-line="227" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/erlS_app.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1113,8 +1089,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/erlS_acceptor.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3448276">
-          <caret line="154" column="26" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="206" column="19" selection-start-line="206" selection-start-column="19" selection-end-line="206" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/erl5.10.4/lib/kernel-2.16.4/src/file.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="217" column="0" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deps/log4erl/src/file_appender.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6034682">
+          <caret line="178" column="54" selection-start-line="178" selection-start-column="54" selection-end-line="178" selection-end-column="54" />
           <folding />
         </state>
       </provider>
