@@ -10,7 +10,7 @@
 -author("Administrator").
 
 -behaviour(gen_server).
--include("common_define.hrl").
+-include("common.hrl").
 %% API
 -export([start_link/0,start_link/1]).
 

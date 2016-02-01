@@ -26,7 +26,7 @@
 
 -record(state, {listenSock}).
 
--include("common_define.hrl").
+-include("common.hrl").
 
 %%%===================================================================
 %%% API

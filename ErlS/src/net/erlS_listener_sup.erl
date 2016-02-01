@@ -18,7 +18,7 @@
 -export([init/1]).
 
 -define(SERVER, ?MODULE).
--include("common_define.hrl").
+-include("common.hrl").
 
 %%%===================================================================
 %%% API functions

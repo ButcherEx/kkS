@@ -8,7 +8,7 @@
 %%%-------------------------------------------------------------------
 -module(erlS_cc).
 -author("Administrator").
--include("common_define.hrl").
+-include("common.hrl").
 %% API
 -export([client/2, client/3,loop_client/1, loop_client/2]).
 

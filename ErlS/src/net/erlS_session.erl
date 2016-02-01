@@ -27,7 +27,7 @@
 
 -record(state, { socket }).
 
--include("common_define.hrl").
+-include("common.hrl").
 
 %%%===================================================================
 %%% API
