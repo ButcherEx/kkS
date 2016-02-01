@@ -72,7 +72,7 @@ init({AcceptorNum,Port}) ->
   case gen_tcp:listen(Port, ?TCP_L_OPTS ) of
     {ok, LSock} ->
       {ok, {LIPAddress, LPort}} = inet:sockname(LSock),
-      logger:info("listener at ~p:~p,sock(~p) ok.", [LIPAddress, LPort, LSock]),
+      logger:info("listener at ~p:~p,sock(~p) ok.", [utils:ip_to_str(LIPAddress), LPort, LSock]),
 
       start_n_acceptor(AcceptorNum, LSock),
 

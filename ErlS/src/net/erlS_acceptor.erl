@@ -188,10 +188,10 @@ accept_one(LSock, Sock) ->
     {ok, Mod} = inet_db:lookup_socket(LSock),
     inet_db:register_socket(Sock, Mod),
     %% report
-    {ok, {Address, Port}} = inet:sockname(LSock),
+    {ok, {Address, Port}} = inet:sockname(Sock),
     {ok, {PeerAddress, PeerPort}} = inet:peername(Sock),
 
-    logger:info("accept new sock=~p,~p:~p | ~p:~p", [Sock, Address, Port, PeerAddress, PeerPort]),
+    logger:info("accept new sock=~p,~p:~p | ~p:~p", [Sock, utils:ip_to_str(Address), Port, utils:ip_to_str(PeerAddress), PeerPort]),
 
     spawn_socket_controller(Sock)
   catch Error:Reason ->

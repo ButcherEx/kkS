@@ -51,7 +51,9 @@ loop_client(PortNo,Message) ->
 
 loop(Sock) ->
     case catch gen_tcp:recv(Sock,0) of
-      {ok,Data} ->    ?DEV("recv ~p", [Data]), gen_tcp:send(Sock,Data), loop(Sock);
+      {ok,Data} ->
+        %%  ?DEV("recv ~p", [Data]),
+        gen_tcp:send(Sock,Data), loop(Sock);
       _ -> ok
     end.  
 

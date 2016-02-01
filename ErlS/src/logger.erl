@@ -8,7 +8,7 @@
 %%%-------------------------------------------------------------------
 -module(logger).
 -author("Administrator").
--include("common_define.hrl").
+-include("common.hrl").
 %% API
 -compile(export_all).
 

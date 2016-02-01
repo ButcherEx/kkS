@@ -65,7 +65,7 @@ handle_info(doit, State) ->
   TRef = erlang:send_after(1000, self(), doit),
   {noreply, State#state{last = Now, tref = TRef}};
 handle_info({reload_delay, Module}, State) ->
-  'reload.NoRef'(Module),
+  immediately(Module),
   {noreply, State};
 handle_info(_Info, State) ->
   {noreply, State}.
