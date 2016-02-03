@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -18,13 +18,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -104,7 +104,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
@@ -124,38 +124,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\3rd\lua\src\lapi.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lauxlib.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lbaselib.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lbitlib.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lcode.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lcorolib.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lctype.c" />
-    <ClCompile Include="..\..\3rd\lua\src\ldblib.c" />
-    <ClCompile Include="..\..\3rd\lua\src\ldebug.c" />
-    <ClCompile Include="..\..\3rd\lua\src\ldo.c" />
-    <ClCompile Include="..\..\3rd\lua\src\ldump.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lfunc.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lgc.c" />
-    <ClCompile Include="..\..\3rd\lua\src\linit.c" />
-    <ClCompile Include="..\..\3rd\lua\src\liolib.c" />
-    <ClCompile Include="..\..\3rd\lua\src\llex.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lmathlib.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lmem.c" />
-    <ClCompile Include="..\..\3rd\lua\src\loadlib.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lobject.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lopcodes.c" />
-    <ClCompile Include="..\..\3rd\lua\src\loslib.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lparser.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lstate.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lstring.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lstrlib.c" />
-    <ClCompile Include="..\..\3rd\lua\src\ltable.c" />
-    <ClCompile Include="..\..\3rd\lua\src\ltablib.c" />
-    <ClCompile Include="..\..\3rd\lua\src\ltm.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lundump.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lvm.c" />
-    <ClCompile Include="..\..\3rd\lua\src\lzio.c" />
     <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\compiler\importer.cc" />
     <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\compiler\parser.cc" />
     <ClCompile Include="..\..\3rd\protobuf\src\google\protobuf\descriptor.cc" />
@@ -216,7 +184,6 @@
     <ClCompile Include="Global\ExceptionHandler.cpp" />
     <ClCompile Include="Global\InstanceModule.cpp" />
     <ClCompile Include="Global\LogDefine.cpp" />
-    <ClCompile Include="Global\Script.cpp" />
     <ClCompile Include="Global\Task.cpp" />
     <ClCompile Include="Main\Main.cpp" />
     <ClCompile Include="Main\Server.cpp" />
@@ -232,31 +199,6 @@
     <ClCompile Include="Player\ServerPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\3rd\lua\src\lapi.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lauxlib.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lcode.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lctype.h" />
-    <ClInclude Include="..\..\3rd\lua\src\ldebug.h" />
-    <ClInclude Include="..\..\3rd\lua\src\ldo.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lfunc.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lgc.h" />
-    <ClInclude Include="..\..\3rd\lua\src\llex.h" />
-    <ClInclude Include="..\..\3rd\lua\src\llimits.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lmem.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lobject.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lopcodes.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lparser.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lstate.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lstring.h" />
-    <ClInclude Include="..\..\3rd\lua\src\ltable.h" />
-    <ClInclude Include="..\..\3rd\lua\src\ltm.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lua.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lua.hpp" />
-    <ClInclude Include="..\..\3rd\lua\src\luaconf.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lualib.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lundump.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lvm.h" />
-    <ClInclude Include="..\..\3rd\lua\src\lzio.h" />
     <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\compiler\importer.h" />
     <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\compiler\parser.h" />
     <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\descriptor.h" />
@@ -330,7 +272,6 @@
     <ClInclude Include="Global\ExceptionHandler.h" />
     <ClInclude Include="Global\InstanceModule.h" />
     <ClInclude Include="Global\LogDefine.h" />
-    <ClInclude Include="Global\Script.h" />
     <ClInclude Include="Global\Task.h" />
     <ClInclude Include="Global\TaskDefine.h" />
     <ClInclude Include="Main\Main.h" />

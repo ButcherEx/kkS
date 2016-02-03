@@ -80,18 +80,132 @@ void PrintMemoryInfo( DWORD processID )
 
 }
 
+bool testBitIf(int32_t n, int32_t val)
+{
+	int32_t powN = (int)pow(10, n-1);
+	if (powN > val){
+		return false;
+	}
+
+	int32_t left = val / powN;
+	if (left < 10){
+		return left == 1;
+	} else {
+		int32_t mod = left % 10;
+		return mod == 1;
+	}
+
+	return false;
+}
+
+void add(char*result, const char* s1, char* s2)
+{
+	int len1 = strlen(s1);
+	int len2 = strlen(s2);
+
+	int lenOfResult = 0;
+	int carryNum = 0;
+	for (int i = len1 - 1,  j = len2 - 1; (i >= 0) || (j >= 0) || (carryNum > 0); i--, j--) {
+		int num1 = (i >= 0) ? (s1[i] - '0') : 0;
+		int num2 = (j >= 0) ? (s2[j] - '0') : 0;
+		int tmpSum = num1 + num2 + carryNum;
+		carryNum = tmpSum / 10;
+		result[lenOfResult++] = tmpSum % 10 + '0';
+	}
+
+	char *pResultStart = result;
+	char *pResultEnd = result + lenOfResult - 1;
+	for (int i = lenOfResult / 2; i >= 0; i--){
+		char tmpChar = *pResultStart;
+		*pResultStart++ = *pResultEnd;
+		*pResultEnd-- = tmpChar;
+	}
+
+	return;
+}
+
+
+void   maxP()
+{
+#define MAXLEN 1000
+	char a1[MAXLEN];
+	char a2[MAXLEN];
+	static int v1[MAXLEN];
+	static int v2[MAXLEN];
+	static int v3[MAXLEN];
+	int i, j, n, L, z;
+	scanf("%d", &n);
+	for (j = 0; j<n; j++) {
+		scanf("%s%s", a1, a2);
+
+		L = strlen(a1);
+		for (i = 0; i<L; i++) v1[i] = a1[L - 1 - i] - '0';
+
+		L = strlen(a2);
+		for (i = 0; i<L; i++) v2[i] = a2[L - 1 - i] - '0';
+
+		for (i = 0; i<MAXLEN; i++) v3[i] = v1[i] + v2[i];
+
+		for (i = 0; i<MAXLEN; i++) {
+			if (v3[i] >= 10) {
+				v3[i + 1] += v3[i] / 10;
+				v3[i] = v3[i] % 10;
+			}
+		}
+
+		printf("Case %d:\n", j + 1);
+		printf("%s + %s = ", a1, a2);
+
+		z = 0;
+		for (i = MAXLEN - 1; i >= 0; i--) {
+			if (z == 0) {
+				if (v3[i] != 0) {
+					printf("%d", v3[i]);
+					z = 1;
+				}
+			}
+			else {
+				printf("%d", v3[i]);
+			}
+		}
+		if (z == 0) printf("0");
+
+		printf("\n");
+	}
+}
+
 int32_t main(int32_t argc, CHAR* argv[])
 {	
 
 // #if defined(__WINDOWS__)
 // 	_CrtSetDbgFlag(_CrtSetDbgFlag(0) | _CRTDBG_LEAK_CHECK_DF);
 // #endif
+	//maxP();
 
+	#define MAXLEN 1000
+	char a1[MAXLEN] = {0};
+	char a2[MAXLEN] = { 0 };
+	char a3[MAXLEN] = { 0 };
+	scanf("%s%s", a1, a2);
+
+	add(a3, a1, a2);
 	__ENTER_FUNCTION
 
 	_MY_TRY
 	{
-		
+
+		int32_t testVal[4] = { 1000000, 101010, 1111111, 1010101 };
+
+		for (int i = 0; i < 4; i++){
+			int val = 0;
+			for (int j = 1; j < 8; j++){
+				bool isSet = testBitIf(j, testVal[i]);
+				if (isSet) val = val + (int)pow(10, j-1);
+			}
+			printf("%d\n", val);
+		}
+
+
 		FLString<32> f32(32);
 		FLString<64> f64((int64_t)555);
 		FLString<64> f642((uint64_t)777);

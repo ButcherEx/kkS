@@ -37,9 +37,6 @@
     <Filter Include="Common\protobuf\Source Files">
       <UniqueIdentifier>{67d97da2-d312-4ecc-803f-a56c044e64ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Common\lua">
-      <UniqueIdentifier>{bc8ea582-4957-4719-bc9b-936cd7b19996}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Global\Event">
       <UniqueIdentifier>{881dee67-07b1-40b1-a587-bea16237fe53}</UniqueIdentifier>
     </Filter>
@@ -225,102 +222,6 @@
     <ClCompile Include="..\Common\Base\Timer.cpp">
       <Filter>Common\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lapi.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lauxlib.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lbaselib.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lbitlib.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lcode.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lcorolib.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lctype.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\ldblib.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\ldebug.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\ldo.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\ldump.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lfunc.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lgc.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\linit.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\liolib.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\llex.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lmathlib.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lmem.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\loadlib.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lobject.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lopcodes.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\loslib.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lparser.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lstate.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lstring.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lstrlib.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\ltable.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\ltablib.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\ltm.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lundump.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lvm.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\lua\src\lzio.c">
-      <Filter>Common\lua</Filter>
-    </ClCompile>
     <ClCompile Include="Global\EventMgr.cpp">
       <Filter>Global\Event</Filter>
     </ClCompile>
@@ -337,9 +238,6 @@
       <Filter>Global\other</Filter>
     </ClCompile>
     <ClCompile Include="Global\InstanceModule.cpp">
-      <Filter>Global\other</Filter>
-    </ClCompile>
-    <ClCompile Include="Global\Script.cpp">
       <Filter>Global\other</Filter>
     </ClCompile>
     <ClCompile Include="Global\Config.cpp">
@@ -590,81 +488,6 @@
     <ClInclude Include="..\Common\MacroDefine.h">
       <Filter>Common\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lapi.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lauxlib.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lcode.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lctype.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\ldebug.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\ldo.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lfunc.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lgc.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\llex.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\llimits.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lmem.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lobject.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lopcodes.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lparser.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lstate.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lstring.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\ltable.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\ltm.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lua.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lua.hpp">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\luaconf.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lualib.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lundump.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lvm.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\lua\src\lzio.h">
-      <Filter>Common\lua</Filter>
-    </ClInclude>
     <ClInclude Include="Global\EventMgr.h">
       <Filter>Global\Event</Filter>
     </ClInclude>
@@ -687,9 +510,6 @@
       <Filter>Global\other</Filter>
     </ClInclude>
     <ClInclude Include="Global\InstanceModule.h">
-      <Filter>Global\other</Filter>
-    </ClInclude>
-    <ClInclude Include="Global\Script.h">
       <Filter>Global\other</Filter>
     </ClInclude>
     <ClInclude Include="Map\MapCreator.h">

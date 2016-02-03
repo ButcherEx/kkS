@@ -503,12 +503,12 @@ bool ServiceMgr::IsShouldShutdown()
 
 		int64_t nowInt64 = TimeUtil::ToInt64(now);
 		tsnprintf(shutdownFileName, 32, "./shutdown.%lld", nowInt64/1000000);
-		bfs::path shutdownfile = shutdownFileName;
+		/*bfs::path shutdownfile = shutdownFileName;
 		bsys::error_code ec;
 
 		bool isRemoved = bfs::remove(shutdownfile, ec);
-		AssertEx(!ec, ec.message().c_str());
-		return isRemoved;
+		AssertEx(!ec, ec.message().c_str());*/
+		return false;
 	
 	__LEAVE_FUNCTION_EX
 		return false;

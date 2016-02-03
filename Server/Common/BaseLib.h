@@ -17,5 +17,5 @@
 #include "Pool.h"
 #include "AutoFactory.h"
 #include "FastDelegate.h"
-#include "Script.h"
+//#include "Script.h"
 #endif
