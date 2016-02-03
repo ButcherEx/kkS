@@ -71,10 +71,19 @@ init([]) ->
      [erlS_svr_sup]
    },
 
+  VmMemMonitor = {
+    vm_memory_monitor,
+    {vm_memory_monitor, start_link,[1*1024*1024*1024]},
+    permanent,
+    infinity,
+    worker,
+    [erlS_svr_sup]
+  },
+
   {ok,
     {
       {one_for_one, 1, 10},
-     [ErlSvrCs]
+     [ErlSvrCs,VmMemMonitor]
     }
   }.
 

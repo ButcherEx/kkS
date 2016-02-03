@@ -85,7 +85,7 @@ get_total_memory() ->
   try
     get_total_memory(os:type())
   catch _:Error ->
-    logger:warning(
+    logger:warn(
       "Failed to get total system memory: ~n~p~n~p~n",
       [Error, erlang:get_stacktrace()]),
     unknown
@@ -171,7 +171,7 @@ code_change(_OldVsn, State, _Extra) ->
 set_mem_limits(State, MemLimit) ->
   case erlang:system_info(wordsize) of
     4 ->
-      logger:warning(
+      logger:warn(
         "You are using a 32-bit version of Erlang: you may run into "
         "memory address~n"
         "space exhaustion or statistic counters overflow.~n");
@@ -184,7 +184,7 @@ set_mem_limits(State, MemLimit) ->
         case State of
           #state { total_memory = undefined,
             memory_limit = undefined } ->
-            logger:warning(
+            logger:warn(
               "Unknown total memory size for your OS ~p. "
               "Assuming memory size is ~pMB.~n",
               [os:type(),
@@ -198,7 +198,7 @@ set_mem_limits(State, MemLimit) ->
   UsableMemory =
     case get_vm_limit() of
       Limit when Limit < TotalMemory ->
-        logger:warning(
+        logger:warn(
           "Only ~pMB of ~pMB memory usable due to "
           "limited address space.~n"
           "Crashes due to memory exhaustion are possible - see~n"
