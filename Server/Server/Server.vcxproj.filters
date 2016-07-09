@@ -10,12 +10,6 @@
     <Filter Include="Packets">
       <UniqueIdentifier>{32a4dca2-1eff-4ac4-b010-0bc7732b0204}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Map">
-      <UniqueIdentifier>{1defb900-2ab8-4405-8bae-efd510280555}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Map\Role">
-      <UniqueIdentifier>{1c4ca6cf-18d5-4291-9fd5-73935fde4239}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Global">
       <UniqueIdentifier>{261366fc-c867-493d-803f-c52fc0ae249b}</UniqueIdentifier>
     </Filter>
@@ -48,9 +42,6 @@
     </Filter>
     <Filter Include="Global\other">
       <UniqueIdentifier>{57f7f107-d471-4c46-aff2-1beed04d403f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DB">
-      <UniqueIdentifier>{2d836660-6056-4ee2-96d7-fc243a5eee4b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -213,9 +204,6 @@
     <ClCompile Include="Packets\PBMessage.pb.cc">
       <Filter>Packets</Filter>
     </ClCompile>
-    <ClCompile Include="Map\Role\Role.cpp">
-      <Filter>Map\Role</Filter>
-    </ClCompile>
     <ClCompile Include="..\Common\Base\TimeInfo.cpp">
       <Filter>Common\Base</Filter>
     </ClCompile>
@@ -231,9 +219,6 @@
     <ClCompile Include="Global\LogDefine.cpp">
       <Filter>Global\Log</Filter>
     </ClCompile>
-    <ClCompile Include="Global\Task.cpp">
-      <Filter>Global\Task</Filter>
-    </ClCompile>
     <ClCompile Include="Global\ExceptionHandler.cpp">
       <Filter>Global\other</Filter>
     </ClCompile>
@@ -243,29 +228,17 @@
     <ClCompile Include="Global\Config.cpp">
       <Filter>Global\other</Filter>
     </ClCompile>
-    <ClCompile Include="Map\MapCreator.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="DB\DBTask.cpp">
-      <Filter>DB</Filter>
-    </ClCompile>
-    <ClCompile Include="DB\DBMainTask.cpp">
-      <Filter>DB</Filter>
-    </ClCompile>
     <ClCompile Include="Main\Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="Main\Server.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="Map\Map.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Map\MapMgr.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
     <ClCompile Include="..\Common\Base\CpuMemStat.cpp">
       <Filter>Common\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Service.cpp">
+      <Filter>Global\Task</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -476,9 +449,6 @@
     <ClInclude Include="Packets\PacketWrapper.h">
       <Filter>Packets</Filter>
     </ClInclude>
-    <ClInclude Include="Map\Role\Role.h">
-      <Filter>Map\Role</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\Base\TimeInfo.h">
       <Filter>Common\Base</Filter>
     </ClInclude>
@@ -500,9 +470,6 @@
     <ClInclude Include="Global\LogDefine.h">
       <Filter>Global\Log</Filter>
     </ClInclude>
-    <ClInclude Include="Global\Task.h">
-      <Filter>Global\Task</Filter>
-    </ClInclude>
     <ClInclude Include="Global\Config.h">
       <Filter>Global\other</Filter>
     </ClInclude>
@@ -512,17 +479,8 @@
     <ClInclude Include="Global\InstanceModule.h">
       <Filter>Global\other</Filter>
     </ClInclude>
-    <ClInclude Include="Map\MapCreator.h">
-      <Filter>Map</Filter>
-    </ClInclude>
     <ClInclude Include="Global\TaskDefine.h">
       <Filter>Global\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="DB\DBMainTask.h">
-      <Filter>DB</Filter>
-    </ClInclude>
-    <ClInclude Include="DB\DBTask.h">
-      <Filter>DB</Filter>
     </ClInclude>
     <ClInclude Include="Main\Main.h">
       <Filter>Main</Filter>
@@ -530,17 +488,14 @@
     <ClInclude Include="Main\Server.h">
       <Filter>Main</Filter>
     </ClInclude>
-    <ClInclude Include="Map\MapMgr.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Map\Map.h">
-      <Filter>Map</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\Base\CpuMemStat.h">
       <Filter>Common\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\Base\FLString.h">
       <Filter>Common\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
+      <Filter>Global\Task</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

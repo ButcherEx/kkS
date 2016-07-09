@@ -6,8 +6,8 @@ POOL_IMPL(Player);
 
 
 Player::Player( bool bIsServer )
-:m_Role(*this)
-,m_SocketInputStream(m_Socket) 
+//:m_Role(*this)
+: m_SocketInputStream(m_Socket) 
 ,m_SocketOutputStream(m_Socket)
 {
 __ENTER_FUNCTION
@@ -370,5 +370,6 @@ __LEAVE_FUNCTION
 
 uint32_t Player::HandlePacket(const CG_LOGIN& rMsg) 
 { 
-	return m_Role.HandlePacket(rMsg); 
+	return 0;
+	//return m_Role.HandlePacket(rMsg); 
 }

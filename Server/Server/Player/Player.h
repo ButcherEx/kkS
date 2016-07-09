@@ -10,7 +10,7 @@
 #define __PLAYER_H__
 
 #include "PacketWrapper.h"
-#include "Role/Role.h"
+
 
 //如果在一定时间内没有收到任何消息，则断开此客户端的网络连接
 #define MAX_KICK_TIME 300000
@@ -41,7 +41,7 @@ public :
 	//清除当前玩家网络连接数据和缓存数据
 	virtual	void			CleanUp( ) ;
 protected :
-	Role					m_Role;
+	//Role					m_Role;
 	//网络连接句柄
 	Socket					m_Socket ;
 

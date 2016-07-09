@@ -176,27 +176,21 @@
     <ClCompile Include="..\Common\Net\SocketAPI.cpp" />
     <ClCompile Include="..\Common\Net\SocketInputStream.cpp" />
     <ClCompile Include="..\Common\Net\SocketOutputStream.cpp" />
-    <ClCompile Include="DB\DBMainTask.cpp" />
-    <ClCompile Include="DB\DBTask.cpp" />
     <ClCompile Include="Global\Config.cpp" />
     <ClCompile Include="Global\EventMgr.cpp" />
     <ClCompile Include="Global\EventMsg_Test.cpp" />
     <ClCompile Include="Global\ExceptionHandler.cpp" />
     <ClCompile Include="Global\InstanceModule.cpp" />
     <ClCompile Include="Global\LogDefine.cpp" />
-    <ClCompile Include="Global\Task.cpp" />
     <ClCompile Include="Main\Main.cpp" />
     <ClCompile Include="Main\Server.cpp" />
-    <ClCompile Include="Map\Map.cpp" />
-    <ClCompile Include="Map\MapCreator.cpp" />
-    <ClCompile Include="Map\MapMgr.cpp" />
-    <ClCompile Include="Map\Role\Role.cpp" />
     <ClCompile Include="Packets\Packet.cpp" />
     <ClCompile Include="Packets\PBMessage.pb.cc" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Player\PlayerManager.cpp" />
     <ClCompile Include="Player\PlayerPacketMgr.cpp" />
     <ClCompile Include="Player\ServerPlayer.cpp" />
+    <ClCompile Include="Service.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\3rd\protobuf\src\google\protobuf\compiler\importer.h" />
@@ -263,8 +257,6 @@
     <ClInclude Include="..\Common\Net\SocketAPI.h" />
     <ClInclude Include="..\Common\Net\SocketInputStream.h" />
     <ClInclude Include="..\Common\Net\SocketOutputStream.h" />
-    <ClInclude Include="DB\DBMainTask.h" />
-    <ClInclude Include="DB\DBTask.h" />
     <ClInclude Include="Global\Config.h" />
     <ClInclude Include="Global\EventMgr.h" />
     <ClInclude Include="Global\EventMsg.h" />
@@ -272,14 +264,9 @@
     <ClInclude Include="Global\ExceptionHandler.h" />
     <ClInclude Include="Global\InstanceModule.h" />
     <ClInclude Include="Global\LogDefine.h" />
-    <ClInclude Include="Global\Task.h" />
     <ClInclude Include="Global\TaskDefine.h" />
     <ClInclude Include="Main\Main.h" />
     <ClInclude Include="Main\Server.h" />
-    <ClInclude Include="Map\Map.h" />
-    <ClInclude Include="Map\MapCreator.h" />
-    <ClInclude Include="Map\MapMgr.h" />
-    <ClInclude Include="Map\Role\Role.h" />
     <ClInclude Include="Packets\Packet.h" />
     <ClInclude Include="Packets\PacketDefine.h" />
     <ClInclude Include="Packets\PacketFactory.h" />
@@ -290,6 +277,7 @@
     <ClInclude Include="Player\PlayerPacketMgr.h" />
     <ClInclude Include="Player\PlayerStatus.h" />
     <ClInclude Include="Player\ServerPlayer.h" />
+    <ClInclude Include="Service.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

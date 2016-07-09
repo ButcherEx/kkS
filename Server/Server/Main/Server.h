@@ -6,7 +6,7 @@
 
 #include "BaseLib.h"
 #include "Player.h"
-#include "Role/Role.h"
+//#include "Role/Role.h"
 #include "InstanceModule.h"
 #include "LogDefine.h"
 #include "EventMsg.h"
