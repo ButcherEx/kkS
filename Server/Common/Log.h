@@ -69,13 +69,13 @@ public:
 			_flushUnlock();
 		}
 
-		TIME64 now  = TimeUtil::Now();
+		/*TIME64 now  = TimeUtil::Now();
 		char curTime[LOGTIME_LEN] = {0};
 		tsnprintf(curTime, LOGTIME_LEN, "%04d-%02d-%02d %02d:%02d:%02d",
-			now.year+1900, now.mon, now.day, now.hour, now.min, now.sec);
+			now.year+1900, now.mon, now.day, now.hour, now.min, now.sec);*/
 
 		char szBlock[_BlockSize] = {0};
-		int32_t len = tsnprintf(szBlock, _BlockSize, "%s(%s)\n", log, curTime);
+		int32_t len = tsnprintf(szBlock, _BlockSize, "%s\n", log);
 		if( len > 0 )
 		{
 			if(m_BufferedSize >= 0 && m_BufferedSize < _BufSize)
@@ -150,13 +150,14 @@ private:
 								LogSink<16*1024, 4*1024, Tag##LOGTYPE> LOG_INST(LOGTYPE)
 //////////////////////////////////////////////////////////////////////////
 template<typename _LogSink>
-void _LogSinkPrint(_LogSink& rSink, LogColor color, /*const CHAR* keyVal,*/ const CHAR* func, int32_t line, const CHAR* fmt, ...)
+void _LogSinkPrint(_LogSink& rSink, LogColor color, const CHAR* Level, const CHAR* func, int32_t line, const CHAR* fmt, ...)
 {
 	__ENTER_FUNCTION_EX
 	{
 		CHAR fmtBuffer[4096] = {0};
-		int32_t writeBytes = tsnprintf(fmtBuffer, 4096,"(###)[%s][%d]",
-			/*keyVal, */func, line);
+		TIME64 now = TimeUtil::Now();
+		int32_t writeBytes = tsnprintf(fmtBuffer, 4096, "[%04d-%02d-%02d%02d:%02d:%02d][%s][%s][%d] ",
+			now.year + 1900, now.mon, now.day, now.hour, now.min, now.sec,Level, func, line);
 
 		if(writeBytes > 0 && writeBytes < 4096)
 		{
@@ -180,10 +181,10 @@ void _LogSinkPrint(_LogSink& rSink, LogColor color, /*const CHAR* keyVal,*/ cons
 
 
 //////////////////////////////////////////////////////////////////////////
-#define LOG_INFO(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_DEFAULT, __FUNCTION__, __LINE__, __VA_ARGS__)
-#define LOG_DEBUG(SINK, ...)	_LogSinkPrint(LOG_INST(SINK), COLOR_GREEN,	 __FUNCTION__, __LINE__, __VA_ARGS__)
-#define LOG_WARN(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_YELLOW,	 __FUNCTION__, __LINE__, __VA_ARGS__)
-#define LOG_ERROR(SINK, ...)	_LogSinkPrint(LOG_INST(SINK), COLOR_RED,	 __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOG_INFO(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_DEFAULT, "Info", __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOG_DEBUG(SINK, ...)	_LogSinkPrint(LOG_INST(SINK), COLOR_GREEN,	 "Debug", __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOG_WARN(SINK, ...)		_LogSinkPrint(LOG_INST(SINK), COLOR_YELLOW,	 "Warn", __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOG_ERROR(SINK, ...)	_LogSinkPrint(LOG_INST(SINK), COLOR_RED,	 "Error", __FUNCTION__, __LINE__, __VA_ARGS__)
 
 
 #endif

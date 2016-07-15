@@ -20,7 +20,7 @@ public:
 public:
 	virtual bool		Init();
 	virtual void		Tick(const TimeInfo& rTimeInfo);
-	virtual int32_t		GetServiceID() { return ServiceDefine::DATABASE;} 
+	virtual int32_t		GetServiceID() { return 0;} 
 public:
 private:
 	void				InitDBTask();
