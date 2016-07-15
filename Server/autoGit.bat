@@ -1,5 +1,5 @@
 @echo off
-LLL:
+:LLL
 echo "commit local....."
 git commit -a -m "auto commit"
 
