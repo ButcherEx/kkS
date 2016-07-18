@@ -204,6 +204,7 @@ private:
 	void					Tick(int32 elapse);
 	void					Tick_Service(int32 elapse);
 	void					Tick_AllInvoker(int32 elapse);
+	void					Tick_FreeInvoker();
 	void					Tick_Logic(int32 elapse);
 private:
 	void					Wait(int32 sec);

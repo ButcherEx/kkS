@@ -46,10 +46,11 @@ void Invoker::Invoke()
 	m_LifeTimeLeft -= m_Interval;
 	if (m_LifeTimeLeft <= 0) {
 		SetState(InvokerStatus::STOP);
-	} else {
+	}
+	else {
 		SetState((m_Type != InvokerType::ACTIVE) ? InvokerStatus::IDLE : InvokerStatus::READY);
 	}
-	
+
 	__LEAVE_FUNCTION
 }
 //////////////////////////////////////////////////////////////////////////
@@ -164,8 +165,8 @@ void Service::OnFinalSaveOk()
 void Service::Stop()
 {
 	__ENTER_FUNCTION
-		
-	__LEAVE_FUNCTION
+
+		__LEAVE_FUNCTION
 }
 
 InvokerPtr Service::FetchInvoker()
@@ -189,7 +190,7 @@ void Service::AddInvoker(InvokerPtr taskPtr)
 
 ServiceMgr::ServiceMgr()
 {
-	
+
 }
 
 ServiceMgr::~ServiceMgr()
@@ -408,6 +409,7 @@ void ServiceMgr::Tick(int32_t elapse)
 	__ENTER_FUNCTION_EX
 		Tick_Service(elapse);
 	Tick_AllInvoker(elapse);
+	Tick_FreeInvoker();
 	__LEAVE_FUNCTION_EX
 }
 void ServiceMgr::Tick_Service(int32_t elapse)
@@ -439,6 +441,7 @@ void ServiceMgr::Tick_AllInvoker(int32_t elapse)
 
 	InvokerPtr Ptr;
 	m_InvokerPtrList.ResetIterator();
+
 	while (m_InvokerPtrList.PeekNext(Ptr))
 	{
 		switch (Ptr->GetState())
@@ -467,11 +470,24 @@ void ServiceMgr::Tick_AllInvoker(int32_t elapse)
 			break;
 		case InvokerStatus::STOP:
 			Ptr->Stop();
-			m_InvokerPtrList.Erase(Ptr);
 			break;
 		default:
 			AssertSpecialEx(false, "Invoker unkonwn state.");
 			break;
+		}
+	}
+
+	__LEAVE_FUNCTION
+}
+void ServiceMgr::Tick_FreeInvoker()
+{
+	__ENTER_FUNCTION
+		TList<InvokerPtr>::TListIterator iter = m_InvokerPtrList.Begin();
+	for (; iter != m_InvokerPtrList.End();){
+		if ((*iter)->GetState() == InvokerStatus::STOP){
+			iter = m_InvokerPtrList.Erase(iter);
+		} else {
+			++iter;
 		}
 	}
 

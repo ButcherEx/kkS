@@ -187,6 +187,7 @@ private:
 	void					Tick(int32_t elapse);
 	void					Tick_Service(int32_t elapse);
 	void					Tick_AllInvoker(int32_t elapse);
+	void					Tick_FreeInvoker();
 	void					Tick_Logic(int32_t elapse);
 private:
 	void					Wait(int32_t sec);

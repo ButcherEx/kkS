@@ -109,6 +109,15 @@ public:
 		return false;
 	}
 
+	TListIterator Erase(const TListIterator& iter)
+	{
+		if (iter != m_ImplList.end()){
+			--m_Size;
+			return m_ImplList.erase(iter);
+		}
+		return m_ImplList.end();
+	}
+
 	// 删除指定元素
 	bool Erase(Type& val)
 	{
@@ -271,6 +280,15 @@ public:
 			}
 		}
 		return false;
+	}
+
+	TListIterator Erase(const TListIterator& iter)
+	{
+		if (iter != m_ImplList.end()){
+			--m_Size;
+			return m_ImplList.erase(iter);
+		}
+		return m_ImplList.end();
 	}
 
 	// 检查指定元素是否存在
