@@ -109,14 +109,6 @@ public:
 		return false;
 	}
 
-	TListIterator Erase(const TListIterator& iter)
-	{
-		if (iter != m_ImplList.end()){
-			--m_Size;
-			return m_ImplList.erase(iter);
-		}
-		return m_ImplList.end();
-	}
 
 	// É¾³ıÖ¸¶¨ÔªËØ
 	bool Erase(Type& val)
