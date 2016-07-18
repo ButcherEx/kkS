@@ -8,7 +8,7 @@
 LOG_IMPL(ServiceMgrLog)
 //////////////////////////////////////////////////////////////////////////
 Invoker::Invoker(uint32 interval, uint32 lifeTime, int32 type, int32 initState)
-: m_Interval(interval), m_LifeTime(lifeTime), m_State(initState), m_Type(type)
+: m_Interval(interval), m_LifeTime(lifeTime), m_LifeTimeLeft(lifeTime), m_State(initState), m_Type(type)
 , m_InvokeTimeLeft(0), m_SchuduleTime(0), m_ExcuteTime(0), m_IdleTime(0)
 {
 
@@ -43,7 +43,13 @@ void Invoker::Invoke()
 		Do();
 	__LEAVE_FUNCTION_EX
 		m_InvokeTimeLeft = m_Interval;
-	SetState((m_Type != InvokerType::ACTIVE) ? InvokerStatus::IDLE : InvokerStatus::READY);
+	m_LifeTimeLeft -= m_Interval;
+	if (m_LifeTimeLeft <= 0) {
+		SetState(InvokerStatus::STOP);
+	} else {
+		SetState((m_Type != InvokerType::ACTIVE) ? InvokerStatus::IDLE : InvokerStatus::READY);
+	}
+	
 	__LEAVE_FUNCTION
 }
 //////////////////////////////////////////////////////////////////////////
@@ -458,6 +464,10 @@ void ServiceMgr::Tick_AllInvoker(int32_t elapse)
 			break;
 		case InvokerStatus::SCHUDULE:
 			Ptr->UpdateSchuduleTime(elapse);
+			break;
+		case InvokerStatus::STOP:
+			Ptr->Stop();
+			m_InvokerPtrList.Erase(Ptr);
 			break;
 		default:
 			AssertSpecialEx(false, "Invoker unkonwn state.");

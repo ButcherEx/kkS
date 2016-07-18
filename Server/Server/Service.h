@@ -16,7 +16,7 @@ public:
 		READY,
 		SCHUDULE,
 		EXECUTE,
-		DIE
+		STOP
 	};
 };
 
@@ -40,6 +40,7 @@ public:
 	void			UpdateInvokeTimeLeft(int32 elapse);
 	void			Invoke();
 	virtual void	Do() = 0;
+	virtual void	Stop() = 0;
 public:
 	bool			CanExcuteNow() const				{ return m_InvokeTimeLeft <= 0; }
 	void			UpdateSchuduleTime(int32 elapse)	{ m_SchuduleTime += elapse; }
@@ -60,6 +61,7 @@ protected:
 	TimeInfo		m_TimeInfo;
 	uint32			m_Interval;
 	uint32			m_LifeTime;
+	int64			m_LifeTimeLeft;
 	int32			m_InvokeTimeLeft;
 	int32			m_SchuduleTime;
 	int32			m_ExcuteTime;
@@ -74,13 +76,18 @@ template<class InvokerImpl>
 class MakeInvoker : public Invoker
 {
 public:
-	MakeInvoker(InvokerImpl& rInvokerImpl, int32 InterVal) :Invoker(InterVal), m_rInvokerImpl(rInvokerImpl){}
+	MakeInvoker(InvokerImpl& rInvokerImpl, int32 InterVal, uint32 lifeTime = -1) :Invoker(InterVal, lifeTime), m_rInvokerImpl(rInvokerImpl){}
 	virtual ~MakeInvoker() {}
 public:
 	virtual void Do()
 	{
 		UpdateTimeInfo();
 		m_rInvokerImpl.Tick(m_TimeInfo);
+	}
+
+	virtual void Stop()
+	{
+		m_rInvokerImpl.Stop();
 	}
 
 private:
