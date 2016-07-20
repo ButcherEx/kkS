@@ -330,7 +330,7 @@ void ServiceMgr::ExcuteState(int32_t setState, int32_t checkState)
 			break;
 		}
 
-		MySleep(100);
+		MySleep(10);
 	}
 	__LEAVE_FUNCTION
 }
