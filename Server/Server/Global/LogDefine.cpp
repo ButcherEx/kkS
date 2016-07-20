@@ -7,3 +7,4 @@
 LOG_IMPL(ServerDebug);
 LOG_IMPL(ServerError);
 LOG_IMPL(ServerService);
+LOG_IMPL(LoginService);
