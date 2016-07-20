@@ -129,6 +129,7 @@ class Service
 public:
 	virtual bool		Init() = 0;
 	virtual int32		GetServiceID() = 0;
+	virtual void		Stop();
 public:
 	InvokerPtr			FetchInvoker();
 	void				AddInvoker(InvokerPtr taskPtr);
@@ -141,7 +142,6 @@ protected:
 	virtual	void		Load();
 	virtual void		Shutdown();
 	virtual void		FinalSave();
-	virtual void		Stop();
 public:
 	virtual void		OnStartOk();
 	virtual void		OnLoadOk();

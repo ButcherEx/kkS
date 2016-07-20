@@ -46,8 +46,7 @@ void Invoker::Invoke()
 	m_LifeTimeLeft -= m_Interval;
 	if (m_LifeTimeLeft <= 0) {
 		SetState(InvokerStatus::STOP);
-	}
-	else {
+	} else {
 		SetState((m_Type != InvokerType::ACTIVE) ? InvokerStatus::IDLE : InvokerStatus::READY);
 	}
 

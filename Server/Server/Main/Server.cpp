@@ -1,5 +1,5 @@
 #include "Server.h"
-#include "DBMainTask.h"
+#include "LoginService.h"
 
 //////////////////////////////////////////////////////////////////////////
 Server g_Server;
@@ -34,6 +34,8 @@ void Server::Init_AllTask()
 	//////////////////////////////////////////////////////////////////////////
 	bool bRet = m_MainServiceManager.Init(ServiceDefine::MAX, g_Config.m_LogConfig.m_ThreadNum);
 	Assert(bRet);
+
+	m_MainServiceManager.Register(ServicePtr(new LoginService));
 
 	//////////////////////////////////////////////////////////////////////////
 	__LEAVE_FUNCTION

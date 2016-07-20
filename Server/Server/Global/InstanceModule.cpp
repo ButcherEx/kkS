@@ -2,7 +2,6 @@
 #include "PBMessage.pb.h"
 #include "InstanceModule.h"
 #include "LogDefine.h"
-#include "Task.h"
 
 InstanceManager g_InstancenManager;
 

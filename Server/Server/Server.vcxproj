@@ -182,6 +182,7 @@
     <ClCompile Include="Global\ExceptionHandler.cpp" />
     <ClCompile Include="Global\InstanceModule.cpp" />
     <ClCompile Include="Global\LogDefine.cpp" />
+    <ClCompile Include="LoginService.cpp" />
     <ClCompile Include="Main\Main.cpp" />
     <ClCompile Include="Main\Server.cpp" />
     <ClCompile Include="Packets\Packet.cpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="Global\InstanceModule.h" />
     <ClInclude Include="Global\LogDefine.h" />
     <ClInclude Include="Global\TaskDefine.h" />
+    <ClInclude Include="LoginService.h" />
     <ClInclude Include="Main\Main.h" />
     <ClInclude Include="Main\Server.h" />
     <ClInclude Include="Packets\Packet.h" />
